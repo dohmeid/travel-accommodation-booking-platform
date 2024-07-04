@@ -1,0 +1,92 @@
+.container {
+    height: 100vh;
+    width: 100%;
+
+    color: #342727;
+    font-family: Arial;
+    font-size: 12px;
+    background-image: url(../../assets/images/loginPageBackground.jpg);
+    background-size: cover;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    .headline,
+    .loginForm {
+        height: 20rem;
+        width: 25rem;
+        padding: 5rem;
+        margin-right: 1rem;
+        background-color: rgba(232, 234, 204, 0.343);
+    }
+
+    .headline {
+        text-align: right;
+        h1{
+            font-size: 4em;
+        }
+
+        span{
+            color: orangered;
+        }
+
+    }
+
+    .loginForm {
+
+        input[type=text],
+        input[type=password] {
+            width: 250px;
+            height: 30px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 2px;
+            color: #fff;
+            font-family: 'Exo', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            padding: 4px;
+
+            &:focus {
+                outline: none;
+                border: 1px solid rgba(255, 255, 255, 0.9);
+            }
+
+        }
+
+        input[type=text] {}
+
+        input[type=password] {
+            margin-top: 10px;
+        }
+
+        input[type=button] {
+            width: 260px;
+            height: 35px;
+            background: #fff;
+            border: 1px solid #fff;
+            cursor: pointer;
+            border-radius: 2px;
+            color: #a18d6c;
+            font-family: 'Exo', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            padding: 6px;
+            margin-top: 10px;
+
+            &:hover {
+                opacity: 0.8;
+            }
+
+            &:active {
+                opacity: 0.6;
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}

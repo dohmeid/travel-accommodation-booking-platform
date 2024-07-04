@@ -1,10 +1,11 @@
 import React, { FC } from "react";
 import "./App.css";
+import LoginPage from "./components/LoginPage/LoginPage";
 
 const App: FC = () => {
   return (
     <div className="App">
-      <p>hello</p>
+      <LoginPage />
     </div>
   );
 };
