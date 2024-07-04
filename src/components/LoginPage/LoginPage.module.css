@@ -95,17 +95,9 @@
                 }
             }
 
-            .alert {
+            .errorAlert {
                 color: var(--dark-red);
                 font-size: 0.6rem;
-            }
-
-            .error {
-                color: var(--dark-red);
-            }
-
-            .errorBorder {
-                border: 6px solid var(--dark-red);
             }
         }
 
