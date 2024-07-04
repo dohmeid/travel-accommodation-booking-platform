@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
 .container {
     height: 100vh;
     width: 100%;
@@ -12,69 +15,110 @@
     align-items: center;
     justify-content: center;
 
+    --cinereous: #8C7F76ff;
+    --coyote: #79664Fff;
+    --paynes-gray: #646F84ff;
+    --azure-web: #DDF0F3ff;
+    --beige: #D3D2BDff;
+
+    --dark-red: #852323;
+    --lightgray: lightgray;
+    --transparent-beige: rgba(211, 210, 189, 0.7);
+    --brown-sugar: #B3643Aff;
+    --dark-brown: #3B241Eff;
+    --main-font: "League Spartan", sans-serif;
+    --secondary-font: "Libre Baskerville", serif;
 
     .headline,
     .loginForm {
         height: 20rem;
         width: 25rem;
-        padding: 5rem;
-        margin-right: 1rem;
-        background-color: rgba(232, 234, 204, 0.343);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: var(--transparent-beige);
+        font-family: var(--secondary-font);
     }
 
     .headline {
+        border-right: 0.5rem solid var(--dark-brown);
+        padding-right: 1rem;
         text-align: right;
-        h1{
-            font-size: 4em;
+
+        h1 {
+            font-size: 5em;
+            color: var(--dark-brown);
+            font-family: var(--main-font);
+
+            span {
+                color: var(--brown-sugar);
+            }
         }
 
-        span{
-            color: orangered;
+        p {
+            color: var(--dark-brown);
         }
-
     }
 
+
     .loginForm {
+        align-items: center;
 
-        input[type=text],
-        input[type=password] {
-            width: 250px;
-            height: 30px;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 2px;
-            color: #fff;
-            font-family: 'Exo', sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            padding: 4px;
+        .inputContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 15rem;
+            margin-bottom: 1rem;
+            text-align: left;
 
-            &:focus {
-                outline: none;
-                border: 1px solid rgba(255, 255, 255, 0.9);
+            label {
+                font-size: 0.9rem;
+                color: var(--dark-brown);
             }
 
+            input[type=text],
+            input[type=password] {
+                height: 2rem;
+                background: transparent;
+                color: var(--dark-brown);
+                border-radius: 2px;
+                border: 1px solid var(--lightgray);
+                padding: 5px;
+                font-size: 0.75rem;
+                margin: 0.3rem 0;
+                font-family: var(--secondary-font);
+
+                &:focus {
+                    outline: none;
+                    border: 2px solid var(--lightgray);
+                }
+            }
+
+            .alert {
+                color: var(--dark-red);
+                font-size: 0.6rem;
+            }
+
+            .error {
+                color: var(--dark-red);
+            }
+
+            .errorBorder {
+                border: 6px solid var(--dark-red);
+            }
         }
 
-        input[type=text] {}
-
-        input[type=password] {
-            margin-top: 10px;
-        }
-
-        input[type=button] {
-            width: 260px;
-            height: 35px;
-            background: #fff;
-            border: 1px solid #fff;
+        button {
+            width: 15rem;
+            height: 2.5rem;
+            color: var(--lightgray);
+            background: var(--brown-sugar);
+            border: none;
             cursor: pointer;
             border-radius: 2px;
-            color: #a18d6c;
-            font-family: 'Exo', sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            padding: 6px;
-            margin-top: 10px;
+            font-size: 1rem;
+            font-family: var(--main-font);
 
             &:hover {
                 opacity: 0.8;

@@ -44,44 +44,60 @@ const LoginPage: FC = () => {
         className={classes.loginForm}
         onSubmit={submitFormHandler}
       >
-        <label htmlFor="userName">UserName</label>
-        <input
-          type="text"
-          name="userName"
-          id="userName"
-          aria-required="true"
-          aria-describedby="usernameAlert"
-        />
-        {!isValid && !username && (
-          <div
-            role="alert"
-            aria-atomic="true"
-            id="usernameAlert"
-            className="form__alert"
+        <div className={classes.inputContainer}>
+          <label
+            htmlFor="userName"
+            className={`${classes.label} ${!isValid ? classes.error : ""}`}
           >
-            You must enter a valid username
-          </div>
-        )}
+            Username
+          </label>
+          <input
+            className={`${!isValid ? classes.errorBorder : ""}`}
+            type="text"
+            name="userName"
+            id="userName"
+            aria-required="true"
+            aria-describedby="usernameAlert"
+          />
+          {!isValid && !username && (
+            <div
+              role="alert"
+              aria-atomic="true"
+              id="usernameAlert"
+              className={classes.alert}
+            >
+              You must enter a valid username
+            </div>
+          )}
+        </div>
 
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          aria-required="true"
-          aria-describedby="passwordAlert"
-        />
-        {!isValid && !password && (
-          <div
-            aria-live="polite"
-            role="alert"
-            aria-atomic="true"
-            id="passwordAlert"
-            className="form__alert"
+        <div className={classes.inputContainer}>
+          <label
+            htmlFor="password"
+            className={`${classes.label} ${!isValid ? classes.error : ""}`}
           >
-            You must enter a valid password
-          </div>
-        )}
+            Password
+          </label>
+          <input
+            className={`${!isValid ? classes.errorBorder : ""}`}
+            type="password"
+            name="password"
+            id="password"
+            aria-required="true"
+            aria-describedby="passwordAlert"
+          />
+          {!isValid && !password && (
+            <div
+              aria-live="polite"
+              role="alert"
+              aria-atomic="true"
+              id="passwordAlert"
+              className={classes.alert}
+            >
+              You must enter a valid password
+            </div>
+          )}
+        </div>
 
         <button type="submit">Login</button>
       </form>
