@@ -1,7 +1,8 @@
-import React, { FC } from "react";
+import React, { useState, FC } from "react";
 import classes from "./LoginPage.module.css";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup"; //Yup for object schema validation
+import axios from "axios";
 
 // the yup module schema for validation
 const schema = Yup.object().shape({
@@ -9,7 +10,41 @@ const schema = Yup.object().shape({
   password: Yup.string().required("Password is a required field!"),
 });
 
+const API_URL =
+  "https://app-hotel-reservation-webapi-uae-dev-001.azurewebsites.net/api/auth/authenticate";
+
 const LoginPage: FC = () => {
+  const [message, setMessage] = useState("");
+
+  ////////////////
+  const submitFrom = async () => {
+    try {
+      const response = await axios.post(
+        API_URL,
+        JSON.stringify({ userName: "user2", password: "user2" }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(JSON.stringify(response?.data));
+      //console.log(JSON.stringify(response));
+      const accessToken = response?.data?.accessToken;
+      const roles = response?.data?.roles;
+      //setAuth({ user, pwd, roles, accessToken });
+
+      setMessage("Success");
+    } catch (error: any) {
+      if (!error?.response) {
+        setMessage("No Server Response");
+      } else if (error.response?.status === 401) {
+        setMessage("Unauthorized");
+      } else {
+        setMessage("Login Failed");
+      }
+    }
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.headline}>

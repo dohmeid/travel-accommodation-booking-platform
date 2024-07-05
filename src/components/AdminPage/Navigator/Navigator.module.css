@@ -1,0 +1,71 @@
+.navigator {
+    width: fit-content;
+    height: 100vh;
+    background-color: #c69393;
+    display: flex;
+}
+
+.navTrigger {
+    width: 5rem;
+    padding-top: 1rem;
+    background-color: rgb(104, 87, 87);
+    transition: 0.2s ease-in-out;
+
+    & button {
+        width: 3rem;
+        font-size: 2rem;
+        border: none;
+        color: #B2BAC2;
+        cursor: pointer;
+
+        &:hover{
+
+        }
+    }
+}
+
+.nav {
+    width: 10rem;
+    background-color: rgb(60, 84, 71);
+    transition: width 0.3s ease-in-out;
+
+    transition: width 0.3s, visibility 0.3s;
+    visibility: visible;
+    overflow: hidden;
+
+
+    .navList {
+        list-style: none;
+
+        .navItem {
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #c69393;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            
+            a {
+                color: white;
+                font-size: 1rem;
+                text-decoration: none;
+                
+                &:hover {
+                    color: rgb(147, 147, 181);
+                }
+            }
+
+            &:hover {
+                background-color: #ffee008c;
+            }
+        }
+    }
+}
+
+.navClosed {
+    /*transition: visibility 0.3s ease-in-out;
+    width: 0px;*/
+    width: 0;
+    visibility: collapse;
+}

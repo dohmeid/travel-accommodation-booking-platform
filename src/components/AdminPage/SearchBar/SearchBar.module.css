@@ -1,0 +1,13 @@
+input[type="search"] {
+    border-radius: 0.2rem;
+    border: 1px solid var(--medium-grey);
+    padding-inline-start: 0.8rem;
+    font-size: 1rem;
+    min-height: 2.4em;
+    width: 15rem;
+
+    &::placeholder {
+        color: var(--grey-shade);
+        opacity: 0.9;
+    }
+}
