@@ -2,7 +2,7 @@ import React, { useState, FC } from "react";
 import classes from "./AdminPage.module.css";
 import Header from "./Header/Header";
 import Navigator from "./Navigator/Navigator";
-import SearchBar from "./SearchBar/SearchBar";
+import ControlBar from "./ControlBar/ControlBar";
 
 const AdminPage: FC = () => {
   return (
@@ -13,7 +13,7 @@ const AdminPage: FC = () => {
         <Navigator />
 
         <div className={classes.body}>
-          <SearchBar />
+          <ControlBar />
         </div>
       </div>
     </div>

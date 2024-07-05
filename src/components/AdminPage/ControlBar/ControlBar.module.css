@@ -1,0 +1,27 @@
+.controlBar {
+    background-color: bisque;
+    padding: 2rem;
+    height: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+        background-color: #ff0062;
+        border-radius: 0.5rem;
+        border-style: none;
+        color: #FFFFFF;
+        cursor: pointer;
+        font-size: 1rem;
+        height: 2.5rem;
+        width: 6rem;
+        transition: color 100ms;
+
+        &:hover,
+        :focus {
+            background-color: #F082AC;
+        }
+    }
+
+}

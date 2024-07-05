@@ -27,13 +27,13 @@ const Navigator: FC = () => {
       >
         <ul className={classes.navList}>
           <li className={classes.navItem}>
-            <a href="#">Cities</a>
+            <a href="#">Manage Cities</a>
           </li>
           <li className={classes.navItem}>
-            <a href="#">Hotels </a>
+            <a href="#">Manage Hotels </a>
           </li>
           <li className={classes.navItem}>
-            <a href="#">Rooms</a>
+            <a href="#">Manage Rooms</a>
           </li>
         </ul>
       </nav>
