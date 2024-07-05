@@ -1,12 +1,22 @@
 .container {
     width: 100%;
     height: 100vh;
-    display: flex;
-    justify-content: space-between;
+
     background-color: black;
 }
 
-.body{
+
+.flexContainer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    background-color: rgb(233, 211, 229);
+
+}
+
+.body {
     width: 100%;
     background-color: aquamarine;
 }

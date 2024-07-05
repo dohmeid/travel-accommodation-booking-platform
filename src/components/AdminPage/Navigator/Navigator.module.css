@@ -1,6 +1,6 @@
 .navigator {
     width: fit-content;
-    height: 100vh;
+    
     background-color: #c69393;
     display: flex;
 }
@@ -18,9 +18,20 @@
         color: #B2BAC2;
         cursor: pointer;
 
-        &:hover{
-
+        i {
+            display: inline-block;
+            transition: transform 0.3s ease-in-out;
         }
+
+        .xIcon {
+            transform: rotate(180deg);
+        }
+
+        .listIcon {
+            transform: rotate(0deg);
+        }
+
+        &:hover {}
     }
 }
 
@@ -45,12 +56,12 @@
             background-color: #c69393;
             cursor: pointer;
             margin-bottom: 1rem;
-            
+
             a {
                 color: white;
                 font-size: 1rem;
                 text-decoration: none;
-                
+
                 &:hover {
                     color: rgb(147, 147, 181);
                 }

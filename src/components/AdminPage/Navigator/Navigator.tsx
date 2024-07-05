@@ -12,11 +12,19 @@ const Navigator: FC = () => {
     <div className={classes.navigator}>
       <div className={classes.navTrigger}>
         <button type="button" onClick={toggleOpen}>
-          <i className="bi bi-list"></i>
+          <i
+            className={`${isNavCollapsed ? classes.xIcon : classes.listIcon} ${
+              isNavCollapsed ? "bi bi-x" : "bi bi-list"
+            }`}
+          ></i>
         </button>
       </div>
 
-      <nav className={isNavCollapsed ? classes.nav :`${classes.nav} ${classes.navClosed}` }>
+      <nav
+        className={
+          isNavCollapsed ? classes.nav : `${classes.nav} ${classes.navClosed}`
+        }
+      >
         <ul className={classes.navList}>
           <li className={classes.navItem}>
             <a href="#">Cities</a>
