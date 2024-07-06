@@ -1,0 +1,64 @@
+.gridContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        max-width: 90%;
+        border-collapse: collapse;
+        border-top: 1px solid black;
+        border-right: 1px solid black;
+
+        thead {
+
+            display: contents;
+
+            tr th {
+                text-align: center;
+                position: sticky;
+                background: #6c7ae0;
+                font-size: 1rem;
+                color: white;
+            }
+        }
+
+        tbody {
+
+            tr {
+                td {
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    color: #808080;
+                    background: #d6cef3;
+                }
+
+                &:nth-child(even) td {
+                    background: #f8f6ff;
+                }
+            }
+
+
+
+        }
+
+        tfoot {}
+    }
+
+}
+
+
+tbody,
+tr {
+    display: contents;
+}
+
+th,
+td {
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

@@ -3,6 +3,7 @@ import classes from "./AdminPage.module.css";
 import Header from "./Header/Header";
 import Navigator from "./Navigator/Navigator";
 import ControlBar from "./ControlBar/ControlBar";
+import TableGrid from "./TableGrid/TableGrid";
 
 const AdminPage: FC = () => {
   return (
@@ -14,6 +15,7 @@ const AdminPage: FC = () => {
 
         <div className={classes.body}>
           <ControlBar />
+          <TableGrid/>
         </div>
       </div>
     </div>
