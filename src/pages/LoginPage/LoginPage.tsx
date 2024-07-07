@@ -3,6 +3,9 @@ import classes from "./LoginPage.module.css";
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup"; //Yup for object schema validation
 import axios from "axios";
+import { Outlet, Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
 
 interface LoginFormValues {
   username: string;
@@ -30,21 +33,14 @@ const API_URL =
 const LoginPage: FC = () => {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmitForm = async (
     values: LoginFormValues,
     { setSubmitting, setErrors }: FormikHelpers<LoginFormValues>
   ) => {
-    /*setTimeout(() => {
-      //alert(JSON.stringify(values.username, null, 1));
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 400);*/
-
     let name = values.username;
     let pass = values.password;
-    console.log("name = " + name);
-    console.log("pass = " + pass);
 
     try {
       const response = await apiService.post("/api/auth/authenticate", {
@@ -67,6 +63,15 @@ const LoginPage: FC = () => {
 
         //Redirect or perform other actions after successful login
         alert("Login successful!");
+        if (userType === "User") {
+          console.log("this is a user");
+          
+          navigate('/home'); //navigate To Form Page - add new event
+        } else if (userType === "Admin") {
+          console.log("this is an Admin");
+        } else {
+          console.log("unknown user type");
+        }
       } else {
         //response.status === 401;
         setMessage("Unauthorized");

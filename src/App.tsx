@@ -1,14 +1,22 @@
 import React, { FC } from "react";
-import "./App.css";
-import LoginPage from "./components/LoginPage/LoginPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import LoginPage from "./pages/LoginPage/LoginPage";
+import HomePage from "./pages/HomePage/HomePage";
 import AdminPage from "./components/AdminPage/AdminPage";
-import HomePage from "./components/HomePage/HomePage";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import "./App.css";
 
 const App: FC = () => {
   return (
-    <div className="App">
-      <LoginPage />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/adminPortal" element={<AdminPage />} />
+        <Route path="/*" element={<ErrorPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
