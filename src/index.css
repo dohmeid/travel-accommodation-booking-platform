@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
 /*************************** custom css style ********************************/
 :root {
   --grey-shade: rgb(119, 118, 118);
@@ -5,6 +8,20 @@
   --medium-grey2: rgb(223, 222, 222);
   --light-grey-shade: rgb(239, 238, 238);
   --green-tick: #4CBB17;
+
+  --cinereous: #8C7F76ff;
+  --coyote: #79664Fff;
+  --paynes-gray: #646F84ff;
+  --azure-web: #DDF0F3ff;
+  --beige: #D3D2BDff;
+
+  --dark-red: #852323;
+  --lightgray: lightgray;
+  --transparent-beige: rgba(211, 210, 189, 0.7);
+  --brown-sugar: #B3643Aff;
+  --dark-brown: #3B241Eff;
+  --main-font: "League Spartan", sans-serif;
+  --secondary-font: "Libre Baskerville", serif;
 }
 
 /*************************** general styles ********************************/

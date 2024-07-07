@@ -1,8 +1,14 @@
-import React, { useState, FC } from "react";
+import React, { useState, useEffect, FC } from "react";
 import classes from "./LoginPage.module.css";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup"; //Yup for object schema validation
 import axios from "axios";
+
+interface LoginFormValues {
+  username: string;
+  password: string;
+  api?: string;
+}
 
 // the yup module schema for validation
 const schema = Yup.object().shape({
@@ -10,38 +16,71 @@ const schema = Yup.object().shape({
   password: Yup.string().required("Password is a required field!"),
 });
 
+const API_BASE_URL =
+  "https://app-hotel-reservation-webapi-uae-dev-001.azurewebsites.net";
+const apiService = axios.create({
+  baseURL: API_BASE_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 const API_URL =
   "https://app-hotel-reservation-webapi-uae-dev-001.azurewebsites.net/api/auth/authenticate";
 
 const LoginPage: FC = () => {
+  const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
-  ////////////////
-  const submitFrom = async () => {
-    try {
-      const response = await axios.post(
-        API_URL,
-        JSON.stringify({ userName: "user2", password: "user2" }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
-      console.log(JSON.stringify(response?.data));
-      //console.log(JSON.stringify(response));
-      const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
-      //setAuth({ user, pwd, roles, accessToken });
+  const handleSubmitForm = async (
+    values: LoginFormValues,
+    { setSubmitting, setErrors }: FormikHelpers<LoginFormValues>
+  ) => {
+    /*setTimeout(() => {
+      //alert(JSON.stringify(values.username, null, 1));
+      alert(JSON.stringify(values, null, 2));
+      setSubmitting(false);
+    }, 400);*/
 
-      setMessage("Success");
-    } catch (error: any) {
-      if (!error?.response) {
-        setMessage("No Server Response");
-      } else if (error.response?.status === 401) {
-        setMessage("Unauthorized");
+    let name = values.username;
+    let pass = values.password;
+    console.log("name = " + name);
+    console.log("pass = " + pass);
+
+    try {
+      const response = await apiService.post("/api/auth/authenticate", {
+        userName: name,
+        password: pass,
+      });
+
+      if (response.status === 200) {
+        setMessage("Success");
+        console.log("Authentication successful:", response);
+
+        const { authentication, userType } = response.data;
+        console.log(response.data);
+        console.log("token = " + authentication);
+        console.log("userType = " + userType);
+
+        // Save token and userType in localStorage
+        //localStorage.setItem("authToken", token);
+        //localStorage.setItem("userType", userType);
+
+        //Redirect or perform other actions after successful login
+        alert("Login successful!");
       } else {
-        setMessage("Login Failed");
+        //response.status === 401;
+        setMessage("Unauthorized");
+        console.log("Login failed. Please try again.");
       }
+    } catch (error) {
+      setMessage("No Server Response");
+      setMessage("Login Failed");
+      console.error("Authentication failed:", error);
+      setErrors({
+        api: "Login failed. Please check your credentials and try again.",
+      });
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -60,12 +99,7 @@ const LoginPage: FC = () => {
       <Formik
         initialValues={{ username: "", password: "" }}
         validationSchema={schema}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-        }}
+        onSubmit={handleSubmitForm}
       >
         {(formik) => (
           <Form
@@ -79,7 +113,9 @@ const LoginPage: FC = () => {
               <Field
                 type="text"
                 name="username"
+                id="username"
                 aria-describedby="usernameAlert"
+                autoComplete="true"
               />
               <ErrorMessage name="username" className={classes.errorAlert} />
             </div>
@@ -91,10 +127,15 @@ const LoginPage: FC = () => {
               <Field
                 type="password"
                 name="password"
+                id="password"
                 aria-describedby="passwordAlert"
               />
               <ErrorMessage name="password" className={classes.errorAlert} />
             </div>
+
+            {formik.errors.api && (
+              <div style={{ color: "red" }}>{formik.errors.api}</div>
+            )}
 
             <button type="submit" disabled={formik.isSubmitting}>
               Login

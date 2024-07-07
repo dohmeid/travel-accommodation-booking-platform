@@ -1,18 +1,22 @@
 import React, { useState, FC } from "react";
 import classes from "./Header.module.css";
+import adminImage from "../../../assets/images/adminProfiePicture.png";
 
 const Header: FC = () => {
   return (
     <header className={classes.header}>
       <div className={classes.logo}>
-        <h1>TravelHub</h1>
-        <h2>Admin Portal</h2>
+        <i className="bi bi-airplane-fill"></i>
+        <div className={classes.logoDetails}>
+          <h1>TravelHub</h1>
+          <h2>Admin Portal</h2>
+        </div>
       </div>
 
       <div className={classes.profileHeader}>
         <img
           className={classes.image}
-          src="https://i.imgur.com/x3omKbe.png"
+          src={adminImage}
           alt="Admin profile picture"
         />
         <div className={classes.details}>

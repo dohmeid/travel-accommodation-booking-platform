@@ -7,7 +7,7 @@ const HomePage: FC = () => {
 
   return (
     <div className={classes.container}>
-     
+     <p>home page</p>
 
     </div>
   );
