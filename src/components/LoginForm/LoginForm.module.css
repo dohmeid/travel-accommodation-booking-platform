@@ -1,0 +1,73 @@
+.loginForm {
+    align-items: center;
+    height: 20rem;
+    width: 25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--transparent-beige);
+    font-family: var(--secondary-font);
+
+
+
+    .inputContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 15rem;
+        margin-bottom: 1rem;
+        text-align: left;
+
+        label {
+            font-size: 0.9rem;
+            color: var(--dark-brown);
+        }
+
+        input[type=text],
+        input[type=password] {
+            height: 2rem;
+            background: transparent;
+            color: var(--dark-brown);
+            border-radius: 2px;
+            border: 1px solid var(--lightgray);
+            padding: 5px;
+            font-size: 0.75rem;
+            margin: 0.3rem 0;
+            font-family: var(--secondary-font);
+
+            &:focus {
+                outline: none;
+                border: 2px solid var(--lightgray);
+            }
+        }
+
+        .errorAlert {
+            color: var(--dark-red);
+            font-size: 0.6rem;
+        }
+    }
+
+    button {
+        width: 15rem;
+        height: 2.5rem;
+        color: var(--lightgray);
+        background: var(--brown-sugar);
+        border: none;
+        cursor: pointer;
+        border-radius: 2px;
+        font-size: 1rem;
+        font-family: var(--main-font);
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+        &:active {
+            opacity: 0.6;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
