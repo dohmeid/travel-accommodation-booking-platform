@@ -20,17 +20,19 @@ const LoginPage: FC = () => {
   };
 
   return (
-    <div className={classes.container}>
-      <div className={classes.headline}>
-        <h1>
-          Travel<span>Hub</span>
-        </h1>
-        <p>
-          Welcome to Travel Hub: Your Ultimate Gateway to Unforgettable
-          Adventures!
-        </p>
+    <div className={classes.loginPage}>
+      <div className={classes.container}>
+        <div className={classes.headlineContainer}>
+          <h1>
+            Travel<span>Hub</span>
+          </h1>
+          <p>
+            Welcome to Travel Hub: Your Ultimate Gateway to Unforgettable
+            Adventures!
+          </p>
+        </div>
+        <LoginForm onSubmitSuccess={handleLoginSuccess} />
       </div>
-      <LoginForm onSubmitSuccess={handleLoginSuccess} />
     </div>
   );
 };

@@ -1,45 +1,46 @@
-.container {
+.loginPage {
     height: 100vh;
-    width: 100%;
-
-    color: #342727;
-    font-family: Arial;
-    font-size: 12px;
-    background-image: url(../../assets/images/loginPageBackground.jpg);
-    background-size: cover;
-
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url(../../assets/images/loginPageBackground.jpg);
+    background-size: cover;
 
+    .container {
+        height: 22rem;
+        width: 50rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--transparent-white);
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
 
-    .headline {
-        height: 20rem;
-        width: 25rem;
+    .headlineContainer {
+        height: 100%;
+        width: 50%;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        background-color: var(--transparent-beige);
-        font-family: var(--secondary-font);
-    }
-
-    .headline {
-        border-right: 0.5rem solid var(--dark-brown);
-        padding-right: 1rem;
         text-align: right;
+        color: var(--dark-brown1);
+        border-right: 0.2rem solid var(--dark-brown1);
+        padding: 0 0.8rem;
 
         h1 {
-            font-size: 5em;
-            color: var(--dark-brown);
+            font-size: 3.5rem;
             font-family: var(--main-font);
+            padding-bottom: 0.5rem;
 
             span {
-                color: var(--brown-sugar);
+                color: var(--orange1);
             }
         }
 
         p {
-            color: var(--dark-brown);
+            font-size: 0.8rem;
+            font-weight: 500;
+            font-family: var(--secondary-font);
         }
     }
 }

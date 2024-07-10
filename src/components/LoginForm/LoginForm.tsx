@@ -45,7 +45,6 @@ const LoginForm: FC<Props> = ({ onSubmitSuccess }) => {
       initialValues={initialLoginValues}
       validationSchema={loginSchema}
       onSubmit={handleSubmitForm}
-      className={classes.loginForm}
     >
       {(formik) => (
         <Form
@@ -53,13 +52,11 @@ const LoginForm: FC<Props> = ({ onSubmitSuccess }) => {
           className={classes.loginForm}
         >
           <div className={classes.inputContainer}>
-            <label htmlFor="username" className={classes.label}>
-              Username
-            </label>
             <Field
               type="text"
               name="username"
               id="username"
+              placeholder="Username"
               aria-describedby="usernameAlert"
               autoComplete="true"
             />
@@ -69,15 +66,12 @@ const LoginForm: FC<Props> = ({ onSubmitSuccess }) => {
               className={classes.errorAlert}
             />
           </div>
-
           <div className={classes.inputContainer}>
-            <label htmlFor="password" className={classes.label}>
-              Password
-            </label>
             <Field
               type="password"
               name="password"
               id="password"
+              placeholder="Password"
               aria-describedby="passwordAlert"
             />
             <ErrorMessage
@@ -87,13 +81,25 @@ const LoginForm: FC<Props> = ({ onSubmitSuccess }) => {
             />
           </div>
 
+          <div className={classes.rememberMeContainer}>
+            <label htmlFor="rememberMe">Remember me</label>
+            <input type="checkbox" name="rememberMe" id="rememberMe" />
+          </div>
+
+          <button
+            type="submit"
+            disabled={
+              formik.isSubmitting ||
+              !!formik.errors.password ||
+              !!formik.errors.username
+            }
+          >
+            {formik.isSubmitting ? "Logging in..." : "Login"}
+          </button>
+
           {formik.errors.api && (
             <div style={{ color: "red" }}>{formik.errors.api}</div>
           )}
-
-          <button type="submit" disabled={formik.isSubmitting}>
-            {formik.isSubmitting ? "Logging in..." : "Login"}
-          </button>
         </Form>
       )}
     </Formik>
