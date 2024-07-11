@@ -4,6 +4,6 @@ export interface LoginFormValues {
   api?: string;
 }
 
-export interface Props {
-  onSubmitSuccess: (userType: string) => void;
+export interface AuthenticationContextType {
+  handleLoginSuccess: (authenticationToken: string, userType: string) => void;
 }

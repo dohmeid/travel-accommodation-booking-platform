@@ -1,35 +1,32 @@
-import React, { FC, useState } from "react";
+import React, { FC, useContext } from "react";
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
 import { loginSchema, initialLoginValues } from "./LoginSchema";
+import { LoginFormValues } from "../../interfaces/auth";
 import { authenticateUser } from "../../services/Api/Api";
-import { LoginFormValues, Props } from "../../interfaces/auth";
+
 import classes from "./LoginForm.module.css";
+import { AuthenticationContext } from "../../context/authentication";
+import { AuthenticationContextType } from "../../interfaces/auth";
+import Snackbar from "../common/Snackbar/Snackbar";
 
-const LoginForm: FC<Props> = ({ onSubmitSuccess }) => {
-  const [authMessage, setAuthMessage] = useState("");
+const LoginForm: FC = () => {
+  const { handleLoginSuccess } =
+    useContext(AuthenticationContext) as AuthenticationContextType;
 
-  const handleSubmitForm = async (
+  const handleSubmitLoginForm = async (
     values: LoginFormValues,
-    { setSubmitting, setErrors }: FormikHelpers<LoginFormValues>
+    { setSubmitting,setErrors  }: FormikHelpers<LoginFormValues>
   ) => {
     try {
       const responseData = await authenticateUser(
         values.username,
         values.password
       );
-
-      const { authentication, userType } = responseData;
-      console.log("token = " + authentication);
-      console.log("userType = " + userType);
-
-      // Save token and userType in localStorage
-      //localStorage.setItem("authToken", token);
-      //localStorage.setItem("userType", userType);
-
-      setAuthMessage("Login successful");
       console.log("Login successful!");
-
-      onSubmitSuccess(userType);
+      const { authenticationToken, userType } = responseData;
+      console.log("token = " + authenticationToken);
+      console.log("userType = " + userType);
+      handleLoginSuccess(authenticationToken, userType);
     } catch (error: any) {
       console.log(error.message);
       setErrors({
@@ -44,7 +41,7 @@ const LoginForm: FC<Props> = ({ onSubmitSuccess }) => {
     <Formik
       initialValues={initialLoginValues}
       validationSchema={loginSchema}
-      onSubmit={handleSubmitForm}
+      onSubmit={handleSubmitLoginForm}
     >
       {(formik) => (
         <Form
@@ -88,6 +85,7 @@ const LoginForm: FC<Props> = ({ onSubmitSuccess }) => {
 
           <button
             type="submit"
+            className={classes.loginButton}
             disabled={
               formik.isSubmitting ||
               !!formik.errors.password ||
@@ -98,7 +96,7 @@ const LoginForm: FC<Props> = ({ onSubmitSuccess }) => {
           </button>
 
           {formik.errors.api && (
-            <div style={{ color: "red" }}>{formik.errors.api}</div>
+            <Snackbar message={formik.errors.api} />
           )}
         </Form>
       )}

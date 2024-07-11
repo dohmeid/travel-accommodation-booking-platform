@@ -58,7 +58,7 @@
         }
     }
 
-    button {
+    .loginButton {
         width: 18rem;
         height: 3rem;
         font-size: 1rem;
@@ -69,14 +69,11 @@
         background-color: var(--white);
         border: none;
         border-radius: 2rem;
+        cursor: pointer;
 
         &:disabled {
             opacity: 0.5;
             cursor: not-allowed;
-        }
-
-        &:hover {
-            cursor: pointer;
         }
     }
 }

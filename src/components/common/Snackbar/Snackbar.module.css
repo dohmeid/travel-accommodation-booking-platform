@@ -1,0 +1,45 @@
+.snackBar {
+    position: fixed;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+
+    width: 30rem;
+    height: 4rem;
+    font-family: var(--secondary-font);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    color: var(--red);
+    background-color: var(--light-red);
+    border: 1px solid var(--red);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    transition: display 3s linear 0s, opacity 300ms;
+
+
+    i {
+        padding-right: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    .message {
+        font-size: 0.85rem;
+    }
+
+    .closeButton {
+        height: fit-content;
+        width: fit-content;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        color: red;
+
+        i {
+            font-size: 2rem;
+        }
+    }
+}
