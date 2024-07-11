@@ -9,4 +9,5 @@ export const loginSchema = Yup.object().shape({
 export const initialLoginValues = {
   username: "",
   password: "",
+  rememberMe: false,
 };

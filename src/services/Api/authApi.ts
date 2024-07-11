@@ -17,8 +17,8 @@ export const authenticateUser = async (username: string, password: string) => {
       userName: username,
       password: password,
     });
-    console.log(response.data);
-    return response.data; //response status = 200 'OK'
+    //response status = 200 'OK'
+    return response.data;
   } catch (error) {
     //response status = 401 'Unauthorized'
     throw new Error("Unauthorized: Incorrect username or password.");

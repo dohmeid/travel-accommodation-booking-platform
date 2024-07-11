@@ -1,21 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 
 export function useSnackbar() {
-    const [isActive, setIsActive] = React.useState(false);
-    const [message, setMessage] = React.useState("");
-    
-    React.useEffect(() => {
-        if (isActive === true) {
-            setTimeout(() => {
-                setIsActive(false);
-            }, 3000);
-        }
-    }, [isActive]);
+  const [isSnackbarActive, setIsSnackbarActive] = React.useState(false);
+  const [message, setMessage] = React.useState("");
 
-    const openSnackBar = (msg = 'Something went wrong...') => {
-        setMessage(msg)
-        setIsActive(true);
+  useEffect(() => {
+    if (isSnackbarActive) {
+      setTimeout(() => {
+        setIsSnackbarActive(false);
+      }, 3000);
     }
+  }, [isSnackbarActive]);
 
-    return { isActive, message, openSnackBar }
+  const openSnackBar = (msg = "Something went wrong...") => {
+    setMessage(msg);
+    setIsSnackbarActive(true);
+  };
+
+  return { isSnackbarActive, message, openSnackBar };
 }

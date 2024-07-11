@@ -1,24 +1,27 @@
-//authentication Auth Authentication
 import React, { FC, ReactNode, createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthenticationContextType } from "../interfaces/auth";
 
-export const AuthenticationContext = createContext<
-  AuthenticationContextType | any
->(null);
+export const AuthenticationContext =
+  createContext<AuthenticationContextType | null>(null);
+
 export const AuthenticationProvider: FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const navigate = useNavigate();
-
-  const rememberUser = () => {
-    // Save token and userType in localStorage
-    //localStorage.setItem("authToken", token);
-    //localStorage.setItem("userType", userType);
-  };
+  const [authToken, setAuthToken] = useState<string | null>(
+    localStorage.getItem("authToken")
+  );
+  const [userType, setUserType] = useState<string | null>(
+    localStorage.getItem("userType")
+  );
 
   //this function is used to refer the authenticated user to the website
-  const handleLoginSuccess = (authenticationToken: string, userType: string) => {
+  const handleLoginSuccess = (
+    authenticationToken: string,
+    userType: string,
+    rememberMe: boolean
+  ) => {
     if (userType === "User") {
       console.log("This is a user");
       navigate("/home");
@@ -30,10 +33,37 @@ export const AuthenticationProvider: FC<{ children: ReactNode }> = ({
     }
   };
 
+  //this function is used to remember the user and save token and userType in localStorage
+  const rememberUser = (authenticationToken: string, userType: string, rememberMe: boolean) => {
+    setAuthToken(authenticationToken);
+    setUserType(userType);
+    
+    if (rememberMe) {
+      localStorage.setItem("authToken", authenticationToken);
+      localStorage.setItem("userType", userType);
+    } else {
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("userType");
+    }
+  };
+
+  //this function is used to logout the user
+  const handleLogout = () => {
+    setAuthToken(null);
+    setUserType(null);
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("userType");
+    navigate("/login");
+  };
+
   return (
     <AuthenticationContext.Provider
       value={{
-        handleLoginSuccess
+        authToken,
+        userType,
+        rememberUser,
+        handleLoginSuccess,
+        handleLogout,
       }}
     >
       {children}
