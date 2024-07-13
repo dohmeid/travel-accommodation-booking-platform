@@ -1,4 +1,4 @@
-import React, { useState, FC } from "react";
+import React, { FC } from "react";
 import classes from "./TableGrid.module.css";
 
 const TableGrid: FC = () => {
@@ -11,17 +11,25 @@ const TableGrid: FC = () => {
 
   return (
     <div className={classes.gridContainer}>
+
+      <div className={classes.gridHeader}>
+        <h2>Cities List</h2>
+        <button type="button" className={classes.createBtn}>
+          Create
+          <i className="bi bi-plus"></i>
+        </button>
+      </div>
+
       <table className={classes.grid}>
         <thead>
           <tr>
             <th>Name</th>
             <th>Country</th>
-            <th>Post Office</th>
-            <th>Number of hotels</th>
+            <th>P.O.</th>
+            <th>Hotels #</th>
             <th>Creation Date</th>
             <th>Modification Date</th>
-            <th>Delete</th>
-            <th>Update</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -34,8 +42,6 @@ const TableGrid: FC = () => {
             <td>6/7/2024</td>
             <td>
               <i className="bi bi-trash-fill"></i>
-            </td>
-            <td>
               <i className="bi bi-pencil-fill"></i>
             </td>
           </tr>
@@ -48,8 +54,6 @@ const TableGrid: FC = () => {
             <td>6/7/2024</td>
             <td>
               <i className="bi bi-trash-fill"></i>
-            </td>
-            <td>
               <i className="bi bi-pencil-fill"></i>
             </td>
           </tr>
@@ -62,8 +66,6 @@ const TableGrid: FC = () => {
             <td>6/7/2024</td>
             <td>
               <i className="bi bi-trash-fill"></i>
-            </td>
-            <td>
               <i className="bi bi-pencil-fill"></i>
             </td>
           </tr>
@@ -71,9 +73,9 @@ const TableGrid: FC = () => {
 
         <tfoot>
           <tr>
-            <td colSpan={5}>
-              Total:
-              <span>0</span>
+            <td>
+              Total :
+              <span>3</span>
             </td>
           </tr>
         </tfoot>

@@ -1,0 +1,110 @@
+.gridContainer {
+    width: 100%;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--white);
+    border: 1px solid var(--medium-grey);
+    border-radius: 0.6rem;
+
+    .gridHeader {
+        height: auto;
+        width: 100%;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+
+        h2 {
+            font-family: var(--main-font);
+            color: var(--dark-brown1);
+        }
+
+        .createBtn {
+            width: 6rem;
+            height: 2.5rem;
+            font-size: 1rem;
+            border-radius: 0.5rem;
+            border-style: none;
+            color: var(--white);
+            background-color: var(--orange1);
+            cursor: pointer;
+
+            &:hover,
+            :focus {
+                opacity: 0.7;
+            }
+        }
+    }
+
+    .grid {
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        width: 100%;
+        border-collapse: collapse;
+
+        thead {
+            display: contents;
+
+            tr th {
+                text-align: center;
+                padding-bottom: 1rem;
+                position: sticky;
+                font-size: 0.8rem;
+                font-family: var(--secondary-font);
+                color: var(--medium-grey);
+                border-bottom: 1px solid var(--medium-grey);
+            }
+        }
+
+        tbody {
+
+            tr {
+                td {
+                    text-align: center;
+                    padding: 1rem 0;
+                    font-size: 0.7rem;
+                    font-family: var(--secondary-font);
+                    color: var(--dark-brown1);
+                    border-bottom: 1px solid var(--medium-grey);
+
+                }
+            }
+
+
+
+        }
+
+        tfoot {
+            width: 100%;
+            padding-top: 1.5rem;
+
+            tr td {
+                font-size: 0.8rem;
+                font-family: var(--secondary-font);
+                font-weight: 600;
+                color: var(--dark-brown1);
+            }
+        }
+    }
+
+}
+
+
+tbody,
+tr {
+    display: contents;
+}
+
+th,
+td {
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

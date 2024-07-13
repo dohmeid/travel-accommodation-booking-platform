@@ -1,21 +1,20 @@
 .navigator {
     width: fit-content;
-    
-    background-color: #c69393;
     display: flex;
 }
 
 .navTrigger {
-    width: 5rem;
+    width: 4rem;
+    text-align: center;
     padding-top: 1rem;
-    background-color: rgb(104, 87, 87);
+    background-color: var(--dark-brown2);
     transition: 0.2s ease-in-out;
 
-    & button {
-        width: 3rem;
-        font-size: 2rem;
+    .navBtn {
+        font-size: 2.2rem;
+        color: var(--white);
+        background-color: transparent;
         border: none;
-        color: #B2BAC2;
         cursor: pointer;
 
         i {
@@ -31,7 +30,9 @@
             transform: rotate(0deg);
         }
 
-        &:hover {}
+        &:focus{
+            outline: none;
+        }
     }
 }
 

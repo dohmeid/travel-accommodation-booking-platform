@@ -1,4 +1,4 @@
-import React, { useState, FC } from "react";
+import React, { FC } from "react";
 import classes from "./Header.module.css";
 import adminImage from "../../../assets/images/adminProfiePicture.png";
 
@@ -13,7 +13,7 @@ const Header: FC = () => {
         </div>
       </div>
 
-      <div className={classes.profileHeader}>
+      <div className={classes.profile}>
         <img
           className={classes.image}
           src={adminImage}
@@ -24,7 +24,7 @@ const Header: FC = () => {
           <p className={classes.role}>Administrator</p>
         </div>
 
-        <button>
+        <button type="button" className={classes.logoutBtn}>
           <i className="bi bi-box-arrow-right"></i>
         </button>
       </div>

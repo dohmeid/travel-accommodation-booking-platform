@@ -1,22 +1,20 @@
-.container {
-    width: 100%;
+.adminPage {
     height: 100vh;
-
-    background-color: black;
-}
-
-
-.flexContainer {
-    height: 100%;
-    width: 100%;
     display: flex;
-    justify-content: space-between;
+    background-color: var(--light-grey);
 
-    background-color: rgb(233, 211, 229);
+    .main {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
 
-}
+        .body {
+            height: 100%;
+            padding: 3rem 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
 
-.body {
-    width: 100%;
-    background-color: aquamarine;
 }

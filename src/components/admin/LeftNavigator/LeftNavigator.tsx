@@ -1,7 +1,7 @@
 import React, { useState, FC } from "react";
-import classes from "./Navigator.module.css";
+import classes from "./LeftNavigator.module.css";
 
-const Navigator: FC = () => {
+const LeftNavigator: FC = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
 
   const toggleOpen = () => {
@@ -11,7 +11,7 @@ const Navigator: FC = () => {
   return (
     <div className={classes.navigator}>
       <div className={classes.navTrigger}>
-        <button type="button" onClick={toggleOpen}>
+        <button type="button" className={classes.navBtn} onClick={toggleOpen}>
           <i
             className={`${isNavCollapsed ? classes.xIcon : classes.listIcon} ${
               isNavCollapsed ? "bi bi-x" : "bi bi-list"
@@ -41,4 +41,4 @@ const Navigator: FC = () => {
   );
 };
 
-export default Navigator;
+export default LeftNavigator;

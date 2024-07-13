@@ -9,7 +9,7 @@ const SearchBar: FC = () => {
         name="search"
         className={classes.search}
         aria-label="search for a string"
-        placeholder="Search by string..."
+        placeholder="Search for..."
       />
       <i className="bi bi-search"></i>
     </div>

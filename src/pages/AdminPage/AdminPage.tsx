@@ -1,22 +1,21 @@
-import React, { useState, FC } from "react";
+import React, { FC } from "react";
 import classes from "./AdminPage.module.css";
-import Header from "./Header/Header";
-import Navigator from "./Navigator/Navigator";
-import ControlBar from "./ControlBar/ControlBar";
-import TableGrid from "./TableGrid/TableGrid";
+
+import LeftNavigator from "../../components/admin/LeftNavigator/LeftNavigator";
+import Header from "../../components/admin/Header/Header";
+import SearchBar from "../../components/admin/SearchBar/SearchBar";
+import TableGrid from "../../components/admin/TableGrid/TableGrid";
 
 const AdminPage: FC = () => {
   return (
-    <div className={classes.container}>
-      <Header />
-
-      <div className={classes.flexContainer}>
-        <Navigator />
-
-        <div className={classes.body}>
-          <ControlBar />
-          <TableGrid/>
-        </div>
+    <div className={classes.adminPage}>
+      <LeftNavigator />
+      <div className={classes.main}>
+        <Header />
+        <section className={classes.body}>
+          <SearchBar />
+          <TableGrid />
+        </section>
       </div>
     </div>
   );
