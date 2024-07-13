@@ -36,12 +36,12 @@ const LoginForm: FC = () => {
         values.username,
         values.password
       );
-      const { authenticationToken, userType } = responseData;
+      const { authentication, userType } = responseData;
       console.log("Login successful!");
 
-      console.log("token = " + authenticationToken);
+      console.log("token = " + authentication);
       console.log("userType = " + userType);
-      handleLoginSuccess(authenticationToken, userType,values.rememberMe);
+      handleLoginSuccess(authentication, userType,values.rememberMe);
     } catch (error: any) {
       console.log(error.message);
       setErrors({

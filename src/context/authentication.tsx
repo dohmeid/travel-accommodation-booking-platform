@@ -10,10 +10,10 @@ export const AuthenticationProvider: FC<{ children: ReactNode }> = ({
 }) => {
   const navigate = useNavigate();
   const [authToken, setAuthToken] = useState<string | null>(
-    localStorage.getItem("authToken")
+    localStorage.getItem("authToken") || sessionStorage.getItem("authToken")
   );
   const [userType, setUserType] = useState<string | null>(
-    localStorage.getItem("userType")
+    localStorage.getItem("userType") || sessionStorage.getItem("userType")
   );
 
   //this function is used to refer the authenticated user to the website
@@ -22,6 +22,10 @@ export const AuthenticationProvider: FC<{ children: ReactNode }> = ({
     userType: string,
     rememberMe: boolean
   ) => {
+    //save the token
+    rememberUser(authenticationToken, userType, rememberMe);
+
+    //check the user type
     if (userType === "User") {
       console.log("This is a user");
       navigate("/home");
@@ -34,16 +38,28 @@ export const AuthenticationProvider: FC<{ children: ReactNode }> = ({
   };
 
   //this function is used to remember the user and save token and userType in localStorage
-  const rememberUser = (authenticationToken: string, userType: string, rememberMe: boolean) => {
+  const rememberUser = (
+    authenticationToken: string,
+    userType: string,
+    rememberMe: boolean
+  ) => {
     setAuthToken(authenticationToken);
     setUserType(userType);
-    
+
     if (rememberMe) {
       localStorage.setItem("authToken", authenticationToken);
       localStorage.setItem("userType", userType);
+      console.log(
+        "localStorage.getItem('authToken')",
+        localStorage.getItem("authToken")
+      );
     } else {
-      localStorage.removeItem("authToken");
-      localStorage.removeItem("userType");
+      sessionStorage.setItem("authToken", authenticationToken);
+      sessionStorage.setItem("userType", userType);
+      console.log(
+        "sessionStorage.getItem('authToken')",
+        sessionStorage.getItem("authToken")
+      );
     }
   };
 
@@ -53,7 +69,9 @@ export const AuthenticationProvider: FC<{ children: ReactNode }> = ({
     setUserType(null);
     localStorage.removeItem("authToken");
     localStorage.removeItem("userType");
-    navigate("/login");
+    sessionStorage.removeItem("authToken");
+    sessionStorage.removeItem("userType");
+    //navigate("/login");
   };
 
   return (

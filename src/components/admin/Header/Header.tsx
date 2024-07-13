@@ -1,8 +1,15 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import classes from "./Header.module.css";
 import adminImage from "../../../assets/images/adminProfiePicture.png";
+import { AuthenticationContext } from "../../../context/authentication";
+import { AuthenticationContextType } from "../../../interfaces/auth";
+
 
 const Header: FC = () => {
+  const { handleLogout } = useContext(
+    AuthenticationContext
+  ) as AuthenticationContextType;
+
   return (
     <header className={classes.header}>
       <div className={classes.logo}>
@@ -24,7 +31,7 @@ const Header: FC = () => {
           <p className={classes.role}>Administrator</p>
         </div>
 
-        <button type="button" className={classes.logoutBtn}>
+        <button type="button" className={classes.logoutBtn} onClick={handleLogout}>
           <i className="bi bi-box-arrow-right"></i>
         </button>
       </div>
