@@ -1,10 +1,9 @@
 import axios from "axios";
-
-
 const API_URL =
   "https://app-hotel-reservation-webapi-uae-dev-001.azurewebsites.net";
 
 const BEARER_TOKEN = localStorage.getItem('authToken');
+
 const apiService = axios.create({
   baseURL: API_URL,
   headers: {

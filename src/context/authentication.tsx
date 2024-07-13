@@ -71,7 +71,6 @@ export const AuthenticationProvider: FC<{ children: ReactNode }> = ({
     localStorage.removeItem("userType");
     sessionStorage.removeItem("authToken");
     sessionStorage.removeItem("userType");
-    //navigate("/login");
   };
 
   return (

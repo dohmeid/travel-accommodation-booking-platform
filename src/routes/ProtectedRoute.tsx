@@ -3,8 +3,13 @@ import { Navigate } from "react-router-dom";
 import { AuthenticationContext } from "../context/authentication";
 import { AuthenticationContextType } from "../interfaces/auth";
 
-const ProtectedRoute: FC<{ children: ReactNode }> = ({ children }) => {
-  const { authToken } = useContext(
+interface ProtectedRouteProps {
+  requiredRole: string;
+  children: ReactNode;
+}
+
+const ProtectedRoute: FC<ProtectedRouteProps> = ({ requiredRole, children }) => {
+  const { authToken, userType } = useContext(
     AuthenticationContext
   ) as AuthenticationContextType;
 
@@ -22,6 +27,10 @@ const ProtectedRoute: FC<{ children: ReactNode }> = ({ children }) => {
   if (!authToken) {
     // If not authenticated, redirect to the login page
     return <Navigate to="/login" />;
+  }
+
+  if (requiredRole && userType !== requiredRole) {
+    return <Navigate to="/home" />;
   }
 
   // If authenticated, render the child routes

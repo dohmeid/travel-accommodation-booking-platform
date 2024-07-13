@@ -15,7 +15,7 @@ const App: FC = () => {
       <Route
         path="/home"
         element={
-          <ProtectedRoute>
+          <ProtectedRoute requiredRole="User">
             <HomePage />
           </ProtectedRoute>
         }
@@ -23,7 +23,7 @@ const App: FC = () => {
       <Route
         path="/adminPortal"
         element={
-          <ProtectedRoute>
+          <ProtectedRoute requiredRole="Admin">
             <AdminPage />
           </ProtectedRoute>
         }
