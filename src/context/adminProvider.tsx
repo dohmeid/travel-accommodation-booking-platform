@@ -5,81 +5,84 @@ import React, {
   useState,
   useEffect,
 } from "react";
-import { getCities, createCity, updateCityy, deleteCityy } from "../services/Api/adminApi";
+import {
+  getCities,
+  addCity,
+  editCity,
+  removeCity,
+} from "../services/Api/adminApi";
 import { City, AdminContextType } from "../interfaces/interfaces";
 
 export const AdminContext = createContext<AdminContextType | null>(null);
 
 export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  //const [todosList, setTodosList] = useState<Todo[]>([]);
   //const [searchQuery, setSearchQuery] = useState<string>("");
-  const [citiesList, setCitiesList] = useState<City[]>([]);
-
-
-
-  //get all cities
-  const fetchCities = async () => {
-    try {
-      const responseData = await getCities();
-      console.log("got all the cities successfully");
-      console.log(responseData);
-      setCitiesList(responseData);
-    } catch (error: any) {
-      console.log(error.message);
-    } finally {
-    }
-  };
+  const [cities, setCities] = useState<City[]>([]);
 
   useEffect(() => {
     fetchCities();
   }, []);
 
-  //add new city
-  const addNewCity = async () => {
-    let newName = "Pariss";
-    let newDescription =
-      " Fall in love with the romantic charm of Paris, the 'City of Lights.' Admire the Eiffel Tower, stroll along the Seine River, and savor delicious pastries in charming cafes.";
+  //get all cities
+  const fetchCities = async () => {
     try {
-      const responseData = await createCity(newName, newDescription);
-      console.log("created new city successfully");
-      console.log(responseData);
-      fetchCities();
+      const responseData = await getCities();
+      setCities(responseData);
     } catch (error: any) {
       console.log(error.message);
-    } finally {
+    }
+  };
+
+  //add new city
+  const createCity = async (cityData: City) => {
+    try {
+      const responseData = await addCity(cityData);
+      //fetchCities();
+      //add the new city to the cities list
+      setCities([...cities, { ...responseData }]);
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
+
+  //update a city
+  const updateCity = async (cityData: City) => {
+    try {
+      const responseData = await editCity(cityData);
+      //update the city in the original cities list
+      setCities(
+        cities.map((city) =>
+          city.id === cityData.id
+            ? {
+                ...city,
+                name: cityData.name,
+                description: cityData.description,
+              }
+            : city
+        )
+      );
+    } catch (error: any) {
+      console.error(error.message);
     }
   };
 
   //delete a city
-  const deleteCity = async (cityID: number) => {
+  const deleteCity = async (id: number) => {
     try {
-      const responseData = await deleteCityy(cityID);
-      console.log("deleted the city successfully");
-      console.log(responseData);
-      fetchCities();
+      const responseData = await removeCity(id);
+      //fetchCities();
+      //delete the city from the cities list
+      setCities(cities.filter((city) => city.id !== id));
     } catch (error: any) {
-      console.error("Error deleting city:", error);
+      console.error(error.message);
     }
   };
-
-  //update ac city
-  const updateCity = async (cityID: number) => {
-    try {
-      const responseData = await updateCityy(cityID, "lool", "lloll");
-      console.log("updating the city successfully");
-      console.log(responseData);
-      await fetchCities();
-    } catch (error: any) {
-      console.error("Error updating the city:", error);
-    }
-  };
-
 
   return (
     <AdminContext.Provider
       value={{
-        citiesList,
-        addNewCity,
+        cities,
+        createCity,
         updateCity,
         deleteCity,
       }}

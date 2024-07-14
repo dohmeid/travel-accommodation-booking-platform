@@ -5,9 +5,9 @@ import { AdminContext } from "../../../../context/adminProvider";
 import { City, AdminContextType } from "../../../../interfaces/interfaces";
 
 const Items: FC = () => {
-  const { citiesList } = useContext(AdminContext) as AdminContextType;
+  const { cities } = useContext(AdminContext) as AdminContextType;
 
-  const CITIES = citiesList.map((city: City, index: number) => (
+  const CITIES = cities.map((city: City, index: number) => (
     <Item key={city.id} cityData={city} />
   ));
 
@@ -33,7 +33,7 @@ const Items: FC = () => {
       </thead>
 
       <tbody>
-        {citiesList.length > 0 ? (
+        {cities.length > 0 ? (
           CITIES
         ) : (
           <tr>
@@ -45,7 +45,7 @@ const Items: FC = () => {
       <tfoot>
         <tr>
           <td>
-            Total: <span>{citiesList.length}</span>
+            Total: <span>{cities.length}</span>
           </td>
         </tr>
       </tfoot>

@@ -5,8 +5,8 @@ export interface City {
 }
 
 export interface AdminContextType {
-  citiesList: City[];
-  addNewCity: () => Promise<void>;
-  updateCity: (id:number) => Promise<void>;
-  deleteCity: (id:number) => Promise<void>;
+  cities: City[];
+  createCity: (cityData: City) => Promise<void>;
+  updateCity: (cityData: City) => Promise<void>;
+  deleteCity: (id: number) => Promise<void>;
 }

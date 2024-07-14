@@ -15,7 +15,8 @@ const Item: FC<Props> = ({ cityData }) => {
   //this function updates the city
   const handleEditButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    updateCity(cityData.id);
+    const updatedCity = { id: cityData.id, name: "new name", description: "new description" };
+    updateCity(updatedCity);
   };
 
   //this function deletes the city

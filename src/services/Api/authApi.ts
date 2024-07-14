@@ -1,14 +1,4 @@
-import axios from "axios";
-
-const API_URL =
-  "https://app-hotel-reservation-webapi-uae-dev-001.azurewebsites.net";
-
-const apiService = axios.create({
-  baseURL: API_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+import apiService from "./apiService";
 
 //this function is used to check if the user is authorized
 export const authenticateUser = async (username: string, password: string) => {
