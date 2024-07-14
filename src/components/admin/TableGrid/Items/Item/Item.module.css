@@ -1,37 +1,34 @@
 .row {
-    td {
-        text-align: center;
-        padding: 1rem 0;
-        font-size: 0.7rem;
-        font-family: var(--secondary-font);
-        color: var(--dark-brown1);
-        border-bottom: 1px solid var(--medium-grey);
-    }
+    border-bottom: 1px solid var(--medium-grey);
+    text-align: center;
+    font-size: 0.7rem;
+    font-family: var(--secondary-font);
+    color: var(--dark-brown1);
+    padding: 1rem 0;
 
-    .buttons{
+    .buttons {
         display: flex;
         align-items: center;
         justify-content: space-evenly;
 
-        button{
+        button {
             background-color: transparent;
             border: none;
             outline: none;
             font-size: 1.2rem;
-            
 
-            &:hover{
+            &:hover {
                 opacity: 0.6;
                 transition: opacity 0.1s ease-in-out;
-                cursor: pointer; 
+                cursor: pointer;
             }
         }
 
-        .editBtn{
+        .editBtn {
             color: var(--dark-brown1);
         }
 
-        .deleteBtn{
+        .deleteBtn {
             color: var(--orange1);
         }
     }

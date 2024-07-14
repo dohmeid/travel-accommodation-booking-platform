@@ -30,7 +30,6 @@ const Item: FC<Props> = ({ cityData }) => {
       <td>{cityData.id}</td>
       <td>{cityData.name}</td>
       <td>{cityData.description}</td>
-      <td>10</td>
       <td className={classes.buttons}>
         <button
           type="submit"

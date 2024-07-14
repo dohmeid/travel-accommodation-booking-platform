@@ -13,7 +13,7 @@ const Items: FC = () => {
 
   /*
 - Cities: Name, Country, Post Office, Number of hotels, creation and modification dates, and delete option.
-- Cities: id, name, description, Number of hotels, and actions.
+- Cities: id, name, description, and actions.
 
 - Hotels: Name, star rate, owner, room number, creation and modification dates, delete option.
 - Rooms: Number, availability, adult and children capacity, creation and modification dates, delete option.
@@ -27,7 +27,6 @@ const Items: FC = () => {
           <th>ID</th>
           <th>Name</th>
           <th>Description</th>
-          <th>Hotels #</th>
           <th>Action</th>
         </tr>
       </thead>
