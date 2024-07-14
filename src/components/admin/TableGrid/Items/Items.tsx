@@ -5,9 +5,10 @@ import { AdminContext } from "../../../../context/adminProvider";
 import { City, AdminContextType } from "../../../../interfaces/interfaces";
 
 const Items: FC = () => {
-  const { cities } = useContext(AdminContext) as AdminContextType;
+  const { getFilteredCities } = useContext(AdminContext) as AdminContextType;
 
-  const CITIES = cities.map((city: City, index: number) => (
+  let citiesArray = getFilteredCities();
+  const CITIES = citiesArray.map((city: City, index: number) => (
     <Item key={city.id} cityData={city} />
   ));
 
@@ -32,7 +33,7 @@ const Items: FC = () => {
       </thead>
 
       <tbody>
-        {cities.length > 0 ? (
+        {citiesArray.length > 0 ? (
           CITIES
         ) : (
           <tr>
@@ -44,7 +45,7 @@ const Items: FC = () => {
       <tfoot>
         <tr>
           <td>
-            Total: <span>{cities.length}</span>
+            Total: <span>{citiesArray.length}</span>
           </td>
         </tr>
       </tfoot>

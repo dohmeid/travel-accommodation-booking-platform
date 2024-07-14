@@ -16,8 +16,9 @@ import { City, AdminContextType } from "../interfaces/interfaces";
 export const AdminContext = createContext<AdminContextType | null>(null);
 
 export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  //const [searchQuery, setSearchQuery] = useState<string>("");
   const [cities, setCities] = useState<City[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchFilter, setSearchFilter] = useState("name");
 
   useEffect(() => {
     fetchCities();
@@ -78,13 +79,31 @@ export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
   };
 
+  //this function returns the cities list to display on the screen - either original list or filtered based on search filters
+  const getFilteredCities = (): City[] => {
+    if (searchQuery !== "" && searchFilter === "name") {
+      return cities.filter((city) =>
+        city.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    } else if (searchQuery !== "" && searchFilter === "description") {
+      return cities.filter((city) =>
+        city.description.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    } else {
+      return cities;
+    }
+  };
+
   return (
     <AdminContext.Provider
       value={{
         cities,
+        setSearchQuery,
+        setSearchFilter,
         createCity,
         updateCity,
         deleteCity,
+        getFilteredCities,
       }}
     >
       {children}
