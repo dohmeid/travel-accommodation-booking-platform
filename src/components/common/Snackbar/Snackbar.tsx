@@ -1,5 +1,7 @@
 import React, { useState, FC } from "react";
 import classes from "./Snackbar.module.css";
+import {useError} from "../../../context/ErrorProvider";
+
 
 // Define the props type
 interface SnackbarProps {
@@ -8,9 +10,11 @@ interface SnackbarProps {
 
 const Snackbar: FC<SnackbarProps> = ({ message }) => {
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(true);
+  const { clearError } = useError();
 
   const handleClosingSnackbar = (e: any) => {
     setIsSnackbarOpen(false);
+    clearError(); //to reset the error to null
   };
 
   return isSnackbarOpen ? (

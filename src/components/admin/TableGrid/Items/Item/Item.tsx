@@ -1,4 +1,4 @@
-import React, { FC, useContext, MouseEvent } from "react";
+import React, { FC, useContext, MouseEvent, useEffect } from "react";
 import classes from "./Item.module.css";
 import { AdminContext } from "../../../../../context/adminProvider";
 import { City, AdminContextType } from "../../../../../interfaces/interfaces";
@@ -15,7 +15,11 @@ const Item: FC<Props> = ({ cityData }) => {
   //this function updates the city
   const handleEditButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const updatedCity = { id: cityData.id, name: "new name", description: "new description" };
+    const updatedCity = {
+      id: cityData.id,
+      name: "new name",
+      description: "new description",
+    };
     updateCity(updatedCity);
   };
 

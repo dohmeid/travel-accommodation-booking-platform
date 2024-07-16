@@ -24,7 +24,7 @@ const App: FC = () => {
         path="/adminPortal"
         element={
           <ProtectedRoute requiredRole="Admin">
-            <AdminPage />
+            <AdminPage />            
           </ProtectedRoute>
         }
       />

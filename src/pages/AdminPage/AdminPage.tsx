@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import classes from "./AdminPage.module.css";
-
 import LeftNavigator from "../../components/admin/LeftNavigator/LeftNavigator";
 import Header from "../../components/admin/Header/Header";
 import SearchBar from "../../components/admin/SearchBar/SearchBar";

@@ -12,6 +12,7 @@ import {
   removeCity,
 } from "../services/Api/adminApi";
 import { City, AdminContextType } from "../interfaces/interfaces";
+import { useError } from "./ErrorProvider";
 
 export const AdminContext = createContext<AdminContextType | null>(null);
 
@@ -19,6 +20,7 @@ export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [cities, setCities] = useState<City[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchFilter, setSearchFilter] = useState("name");
+  const { setError } = useError();
 
   useEffect(() => {
     fetchCities();
@@ -30,7 +32,7 @@ export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
       const responseData = await getCities();
       setCities(responseData);
     } catch (error: any) {
-      console.log(error.message);
+      setError(error);
     }
   };
 
@@ -39,10 +41,9 @@ export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
     try {
       const responseData = await addCity(cityData);
       //fetchCities();
-      //add the new city to the cities list
-      setCities([...cities, { ...responseData }]);
+      setCities([...cities, { ...responseData }]); //add the new city to the cities list
     } catch (error: any) {
-      console.log(error.message);
+      setError(error);
     }
   };
 
@@ -63,7 +64,7 @@ export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
         )
       );
     } catch (error: any) {
-      console.error(error.message);
+      setError(error);
     }
   };
 
@@ -71,11 +72,9 @@ export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const deleteCity = async (id: number) => {
     try {
       const responseData = await removeCity(id);
-      //fetchCities();
-      //delete the city from the cities list
-      setCities(cities.filter((city) => city.id !== id));
+      setCities(cities.filter((city) => city.id !== id)); //delete the city from the cities list
     } catch (error: any) {
-      console.error(error.message);
+      setError(error);
     }
   };
 
