@@ -1,0 +1,125 @@
+.addDialog {
+    position: fixed;
+    top: 50%;
+    right: 0%;
+    transform: translateY(-50%);
+    width: 30rem;
+    height: 100%;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.7rem;
+    background-color: var(--white);
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 2rem 0 2rem;
+
+    h2 {
+        height: 15%;
+        font-family: var(--main-font);
+        color: var(--orange1);
+    }
+
+    .addForm {
+        width: 90%;
+
+
+        .inputContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-bottom: 2rem;
+
+            .nameField,
+            .descriptionField {
+                padding-left: 1.2rem;
+                font-size: 0.85rem;
+                font-family: var(--secondary-font);
+                color: var(--dark-brown1);
+                background-color: transparent;
+                border: 1px solid var(--orange1);
+                border-radius: 0.7rem;
+
+                &::placeholder {
+                    color: var(--dark-brown2);
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            .nameField {
+                height: 4rem;
+            }
+
+            .descriptionField {
+                box-sizing: border-box;
+                padding-top: 1rem;
+                resize: none;
+            }
+
+            .errorAlert {
+                color: red;
+                text-align: center;
+                font-size: 0.7rem;
+                font-weight: 600;
+                font-style: italic;
+                padding-top: 0.8em;
+            }
+        }
+
+
+        .buttonsContainer {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+
+            button {
+                width: 5rem;
+                height: 2.5rem;
+                text-align: center;
+                font-family: var(--secondary-font);
+                font-weight: bold;
+                font-size: 0.85rem;
+                border-radius: 0.5rem;
+                cursor: pointer;
+                background-color: transparent;
+                color: var(--dark-grey-shade);
+
+                &:focus {
+                    outline: 2px solid var(--dark-brown1);
+                }
+            }
+
+            .cancelButton {
+                margin-right: 0.5rem;
+                color: var(--dark-grey);
+                border: 1px solid var(--medium-grey);
+
+                &:hover {
+                    background-color: var(--medium-grey);
+                    color: var(--white);
+                    transition: 0.2s all ease-in-out;
+                }
+            }
+
+            .addButton {
+                color: var(--orange1);
+                border: 1px solid var(--orange1);
+
+                &:hover {
+                    background-color: var(--orange1);
+                    color: var(--white);
+                    transition: 0.2s all ease-in-out;
+                }
+
+                &:disabled {
+                    opacity: 0.5;
+                    cursor: not-allowed;
+                }
+            }
+        }
+
+    }
+}

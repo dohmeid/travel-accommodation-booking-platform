@@ -5,16 +5,14 @@ import { City, AdminContextType } from "../../../../../interfaces/interfaces";
 
 interface Props {
   cityData: City;
-
   setShowDeleteDialog: React.Dispatch<React.SetStateAction<boolean>>;
-
   setCityToDelete: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Item: FC<Props> = ({
   cityData,
   setCityToDelete,
-  setShowDeleteDialog,
+  setShowDeleteDialog
 }) => {
   const { updateCity } = useContext(AdminContext) as AdminContextType;
 
