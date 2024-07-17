@@ -30,7 +30,7 @@ const Item: FC<Props> = ({ cityData, openDialog }) => {
       <tr className={classes.row}>
         <td>{cityData.id}</td>
         <td>{cityData.name}</td>
-        <td>{cityData.description}</td>
+        <td className={classes.descriptionRow}>{cityData.description}</td>
         <td className={classes.buttons}>
           <button
             type="submit"

@@ -6,6 +6,10 @@
     color: var(--dark-brown1);
     padding: 1rem 0;
 
+    .descriptionRow {
+        text-align: left;
+    }
+
     .buttons {
         display: flex;
         align-items: center;
@@ -31,5 +35,14 @@
         .deleteBtn {
             color: var(--orange1);
         }
+    }
+}
+
+/*************************** media queries styles ********************************/
+/*for small devices - mobile phones and some tablets*/
+@media (max-width: 550px) {
+
+    .row {
+        text-align: left;
     }
 }

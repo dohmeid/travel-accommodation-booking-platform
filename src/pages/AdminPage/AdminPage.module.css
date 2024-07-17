@@ -19,3 +19,28 @@
     }
 
 }
+
+
+/*************************** media queries styles ********************************/
+/*for small devices - mobile phones and some tablets*/
+@media (max-width: 600px) {
+
+    .adminPage {
+        .main {
+            .body {
+                padding: 3rem 2rem;
+            }
+        }
+    }
+}
+
+/*for medium devices - tablets*/
+@media (min-width: 600px) and (max-width: 951px) {
+    .adminPage {
+        .main {
+            .body {
+                padding: 3rem 3rem;
+            }
+        }
+    }
+}

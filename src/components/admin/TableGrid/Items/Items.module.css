@@ -44,3 +44,18 @@
         }
     }
 }
+
+
+/*************************** media queries styles ********************************/
+/*for small devices - mobile phones and some tablets*/
+@media (max-width: 550px) {
+
+    .grid {
+        column-gap: 0.5rem;
+        grid-template-columns: 1rem 3rem 1fr 2.5rem;
+
+        tfoot {
+            padding-left: 1rem;
+        }
+    }
+}

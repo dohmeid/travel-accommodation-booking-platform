@@ -45,3 +45,32 @@
         }
     }
 }
+
+
+/*************************** media queries styles ********************************/
+/*for small devices - mobile phones and some tablets*/
+@media (max-width: 550px) {
+
+    .searchContainer {
+        height: 3rem;
+
+        input {
+            height: 100%;
+            padding-inline-start: 2.8rem;
+            padding-inline-end: 1rem;
+            font-size: 1rem;
+        }
+
+        .searchIcon {
+            left: 0.7rem;
+        }
+
+        .optionsDropdown {
+            font-size: 0.7rem;
+            height: 100%;
+            width: 6rem;
+            padding: 0;
+            margin-left: 0.3rem;
+        }
+    }
+}

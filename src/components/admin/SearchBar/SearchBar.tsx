@@ -4,7 +4,9 @@ import { AdminContext } from "../../../context/adminProvider";
 import { City, AdminContextType } from "../../../interfaces/interfaces";
 
 const SearchBar: FC = () => {
-  const { setSearchQuery, setSearchFilter } = useContext(AdminContext) as AdminContextType;
+  const { setSearchQuery, setSearchFilter } = useContext(
+    AdminContext
+  ) as AdminContextType;
 
   const handleSelectOptionChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setSearchFilter(e.target.value);
@@ -29,7 +31,6 @@ const SearchBar: FC = () => {
 
       <select
         className={classes.optionsDropdown}
-        
         onChange={handleSelectOptionChange}
       >
         <option value="name">Name</option>

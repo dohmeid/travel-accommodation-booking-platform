@@ -40,26 +40,42 @@
             background-color: transparent;
             color: var(--dark-grey-shade);
 
-            &:hover {
-                background-color: var(--dark-brown1);
-                color: var(--white);
-                transition: 0.2s all ease-in-out;
-            }
-
             &:focus {
                 outline: 2px solid black;
             }
         }
 
-        .closeBtn {
+        .cancelBtn {
             margin-right: 0.5rem;
             color: var(--dark-grey);
             border: 1px solid var(--medium-grey);
+
+            &:hover {
+                background-color: var(--medium-grey);
+                color: var(--white);
+                transition: 0.2s all ease-in-out;
+            }
         }
 
         .deleteBtn {
             color: var(--orange1);
             border: 1px solid var(--orange1);
+
+            &:hover {
+                background-color: var(--orange1);
+                color: var(--white);
+                transition: 0.2s all ease-in-out;
+            }
         }
+    }
+}
+
+/*************************** media queries styles ********************************/
+/*for small devices - mobile phones and some tablets*/
+@media (max-width: 550px) {
+
+    .deleteDialog {
+        width: 28rem;
+        height: 15rem;
     }
 }

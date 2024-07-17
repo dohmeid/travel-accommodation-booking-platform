@@ -28,11 +28,11 @@ const DeleteDialog: FC<Props> = ({ dialogState, closeDialog }) => {
 
       <div className={classes.buttons}>
         <button
-          className={classes.closeBtn}
+          className={classes.cancelBtn}
           type="button"
           onClick={closeDialog}
         >
-          Close
+          Cancel
         </button>
         <button
           className={classes.deleteBtn}
