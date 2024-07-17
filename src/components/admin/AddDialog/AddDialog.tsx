@@ -3,7 +3,7 @@ import classes from "./AddDialog.module.css";
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
 import { AdminContext } from "../../../context/adminProvider";
 import { City, AdminContextType } from "../../../interfaces/interfaces";
-
+import {UseDialog,DialogState} from "../../../hooks/useDialog";
 import * as Yup from "yup";
 
 // the yup module schema for validating the login form
@@ -25,15 +25,13 @@ interface AddFormValues {
 }
 
 interface Props {
-  setShowAddDialog: React.Dispatch<React.SetStateAction<boolean>>;
+  dialogState: DialogState;
+  closeDialog: UseDialog["closeDialog"];
 }
 
-const AddDialog: FC<Props> = ({ setShowAddDialog }) => {
-  const { createCity } = useContext(AdminContext) as AdminContextType;
 
-  const handleCancelButtonClick = () => {
-    setShowAddDialog(false);
-  };
+const AddDialog: FC<Props> = ({ dialogState, closeDialog }) => {
+  const { createCity } = useContext(AdminContext) as AdminContextType;
 
   const handleSubmitAddForm = async (
     values: AddFormValues,
@@ -45,9 +43,11 @@ const AddDialog: FC<Props> = ({ setShowAddDialog }) => {
       description: values.description,
     };
     createCity(newCity);
-    setShowAddDialog(false);
+    closeDialog();
     setSubmitting(false);
   };
+
+  if (!dialogState.isOpen) return null;
 
   return (
     <div className={classes.addDialog}>
@@ -98,7 +98,7 @@ const AddDialog: FC<Props> = ({ setShowAddDialog }) => {
               <button
                 type="button"
                 className={classes.cancelButton}
-                onClick={handleCancelButtonClick}
+                onClick={closeDialog}
               >
                 Cancel
               </button>

@@ -1,23 +1,14 @@
 import React, { FC, useContext, useState, MouseEvent } from "react";
 import Items from "./Items/Items";
 import classes from "./TableGrid.module.css";
-import { AdminContext } from "../../../context/adminProvider";
-import { City, AdminContextType } from "../../../interfaces/interfaces";
 import AddDialog from "../AddDialog/AddDialog";
+import useDialog from "../../../hooks/useDialog";
 
 const TableGrid: FC = () => {
-  const { createCity } = useContext(AdminContext) as AdminContextType;
-
-  const [showAddDialog, setShowAddDialog] = useState(false);
+  const { dialogState, openDialog, closeDialog } = useDialog();
 
   const handleCreateButtonClick = () => {
-    setShowAddDialog(true);
-  };
-
-  //this function activates when the user clicks on Close button -> closes delete/edit dialog
-  const handleCancelButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    setShowAddDialog(false);
+    openDialog("add");
   };
 
   return (
@@ -36,7 +27,7 @@ const TableGrid: FC = () => {
 
       <Items />
 
-      {showAddDialog && <AddDialog setShowAddDialog={setShowAddDialog} />}
+      {<AddDialog dialogState={dialogState} closeDialog={closeDialog} />}
     </div>
   );
 };

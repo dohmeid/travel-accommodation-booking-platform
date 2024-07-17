@@ -108,7 +108,7 @@
                 color: var(--orange1);
                 border: 1px solid var(--orange1);
 
-                &:hover {
+                &:not(:disabled):hover {
                     background-color: var(--orange1);
                     color: var(--white);
                     transition: 0.2s all ease-in-out;
