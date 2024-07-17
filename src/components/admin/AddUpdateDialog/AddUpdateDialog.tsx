@@ -1,25 +1,20 @@
-import React, { FC, MouseEvent, useContext } from "react";
-import classes from "./AddDialog.module.css";
+import React, { FC, useContext } from "react";
+import classes from "./AddUpdateDialog.module.css";
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
 import { AdminContext } from "../../../context/adminProvider";
-import { City, AdminContextType } from "../../../interfaces/interfaces";
-import {UseDialog,DialogState} from "../../../hooks/useDialog";
+import { AdminContextType } from "../../../interfaces/interfaces";
+import { UseDialog, DialogState } from "../../../hooks/useDialog";
 import * as Yup from "yup";
 
-// the yup module schema for validating the login form
-const loginSchema = Yup.object().shape({
+// the yup module schema for validating the form
+const citySchema = Yup.object().shape({
   name: Yup.string().required("City name is a required field!"),
   description: Yup.string()
     .required("City description is a required field!")
     .min(5, "Description should be at least 5 characters long"),
 });
 
-const initialCityValues = {
-  name: "",
-  description: "",
-};
-
-interface AddFormValues {
+interface DialogFormValues {
   name: string;
   description: string;
 }
@@ -29,44 +24,64 @@ interface Props {
   closeDialog: UseDialog["closeDialog"];
 }
 
+const AddUpdateDialog: FC<Props> = ({ dialogState, closeDialog }) => {
+  const { createCity, updateCity } = useContext(
+    AdminContext
+  ) as AdminContextType;
 
-const AddDialog: FC<Props> = ({ dialogState, closeDialog }) => {
-  const { createCity } = useContext(AdminContext) as AdminContextType;
+  const initialCityValues = {
+    name: dialogState.data.name,
+    description: dialogState.data.description,
+  };
 
   const handleSubmitAddForm = async (
-    values: AddFormValues,
-    { setSubmitting }: FormikHelpers<AddFormValues>
+    values: DialogFormValues,
+    { setSubmitting }: FormikHelpers<DialogFormValues>
   ) => {
     const newCity = {
-      id: 0,
+      id: dialogState.data.id,
       name: values.name,
       description: values.description,
     };
-    createCity(newCity);
+
+    if (dialogState.type === "Add") {
+      createCity(newCity);
+    } else {
+      //dialogState.type === "Update"
+      updateCity(newCity);
+    }
+
     closeDialog();
     setSubmitting(false);
   };
 
-  if (!dialogState.isOpen) return null;
+  if (
+    !dialogState.isOpen ||
+    (dialogState.type !== "Add" && dialogState.type !== "Update")
+  )
+    return null;
 
   return (
-    <div className={classes.addDialog}>
-      <h2>Add New City</h2>
+    <div className={classes.dialogContainer}>
+      <h2>{dialogState.type === "Add" ? "Add New City" : "Update City"}</h2>
 
       <Formik
         initialValues={initialCityValues}
-        validationSchema={loginSchema}
+        validationSchema={citySchema}
         onSubmit={handleSubmitAddForm}
       >
         {(formik) => (
-          <Form aria-labelledby="add new city form" className={classes.addForm}>
+          <Form
+            aria-labelledby="add-update-city-form"
+            className={classes.dialogForm}
+          >
             <div className={classes.inputContainer}>
               <Field
                 type="text"
                 name="name"
                 id="name"
                 placeholder="City name"
-                aria-describedby="new city name"
+                aria-describedby="city-name"
                 autoComplete="true"
                 className={classes.nameField}
               />
@@ -84,7 +99,7 @@ const AddDialog: FC<Props> = ({ dialogState, closeDialog }) => {
                 name="description"
                 rows={13}
                 placeholder="City description..."
-                aria-describedby="new city description"
+                aria-describedby="city-description"
                 className={classes.descriptionField}
               />
               <ErrorMessage
@@ -105,10 +120,16 @@ const AddDialog: FC<Props> = ({ dialogState, closeDialog }) => {
 
               <button
                 type="submit"
-                className={classes.addButton}
+                className={classes.addUpdateButton}
                 disabled={formik.isSubmitting || !formik.isValid}
               >
-                {formik.isSubmitting ? "Adding..." : "Add"}
+                {formik.isSubmitting
+                  ? dialogState.type === "Add"
+                    ? "Adding..."
+                    : "Updating..."
+                  : dialogState.type === "Add"
+                  ? "Add"
+                  : "Update"}
               </button>
             </div>
           </Form>
@@ -118,4 +139,4 @@ const AddDialog: FC<Props> = ({ dialogState, closeDialog }) => {
   );
 };
 
-export default AddDialog;
+export default AddUpdateDialog;

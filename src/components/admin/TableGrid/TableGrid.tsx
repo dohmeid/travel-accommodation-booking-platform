@@ -1,14 +1,14 @@
 import React, { FC, useContext, useState, MouseEvent } from "react";
 import Items from "./Items/Items";
 import classes from "./TableGrid.module.css";
-import AddDialog from "../AddDialog/AddDialog";
+import AddUpdateDialog from "../AddUpdateDialog/AddUpdateDialog";
 import useDialog from "../../../hooks/useDialog";
 
 const TableGrid: FC = () => {
   const { dialogState, openDialog, closeDialog } = useDialog();
 
   const handleCreateButtonClick = () => {
-    openDialog("add");
+    openDialog("Add",{id:-1,name:"",description:""});
   };
 
   return (
@@ -27,7 +27,7 @@ const TableGrid: FC = () => {
 
       <Items />
 
-      {<AddDialog dialogState={dialogState} closeDialog={closeDialog} />}
+      <AddUpdateDialog dialogState={dialogState} closeDialog={closeDialog} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-.addDialog {
+.dialogContainer {
     position: fixed;
     top: 50%;
     right: 0%;
@@ -20,7 +20,7 @@
         color: var(--orange1);
     }
 
-    .addForm {
+    .dialogForm {
         width: 90%;
 
 
@@ -104,7 +104,7 @@
                 }
             }
 
-            .addButton {
+            .addUpdateButton {
                 color: var(--orange1);
                 border: 1px solid var(--orange1);
 

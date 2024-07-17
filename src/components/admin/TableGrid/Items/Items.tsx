@@ -4,23 +4,20 @@ import Item from "./Item/Item";
 import { AdminContext } from "../../../../context/adminProvider";
 import { City, AdminContextType } from "../../../../interfaces/interfaces";
 import DeleteDialog from "../../DeleteDialog/DeleteDialog";
+import AddUpdateDialog from "../../AddUpdateDialog/AddUpdateDialog";
+import useDialog from "../../../../hooks/useDialog";
 
 const Items: FC = () => {
-  const { getFilteredCities, deleteCity } = useContext(
+  const { getFilteredCities } = useContext(
     AdminContext
   ) as AdminContextType;
 
-  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-  const [cityToDelete, setCityToDelete] = useState(-1);
+  const { dialogState, openDialog, closeDialog } = useDialog();
 
   let citiesArray = getFilteredCities();
+
   const CITIES = citiesArray.map((city: City, index: number) => (
-    <Item
-      key={city.id}
-      cityData={city}
-      setCityToDelete={setCityToDelete}
-      setShowDeleteDialog={setShowDeleteDialog}
-    />
+    <Item key={city.id} cityData={city} openDialog={openDialog} />
   ));
 
   /*
@@ -31,19 +28,6 @@ const Items: FC = () => {
 - Rooms: Number, availability, adult and children capacity, creation and modification dates, delete option.
 
 */
-
-  //this function activates when the user clicks on Close button -> closes delete/edit dialog
-  const handleCloseButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    setShowDeleteDialog(false);
-  };
-
-  //this function activates when the user clicks on the delete button
-  const handleDeleteButtonClick = async (e: MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    deleteCity(cityToDelete);
-    setShowDeleteDialog(false);
-  };
 
   return (
     <>
@@ -76,13 +60,8 @@ const Items: FC = () => {
         </tfoot>
       </table>
 
-      {showDeleteDialog && (
-        <DeleteDialog
-          handleCloseButtonClick={handleCloseButtonClick}
-          handleDeleteButtonClick={handleDeleteButtonClick}
-        />
-      )}
-
+      <DeleteDialog dialogState={dialogState} closeDialog={closeDialog} />
+      <AddUpdateDialog dialogState={dialogState} closeDialog={closeDialog}/>
     </>
   );
 };

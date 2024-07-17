@@ -3,8 +3,8 @@ import { City } from "../interfaces/interfaces";
 
 export interface DialogState {
   isOpen: boolean;
-  type: "add" | "update" | "delete" | null;
-  data: City | null;
+  type: "Add" | "Update" | "Delete" | "";
+  data: City;
 }
 
 export interface UseDialog {
@@ -16,8 +16,8 @@ export interface UseDialog {
 export const useDialog = (): UseDialog => {
   const [dialogState, setDialogState] = useState<DialogState>({
     isOpen: false,
-    type: null,
-    data: null,
+    type: "",
+    data: { id: -1, name: "", description: "" },
   });
 
   const openDialog = useCallback(
@@ -28,7 +28,11 @@ export const useDialog = (): UseDialog => {
   );
 
   const closeDialog = useCallback(() => {
-    setDialogState({ isOpen: false, type: null, data: null });
+    setDialogState({
+      isOpen: false,
+      type: "",
+      data: { id: -1, name: "", description: "" },
+    });
   }, []);
 
   return { dialogState, openDialog, closeDialog };
