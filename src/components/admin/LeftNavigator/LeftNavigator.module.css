@@ -1,16 +1,13 @@
-.navigator {
-    width: fit-content;
-    display: flex;
-}
+@import url("https://use.fontawesome.com/releases/v6.6.0/css/all.css");
 
-.navTrigger {
-    width: 4rem;
-    text-align: center;
+.nav {
     padding-top: 1rem;
+    width: fit-content;
     background-color: var(--dark-brown2);
-    transition: 0.2s ease-in-out;
 
     .navBtn {
+        width: 4rem;
+        margin-bottom: 2.5rem;
         font-size: 2.2rem;
         color: var(--white);
         background-color: transparent;
@@ -30,54 +27,61 @@
             transform: rotate(0deg);
         }
 
-        &:focus{
+        &:focus {
             outline: none;
         }
     }
-}
-
-.nav {
-    width: 10rem;
-    background-color: rgb(60, 84, 71);
-    transition: width 0.3s ease-in-out;
-
-    transition: width 0.3s, visibility 0.3s;
-    visibility: visible;
-    overflow: hidden;
-
 
     .navList {
+        width: 10rem;
+        overflow: hidden;
         list-style: none;
+        transition: width 0.3s ease-in-out;
 
         .navItem {
             height: 3rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #c69393;
             cursor: pointer;
             margin-bottom: 1rem;
 
             a {
-                color: white;
-                font-size: 1rem;
+                color: var(--white);
+                font-size: 0.8rem;
+                font-family: var(--secondary-font);
                 text-decoration: none;
 
-                &:hover {
-                    color: rgb(147, 147, 181);
+                i{
+                    font-size: 1rem;
+                    padding-right: 0.5rem;
                 }
             }
 
             &:hover {
-                background-color: #ffee008c;
+
+                a {
+                    color: var(--orange1);
+                    font-weight: 600;
+                    transition: 0.15s all ease;
+                }
+            }
+        }
+
+        .activeNavItem {
+            a {
+                color: var(--orange1);
+                font-weight: 600;
             }
         }
     }
+
 }
 
+
 .navClosed {
-    /*transition: visibility 0.3s ease-in-out;
-    width: 0px;*/
-    width: 0;
-    visibility: collapse;
+    .navList {
+        width: 0;
+        transition: width 0.3s ease-in-out;
+    }
 }

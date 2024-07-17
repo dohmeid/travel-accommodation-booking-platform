@@ -9,36 +9,47 @@ const LeftNavigator: FC = () => {
   };
 
   return (
-    <div className={classes.navigator}>
-      <div className={classes.navTrigger}>
-        <button type="button" className={classes.navBtn} onClick={toggleOpen}>
-          <i
-            className={`${isNavCollapsed ? classes.xIcon : classes.listIcon} ${
-              isNavCollapsed ? "bi bi-x" : "bi bi-list"
-            }`}
-          ></i>
-        </button>
-      </div>
+    <nav
+      className={
+        isNavCollapsed ? classes.nav : `${classes.nav} ${classes.navClosed}`
+      }
+    >
+      <button type="button" className={classes.navBtn} onClick={toggleOpen}>
+        <i
+          className={`${isNavCollapsed ? classes.xIcon : classes.listIcon} ${
+            isNavCollapsed ? "bi bi-x" : "bi bi-list"
+          }`}
+        ></i>
+      </button>
 
-      <nav
-        className={
-          isNavCollapsed ? classes.nav : `${classes.nav} ${classes.navClosed}`
-        }
-      >
-        <ul className={classes.navList}>
-          <li className={classes.navItem}>
-            <a href="#">Manage Cities</a>
-          </li>
-          <li className={classes.navItem}>
-            <a href="#">Manage Hotels </a>
-          </li>
-          <li className={classes.navItem}>
-            <a href="#">Manage Rooms</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+      <ul className={classes.navList}>
+        <li className={`${classes.navItem} ${classes.activeNavItem}`}>
+          <a href="#">
+            <i className="fa-solid fa-city"></i>
+            Manage Cities
+          </a>
+        </li>
+        <li className={classes.navItem}>
+          <a href="#">
+            <i className="fas fa-hotel"></i>
+            Manage Hotels
+          </a>
+        </li>
+        <li className={classes.navItem}>
+          <a href="#">
+            <i className="fa fa-bed" aria-hidden="true"></i>
+            Manage Rooms
+          </a>
+        </li>
+      </ul>
+    </nav>
   );
 };
 
 export default LeftNavigator;
+
+/*
+ className={
+          isNavCollapsed ? classes.nav : `${classes.nav} ${classes.navClosed}`
+        }
+*/
