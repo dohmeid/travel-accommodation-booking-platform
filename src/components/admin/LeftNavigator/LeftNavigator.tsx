@@ -1,9 +1,18 @@
 import React, { useState, FC } from "react";
-import { Routes, Route, Link, Outlet } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  Link,
+  Outlet,
+  useLocation,
+  NavLink,
+} from "react-router-dom";
 
 import classes from "./LeftNavigator.module.css";
 
 const LeftNavigator: FC = () => {
+  const currentPage = useLocation().pathname;
+
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
 
   const toggleOpen = () => {
@@ -25,23 +34,43 @@ const LeftNavigator: FC = () => {
       </button>
 
       <ul className={classes.navList}>
-        <li className={`${classes.navItem} ${classes.activeNavItem}`}>
-          <Link to="city">
+        <li className={classes.navItem}>
+          <NavLink
+            to="city"
+            style={({ isActive }) => ({
+              color: isActive ? "var(--orange1)" : "var(--white)",
+              fontWeight: isActive ? "700" : "300",
+            })}
+          >
             <i className="fa-solid fa-city"></i>
             Manage Cities
-          </Link>
+          </NavLink>
         </li>
+
         <li className={classes.navItem}>
-          <Link to="hotel">
+          <NavLink
+            to="hotel"
+            style={({ isActive }) => ({
+              color: isActive ? "var(--orange1)" : "var(--white)",
+              fontWeight: isActive ? "700" : "300",
+            })}
+          >
             <i className="fas fa-hotel"></i>
             Manage Hotels
-          </Link>
+          </NavLink>
         </li>
+
         <li className={classes.navItem}>
-          <a href="#">
+          <NavLink
+            to="rooms"
+            style={({ isActive }) => ({
+              color: isActive ? "var(--orange1)" : "var(--white)",
+              fontWeight: isActive ? "700" : "300",
+            })}
+          >
             <i className="fa fa-bed" aria-hidden="true"></i>
             Manage Rooms
-          </a>
+          </NavLink>
         </li>
       </ul>
     </nav>
