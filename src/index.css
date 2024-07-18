@@ -37,6 +37,9 @@ body {
   justify-content: center;
 }
 
+
+
+
 /*************************** media queries styles ********************************/
 /*
 the styling uses rem unit which relates to top element (html) font-size
@@ -47,7 +50,7 @@ so, to make responsive components, this font-size is reduced based on screen siz
 /*for small devices - mobile phones and some tablets*/
 @media (max-width: 385px) {
   html {
-      font-size: 10px;
+    font-size: 10px;
   }
 
 }
@@ -55,20 +58,20 @@ so, to make responsive components, this font-size is reduced based on screen siz
 /*for small devices - mobile phones and some tablets*/
 @media (min-width: 385px) and (max-width: 600px) {
   html {
-      font-size: 11px;
+    font-size: 11px;
   }
 }
 
 /*for medium devices - tablets*/
 @media (min-width: 600px) and (max-width: 951px) {
   html {
-      font-size: 13px;
+    font-size: 13px;
   }
 }
 
 /*for medium devices -  tablets*/
 @media (min-width: 951px) and (max-width: 1350px) {
   html {
-      font-size: 14px;
+    font-size: 14px;
   }
 }

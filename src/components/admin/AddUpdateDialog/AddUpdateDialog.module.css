@@ -1,8 +1,19 @@
+@keyframes slide-in-left {
+    0% {
+        transform: translateX(-1000px);
+        opacity: 0
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1
+    }
+}
+
 .dialogContainer {
     position: fixed;
-    top: 50%;
+    top: 0%;
     right: 0%;
-    transform: translateY(-50%);
     width: 30rem;
     height: 100%;
     border-radius: 0.7rem;
@@ -12,6 +23,8 @@
     flex-direction: column;
     align-items: center;
     padding: 4rem 2rem 0 2rem;
+    animation: slide-in-left .5s cubic-bezier(.25, .46, .45, .94) both;
+
 
     h2 {
         height: 15%;
