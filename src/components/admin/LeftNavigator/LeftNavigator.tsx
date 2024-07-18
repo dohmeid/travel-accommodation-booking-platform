@@ -1,4 +1,6 @@
 import React, { useState, FC } from "react";
+import { Routes, Route, Link, Outlet } from 'react-router-dom';
+
 import classes from "./LeftNavigator.module.css";
 
 const LeftNavigator: FC = () => {
@@ -24,16 +26,16 @@ const LeftNavigator: FC = () => {
 
       <ul className={classes.navList}>
         <li className={`${classes.navItem} ${classes.activeNavItem}`}>
-          <a href="#">
+          <Link to="city">
             <i className="fa-solid fa-city"></i>
             Manage Cities
-          </a>
+          </Link>
         </li>
         <li className={classes.navItem}>
-          <a href="#">
+          <Link to="hotel">
             <i className="fas fa-hotel"></i>
             Manage Hotels
-          </a>
+          </Link>
         </li>
         <li className={classes.navItem}>
           <a href="#">
@@ -47,9 +49,3 @@ const LeftNavigator: FC = () => {
 };
 
 export default LeftNavigator;
-
-/*
- className={
-          isNavCollapsed ? classes.nav : `${classes.nav} ${classes.navClosed}`
-        }
-*/

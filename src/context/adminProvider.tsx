@@ -10,7 +10,7 @@ import {
   addCity,
   editCity,
   removeCity,
-} from "../services/Api/adminApi";
+} from "../services/Api/cityApi";
 import { City, AdminContextType } from "../interfaces/interfaces";
 import { useError } from "./ErrorProvider";
 

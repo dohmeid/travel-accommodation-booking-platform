@@ -6,14 +6,15 @@ import HomePage from "./pages/HomePage/HomePage";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import Grid from "./components/admin/Grid/Grid";
 
 const App: FC = () => {
   return (
     <Routes>
-      <Route path="/" element={<LoginPage />} />
-      <Route path="/login" element={<LoginPage />} />
+      <Route index element={<LoginPage />} />
+      <Route path="login" element={<LoginPage />} />
       <Route
-        path="/home"
+        path="home"
         element={
           <ProtectedRoute requiredRole="User">
             <HomePage />
@@ -21,14 +22,18 @@ const App: FC = () => {
         }
       />
       <Route
-        path="/adminPortal"
+        path="adminPortal"
         element={
           <ProtectedRoute requiredRole="Admin">
-            <AdminPage />            
+            <AdminPage />
           </ProtectedRoute>
         }
-      />
-      <Route path="/*" element={<ErrorPage />} />
+      >
+        <Route index element={<Grid gridType="city" />} />
+        <Route path="city" element={<Grid gridType="city" />} />
+        <Route path="hotel" element={<Grid gridType="hotel" />} />
+      </Route>
+      <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
 };

@@ -1,14 +1,19 @@
-import React, { FC, useContext, useState, MouseEvent } from "react";
-import Items from "./Items/Items";
-import classes from "./TableGrid.module.css";
+import React, { FC } from "react";
+import CitiesTable from "./CitiesTable/CitiesTable";
+import HotelsTable from "./HotelsTable/HotelsTable";
 import AddUpdateDialog from "../AddUpdateDialog/AddUpdateDialog";
 import useDialog from "../../../hooks/useDialog";
+import classes from "./Grid.module.css";
 
-const TableGrid: FC = () => {
+interface GridProps {
+  gridType: "city" | "hotel";
+}
+
+const Grid: FC<GridProps> = ({gridType}) => {
   const { dialogState, openDialog, closeDialog } = useDialog();
 
   const handleCreateButtonClick = () => {
-    openDialog("Add",{id:-1,name:"",description:""});
+    openDialog("Add", { id: -1, name: "", description: "" });
   };
 
   return (
@@ -25,11 +30,12 @@ const TableGrid: FC = () => {
         </button>
       </div>
 
-      <Items />
+      {gridType === "city" ? <CitiesTable /> : <HotelsTable />}
+
 
       <AddUpdateDialog dialogState={dialogState} closeDialog={closeDialog} />
     </div>
   );
 };
 
-export default TableGrid;
+export default Grid;

@@ -27,10 +27,7 @@ export const getCities = async () => {
 //this function is used to create a new city
 export const addCity = async (newCity: City) => {
   try {
-    const response = await apiService.post("/api/cities", {
-      name: newCity.name,
-      description: newCity.description,
-    });
+    const response = await apiService.post("/api/cities", newCity);
     if (response.status === 201) {
       console.log("The City is added successfully", response.data);
       return response.data;
@@ -45,10 +42,10 @@ export const addCity = async (newCity: City) => {
 //this function is used to update a city
 export const editCity = async (updatedCity: City) => {
   try {
-    const response = await apiService.put(`/api/cities/${updatedCity.id}`, {
-      name: updatedCity.name,
-      description: updatedCity.description,
-    });
+    const response = await apiService.put(
+      `/api/cities/${updatedCity.id}`,
+      updatedCity
+    );
     if (response.status === 204) {
       console.log("City updated successfully");
       return response.data;
