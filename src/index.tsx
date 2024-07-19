@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import App from "./App";
 import { AuthenticationProvider } from "../src/context/authentication";
 import { BrowserRouter } from "react-router-dom";
 import { AdminProvider } from "../src/context/adminProvider";
 import { ErrorProvider } from "./context/ErrorProvider";
+import "./index.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

@@ -1,5 +1,5 @@
 import React, { FC, useContext } from "react";
-import classes from "./AddUpdateDialog.module.css";
+import classes from "./CityDialog.module.css";
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
 import { AdminContext } from "../../../context/adminProvider";
 import { AdminContextType } from "../../../interfaces/interfaces";
@@ -24,14 +24,14 @@ interface Props {
   closeDialog: UseDialog["closeDialog"];
 }
 
-const AddUpdateDialog: FC<Props> = ({ dialogState, closeDialog }) => {
+const CityDialog: FC<Props> = ({ dialogState, closeDialog }) => {
   const { createCity, updateCity } = useContext(
     AdminContext
   ) as AdminContextType;
 
   const initialCityValues = {
-    name: dialogState.data.name,
-    description: dialogState.data.description,
+    name: dialogState.cityData.name,
+    description: dialogState.cityData.description,
   };
 
   const handleSubmitAddForm = async (
@@ -39,7 +39,7 @@ const AddUpdateDialog: FC<Props> = ({ dialogState, closeDialog }) => {
     { setSubmitting }: FormikHelpers<DialogFormValues>
   ) => {
     const newCity = {
-      id: dialogState.data.id,
+      id: dialogState.cityData.id,
       name: values.name,
       description: values.description,
     };
@@ -139,4 +139,4 @@ const AddUpdateDialog: FC<Props> = ({ dialogState, closeDialog }) => {
   );
 };
 
-export default AddUpdateDialog;
+export default CityDialog;

@@ -1,25 +1,42 @@
 import React, { FC } from "react";
 import CitiesTable from "./CitiesTable/CitiesTable";
 import HotelsTable from "./HotelsTable/HotelsTable";
-import AddUpdateDialog from "../AddUpdateDialog/AddUpdateDialog";
+import CityDialog from "../CityDialog/CityDialog";
+import HotelDialog from "../HotelDialog/HotelDialog";
+
 import useDialog from "../../../hooks/useDialog";
 import classes from "./Grid.module.css";
 
 interface GridProps {
-  gridType: "city" | "hotel";
+  gridType: "city" | "hotel" | "room";
 }
 
-const Grid: FC<GridProps> = ({gridType}) => {
+const Grid: FC<GridProps> = ({ gridType }) => {
   const { dialogState, openDialog, closeDialog } = useDialog();
 
+  let title = "";
+  if(gridType==="city"){
+    title = "Cities List";
+  }
+  else if(gridType==="hotel"){
+    title = "Hotels List";
+  }
+  else{
+    title = "Rooms List";
+  }
+
   const handleCreateButtonClick = () => {
-    openDialog("Add", { id: -1, name: "", description: "" });
+    if (gridType === "city") {
+      openDialog("City", "Add", null, null);
+    } else {
+      openDialog("Hotel", "Add", null, null);
+    }
   };
 
   return (
     <div className={classes.gridContainer}>
       <div className={classes.gridHeader}>
-        <h2>Cities List</h2>
+        <h2>{title}</h2>
         <button
           type="button"
           className={classes.createBtn}
@@ -32,8 +49,11 @@ const Grid: FC<GridProps> = ({gridType}) => {
 
       {gridType === "city" ? <CitiesTable /> : <HotelsTable />}
 
-
-      <AddUpdateDialog dialogState={dialogState} closeDialog={closeDialog} />
+      {gridType === "city" ? (
+        <CityDialog dialogState={dialogState} closeDialog={closeDialog} />
+      ) : (
+        <HotelDialog dialogState={dialogState} closeDialog={closeDialog} />
+      )}
     </div>
   );
 };

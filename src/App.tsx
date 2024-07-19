@@ -1,12 +1,12 @@
-import React, { FC, useContext } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { FC } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import LoginPage from "./pages/LoginPage/LoginPage";
 import HomePage from "./pages/HomePage/HomePage";
 import AdminPage from "./pages/AdminPage/AdminPage";
+import Grid from "./components/admin/Grid/Grid";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
-import Grid from "./components/admin/Grid/Grid";
 
 const App: FC = () => {
   return (
@@ -32,6 +32,7 @@ const App: FC = () => {
         <Route index element={<Grid gridType="city" />} />
         <Route path="city" element={<Grid gridType="city" />} />
         <Route path="hotel" element={<Grid gridType="hotel" />} />
+        <Route path="room" element={<Grid gridType="city" />} />
       </Route>
       <Route path="*" element={<ErrorPage />} />
     </Routes>

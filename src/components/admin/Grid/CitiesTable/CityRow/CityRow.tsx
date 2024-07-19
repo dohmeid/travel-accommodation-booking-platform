@@ -12,14 +12,14 @@ const CityRow: FC<Props> = ({ cityData, openDialog }) => {
   //this function opens the update city dialog
   const handleEditButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    openDialog("Update", cityData);
+    openDialog("City", "Update", cityData);
   };
 
   //this function opens the delete city dialog
   const handleTrashButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    openDialog("Delete", cityData);
+    openDialog("City", "Delete", cityData);
   };
 
   return (

@@ -49,6 +49,11 @@ export const addHotel = async (cityId: number, newHotel: Hotel) => {
       return response.data;
     }
   } catch (error: any) {
+    if (axios.isAxiosError(error)) {
+      if (error.response?.status === 404) {
+        throw new Error("City is not found");
+      }
+    }
     throw new Error(
       "An error occurred while adding the new hotel" + error.message
     );

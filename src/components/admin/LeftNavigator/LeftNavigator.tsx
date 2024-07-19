@@ -1,18 +1,8 @@
 import React, { useState, FC } from "react";
-import {
-  Routes,
-  Route,
-  Link,
-  Outlet,
-  useLocation,
-  NavLink,
-} from "react-router-dom";
-
+import { NavLink } from "react-router-dom";
 import classes from "./LeftNavigator.module.css";
 
 const LeftNavigator: FC = () => {
-  const currentPage = useLocation().pathname;
-
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
 
   const toggleOpen = () => {
@@ -62,7 +52,7 @@ const LeftNavigator: FC = () => {
 
         <li className={classes.navItem}>
           <NavLink
-            to="rooms"
+            to="room"
             style={({ isActive }) => ({
               color: isActive ? "var(--orange1)" : "var(--white)",
               fontWeight: isActive ? "700" : "300",

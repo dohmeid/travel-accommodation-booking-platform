@@ -1,7 +1,7 @@
 import React, { FC, useContext } from "react";
 import CityRow from "./CityRow/CityRow";
 import DeleteDialog from "../../DeleteDialog/DeleteDialog";
-import AddUpdateDialog from "../../AddUpdateDialog/AddUpdateDialog";
+import CityDialog from "../../CityDialog/CityDialog";
 import { AdminContext } from "../../../../context/adminProvider";
 import { City, AdminContextType } from "../../../../interfaces/interfaces";
 import useDialog from "../../../../hooks/useDialog";
@@ -48,7 +48,7 @@ const CitiesTable: FC = () => {
       </table>
 
       <DeleteDialog dialogState={dialogState} closeDialog={closeDialog} />
-      <AddUpdateDialog dialogState={dialogState} closeDialog={closeDialog} />
+      <CityDialog dialogState={dialogState} closeDialog={closeDialog} />
     </>
   );
 };

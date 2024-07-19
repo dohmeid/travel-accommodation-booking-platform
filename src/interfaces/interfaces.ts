@@ -22,4 +22,10 @@ export interface AdminContextType {
   updateCity: (cityData: City) => Promise<void>;
   deleteCity: (id: number) => Promise<void>;
   getFilteredCities: () => City[];
+
+  hotels: Hotel[];
+  getFilteredHotels: () => Hotel[];
+  createHotel: (cityId: number, hotelData: Hotel) => Promise<void>;
+  updateHotel: (hotelData: Hotel) => Promise<void>;
+  deleteHotel: (cityId: number, hotelId: number) => Promise<void>;
 }

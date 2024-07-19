@@ -1,23 +1,23 @@
 import React, { FC, useContext } from "react";
 import HotelRow from "./HotelRow/HotelRow";
 import DeleteDialog from "../../DeleteDialog/DeleteDialog";
-import AddUpdateDialog from "../../AddUpdateDialog/AddUpdateDialog";
+import HotelDialog from "../../HotelDialog/HotelDialog";
 import { AdminContext } from "../../../../context/adminProvider";
-import { City, AdminContextType } from "../../../../interfaces/interfaces";
+import { Hotel, City, AdminContextType } from "../../../../interfaces/interfaces";
 import useDialog from "../../../../hooks/useDialog";
 import classes from "./HotelsTable.module.css";
 
 const HotelsTable: FC = () => {
-  const { getFilteredCities } = useContext(AdminContext) as AdminContextType;
+  const { getFilteredHotels } = useContext(AdminContext) as AdminContextType;
   const { dialogState, openDialog, closeDialog } = useDialog();
 
-  let citiesArray = getFilteredCities();
-  const CITIES = citiesArray.map((city: City, index: number) => (
-    <HotelRow key={city.id} cityData={city} openDialog={openDialog} />
+  let hotelsArray = getFilteredHotels();
+  const HOTELS = hotelsArray.map((hotel: Hotel) => (
+    <HotelRow key={hotel.id} hotelData={hotel} openDialog={openDialog} />
   ));
 
   //Hotels: Name, star rate, owner, room number, creation and modification dates, delete option.
-  //Hotel: id, name, description, starRating, hotelType, actions(delete,update)     "latitude": 0, "longitude": 0
+  //Hotel: id, name, description, hotelType, starRating, latitude, longitude, actions(delete,update)
 
   return (
     <>
@@ -36,11 +36,11 @@ const HotelsTable: FC = () => {
         </thead>
 
         <tbody>
-          {citiesArray.length > 0 ? (
-            CITIES
+          {hotelsArray.length > 0 ? (
+            HOTELS
           ) : (
             <tr>
-              <td colSpan={4}>No cities to display</td>
+              <td colSpan={4}>No hotels to display</td>
             </tr>
           )}
         </tbody>
@@ -48,14 +48,14 @@ const HotelsTable: FC = () => {
         <tfoot>
           <tr>
             <td>
-              Total: <span>{citiesArray.length}</span>
+              Total: <span>{hotelsArray.length}</span>
             </td>
           </tr>
         </tfoot>
       </table>
 
       <DeleteDialog dialogState={dialogState} closeDialog={closeDialog} />
-      <AddUpdateDialog dialogState={dialogState} closeDialog={closeDialog} />
+      <HotelDialog dialogState={dialogState} closeDialog={closeDialog} />
     </>
   );
 };

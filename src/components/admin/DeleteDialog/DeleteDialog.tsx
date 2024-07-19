@@ -10,12 +10,17 @@ interface Props {
 }
 
 const DeleteDialog: FC<Props> = ({ dialogState, closeDialog }) => {
-  const { deleteCity } = useContext(AdminContext) as AdminContextType;
+  const { deleteCity,deleteHotel } = useContext(AdminContext) as AdminContextType;
 
   //this function activates when the user clicks on the delete button
   const handleDeleteButtonClick = async (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    deleteCity(dialogState.data?.id);
+    if (dialogState.management === "City") {
+      deleteCity(dialogState.cityData.id);
+    } else {
+      let cityId = 0; //todo -- search for the city id for the hotel to delete
+      deleteHotel(cityId,dialogState.cityData.id);
+    }
     closeDialog();
   };
 
@@ -23,8 +28,8 @@ const DeleteDialog: FC<Props> = ({ dialogState, closeDialog }) => {
 
   return (
     <div className={classes.deleteDialog}>
-      <h2>City Deletion</h2>
-      <h3>Are you certain you wish to delete this City?</h3>
+      <h2>{dialogState.management} Deletion</h2>
+      <h3>Are you certain you wish to delete this {dialogState.management}?</h3>
 
       <div className={classes.buttons}>
         <button

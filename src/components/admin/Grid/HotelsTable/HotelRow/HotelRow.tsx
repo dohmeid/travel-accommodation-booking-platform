@@ -1,32 +1,38 @@
 import React, { FC, MouseEvent } from "react";
-import { City } from "../../../../../interfaces/interfaces";
+import { Hotel } from "../../../../../interfaces/interfaces";
 import { UseDialog } from "../../../../../hooks/useDialog";
 import classes from "./HotelRow.module.css";
 
 interface Props {
-  cityData: City;
+  hotelData: Hotel;
   openDialog: UseDialog["openDialog"];
 }
 
-const HotelRow: FC<Props> = ({ cityData, openDialog }) => {
+const HotelRow: FC<Props> = ({ hotelData, openDialog }) => {
   //this function opens the update city dialog
   const handleEditButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    openDialog("Update", cityData);
+    openDialog("Hotel", "Update", null, hotelData);
   };
 
   //this function opens the delete city dialog
   const handleTrashButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    openDialog("Delete", cityData);
+    openDialog("Hotel", "Delete", null, hotelData);
   };
+
+  //Hotel: id, name, description, hotelType, starRating, latitude, longitude, actions(delete,update)
 
   return (
     <tr className={classes.row}>
-      <td>{cityData.id}</td>
-      <td>{cityData.name}</td>
-      <td className={classes.descriptionRow}>{cityData.description}</td>
+      <td>{hotelData.id}</td>
+      <td>{hotelData.name}</td>
+      <td className={classes.descriptionRow}>{hotelData.description}</td>
+      <td>{hotelData.hotelType}</td>
+      <td>{hotelData.starRating}</td>
+      <td>{hotelData.latitude}</td>
+      <td>{hotelData.longitude}</td>
       <td className={classes.buttons}>
         <button
           type="submit"
