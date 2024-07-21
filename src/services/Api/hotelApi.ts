@@ -2,22 +2,6 @@ import axios from "axios";
 import apiService from "./apiService";
 import { Hotel } from "../../interfaces/interfaces";
 
-//Hotels: Name, star rate, owner, room number, creation and modification dates, delete option.
-//Hotel: id, name, description, starRating, hotelType, actions(delete,update)     "latitude": 0, "longitude": 0
-
-/**
- * {
-    "id": 0,
-    "name": "string",
-    "description": "string",
-    "hotelType": 0,
-    "starRating": 0,
-    "latitude": 0,
-    "longitude": 0
-  }
- * 
- * */
-
 //this function is used to get all hotels
 export const getHotels = async () => {
   try {
@@ -43,7 +27,10 @@ export const getHotels = async () => {
 //this function is used to create a new hotel in a specified city
 export const addHotel = async (cityId: number, newHotel: Hotel) => {
   try {
-    const response = await apiService.post(`/api/cities/${cityId}/hotels`, newHotel);
+    const response = await apiService.post(
+      `/api/cities/${cityId}/hotels`,
+      newHotel
+    );
     if (response.status === 201) {
       console.log("The Hotel is added successfully", response.data);
       return response.data;
@@ -86,7 +73,9 @@ export const editHotel = async (updatedHotel: Hotel) => {
 //this function is used to delete a hotel within a specified city
 export const removeHotel = async (cityId: number, hotelId: number) => {
   try {
-    const response = await apiService.delete(`/api/cities/${cityId}/hotels/${hotelId}`);
+    const response = await apiService.delete(
+      `/api/cities/${cityId}/hotels/${hotelId}`
+    );
     if (response.status === 204) {
       console.log("Hotel deleted successfully");
       return response.data;

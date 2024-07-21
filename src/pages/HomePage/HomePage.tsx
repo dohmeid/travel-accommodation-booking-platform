@@ -1,14 +1,16 @@
-import React, { useState, FC } from "react";
+import React, { FC } from "react";
+
+import Header from "../../components/home/Header/Header";
+import SearchBar from "../../components/home/SearchBar/SearchBar";
+import Footer from "../../components/home/Footer/Footer";
 import classes from "./HomePage.module.css";
 
-
 const HomePage: FC = () => {
-
-
   return (
     <div className={classes.container}>
-     <p>home page</p>
-
+      <Header />
+      <SearchBar />
+      <Footer />
     </div>
   );
 };

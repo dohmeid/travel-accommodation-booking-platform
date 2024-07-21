@@ -56,23 +56,13 @@ export const useDialog = (): UseDialog => {
           hotelData: emptyHotel,
         });
       } else {
-        if (management === "City") {
-          setDialogState({
-            management,
-            isOpen: true,
-            type,
-            cityData,
-            hotelData: emptyHotel,
-          });
-        } else {
-          setDialogState({
-            management,
-            isOpen: true,
-            type,
-            cityData: emptyCity,
-            hotelData,
-          });
-        }
+        setDialogState({
+          management,
+          isOpen: true,
+          type,
+          cityData: management === "City" ? cityData : emptyCity,
+          hotelData: management === "Hotel" ? hotelData : emptyHotel,
+        });
       }
     },
     []

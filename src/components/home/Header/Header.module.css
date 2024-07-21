@@ -1,0 +1,63 @@
+.header {
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+
+    background-color: rgba(197, 179, 155, 0.759);
+    margin-bottom: 5rem;
+
+    .logo {
+        font-size: 1.5rem;
+        font-family: var(--main-font);
+        font-weight: bold;
+        color: var(--white);
+
+        span {
+            color: var(--orange1);
+
+            i {
+                font-size: 2rem;
+                padding-right: 0.2rem;
+            }
+        }
+
+    }
+
+    .navbar {
+        width: 15rem;
+
+        .list {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            list-style: none;
+            font-family: var(--main-font);
+            font-weight: 500;
+            color: var(--white);
+        }
+    }
+
+    .logoutButton {
+        font-family: var(--secondary-font);
+        font-weight: 500;
+        padding: 0.65rem 1rem;
+        color: var(--dark-brown1);
+        border-radius: 2rem;
+        border: 1px solid transparent;
+        background-color: var(--white);
+        cursor: pointer;
+
+        i {
+            padding-left: 0.2rem;
+        }
+
+        &:hover {
+            color: var(--white);
+            border-color: var(--white);
+            background-color: var(--dark-brown1);
+            transition: all 0.2s ease-in-out;
+        }
+    }
+}
