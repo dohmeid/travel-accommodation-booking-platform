@@ -1,0 +1,231 @@
+@import url("https://use.fontawesome.com/releases/v6.6.0/css/all.css");
+
+.searchContainer {
+    margin-bottom: 5rem;
+
+    align-self: center;
+    width: 70%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1rem;
+    background-color: var(--white);
+    border-radius: 1rem;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 3px;
+
+    .searchInput,
+    .datesContainer,
+    .quantityController {
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        border-radius: 0.5rem;
+        background-color: var(--light-grey);
+    }
+
+    .searchInput {
+        width: 100%;
+        padding: 0 1rem;
+
+        i {
+            margin-right: 1rem;
+            color: var(--dark-grey);
+        }
+
+        input {
+            width: 100%;
+            height: 100%;
+            font-family: var(--secondary-font);
+            border: none;
+            background-color: transparent;
+
+            &:focus {
+                outline: none;
+            }
+
+            &::placeholder {
+                color: var(--dark-grey);
+                opacity: 0.8;
+            }
+        }
+
+        &:hover {
+            outline: 1.5px solid var(--dark-grey);
+        }
+
+    }
+
+    .controlsContainer {
+        width: 100%;
+        margin-top: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .datesContainer {
+            width: 48%;
+            padding: 0 1rem;
+            justify-content: space-between;
+
+            .checkin,
+            .checkout {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-family: var(--secondary-font);
+                color: var(--dark-brown1);
+                border: 1px solid transparent;
+
+                label {
+                    margin-right: 0.8rem;
+                }
+
+                &:hover {
+                    border: 1px solid var(--dark-grey);
+                    border-radius: 0.5rem;
+                }
+
+                /* Hide calendar icon for all browsers */
+                input[type="date"]::-webkit-calendar-picker-indicator {
+                    display: none;
+                }
+
+                input[type="date"] {
+                    background-color: transparent;
+                    border: none;
+                    font-size: 1rem;
+                    color: var(--dark-brown1);
+                    font-family: var(--secondary-font);
+                    font-size: 0.85rem;
+                    padding: 0;
+                    background: transparent;
+                    /* Remove the default styling */
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+
+                .day {
+                    font-size: 0.7rem;
+                    color: var(--dark-grey);
+                }
+            }
+        }
+
+        .quantityController {
+            width: 48%;
+            display: inline-block;
+            position: relative;
+
+            .dropdownToggle {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                padding: 0 1rem;
+                cursor: pointer;
+                color: var(--dark-brown1);
+
+                .details {
+                    padding-left: 1rem;
+                    font-family: var(--secondary-font);
+                    font-size: 0.8rem;
+
+                    .room {
+                        color: var(--dark-grey);
+                        font-size: 0.7rem;
+                    }
+                }
+
+                .arrowDown {
+                    margin-left: auto;
+                }
+            }
+
+            .dropdownMenu {
+                width: 50%;
+                position: relative;
+                top: 0%;
+                left: 50%;
+                font-family: var(--secondary-font);
+                font-size: 0.85rem;
+                padding: 0.3rem 1rem;
+                border-radius: 0.5rem;
+                border: 0.5px solid var(--medium-grey);
+                background-color: var(--light-grey);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+
+
+                .dropdownItem {
+                    height: 3rem;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    justify-content: space-between;
+
+                    .itemDetails {
+                        width: 50%;
+
+                        .description {
+                            font-size: 0.65rem;
+                            color: var(--dark-grey);
+                        }
+                    }
+
+                    .buttonsContainer {
+                        width: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-evenly;
+
+                        button {
+                            width: 1rem;
+                            height: 1rem;
+                            text-align: center;
+                            border-radius: 50%;
+                            border: 1px solid var(--dark-brown1);
+                            background-color: transparent;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .searchButton {
+        position: relative;
+        top: 2rem;
+        width: 13rem;
+        height: 2.6rem;
+        text-align: center;
+        font-family: var(--secondary-font);
+        font-size: 0.9rem;
+        font-weight: bold;
+        letter-spacing: 0.1rem;
+        color: var(--white);
+        border: none;
+        border-radius: 0.8rem;
+        background-color: var(--orange1);
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+}

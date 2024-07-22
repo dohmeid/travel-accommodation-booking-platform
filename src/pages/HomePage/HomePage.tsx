@@ -7,7 +7,7 @@ import classes from "./HomePage.module.css";
 
 const HomePage: FC = () => {
   return (
-    <div className={classes.container}>
+    <div className={classes.homePage}>
       <Header />
       <SearchBar />
       <Footer />
