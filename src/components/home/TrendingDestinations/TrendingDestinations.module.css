@@ -1,10 +1,8 @@
 .section {
     width: 100%;
-    
-    padding: 2rem 4rem;
+    padding: 3rem 4rem;
     background-color: var(--light-grey);
     margin-bottom: 4rem;
-
 
     h2 {
         font-family: var(--main-font);
@@ -16,7 +14,7 @@
     p {
         font-family: var(--secondary-font);
         color: var(--orange1);
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     .list {
@@ -28,20 +26,31 @@
         .item {
             background-color: grey;
             flex: 30%;
-            height: 20rem; 
+            height: 20rem;
             border-radius: 1rem;
             margin: 0.5rem;
+            position: relative;
 
             &:first-child {
                 flex: 50%;
             }
-    
+
             &:nth-child(2) {
                 flex: 45%;
             }
+
+            span {
+                position: absolute;
+                bottom: 2rem;
+                left: 2.5rem;
+                color: var(--white);
+                font-family: var(--main-font);
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
         }
 
-       
+
 
     }
 }

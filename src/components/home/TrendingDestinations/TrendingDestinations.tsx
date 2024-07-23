@@ -11,11 +11,11 @@ const TrendingDestinations: FC = () => {
       </p>
 
       <div className={classes.list}>
-        <div className={classes.item}>Jordan</div>
-        <div className={classes.item}>Dubai</div>
-        <div className={classes.item}>City3</div>
-        <div className={classes.item}>City4</div>
-        <div className={classes.item}>City5</div>
+        <div className={classes.item}><span>Jordan</span></div>
+        <div className={classes.item}><span>City2</span></div>
+        <div className={classes.item}><span>City3</span></div>
+        <div className={classes.item}><span>City4</span></div>
+        <div className={classes.item}><span>City5</span></div>
       </div>
     </div>
   );
