@@ -1,9 +1,12 @@
-import React, { useState, FC } from "react";
+import React, { FC } from "react";
 import classes from "./TrendingDestinations.module.css";
+import { useHomeProvider } from "../../../context/homeProvider";
 
 const TrendingDestinations: FC = () => {
+  const { destinations } = useHomeProvider();
+
   return (
-    <div className={classes.section}>
+    <div className={classes.trendingDestinationsSection}>
       <h2>Trending Destinations</h2>
       <p>
         Planning you next adventure? Here are the most popular choices for
@@ -11,11 +14,19 @@ const TrendingDestinations: FC = () => {
       </p>
 
       <div className={classes.list}>
-        <div className={classes.item}><span>Jordan</span></div>
-        <div className={classes.item}><span>City2</span></div>
-        <div className={classes.item}><span>City3</span></div>
-        <div className={classes.item}><span>City4</span></div>
-        <div className={classes.item}><span>City5</span></div>
+        {destinations.length === 0 ? (
+          <p>Loading...</p>
+        ) : (
+          destinations.map((city) => (
+            <div className={classes.item} key={city.cityId}>
+              <img src={city.thumbnailUrl} alt={`${city.cityName} thumbnail`} />
+              <p className={classes.name}>
+                {city.cityName}, <span>{city.countryName}</span>
+              </p>
+              <div className={classes.description}>{city.description}</div>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

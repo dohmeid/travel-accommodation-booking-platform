@@ -4,6 +4,7 @@ import App from "./App";
 import { AuthenticationProvider } from "../src/context/authentication";
 import { BrowserRouter } from "react-router-dom";
 import { AdminProvider } from "../src/context/adminProvider";
+import { HomeProvider } from "./context/homeProvider";
 import { ErrorProvider } from "./context/ErrorProvider";
 import "./index.css";
 
@@ -16,9 +17,11 @@ root.render(
     <ErrorProvider>
       <BrowserRouter>
         <AdminProvider>
-          <AuthenticationProvider>
-            <App />
-          </AuthenticationProvider>
+          <HomeProvider>
+            <AuthenticationProvider>
+              <App />
+            </AuthenticationProvider>
+          </HomeProvider>
         </AdminProvider>
       </BrowserRouter>
     </ErrorProvider>

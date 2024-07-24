@@ -29,3 +29,16 @@ export interface AdminContextType {
   updateHotel: (hotelData: Hotel) => Promise<void>;
   deleteHotel: (cityId: number, hotelId: number) => Promise<void>;
 }
+
+export interface Destination {
+  cityId: number;
+  cityName: string;
+  countryName: string;
+  description: string;
+  thumbnailUrl: string;
+}
+
+export interface HomeContextType {
+  destinations: Destination[];
+  fetchTrendingDestinations: () => Promise<void>;
+}
