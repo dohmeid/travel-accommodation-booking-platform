@@ -6,7 +6,17 @@ const Footer: FC = () => {
     <div className={classes.footer}>
       <div className={classes.copyrightContainer}>
         <p>Copyright @ 2024 TravelHub.</p>
-        <p>Designed and Developed by Doha Hmeid. All Rights Reserved.</p>
+        <p>
+          Designed and Developed by{" "}
+          <a
+            href="https://dohmeid.netlify.app/"
+            target="_blank"
+            aria-label="Go to Doha Hmeid Portfolio"
+          >
+            Doha Hmeid
+          </a>
+          . All Rights Reserved.
+        </p>
       </div>
 
       <ul className={classes.socialLinks}>
