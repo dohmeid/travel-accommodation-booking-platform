@@ -28,7 +28,7 @@ export const AuthenticationProvider: FC<{ children: ReactNode }> = ({
     //check the user type
     if (userType === "User") {
       console.log("This is a user");
-      navigate("/home");
+      navigate("/main");
     } else if (userType === "Admin") {
       console.log("This is an Admin");
       navigate("/adminPortal");

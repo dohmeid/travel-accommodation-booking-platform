@@ -1,7 +1,16 @@
-import React, { useState, FC } from "react";
+import React, { FC, useContext } from "react";
 import classes from "./Header.module.css";
+import { AuthenticationContext } from "../../../context/authentication";
+import { AuthenticationContextType } from "../../../interfaces/auth";
+import { Link, useLocation } from "react-router-dom";
 
 const Header: FC = () => {
+  const { handleLogout } = useContext(
+    AuthenticationContext
+  ) as AuthenticationContextType;
+
+  const currentPage = useLocation().pathname;
+
   return (
     <div className={classes.header}>
       <p className={classes.logo}>
@@ -13,13 +22,38 @@ const Header: FC = () => {
 
       <nav className={classes.navbar}>
         <ul className={classes.list}>
-          <li><a>Home</a></li>
-          <li><a>Search</a></li>
-          <li><a>Checkout</a></li>
+          <li>
+            <Link
+              to="/main/home"
+              className={currentPage === "/main" ? classes.active : ""}
+            >
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/main/search"
+              className={currentPage === "/main/search" ? classes.active : ""}
+            >
+              Search
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/main/checkout"
+              className={currentPage === "/main/checkout" ? classes.active : ""}
+            >
+              Checkout
+            </Link>
+          </li>
         </ul>
       </nav>
 
-      <button type="button" className={classes.logoutButton}>
+      <button
+        type="button"
+        className={classes.logoutButton}
+        onClick={handleLogout}
+      >
         Logout
         <i className="bi bi-box-arrow-right"></i>
       </button>

@@ -3,7 +3,10 @@ import { Routes, Route } from "react-router-dom";
 
 import CursorFollower from "./components/common/CursorFollower/CursorFollower";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import UserPage from "./pages/UserPage/UserPage";
 import HomePage from "./pages/HomePage/HomePage";
+import SearchPage from "./pages/SearchPage/SearchPage";
+import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import Grid from "./components/admin/Grid/Grid";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
@@ -16,14 +19,21 @@ const App: FC = () => {
       <Routes>
         <Route index element={<LoginPage />} />
         <Route path="login" element={<LoginPage />} />
+
         <Route
-          path="home"
+          path="main"
           element={
             <ProtectedRoute requiredRole="User">
-              <HomePage />
+              <UserPage />
             </ProtectedRoute>
           }
-        />
+        >
+          <Route index element={<HomePage />} />
+          <Route path="home" element={<HomePage />} />
+          <Route path="search" element={<SearchPage />} />
+          <Route path="checkout" element={<CheckoutPage />} />
+        </Route>
+
         <Route
           path="adminPortal"
           element={
