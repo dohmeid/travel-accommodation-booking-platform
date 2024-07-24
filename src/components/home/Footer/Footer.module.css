@@ -15,9 +15,9 @@
         p {
             padding-bottom: 0.2rem;
 
-            a{
+            a {
                 font-style: italic;
-                color: var(--orange1);               
+                color: var(--orange1);
             }
         }
     }
