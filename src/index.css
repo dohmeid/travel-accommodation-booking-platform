@@ -35,6 +35,31 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  /*custom scroll bar*/
+  --sb-track-color: var(--medium-grey);
+  --sb-thumb-color: var(--orange1);
+  --sb-size: 15px;
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size)
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 0px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 5px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
 }
 
 
