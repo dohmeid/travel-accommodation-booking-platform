@@ -18,6 +18,10 @@
             a {
                 font-style: italic;
                 color: var(--orange1);
+
+                &:hover {
+                    color: var(--dark-brown1);
+                }
             }
         }
     }

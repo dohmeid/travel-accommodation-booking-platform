@@ -6,7 +6,10 @@ import React, {
   useEffect,
   useContext,
 } from "react";
-import { getTrendingDestinations } from "../services/Api/homeApi";
+import {
+  getFeaturedDeals,
+  getTrendingDestinations,
+} from "../services/Api/homeApi";
 import { HomeContextType, Destination } from "../interfaces/interfaces";
 import { useError } from "./ErrorProvider";
 
@@ -16,11 +19,23 @@ export const HomeContext = createContext<HomeContextType | undefined>(
 
 export const HomeProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const { setError } = useError();
+  const [deals, setDeals] = useState([]);
   const [destinations, setDestinations] = useState([]);
 
   useEffect(() => {
     fetchTrendingDestinations();
+    fetchFeaturedDeals();
   }, []);
+
+  //get featured deals
+  const fetchFeaturedDeals = async () => {
+    try {
+      const responseData = await getFeaturedDeals();
+      setDeals(responseData);
+    } catch (error: any) {
+      setError(error);
+    }
+  };
 
   //get trending destinations
   const fetchTrendingDestinations = async () => {
@@ -35,7 +50,9 @@ export const HomeProvider: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <HomeContext.Provider
       value={{
+        deals,
         destinations,
+        fetchFeaturedDeals,
         fetchTrendingDestinations,
       }}
     >

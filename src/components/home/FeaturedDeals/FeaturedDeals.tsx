@@ -1,49 +1,56 @@
-import React, { useRef, useEffect, useState, FC } from "react";
+import React, { useEffect, useState, FC } from "react";
 import classes from "./FeaturedDeals.module.css";
 import HotelCard from "./HotelCard/HotelCard";
+import { useHomeProvider } from "../../../context/homeProvider";
 
 const FeaturedDeals: FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const totalSlides = 6; //change this - dynamic number 
-  const slidesPerView = 3;
-  const totalViews = totalSlides - slidesPerView;
+  const { deals } = useHomeProvider();
+
+  const DEALS = deals.map((deal, index) => (
+    <HotelCard key={index} dealData={deal} />
+  ));
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % totalViews);
-    }, 3000);
+    if (deals.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % deals.length);
+      }, 2000);
 
-    return () => clearInterval(interval);
-  }, [totalViews]);
+      return () => clearInterval(interval);
+    }
+  }, [deals]);
 
   const handleIndicatorClick = (index: number) => {
     setCurrentIndex(index);
   };
 
   return (
-    <div className={classes.dealsSection}>
+    <div className={classes.featuredDealsSection}>
       <h2 className={classes.title1}>Featured Deals</h2>
-
       <p className={classes.title2}>
         Spontaneous savings. Available nowhere else. Bookmark now and never miss
         out!
       </p>
 
       <div className={classes.slideshow}>
-        <div
-          className={classes.cards}
-          style={{ transform: `translateX(-${currentIndex * (100 / slidesPerView)}%)` }}
-        >
-          {Array.from({ length: totalSlides }).map((_, idx) => (
-            <HotelCard key={idx} />
-          ))}
+        <div className={classes.carousel}>
+          <div
+            className={classes.cards}
+            style={{
+              transform: `translateX(-${currentIndex * 25}rem)`,
+              width: `${deals.length * 25}rem`,
+            }}
+          >
+            {deals.length > 0 ? DEALS : <p>Loading...</p>}
+          </div>
         </div>
 
-        <div className={classes.slideshowDots}>
-          {Array.from({ length: totalViews }).map((_, index) => (
+        <div className={classes.dots}>
+          {deals.map((_, index) => (
             <div
               key={index}
-              className={`${classes.indicator} ${
+              className={`${classes.dot} ${
                 index === currentIndex ? classes.active : ""
               }`}
               onClick={() => handleIndicatorClick(index)}

@@ -7,7 +7,7 @@ const Footer: FC = () => {
       <div className={classes.copyrightContainer}>
         <p>Copyright @ 2024 TravelHub.</p>
         <p>
-          Designed and Developed by
+          Designed and Developed by {" "}
           <a
             href="https://dohmeid.netlify.app/"
             target="_blank"

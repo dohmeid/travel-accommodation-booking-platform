@@ -1,6 +1,6 @@
-.dealsSection {
+.featuredDealsSection {
     width: 100%;
-    height: 90vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,8 +8,8 @@
 
     .title1 {
         font-family: var(--main-font);
-        font-size: 2rem;
-        letter-spacing: 0.4rem;
+        font-size: 2.2rem;
+        letter-spacing: 0.3rem;
         color: var(--orange1);
         margin-bottom: 0.7rem;
     }
@@ -17,33 +17,45 @@
     .title2 {
         font-family: var(--secondary-font);
         color: var(--dark-brown1);
-        font-size: 1rem;
-        margin-bottom: 2rem;
+        margin-bottom: 2.5rem;
     }
 
     .slideshow {
-        width: 75%;
+        position: relative;
+        width: 100%;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .carousel {
+            overflow: hidden;
+            width: 70%;
+        }
 
         .cards {
             display: flex;
-            justify-content: space-evenly;
             transition: transform 0.5s ease-in-out;
-            width: calc(100% * 2);
         }
 
-        .slideshowDots {
-            margin-top: 1rem;
+        .dots {
+            margin-top: 2rem;
             display: flex;
             justify-content: center;
+            align-items: center;
 
-            .indicator {
+            .dot {
                 width: 0.7rem;
                 height: 0.7rem;
                 margin: 0 0.5rem;
                 background-color: var(--medium-grey);
                 border-radius: 50%;
                 cursor: pointer;
+
+                &:hover {
+                    background-color: var(--orange1);
+                }
 
                 &.active {
                     background-color: var(--orange1);
