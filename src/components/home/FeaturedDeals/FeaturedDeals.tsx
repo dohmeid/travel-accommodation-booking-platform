@@ -6,6 +6,7 @@ import { useHomeProvider } from "../../../context/homeProvider";
 const FeaturedDeals: FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { deals } = useHomeProvider();
+  const cardWidth = 38; //in rem unit
 
   const DEALS = deals.map((deal, index) => (
     <HotelCard key={index} dealData={deal} />
@@ -15,8 +16,7 @@ const FeaturedDeals: FC = () => {
     if (deals.length > 0) {
       const interval = setInterval(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % deals.length);
-      }, 2000);
-
+      }, 3000);
       return () => clearInterval(interval);
     }
   }, [deals]);
@@ -38,8 +38,8 @@ const FeaturedDeals: FC = () => {
           <div
             className={classes.cards}
             style={{
-              transform: `translateX(-${currentIndex * 25}rem)`,
-              width: `${deals.length * 25}rem`,
+              transform: `translateX(-${currentIndex * cardWidth}rem)`,
+              width: `${deals.length * cardWidth}rem`,
             }}
           >
             {deals.length > 0 ? DEALS : <p>Loading...</p>}

@@ -1,82 +1,103 @@
 .card {
-    width: 20rem;
-    height: 29rem;
+    width: 33rem;
+    height: 18rem;
+    display: flex;
     padding: 1rem;
+    margin-right: 5rem;
+    font-family: var(--secondary-font);
+    color: var(--dark-brown2);
     border-radius: 0.7rem;
     border: 1px solid var(--orange1);
-    margin-right: 5rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
+    &:hover {
+        box-shadow: rgba(255, 147, 23, 0.4) 0px 0px 0px 3px;
+    }
+
     img {
-        width: 100%;
-        height: 77%;
+        width: 40%;
+        height: 100%;
         object-fit: cover;
         border-radius: 1rem;
-        margin-bottom: 1rem;
+        margin-right: 1rem;
     }
 
-    .flexContainer {
+    .dataContainer {
+        padding-top: 2rem;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-family: var(--secondary-font);
-        color: var(--dark-brown2);
-        margin-bottom: 0.35rem;
-    }
+        flex-direction: column;
 
-    .title {
-        font-family: var(--main-font);
-        font-weight: 600;
-        font-size: 1.2rem;
-    }
-
-    .starRating {
-        width: 2.7rem;
-        height: 1.5rem;
-        font-size: 0.7rem;
-        text-align: center;
-        align-content: center;
-        color: var(--white);
-        border-radius: 1rem;
-        background-color: var(--dark-brown2);
-
-        i {
-            color: rgb(255, 226, 36);
-            padding-right: 0.25rem;
+        .flexContainer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
-    }
 
-    .location {
-        font-size: 0.75rem;
-        font-family: var(--secondary-font);
-        margin-bottom: 0.5rem;
-
-        i {
-            padding-right: 0.35rem;
+        .title {
+            font-family: var(--main-font);
+            font-weight: bold;
+            font-size: 1.3rem;
         }
-    }
 
-    .price {
-        font-weight: bolder;
-
-        span {
-            font-weight: normal;
+        .starRating {
+            width: 3rem;
+            height: 1.65rem;
             font-size: 0.75rem;
-            padding-left: 0.6rem;
-            color: var(--dark-grey);
-            text-decoration: line-through;
+            text-align: center;
+            align-content: center;
+            color: var(--white);
+            border-radius: 1rem;
+            background-color: var(--dark-brown2);
+
+            i {
+                color: rgb(255, 226, 36);
+                padding-right: 0.25rem;
+            }
         }
-    }
 
-    .hotelButton {
-        font-size: 1.8rem;
-        color: var(--orange1);
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
+        .location {
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
 
-        &:hover {
-            color: var(--dark-brown2);
+            i {
+                padding-right: 0.2rem;
+            }
+        }
+
+        .description {
+            font-size: 0.8rem;
+            text-align: justify;
+        }
+
+        .priceContainer {
+            margin-top: auto;
+            /* Push it to the bottom */
+
+            .price {
+                font-weight: bolder;
+                font-size: 1.2rem;
+
+                span {
+                    font-weight: normal;
+                    font-size: 0.75rem;
+                    padding-left: 0.6rem;
+                    color: var(--dark-grey);
+                    text-decoration: line-through;
+                }
+            }
+
+            .hotelButton {
+                font-size: 2rem;
+                color: var(--orange1);
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+
+                &:hover {
+                    color: var(--dark-brown2);
+                }
+            }
         }
     }
 }
