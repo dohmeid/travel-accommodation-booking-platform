@@ -27,6 +27,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth !important;
 }
 
 body {
@@ -62,7 +63,11 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
-
+/* to change the color of highlighted text */
+::selection {
+  background-color: var(--brown-sugar);
+  color: var(--white);
+}
 
 
 /*************************** media queries styles ********************************/

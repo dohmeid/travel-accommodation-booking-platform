@@ -1,8 +1,8 @@
 import React, { useState, FC } from "react";
-import classes from "./LandingSection.module.css";
+import classes from "./LandingView.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 
-const LandingSection: FC = () => {
+const LandingView: FC = () => {
   return (
     <div className={classes.landingSection}>
       <div className={classes.textContainer}>
@@ -19,4 +19,4 @@ const LandingSection: FC = () => {
   );
 };
 
-export default LandingSection;
+export default LandingView;
