@@ -17,11 +17,11 @@ root.render(
     <ErrorProvider>
       <BrowserRouter>
         <AdminProvider>
-          <HomeProvider>
-            <AuthenticationProvider>
+          <AuthenticationProvider>
+            <HomeProvider>
               <App />
-            </AuthenticationProvider>
-          </HomeProvider>
+            </HomeProvider>
+          </AuthenticationProvider>
         </AdminProvider>
       </BrowserRouter>
     </ErrorProvider>

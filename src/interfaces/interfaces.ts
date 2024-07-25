@@ -1,3 +1,5 @@
+import RecentHotels from "../components/home/RecentHotels/RecentHotels";
+
 export interface City {
   id: number;
   name: string;
@@ -51,9 +53,22 @@ export interface Deal {
   roomPhotoUrl: string;
 }
 
+export interface RecentHotel {
+  hotelId: number;
+  thumbnailUrl: string;
+  hotelName: string;
+  starRating: number;
+  cityName: string;
+  visitDate: string;
+  priceLowerBound: number;
+  priceUpperBound: number;
+}
+
 export interface HomeContextType {
   deals: Deal[];
   destinations: Destination[];
+  recentHotels: RecentHotel[];
   fetchFeaturedDeals: () => Promise<void>;
   fetchTrendingDestinations: () => Promise<void>;
+  fetchRecentHotels: () => Promise<void>;
 }

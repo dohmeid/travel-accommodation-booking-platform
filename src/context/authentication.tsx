@@ -1,6 +1,13 @@
-import React, { FC, ReactNode, createContext, useState } from "react";
+import React, {
+  FC,
+  ReactNode,
+  createContext,
+  useEffect,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthenticationContextType } from "../interfaces/auth";
+import { AuthenticationContextType, JwtPayload } from "../interfaces/auth";
+import { jwtDecode } from "jwt-decode";
 
 export const AuthenticationContext =
   createContext<AuthenticationContextType | null>(null);
@@ -15,6 +22,13 @@ export const AuthenticationProvider: FC<{ children: ReactNode }> = ({
   const [userType, setUserType] = useState<string | null>(
     localStorage.getItem("userType") || sessionStorage.getItem("userType")
   );
+
+  const [userId, setUserId] = useState<number>(-1);
+
+  useEffect(() => {
+    if (authToken) getUserIdFromToken(authToken);
+    console.log(userId);
+  }, [authToken]);
 
   //this function is used to refer the authenticated user to the website
   const handleLoginSuccess = (
@@ -73,11 +87,25 @@ export const AuthenticationProvider: FC<{ children: ReactNode }> = ({
     sessionStorage.removeItem("userType");
   };
 
+  //this function is used to get the user id from the jwt token
+  const getUserIdFromToken = (token: string) => {
+    try {
+      const decodedToken = jwtDecode<JwtPayload>(token);
+      const userId = Number(decodedToken.userId);
+      if (!isNaN(userId)) setUserId(userId);
+      else setUserId(-1);
+    } catch (error) {
+      console.error("Invalid token", error);
+      setUserId(-1);
+    }
+  };
+
   return (
     <AuthenticationContext.Provider
       value={{
         authToken,
         userType,
+        userId,
         rememberUser,
         handleLoginSuccess,
         handleLogout,

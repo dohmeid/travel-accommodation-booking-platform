@@ -5,7 +5,13 @@ export interface LoginFormValues {
   api?: string;
 }
 
+export interface JwtPayload {
+  userId: string; // Adjust according to your token structure
+  // Add other fields if necessary
+}
+
 export interface AuthenticationContextType {
+  userId: number;
   authToken: string | null;
   userType: string | null;
   rememberUser: (

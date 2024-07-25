@@ -25,7 +25,11 @@ const Header: FC = () => {
           <li>
             <Link
               to="/main/home"
-              className={currentPage === "/main" ? classes.active : ""}
+              className={
+                currentPage === "/main" || currentPage === "/main/home"
+                  ? classes.active
+                  : ""
+              }
             >
               Home
             </Link>
