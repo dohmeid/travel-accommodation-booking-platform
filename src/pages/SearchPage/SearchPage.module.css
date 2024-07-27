@@ -1,0 +1,8 @@
+.searchPage{
+    height: 150vh;
+    background-color: var(--light-grey);
+
+    .flexContainer{
+        display: flex;
+    }
+}

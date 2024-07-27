@@ -5,8 +5,12 @@ import { useHomeProvider } from "../../../context/homeProvider";
 
 const FeaturedDeals: FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const { deals } = useHomeProvider();
+  const { deals, fetchRecentHotels } = useHomeProvider();
   const cardWidth = 38; //in rem unit
+
+  useEffect(() => {
+    fetchRecentHotels();
+  },[]);
 
   const DEALS = deals.map((deal, index) => (
     <HotelCard key={index} dealData={deal} />

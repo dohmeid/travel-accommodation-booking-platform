@@ -36,7 +36,7 @@ export const HomeProvider: FC<{ children: ReactNode }> = ({ children }) => {
   useEffect(() => {
     fetchTrendingDestinations();
     fetchFeaturedDeals();
-    fetchRecentHotels();
+    //fetchRecentHotels();
   }, []);
 
   //get featured deals
