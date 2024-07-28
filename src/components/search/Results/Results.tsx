@@ -1,32 +1,28 @@
-import React, { useState, FC } from "react";
+import React, { ChangeEvent, FC, useEffect } from "react";
 import classes from "./Results.module.css";
-import { useHomeProvider } from "../../../context/homeProvider";
+import { useSearchContext } from "../../../context/searchProvider";
 import Card from "./Card/Card";
 
 const Results: FC = () => {
-  const { searchResults } = useHomeProvider();
+  const { filteredResults, sortBy, setSortBy } = useSearchContext();
 
-  const [selectedValue, setSelectedValue] = useState("");
-  const options = [
-    { value: "Price", label: "Price" },
-    { value: "Stars", label: "Stars" },
-    { value: "Option 3", label: "Option 3" },
+  const sortOptions = [
+    { id: 0, value: "Price", label: "Price" },
+    { id: 1, value: "Stars", label: "Stars" },
   ];
 
-  console.log("here is search results : ");
-  console.log(searchResults);
+  const selectSortByChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSortBy(e.target.value);
+  };
 
   return (
     <div className={classes.results}>
       <div className={` ${classes.flexContainer} ${classes.header}`}>
-        <h2>Search results 3</h2>
+        <h2>Search results ({filteredResults.length})</h2>
 
-        <select
-          value={selectedValue}
-          onChange={(e) => setSelectedValue(e.target.value)}
-        >
-          {options.map((option) => (
-            <option key={option.value} value={option.value}>
+        <select value={sortBy} onChange={selectSortByChangeHandler}>
+          {sortOptions.map((option) => (
+            <option key={option.id} value={option.value}>
               {option.label}
             </option>
           ))}
@@ -34,10 +30,10 @@ const Results: FC = () => {
       </div>
 
       <div className={classes.cards}>
-        {searchResults.length === 0 ? (
+        {filteredResults.length === 0 ? (
           <p>No items to display</p>
         ) : (
-          searchResults.map((hotel) => (
+          filteredResults.map((hotel) => (
             <Card key={hotel.hotelId} hotel={hotel} />
           ))
         )}

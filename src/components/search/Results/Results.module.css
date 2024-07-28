@@ -1,9 +1,15 @@
 .results {
     width: 100%;
-    height: 40rem;
     box-sizing: border-box;
     padding: 2rem 3rem;
     color: var(--dark-brown1);
+    background-color: antiquewhite;
+    
+    height: 35rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 0px solid #ccc;
+   
 
     .flexContainer {
         display: flex;
@@ -35,9 +41,5 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        /*  height: 100%;
-        overflow-y: auto;
-        overflow-x: hidden;
-        border: 0px solid #ccc;*/
     }
 }

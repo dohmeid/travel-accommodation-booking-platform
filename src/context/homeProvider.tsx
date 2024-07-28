@@ -7,8 +7,6 @@ import React, {
   useContext,
 } from "react";
 import {
-  getAmenities,
-  getSearchResults,
   getFeaturedDeals,
   getTrendingDestinations,
   getRecentHotels,
@@ -34,38 +32,12 @@ export const HomeProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [deals, setDeals] = useState([]);
   const [destinations, setDestinations] = useState([]);
   const [recentHotels, setRecentHotels] = useState([]);
-  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     fetchTrendingDestinations();
     fetchFeaturedDeals();
     //fetchRecentHotels();
-    fetchSearchResults();
   }, []);
-
-  //do the search
-  const fetchSearchResults = async () => {
-    try {
-      const query = {
-        checkInDate: "",
-        checkOutDate: "",
-        city: "Ramallah",
-        starRate: 0,
-        sort: "",
-        numberOfRooms: 1, //default: 1
-        adults: 2, //default: 2
-        children: 0, //default: 0
-      };
-
-      const responseData = await getSearchResults(query);
-      console.log(responseData);
-      setSearchResults(responseData);
-    } catch (error: any) {
-      setError(error);
-    }
-  };
-
-  const fetchAmenities = async () => {};
 
   //get featured deals
   const fetchFeaturedDeals = async () => {
@@ -101,7 +73,6 @@ export const HomeProvider: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <HomeContext.Provider
       value={{
-        searchResults,
         deals,
         destinations,
         recentHotels,
