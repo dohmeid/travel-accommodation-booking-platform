@@ -1,192 +1,187 @@
 import React, { useState, FC, ChangeEvent, useEffect } from "react";
 import classes from "./Filters.module.css";
+import { useSearchContext } from "../../../context/searchProvider";
+import { useFormik } from "formik";
+import { Formik, Field, Form } from "formik";
 
 const MAX = 500;
 
 const Filters: FC = () => {
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(100);
+  const { filteredResults, sortBy, setSortBy } = useSearchContext();
 
-  const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
-
-  //to set the color
-  useEffect(() => {
-    const minRange = document.getElementById("min-price") as HTMLInputElement;
-    const maxRange = document.getElementById("max-price") as HTMLInputElement;
-
-    if (minRange && maxRange) {
-      const minPercent = (minPrice / 100) * 100;
-      const maxPercent = (maxPrice / 100) * 100;
-
-      const background = `linear-gradient(to right, 
-                            #d3d3d3 ${minPercent}%, 
-                            #AA6548 ${minPercent}%, 
-                            #AA6548 ${maxPercent}%, 
-                            #d3d3d3 ${maxPercent}%)`;
-
-      minRange.style.background = background;
-      maxRange.style.background = background;
-    }
-  }, [minPrice, maxPrice]);
-
-  //for amenities
-  const [selectedIds, setSelectedIds] = useState([]);
-
-  const clearAllButtonClickHandler = () => {};
-
-  const minPriceChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = Number(e.target.value);
-    if (value <= maxPrice) setMinPrice(value);
-  };
-  const maxPriceChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = Number(e.target.value);
-    if (value >= minPrice) setMaxPrice(value);
-  };
-
-  //checked list items
-  // State with list of all checked item
-  const [checked, setChecked] = useState<string[]>([]);
   const checkList = ["Apple", "Banana", "Tea", "Coffee"];
+  const rooms = ["Cabin", "King Suite", "Ocean View", "Standard", "Double"];
 
-  // Add/Remove checked item from list
-  const handleCheck = (event: ChangeEvent<HTMLInputElement>) => {
-    var updatedList = [...checked];
-    if (event.target.checked) {
-      updatedList = [...checked, event.target.value];
-    } else {
-      updatedList.splice(checked.indexOf(event.target.value), 1);
-    }
-    setChecked(updatedList);
-  };
-
-  // Generate string of checked items
-  const checkedItems = checked.length
-    ? checked.reduce((total, item) => {
-        return total + ", " + item;
-      })
-    : "";
-
-  //rooms
-  const [room, setRoom] = useState("Medium");
-  const rooms = ["single", "double", "standard"];
-
-  const roomChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setRoom(e.target.value);
-  };
-
-  const applyButtonClickHandler = () =>{
-
+  interface FilterFormValues {
+    minPrice: number;
+    maxPrice: number;
+    rating: number;
+    amenities: string[];
+    room: string;
   }
+
+  const initialFilterValues = {
+    minPrice: 0,
+    maxPrice: 100,
+    rating: 0,
+    amenities: [],
+    room: "",
+  };
+
+  const handleSubmitFilterForm = (values: FilterFormValues) => {
+    alert(JSON.stringify(values, null, 2));
+  };
 
   return (
     <div className={classes.filters}>
-      <div className={`${classes.titleContainer} ${classes.flexContainer}`}>
-        <h2>Filter By:</h2>
-        <button
-          type="reset"
-          className={classes.clearButton}
-          onClick={clearAllButtonClickHandler}
-        >
-          Clear all
-        </button>
-      </div>
+      <Formik
+        initialValues={initialFilterValues}
+        onSubmit={handleSubmitFilterForm}
+      >
+        {(formik) => {
+          useEffect(() => {
+            const minRange = document.getElementById(
+              "minPrice"
+            ) as HTMLInputElement;
+            const maxRange = document.getElementById(
+              "maxPrice"
+            ) as HTMLInputElement;
 
-      <div className={`${classes.priceContainer} ${classes.flexContainer}`}>
-        <label htmlFor="min-price">Price</label>
-        <div className={classes.rangeContainer}>
-          <input
-            type="range"
-            id="min-price"
-            name="min-price"
-            min="0"
-            max="100"
-            value={minPrice}
-            onChange={minPriceChangeHandler}
-          />
-          <input
-            type="range"
-            id="max-price"
-            name="max-price"
-            min="0"
-            max="100"
-            value={maxPrice}
-            onChange={maxPriceChangeHandler}
-          />
-        </div>
-        <p>
-          ${minPrice} - ${maxPrice}
-        </p>
-      </div>
+            if (minRange && maxRange) {
+              const minPercent = (formik.values.minPrice / 1000) * 100;
+              const maxPercent = (formik.values.maxPrice / 1000) * 100;
 
-      <div className={`${classes.starsContainer} ${classes.flexContainer}`}>
-        <h3>Stars</h3>
-        <div>
-          {[1, 2, 3, 4, 5].map((star, index) => {
-            const currentRating = index + 1;
+              const background = `linear-gradient(to right, 
+                      #d3d3d3 ${minPercent}%, 
+                      #AA6548 ${minPercent}%, 
+                      #AA6548 ${maxPercent}%, 
+                      #d3d3d3 ${maxPercent}%)`;
 
-            return (
-              <label key={index}>
-                <input
-                  key={star}
-                  type="radio"
-                  name="rating"
-                  value={currentRating}
-                  onChange={() => setRating(currentRating)}
-                />
-                <span
-                  className={classes.star}
-                  style={{
-                    color:
-                      currentRating <= (hover || rating)
-                        ? "#ffc107"
-                        : "#e4e5e9",
-                  }}
-                  onMouseEnter={() => setHover(currentRating)}
-                  onMouseLeave={() => setHover(0)}
+              minRange.style.background = background;
+              maxRange.style.background = background;
+            }
+          }, [formik.values.minPrice, formik.values.maxPrice]);
+
+          return (
+            <Form>
+              <div
+                className={`${classes.titleContainer} ${classes.flexContainer}`}
+              >
+                <h2>Filter By:</h2>
+                <button
+                  type="reset"
+                  className={classes.clearButton}
+                  onClick={() => formik.resetForm()}
                 >
-                  <i className="bi bi-star-fill"></i>
-                </span>
-              </label>
-            );
-          })}
-        </div>
-        <p>Selected rating is: {rating}</p>
-      </div>
+                  Clear all
+                </button>
+              </div>
 
-      <div className={`${classes.amenitiesContainer} ${classes.flexContainer}`}>
-        <h3>Amenities</h3>
-        <div className={classes.list}>
-          {checkList.map((item, index) => (
-            <label key={index}>
-              <input value={item} type="checkbox" onChange={handleCheck} />
-              <span>{item}</span>
-            </label>
-          ))}
-        </div>
-        <p>{`Items checked are: ${checkedItems}`}</p>
-      </div>
+              <div
+                className={`${classes.priceContainer} ${classes.flexContainer}`}
+              >
+                <label htmlFor="minPrice">Price</label>
+                <div className={classes.rangeContainer}>
+                  <Field
+                    type="range"
+                    id="minPrice"
+                    name="minPrice"
+                    min="0"
+                    max="100"
+                    step="1"
+                    value={formik.values.minPrice}
+                    onChange={formik.handleChange}
+                  />
 
-      <div className={`${classes.roomContainer} ${classes.flexContainer}`}>
-        <h3>Room Type</h3>
+                  <Field
+                    type="range"
+                    id="maxPrice"
+                    name="maxPrice"
+                    min="0"
+                    max="100"
+                    step="1"
+                    value={formik.values.maxPrice}
+                    onChange={formik.handleChange}
+                  />
+                </div>
+                <p>
+                  ${formik.values.minPrice} - ${formik.values.maxPrice}
+                </p>
+              </div>
 
-        <div className={classes.list}>
-          {rooms.map((item, index) => (
-            <label key={index}>
-              <input
-                type="radio"
-                value={item}
-                checked={item === room}
-                onChange={roomChangeHandler}
-              />
-              <span>{item}</span>
-            </label>
-          ))}
-        </div>
-      </div>
+              <div
+                className={`${classes.starsContainer} ${classes.flexContainer}`}
+              >
+                <h3>Stars</h3>
+                <div>
+                  {[1, 2, 3, 4, 5].map((star, index) => {
+                    const currentRating = index + 1;
+                    return (
+                      <label key={index}>
+                        <Field
+                          type="radio"
+                          name="rating"
+                          value={currentRating}
+                        />
+                        <span
+                          className={classes.star}
+                          style={{
+                            color:
+                              currentRating <= (hover || formik.values.rating)
+                                ? "#ffc107"
+                                : "#e4e5e9",
+                          }}
+                          onMouseEnter={() => setHover(currentRating)}
+                          onMouseLeave={() => setHover(0)}
+                        >
+                          <i className="bi bi-star-fill"></i>
+                        </span>
+                      </label>
+                    );
+                  })}
+                </div>
+              </div>
 
-      <button type="button" className={classes.applyButton}
-      onClick={applyButtonClickHandler}>Apply</button>
+              <div
+                className={`${classes.amenitiesContainer} ${classes.flexContainer}`}
+              >
+                <h3>Amenities</h3>
+                <div
+                  className={classes.list}
+                  role="group"
+                  aria-labelledby="checkbox-group"
+                >
+                  {checkList.map((item, index) => (
+                    <label key={index}>
+                      <Field type="checkbox" name="amenities" value={item} />
+                      <span>{item}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div
+                className={`${classes.roomContainer} ${classes.flexContainer}`}
+              >
+                <h3>Room Type</h3>
+                <div className={classes.list}>
+                  {rooms.map((item, index) => (
+                    <label key={index}>
+                      <Field type="radio" name="room" value={item} />
+                      <span>{item}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <button type="submit" className={classes.applyButton}>
+                Apply
+              </button>
+            </Form>
+          );
+        }}
+      </Formik>
     </div>
   );
 };

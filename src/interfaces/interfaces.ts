@@ -65,7 +65,6 @@ export interface RecentHotel {
 }
 
 export interface HomeContextType {
-  searchResults: SearchResult[];
   deals: Deal[];
   destinations: Destination[];
   recentHotels: RecentHotel[];
