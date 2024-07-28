@@ -1,8 +1,10 @@
-.searchPage{
-    height: 150vh;
+.searchPage {
+    height: 100vh;
     background-color: var(--light-grey);
 
-    .flexContainer{
+    .flexContainer {
+        height: 100%;
+        margin-top: 3rem;
         display: flex;
     }
 }

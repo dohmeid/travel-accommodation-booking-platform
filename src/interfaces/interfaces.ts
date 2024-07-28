@@ -65,10 +65,43 @@ export interface RecentHotel {
 }
 
 export interface HomeContextType {
+  searchResults: SearchResult[];
   deals: Deal[];
   destinations: Destination[];
   recentHotels: RecentHotel[];
   fetchFeaturedDeals: () => Promise<void>;
   fetchTrendingDestinations: () => Promise<void>;
   fetchRecentHotels: () => Promise<void>;
+}
+
+//search page
+export interface SearchQuery {
+  checkInDate: string;
+  checkOutDate: string;
+  city: string;
+  starRate: number;
+  sort: string;
+  numberOfRooms: number; //default: 1
+  adults: number; //default: 2
+  children: number; //default: 0
+}
+
+export interface Amenity {
+  id: number;
+  name: string;
+  description: string;
+}
+
+export interface SearchResult {
+  hotelId: number;
+  hotelName: string;
+  starRating: number;
+  latitude: number;
+  longitude: number;
+  roomPrice: number;
+  roomType: string;
+  cityName: string;
+  roomPhotoUrl: string;
+  discount: number;
+  amenities: Amenity[];
 }

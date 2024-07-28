@@ -7,7 +7,7 @@ import Results from "../../components/search/Results/Results";
 const SearchPage: FC = () => {
   return (
     <div className={classes.searchPage}>
-      <SearchBar />
+    
       <div className={classes.flexContainer}>
         <Filters />
         <Results />
