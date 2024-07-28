@@ -1,15 +1,12 @@
 .header {
-    position: absolute;
-    z-index: 100;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 3.8rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
-    background-color: transparent;
+    background-color: var(--dark-brown2);
+    opacity: 0.95;
 
     .logo {
         font-size: 1.5rem;
@@ -75,4 +72,13 @@
             transition: all 0.2s ease-in-out;
         }
     }
+}
+
+/*style for the header in the home page*/
+.transparentHeader {
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    background-color: transparent;
 }

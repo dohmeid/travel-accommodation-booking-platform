@@ -12,7 +12,13 @@ const Header: FC = () => {
   const currentPage = useLocation().pathname;
 
   return (
-    <div className={classes.header}>
+    <div
+      className={`${classes.header} ${
+        currentPage === "/main" || currentPage === "/main/home"
+          ? classes.transparentHeader
+          : ""
+      }`}
+    >
       <p className={classes.logo}>
         <span>
           <i className="bi bi-airplane-fill"></i>

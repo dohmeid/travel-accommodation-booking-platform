@@ -5,6 +5,7 @@ import classes from "./UserPage.module.css";
 import { Outlet } from "react-router-dom";
 
 const UserPage: FC = () => {
+
   return (
     <div className={classes.userPage}>
       <Header />
