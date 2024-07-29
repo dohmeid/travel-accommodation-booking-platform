@@ -1,7 +1,6 @@
 import apiService from "./apiService";
 import { SearchQuery } from "../../interfaces/interfaces";
 
-
 //this function is used to get search results
 export const getSearchResults = async (query: SearchQuery) => {
   try {
@@ -33,7 +32,6 @@ export const getAmenities = async () => {
     );
   }
 };
-
 
 //this function is used to get recent hotels
 export const getRecentHotels = async (userId: number) => {

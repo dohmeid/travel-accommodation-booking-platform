@@ -104,3 +104,11 @@ export interface SearchResult {
   discount: number;
   amenities: Amenity[];
 }
+
+export interface SearchFilters {
+  minPrice: number;
+  maxPrice: number;
+  rating: number;
+  amenitiesNames: string[];
+  room: string;
+}

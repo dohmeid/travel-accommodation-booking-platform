@@ -45,7 +45,7 @@ const Card: FC<Props> = ({ hotel }) => {
               <></>
             ) : (
               hotel.amenities.map((amenity, index) => (
-                <div key={amenity.id} className={classes.amenity}>
+                <div key={index} className={classes.amenity}>
                   #{amenity.name}
                 </div>
               ))
