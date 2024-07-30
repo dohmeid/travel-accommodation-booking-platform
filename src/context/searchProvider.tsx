@@ -9,7 +9,12 @@ import React, {
 
 import { getAmenities, getSearchResults } from "../services/Api/homeApi";
 import { useError } from "./ErrorProvider";
-import { SearchResult, Amenity, SearchFilters } from "../interfaces/interfaces";
+import {
+  SearchResult,
+  Amenity,
+  SearchFilters,
+  SearchQuery,
+} from "../interfaces/interfaces";
 
 interface SearchContextProps {
   amenitiesList: Amenity[];
@@ -19,6 +24,7 @@ interface SearchContextProps {
   setFilters: React.Dispatch<React.SetStateAction<SearchFilters>>;
   initialFilters: SearchFilters;
   priceRange: { min: number; max: number };
+  fetchSearchResults: (searchQuery: SearchQuery) => Promise<void>;
 }
 
 export const priceRange = { min: 0, max: 500 };
@@ -31,12 +37,22 @@ export const initialFilters = {
   room: "",
 };
 
+const initialQuery = {
+  checkInDate: "",
+  checkOutDate: "",
+  city: "",
+  starRate: 0,
+  sort: "",
+  numberOfRooms: 1, //default: 1
+  adults: 2, //default: 2
+  children: 0, //default: 0
+};
+
 const SearchContext = createContext<SearchContextProps | undefined>(undefined);
 
 export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [amenitiesList, setAmenitiesList] = useState<Amenity[]>([]);
-
   const [filteredResults, setFilteredResults] = useState<SearchResult[]>([]);
   const [filters, setFilters] = useState<SearchFilters>(initialFilters);
   const [sortBy, setSortBy] = useState<string>("Price");
@@ -44,7 +60,6 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   //initially fetch the search results
   useEffect(() => {
-    fetchSearchResults();
     fetchAmenities();
   }, []);
 
@@ -54,21 +69,9 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
   }, [filters, sortBy, searchResults]);
 
   //this function fetches search results from the api
-  const fetchSearchResults = async () => {
+  const fetchSearchResults = async (searchQuery: SearchQuery) => {
     try {
-      const query = {
-        checkInDate: "",
-        checkOutDate: "",
-        city: "Ramallah",
-        starRate: 0,
-        sort: "",
-        numberOfRooms: 1, //default: 1
-        adults: 2, //default: 2
-        children: 0, //default: 0
-      };
-
-      const responseData = await getSearchResults(query);
-      console.log(responseData);
+      const responseData = await getSearchResults(searchQuery);
       setSearchResults(responseData);
     } catch (error: any) {
       setError(error);
@@ -119,6 +122,7 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
         filteredResults,
         amenitiesList,
         sortBy,
+        fetchSearchResults,
         setSortBy,
         setFilters,
         initialFilters,

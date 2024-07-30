@@ -1,11 +1,9 @@
 .results {
     width: 100%;
     box-sizing: border-box;
-    padding: 2rem 3rem;
-    color: var(--dark-brown1);
-    background-color: antiquewhite;
-    
-    height: 35rem;
+    padding: 1rem 3rem;
+    color: var(--dark-brown1);  
+    height: 33rem;
     overflow-y: auto;
     overflow-x: hidden;
     border: 0px solid #ccc;

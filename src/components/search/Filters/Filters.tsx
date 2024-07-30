@@ -12,7 +12,6 @@ const Filters: FC = () => {
   const rooms = ["Cabin", "King Suite", "Ocean View", "Standard", "Double"];
 
   const handleSubmitFilterForm = (values: SearchFilters) => {
-    alert(JSON.stringify(values, null, 2));
     setFilters(values);
   };
 
@@ -116,7 +115,11 @@ const Filters: FC = () => {
               >
                 {amenitiesList.map((item, index) => (
                   <label key={index}>
-                    <Field type="checkbox" name="amenitiesNames" value={item.name} />
+                    <Field
+                      type="checkbox"
+                      name="amenitiesNames"
+                      value={item.name}
+                    />
                     <span>{item.name}</span>
                   </label>
                 ))}

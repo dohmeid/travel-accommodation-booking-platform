@@ -5,7 +5,7 @@ import { SearchQuery } from "../../interfaces/interfaces";
 export const getSearchResults = async (query: SearchQuery) => {
   try {
     const response = await apiService.get("/api/home/search", {
-      params: { query },
+      params: query,
     });
     if (response.status === 200) {
       console.log("Retrieved search results successfully", response.data);
