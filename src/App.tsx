@@ -11,6 +11,7 @@ import AdminPage from "./pages/AdminPage/AdminPage";
 import Grid from "./components/admin/Grid/Grid";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import HotelPage from "./pages/HotelPage/HotelPage";
 
 const App: FC = () => {
   return (
@@ -32,6 +33,8 @@ const App: FC = () => {
           <Route path="home" element={<HomePage />} />
           <Route path="search" element={<SearchPage />} />
           <Route path="checkout" element={<CheckoutPage />} />
+
+          <Route path="hotel" element={<HotelPage />} />
         </Route>
 
         <Route
