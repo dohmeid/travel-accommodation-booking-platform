@@ -7,26 +7,34 @@ import React, {
   useEffect,
 } from "react";
 
-import { getHotelGallery } from "../services/Api/hotelApi";
+import { getHotelGallery, getHotelInfo } from "../services/Api/hotelApi";
 import { useError } from "./ErrorProvider";
-import {GalleryImage} from "../interfaces/hotel";
+import { GalleryImage, HotelInformation } from "../interfaces/hotel";
 
 interface HotelContextProps {
   //amenitiesList: Amenity[];
   //setSortBy: React.Dispatch<React.SetStateAction<string>>;
   //fetchSearchResults: (searchQuery: SearchQuery) => Promise<void>;
   fetchGallery: (id: number) => Promise<GalleryImage[]>;
+  fetchInformation: (id: number) => Promise<HotelInformation>;
 }
 
 const HotelContext = createContext<HotelContextProps | undefined>(undefined);
-
 export const HotelProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const { setError } = useError();
 
-  //this function fetches search results from the api
   const fetchGallery = async (hotelId: number) => {
     try {
       const responseData = await getHotelGallery(hotelId);
+      return responseData;
+    } catch (error: any) {
+      setError(error);
+    }
+  };
+
+  const fetchInformation = async (hotelId: number) => {
+    try {
+      const responseData = await getHotelInfo(hotelId);
       return responseData;
     } catch (error: any) {
       setError(error);
@@ -37,6 +45,7 @@ export const HotelProvider: FC<{ children: ReactNode }> = ({ children }) => {
     <HotelContext.Provider
       value={{
         fetchGallery,
+        fetchInformation,
       }}
     >
       {children}
