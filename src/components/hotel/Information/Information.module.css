@@ -3,7 +3,7 @@
     height: fit-content;
     font-family: var(--secondary-font);
     color: var(--dark-brown1);
-    padding-top: 2rem;
+    padding: 2rem 4rem;
 
     .flexContainer {
         display: flex;

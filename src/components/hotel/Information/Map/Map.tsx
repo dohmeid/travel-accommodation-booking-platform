@@ -14,7 +14,7 @@ const Map: FC<Props> = ({ hotel, latitude, longitude }) => {
       <MapContainer
         className={classes.map}
         center={[latitude, longitude]}
-        zoom={13}
+        zoom={16}
       >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
