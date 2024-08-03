@@ -7,9 +7,19 @@ import React, {
   useEffect,
 } from "react";
 
-import { getHotelGallery, getHotelInfo } from "../services/Api/hotelApi";
+import {
+  getHotelGallery,
+  getHotelInfo,
+  getHotelReviews,
+  getHotelAvailableRooms,
+} from "../services/Api/hotelApi";
 import { useError } from "./ErrorProvider";
-import { GalleryImage, HotelInformation } from "../interfaces/hotel";
+import {
+  GalleryImage,
+  HotelInformation,
+  Review,
+  Room,
+} from "../interfaces/hotel";
 
 interface HotelContextProps {
   //amenitiesList: Amenity[];
@@ -17,6 +27,12 @@ interface HotelContextProps {
   //fetchSearchResults: (searchQuery: SearchQuery) => Promise<void>;
   fetchGallery: (id: number) => Promise<GalleryImage[]>;
   fetchInformation: (id: number) => Promise<HotelInformation>;
+  fetchReviews: (id: number) => Promise<Review[]>;
+  fetchAvailableRooms: (
+    id: number,
+    checkInDate: string,
+    checkOutDate: string
+  ) => Promise<Room[]>;
 }
 
 const HotelContext = createContext<HotelContextProps | undefined>(undefined);
@@ -41,11 +57,39 @@ export const HotelProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
   };
 
+  const fetchReviews = async (hotelId: number) => {
+    try {
+      const responseData = await getHotelReviews(hotelId);
+      return responseData;
+    } catch (error: any) {
+      setError(error);
+    }
+  };
+
+  const fetchAvailableRooms = async (
+    hotelId: number,
+    checkInDate: string,
+    checkOutDate: string
+  ) => {
+    try {
+      const responseData = await getHotelAvailableRooms(
+        hotelId,
+        checkInDate,
+        checkOutDate
+      );
+      return responseData;
+    } catch (error: any) {
+      setError(error);
+    }
+  };
+
   return (
     <HotelContext.Provider
       value={{
         fetchGallery,
         fetchInformation,
+        fetchReviews,
+        fetchAvailableRooms,
       }}
     >
       {children}

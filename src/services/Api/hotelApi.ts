@@ -134,6 +134,27 @@ export const getHotelInfo = async (hotelId: number) => {
   }
 };
 
+//this function is used to get specific hotel available reviews
+export const getHotelReviews = async (hotelId: number) => {
+  try {
+    const response = await apiService.get(`/api/hotels/${hotelId}/reviews`);
+    if (response.status === 200) {
+      console.log("Hotel reviews retrieved successfully", response.data);
+      return response.data;
+    }
+  } catch (error: any) {
+    if (axios.isAxiosError(error)) {
+      if (error.response?.status === 404) {
+        throw new Error("Hotel not found - wrong hotel id");
+      }
+    }
+    throw new Error(
+      "An error occurred while retrieving hotel reviews" + error.message
+    );
+  }
+};
+
+//note: this is still not used
 //this function is used to get specific hotel rooms
 export const getHotelRooms = async (
   hotelId: number,
@@ -170,14 +191,20 @@ export const getHotelAvailableRooms = async (
   checkOutDate: string
 ) => {
   try {
-    const response = await apiService.get(`/api/hotels/${hotelId}/available-rooms`, {
-      params: {
-        checkInDate: { checkInDate },
-        checkOutDate: { checkOutDate },
-      },
-    });
+    const response = await apiService.get(
+      `/api/hotels/${hotelId}/available-rooms`,
+      {
+        params: {
+          checkInDate: checkInDate,
+          checkOutDate: checkOutDate,
+        },
+      }
+    );
     if (response.status === 200) {
-      console.log("Hotel rooms retrieved successfully", response.data);
+      console.log(
+        "Hotel available rooms retrieved successfully",
+        response.data
+      );
       return response.data;
     }
   } catch (error: any) {
@@ -187,7 +214,8 @@ export const getHotelAvailableRooms = async (
       }
     }
     throw new Error(
-      "An error occurred while retrieving hotel rooms" + error.message
+      "An error occurred while retrieving hotel available rooms ." +
+        error.message
     );
   }
 };

@@ -20,3 +20,22 @@ export interface HotelInformation {
   imageUrl: string;
   cityId: number;
 }
+
+export interface Review {
+  reviewId: number;
+  customerName: string;
+  rating: number;
+  description: string;
+}
+
+export interface Room {
+  roomId: number;
+  roomNumber: number;
+  roomPhotoUrl: string;
+  roomType: string;
+  capacityOfAdults: number;
+  capacityOfChildren: number;
+  roomAmenities: Amenity[];
+  price: number;
+  availability: boolean;
+}
