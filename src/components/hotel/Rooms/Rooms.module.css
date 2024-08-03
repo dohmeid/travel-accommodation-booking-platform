@@ -1,0 +1,12 @@
+.roomsContainer {
+    padding: 2rem 4rem;
+    background-color: var(--light-grey);
+
+    .cardsContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        column-gap: 2rem;
+    }
+}
