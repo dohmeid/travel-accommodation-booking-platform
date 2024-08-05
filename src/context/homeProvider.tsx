@@ -14,8 +14,7 @@ import {
 
 import { HomeContextType, Destination } from "../interfaces/interfaces";
 
-import { AuthenticationContext } from "./authentication";
-import { AuthenticationContextType } from "../interfaces/auth";
+import { useAuthContext } from "./authProvider";
 
 import { useError } from "./ErrorProvider";
 
@@ -24,9 +23,7 @@ export const HomeContext = createContext<HomeContextType | undefined>(
 );
 
 export const HomeProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const { userId } = useContext(
-    AuthenticationContext
-  ) as AuthenticationContextType;
+  const { userId } = useAuthContext();
 
   const { setError } = useError();
   const [deals, setDeals] = useState([]);

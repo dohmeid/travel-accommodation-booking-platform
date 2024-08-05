@@ -1,13 +1,10 @@
 import React, { FC, useContext } from "react";
 import classes from "./Header.module.css";
-import { AuthenticationContext } from "../../../context/authentication";
-import { AuthenticationContextType } from "../../../interfaces/auth";
+import { useAuthContext } from "../../../context/authProvider";
 import { Link, useLocation } from "react-router-dom";
 
 const Header: FC = () => {
-  const { handleLogout } = useContext(
-    AuthenticationContext
-  ) as AuthenticationContextType;
+  const { handleLogout } = useAuthContext();
 
   const currentPage = useLocation().pathname;
 

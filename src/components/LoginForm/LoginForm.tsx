@@ -1,16 +1,12 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useState } from "react";
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
+import * as Yup from "yup";
 import { LoginFormValues } from "../../interfaces/auth";
 import { authenticateUser } from "../../services/Api/authApi";
-
-import classes from "./LoginForm.module.css";
-import { AuthenticationContext } from "../../context/authentication";
-import { AuthenticationContextType } from "../../interfaces/auth";
+import { useAuthContext } from "../../context/authProvider";
 import Snackbar from "../common/Snackbar/Snackbar";
+import classes from "./LoginForm.module.css";
 
-import * as Yup from "yup";
-
-// the yup module schema for validating the login form
 const loginSchema = Yup.object().shape({
   username: Yup.string().required("Username is a required field!"),
   password: Yup.string().required("Password is a required field!"),
@@ -19,31 +15,23 @@ const loginSchema = Yup.object().shape({
 const initialLoginValues = {
   username: "",
   password: "",
-  rememberMe: false,
 };
 
 const LoginForm: FC = () => {
-  const { handleLoginSuccess } = useContext(
-    AuthenticationContext
-  ) as AuthenticationContextType;
+  const { handleLoginSuccess } = useAuthContext();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmitLoginForm = async (
     values: LoginFormValues,
     { setSubmitting, setErrors }: FormikHelpers<LoginFormValues>
   ) => {
     try {
-      const responseData = await authenticateUser(
+      const { authentication, userType } = await authenticateUser(
         values.username,
         values.password
       );
-      const { authentication, userType } = responseData;
-      console.log("Login successful!");
-
-      console.log("token = " + authentication);
-      console.log("userType = " + userType);
-      handleLoginSuccess(authentication, userType,values.rememberMe);
+      handleLoginSuccess(authentication, userType);
     } catch (error: any) {
-      console.log(error.message);
       setErrors({
         api: "Login failed. Please check your credentials and try again.",
       });
@@ -80,7 +68,7 @@ const LoginForm: FC = () => {
           </div>
           <div className={classes.inputContainer}>
             <Field
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               id="password"
               placeholder="Password"
@@ -91,11 +79,20 @@ const LoginForm: FC = () => {
               component="div"
               className={classes.errorAlert}
             />
-          </div>
-
-          <div className={classes.rememberMeContainer}>
-            <label htmlFor="rememberMe">Remember me</label>
-            <Field type="checkbox" name="rememberMe" id="rememberMe" />
+            <label className={classes.showPasswordLabel}>
+              <input
+                name="showPassword"
+                id="showPassword"
+                type="checkbox"
+                checked={showPassword}
+                onChange={() => setShowPassword(!showPassword)}
+              />
+              {showPassword ? (
+                <i className="bi bi-eye-fill"></i>
+              ) : (
+                <i className="bi bi-eye-slash-fill"></i>
+              )}
+            </label>
           </div>
 
           <button

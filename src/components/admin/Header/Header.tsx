@@ -1,14 +1,11 @@
 import React, { FC, useContext } from "react";
 import classes from "./Header.module.css";
 import adminImage from "../../../assets/images/adminProfiePicture.png";
-import { AuthenticationContext } from "../../../context/authentication";
-import { AuthenticationContextType } from "../../../interfaces/auth";
+import { useAuthContext } from "../../../context/authProvider";
 
 
 const Header: FC = () => {
-  const { handleLogout } = useContext(
-    AuthenticationContext
-  ) as AuthenticationContextType;
+  const { handleLogout } = useAuthContext();
 
   return (
     <header className={classes.header}>

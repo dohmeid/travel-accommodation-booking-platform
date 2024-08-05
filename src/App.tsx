@@ -1,24 +1,24 @@
 import React, { FC } from "react";
 import { Routes, Route } from "react-router-dom";
-
 import CursorFollower from "./components/common/CursorFollower/CursorFollower";
+import PrivateRoute from "./routes/PrivateRoute";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import UserPage from "./pages/UserPage/UserPage";
 import HomePage from "./pages/HomePage/HomePage";
 import SearchPage from "./pages/SearchPage/SearchPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
+import HotelPage from "./pages/HotelPage/HotelPage";
+import ConfirmationPage from "./pages/ConfirmationPage/ConfirmationPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import Grid from "./components/admin/Grid/Grid";
 import NotFoundErrorPage from "./pages/NotFoundErrorPage/NotFoundErrorPage";
-import ProtectedRoute from "./routes/ProtectedRoute";
-import HotelPage from "./pages/HotelPage/HotelPage";
-import ConfirmationPage from "./pages/ConfirmationPage/ConfirmationPage";
 import UnauthorizedErrorPage from "./pages/UnauthorizedErrorPage/UnauthorizedErrorPage";
 
 const App: FC = () => {
   return (
     <>
       <CursorFollower />
+
       <Routes>
         <Route index element={<LoginPage />} />
         <Route path="login" element={<LoginPage />} />
@@ -26,9 +26,9 @@ const App: FC = () => {
         <Route
           path="main"
           element={
-            <ProtectedRoute requiredRole="User">
+            <PrivateRoute allowedRoles={["User"]}>
               <UserPage />
-            </ProtectedRoute>
+            </PrivateRoute>
           }
         >
           <Route index element={<HomePage />} />
@@ -42,9 +42,9 @@ const App: FC = () => {
         <Route
           path="adminPortal"
           element={
-            <ProtectedRoute requiredRole="Admin">
+            <PrivateRoute allowedRoles={["Admin"]}>
               <AdminPage />
-            </ProtectedRoute>
+            </PrivateRoute>
           }
         >
           <Route index element={<Grid gridType="city" />} />
