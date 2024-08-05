@@ -1,0 +1,49 @@
+.item {
+    height: 10rem;
+    color: var(--dark-brown1);
+    font-family: var(--secondary-font);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--medium-grey);
+
+    &:hover {
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px;
+        scale: 1.05;
+        transition: 0.5s all ease-in-out;
+    }
+
+    img {
+        width: 15rem;
+        height: 8rem;
+        object-fit: cover;
+        border-radius: 0.5rem;
+    }
+
+    .title {
+        width: 30%;
+    }
+
+    .price {
+        font-size: 0.9rem;
+        width: 8rem;
+    }
+
+    button {
+        padding: 0.7rem 1rem;
+        color: var(--white);
+        background-color: var(--dark-brown1);
+        border: none;
+        border-radius: 0.4rem;
+        cursor: pointer;
+
+        i {
+            padding-left: 0.4rem;
+        }
+
+        &:hover {
+            opacity: 0.85;
+            transition: 0.3s all ease-in-out;
+        }
+    }
+}
