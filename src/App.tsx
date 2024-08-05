@@ -9,9 +9,11 @@ import SearchPage from "./pages/SearchPage/SearchPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import Grid from "./components/admin/Grid/Grid";
-import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import NotFoundErrorPage from "./pages/NotFoundErrorPage/NotFoundErrorPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import HotelPage from "./pages/HotelPage/HotelPage";
+import ConfirmationPage from "./pages/ConfirmationPage/ConfirmationPage";
+import UnauthorizedErrorPage from "./pages/UnauthorizedErrorPage/UnauthorizedErrorPage";
 
 const App: FC = () => {
   return (
@@ -33,7 +35,7 @@ const App: FC = () => {
           <Route path="home" element={<HomePage />} />
           <Route path="search" element={<SearchPage />} />
           <Route path="checkout" element={<CheckoutPage />} />
-
+          <Route path="confirmation" element={<ConfirmationPage />} />
           <Route path="hotel" element={<HotelPage />} />
         </Route>
 
@@ -50,7 +52,9 @@ const App: FC = () => {
           <Route path="hotel" element={<Grid gridType="hotel" />} />
           <Route path="room" element={<Grid gridType="city" />} />
         </Route>
-        <Route path="*" element={<ErrorPage />} />
+
+        <Route path="unauthorizedUser" element={<UnauthorizedErrorPage />} />
+        <Route path="*" element={<NotFoundErrorPage />} />
       </Routes>
     </>
   );

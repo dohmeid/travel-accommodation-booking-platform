@@ -8,7 +8,10 @@ interface ProtectedRouteProps {
   children: ReactNode;
 }
 
-const ProtectedRoute: FC<ProtectedRouteProps> = ({ requiredRole, children }) => {
+const ProtectedRoute: FC<ProtectedRouteProps> = ({
+  requiredRole,
+  children,
+}) => {
   const { authToken, userType } = useContext(
     AuthenticationContext
   ) as AuthenticationContextType;
@@ -25,12 +28,12 @@ const ProtectedRoute: FC<ProtectedRouteProps> = ({ requiredRole, children }) => 
 
   // Check if the user is authenticated
   if (!authToken) {
-    // If not authenticated, redirect to the login page
-    return <Navigate to="/login" />;
+    // If not authenticated, redirect to the unauthorized error page
+    return <Navigate to="/unauthorizedUser" />;
   }
 
   if (requiredRole && userType !== requiredRole) {
-    return <Navigate to="/home" />;
+    return <Navigate to="/unauthorizedUser" />;
   }
 
   // If authenticated, render the child routes
