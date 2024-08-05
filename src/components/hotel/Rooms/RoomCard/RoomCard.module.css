@@ -67,7 +67,8 @@
     }
 
     .addButton {
-        padding: 0.65rem 1.5rem;
+        padding: 0.75rem 0;
+        width: 10rem;
         font-family: var(--main-font);
         font-weight: bold;
         text-transform: uppercase;
@@ -75,11 +76,16 @@
         border: 1px solid var(--medium-grey);
         background-color: var(--white);
 
-        &:hover {
+        &:not(:disabled):hover {
             cursor: pointer;
             color: var(--white);
             background-color: var(--orange1);
             transition: 0.3s all linear;
+        }
+
+        &:disabled {
+            background-color: var(--medium-grey);
+            cursor: not-allowed;
         }
     }
 }

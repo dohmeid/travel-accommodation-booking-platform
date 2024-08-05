@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { Room } from "../../../../interfaces/hotel";
+import { useCartContext } from "../../../../context/cartProvider";
 import classes from "./RoomCard.module.css";
 
 interface Props {
@@ -7,15 +8,11 @@ interface Props {
 }
 
 const RoomCard: FC<Props> = ({ data }) => {
-  /*
-roomId: number;
-  roomNumber: number;
+  const { addRoomToCart, isItemInCart } = useCartContext();
 
-  roomAmenities: Amenity[];
-  availability: boolean;
-    */
-
-  const handleAddToCartButtonClick = () => {};
+  const handleAddToCartButtonClick = () => {
+    addRoomToCart(data);
+  };
 
   return (
     <div className={classes.card}>
@@ -61,9 +58,10 @@ roomId: number;
       <button
         type="button"
         className={classes.addButton}
+        disabled={isItemInCart(data.roomId)}
         onClick={handleAddToCartButtonClick}
       >
-        Add to cart
+        {isItemInCart(data.roomId) ? "Added" : "Add to cart"}
       </button>
     </div>
   );
