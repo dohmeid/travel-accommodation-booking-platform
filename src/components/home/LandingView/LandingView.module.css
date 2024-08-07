@@ -1,15 +1,14 @@
 .landingSection {
     width: 100%;
-    height: 95vh;
+    height: fit-content;
     display: flex;
     flex-direction: column;
-    padding-top: 10rem;
-    padding-left: 3rem;
+    padding: 15rem 3rem;
     background-image: url(../../../assets/images/homePageBackground.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    box-shadow: inset 0 0 0 500px rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0 0 0 500px rgba(0, 0, 0, 0.2);
 
     .textContainer {
         width: 50rem;
@@ -31,6 +30,33 @@
             padding-top: 1rem;
             width: 30rem;
 
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    .landingSection {
+        padding: 15rem 0rem;
+        align-items: center;
+
+        .textContainer {
+            width: auto;
+
+            h1 {
+                font-size: 3.3rem;
+                line-height: 3.3rem;
+                text-align: center;
+                margin-bottom: 1.5rem;
+                padding: 0 0.8rem;
+            }
+
+            p {
+                font-weight: 500;
+                text-align: center;
+                padding: 1.5rem 0.55rem;
+                width: auto;
+                box-shadow: inset 0 0 0 500px rgba(178, 93, 57, 0.85);
+            }
         }
     }
 }

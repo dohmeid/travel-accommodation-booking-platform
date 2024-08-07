@@ -1,6 +1,6 @@
 import React, { FC } from "react";
+import { RecentHotel } from "../../../../interfaces/homePageTypes";
 import classes from "./HotelCard.module.css";
-import { RecentHotel } from "../../../../interfaces/interfaces";
 
 interface Props {
   hotel: RecentHotel;

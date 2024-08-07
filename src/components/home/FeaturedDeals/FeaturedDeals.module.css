@@ -1,90 +1,14 @@
 .featuredDealsSection {
     width: 100%;
-    height: 90vh;
+    padding: 8rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
 
-    .title1 {
-        font-family: var(--main-font);
-        font-size: 2.2rem;
-        letter-spacing: 0.3rem;
-        color: var(--orange1);
-        margin-bottom: 1rem;
-        position: relative;
-
-        &::before,
-        &::after {
-            position: absolute;
-            content: "";
-            top: 50%;
-            width: 14rem;
-            height: 1.5px;
-            background-color: var(--orange1);
-        }
-
-        &::before {
-            left: -16rem;
-        }
-
-        &::after {
-            right: -16rem;
-        }
-    }
-
-
-
-
-
-    .title2 {
-        font-family: var(--secondary-font);
-        color: var(--dark-brown1);
-        margin-bottom: 2.5rem;
-    }
-
-    .slideshow {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        .carousel {
-            overflow: hidden;
-            width: 80%;
-        }
-
-        .cards {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            margin: 1rem 1rem;
-        }
-
-        .dots {
-            margin-top: 2rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            .dot {
-                width: 0.7rem;
-                height: 0.7rem;
-                margin: 0 0.5rem;
-                background-color: var(--medium-grey);
-                border-radius: 50%;
-                cursor: pointer;
-
-                &:hover {
-                    background-color: var(--orange1);
-                }
-
-                &.active {
-                    background-color: var(--orange1);
-                }
-            }
-        }
+@media (max-width: 450px) {
+    .featuredDealsSection {
+        padding: 6rem 1rem;
     }
 }

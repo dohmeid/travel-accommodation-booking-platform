@@ -1,67 +1,26 @@
-import React, { useEffect, useState, FC } from "react";
-import classes from "./FeaturedDeals.module.css";
+import React, { FC } from "react";
+import { useHomeContext } from "../../../context/homeProvider";
 import HotelCard from "./HotelCard/HotelCard";
-import { useHomeProvider } from "../../../context/homeProvider";
+import Slideshow from "../Slideshow/Slideshow";
+import classes from "./FeaturedDeals.module.css";
 
 const FeaturedDeals: FC = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const { deals, fetchRecentHotels } = useHomeProvider();
-  const cardWidth = 38; //in rem unit
+  const { deals } = useHomeContext();
+  const CARD_WIDTH_REM = 38; // Card width in rem
 
-  useEffect(() => {
-    fetchRecentHotels();
-  },[]);
-
+  //generate carousel items
   const DEALS = deals.map((deal, index) => (
     <HotelCard key={index} dealData={deal} />
   ));
 
-  useEffect(() => {
-    if (deals.length > 0) {
-      const interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % deals.length);
-      }, 3000);
-      return () => clearInterval(interval);
-    }
-  }, [deals]);
-
-  const handleIndicatorClick = (index: number) => {
-    setCurrentIndex(index);
-  };
-
   return (
     <div className={classes.featuredDealsSection}>
-      <h2 className={classes.title1}>Featured Deals</h2>
-      <p className={classes.title2}>
+      <h2>Featured Deals</h2>
+      <h3>
         Spontaneous savings. Available nowhere else. Bookmark now and never miss
         out!
-      </p>
-
-      <div className={classes.slideshow}>
-        <div className={classes.carousel}>
-          <div
-            className={classes.cards}
-            style={{
-              transform: `translateX(-${currentIndex * cardWidth}rem)`,
-              width: `${deals.length * cardWidth}rem`,
-            }}
-          >
-            {deals.length > 0 ? DEALS : <p>Loading...</p>}
-          </div>
-        </div>
-
-        <div className={classes.dots}>
-          {deals.map((_, index) => (
-            <div
-              key={index}
-              className={`${classes.dot} ${
-                index === currentIndex ? classes.active : ""
-              }`}
-              onClick={() => handleIndicatorClick(index)}
-            ></div>
-          ))}
-        </div>
-      </div>
+      </h3>
+      <Slideshow items={deals} renderItems={DEALS} cardWidth={CARD_WIDTH_REM} />
     </div>
   );
 };

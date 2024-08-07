@@ -101,3 +101,10 @@
         }
     }
 }
+
+@media (max-width: 350px) {
+    .card {
+        width: 30rem;
+        margin-right: 8rem;
+    }
+}

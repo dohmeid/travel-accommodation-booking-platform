@@ -1,6 +1,6 @@
-import React, { useState, FC } from "react";
-import classes from "./LandingView.module.css";
+import React, { FC } from "react";
 import SearchBar from "../../search/HotelsSearchBar/HotelsSearchBar";
+import classes from "./LandingView.module.css";
 
 const LandingView: FC = () => {
   return (
