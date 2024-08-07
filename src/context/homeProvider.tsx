@@ -11,61 +11,41 @@ import {
   getTrendingDestinations,
   getRecentHotels,
 } from "../services/Api/homeApi";
-
-import { HomeContextType, Destination } from "../interfaces/interfaces";
-
+import { HomeContextType } from "../interfaces/homePageTypes";
 import { useAuthContext } from "./authProvider";
-
 import { useError } from "./ErrorProvider";
 
 export const HomeContext = createContext<HomeContextType | undefined>(
   undefined
 );
-
 export const HomeProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const { userId } = useAuthContext();
-
   const { setError } = useError();
+
   const [deals, setDeals] = useState([]);
   const [destinations, setDestinations] = useState([]);
   const [recentHotels, setRecentHotels] = useState([]);
 
   useEffect(() => {
-    fetchTrendingDestinations();
-    fetchFeaturedDeals();
-    //fetchRecentHotels();
-  }, []);
+    const fetchHomeData = async () => {
+      try {
+        const [featuredDeals, trendingDestinations, recentHotels] =
+          await Promise.all([
+            getFeaturedDeals(),
+            getTrendingDestinations(),
+            getRecentHotels(userId),
+          ]);
+        setDeals(featuredDeals);
+        setDestinations(trendingDestinations);
+        setRecentHotels(recentHotels);
+        console.log("Home Data fetched successfully");
+      } catch (error: any) {
+        setError(error);
+      }
+    };
 
-  //get featured deals
-  const fetchFeaturedDeals = async () => {
-    try {
-      const responseData = await getFeaturedDeals();
-      setDeals(responseData);
-    } catch (error: any) {
-      setError(error);
-    }
-  };
-
-  //get trending destinations
-  const fetchTrendingDestinations = async () => {
-    try {
-      const responseData = await getTrendingDestinations();
-      setDestinations(responseData);
-    } catch (error: any) {
-      setError(error);
-    }
-  };
-
-  //get featured deals
-  const fetchRecentHotels = async () => {
-    try {
-      const responseData = await getRecentHotels(userId);
-      setRecentHotels(responseData);
-      console.log(recentHotels);
-    } catch (error: any) {
-      setError(error);
-    }
-  };
+    fetchHomeData();
+  }, [userId, setError]);
 
   return (
     <HomeContext.Provider
@@ -73,9 +53,6 @@ export const HomeProvider: FC<{ children: ReactNode }> = ({ children }) => {
         deals,
         destinations,
         recentHotels,
-        fetchFeaturedDeals,
-        fetchTrendingDestinations,
-        fetchRecentHotels,
       }}
     >
       {children}
@@ -83,11 +60,10 @@ export const HomeProvider: FC<{ children: ReactNode }> = ({ children }) => {
   );
 };
 
-// Custom hook to use the context
-export const useHomeProvider = () => {
+export const useHomeContext = () => {
   const context = useContext(HomeContext);
   if (context === undefined) {
-    throw new Error("useHomeProvider must be used within a HomeProvider");
+    throw new Error("useHomeContext must be used within a HomeProvider");
   }
   return context;
 };

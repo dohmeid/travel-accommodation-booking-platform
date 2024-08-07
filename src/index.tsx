@@ -4,7 +4,6 @@ import App from "./App";
 import { AuthProvider } from "./context/authProvider";
 import { BrowserRouter } from "react-router-dom";
 import { AdminProvider } from "../src/context/adminProvider";
-import { HomeProvider } from "./context/homeProvider";
 import { ErrorProvider } from "./context/ErrorProvider";
 import "./index.css";
 
@@ -18,9 +17,7 @@ root.render(
       <BrowserRouter>
         <AdminProvider>
           <AuthProvider>
-            <HomeProvider>
-              <App />
-            </HomeProvider>
+            <App />
           </AuthProvider>
         </AdminProvider>
       </BrowserRouter>
