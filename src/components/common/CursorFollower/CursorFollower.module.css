@@ -25,3 +25,10 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+
+/*for small devices (touch screens), there is no cursor, so hide the cursor follower*/
+@media (max-width: 768px) {
+    .circle {
+        display: none;
+    }
+}
