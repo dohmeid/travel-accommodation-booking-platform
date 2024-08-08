@@ -1,8 +1,9 @@
 .filters {
-    width: 25%;
-    padding: 2rem 2rem 1.5rem 2rem;
+    width: 20rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     font-family: var(--secondary-font);
     color: var(--dark-brown1);
     background-color: var(--white);
@@ -13,21 +14,18 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 0.55rem;
+        margin-bottom: 1rem;
 
         label,
         h3 {
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 500;
             align-self: flex-start;
-        }
-
-        h3 {
             font-style: italic;
         }
 
         p {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--orange1);
         }
     }
@@ -127,14 +125,14 @@
             }
 
             span {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
             }
         }
     }
 
     .applyButton {
         height: 2.5rem;
-        width: 10rem;
+        width: 100%;
         font-size: 1rem;
         font-family: var(--main-font);
         font-weight: 500;
@@ -142,13 +140,76 @@
         border: none;
         border-radius: 5rem;
         background-color: var(--orange1);
-        margin-left: 20%;
-        margin-top: 0.5rem;
 
         &:hover {
             cursor: pointer;
             opacity: 0.7;
             transition: 0.2s all linear;
         }
+    }
+}
+
+@media (max-width: 450px) {
+    .filters {
+        width: 100%;
+        padding: 2rem;
+        border: 1px solid var(--medium-grey);
+        border-radius: 1rem;
+
+        .flexContainer {
+            margin-bottom: 0.8rem;
+        }
+
+        .titleContainer {
+            padding-bottom: 0.5rem;
+
+            .clearButton {
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+@media (min-width: 450px) and (max-width: 768px) {
+    .filters {
+        width: 100%;
+        border: 1px solid var(--medium-grey);
+        border-radius: 1rem;
+
+        form {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .flexContainer {
+            margin-bottom: 0;
+        }
+
+        .titleContainer {
+            width: 100%;
+            padding-bottom: 0;
+        }
+
+        .priceContainer {
+            width: 45%;
+        }
+
+        .starsContainer {
+            width: 45%;
+        }
+
+        .amenitiesContainer,
+        .roomContainer {
+            width: 45%;
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 850px) {
+    .filters {
+        padding: 1rem;
     }
 }

@@ -1,19 +1,40 @@
-import React, { useState, FC, ChangeEvent, useEffect, useRef } from "react";
-import classes from "./Filters.module.css";
-import { Formik, Field, Form } from "formik";
-import { SearchFilters } from "../../../interfaces/interfaces";
+import React, { FC, useState, useCallback, ChangeEvent } from "react";
+import { Formik, Field, Form, FormikProps } from "formik";
+import { SearchFilters } from "../../../interfaces/searchTypes";
 import { useSearchContext } from "../../../context/searchProvider";
+import classes from "./Filters.module.css";
+
+const ROOMS = ["Cabin", "King Suite", "Ocean View", "Standard", "Double"];
 
 const Filters: FC = () => {
-  const { initialFilters, setFilters, priceRange, amenitiesList } =
+  const { priceRange, initialFilters, amenitiesList, setFilters } =
     useSearchContext();
+  const [starHover, setStarHover] = useState(0);
 
-  const [hover, setHover] = useState(0);
-  const rooms = ["Cabin", "King Suite", "Ocean View", "Standard", "Double"];
+  const handleSubmitFilterForm = useCallback(
+    (values: SearchFilters) => {
+      setFilters(values);
+    },
+    [setFilters]
+  );
 
-  const handleSubmitFilterForm = (values: SearchFilters) => {
-    setFilters(values);
-  };
+  //stable function that remains the same across renders
+  const handlePriceChange = useCallback(
+    (
+      e: ChangeEvent<HTMLInputElement>,
+      type: "minPrice" | "maxPrice",
+      formik: FormikProps<SearchFilters>
+    ) => {
+      const value = Number(e.target.value);
+      if (
+        (type === "minPrice" && value <= formik.values.maxPrice) ||
+        (type === "maxPrice" && value >= formik.values.minPrice)
+      ) {
+        formik.setFieldValue(type, value);
+      }
+    },
+    []
+  );
 
   return (
     <div className={classes.filters}>
@@ -48,11 +69,9 @@ const Filters: FC = () => {
                   max={priceRange.max}
                   step="1"
                   value={formik.values.minPrice}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                    const value = e.target.value;
-                    if (Number(value) <= formik.values.maxPrice)
-                      formik.setFieldValue("minPrice", value);
-                  }}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    handlePriceChange(e, "minPrice", formik)
+                  }
                 />
 
                 <Field
@@ -63,11 +82,9 @@ const Filters: FC = () => {
                   max={priceRange.max}
                   step="1"
                   value={formik.values.maxPrice}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                    const value = e.target.value;
-                    if (Number(value) >= formik.values.minPrice)
-                      formik.setFieldValue("maxPrice", value);
-                  }}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    handlePriceChange(e, "maxPrice", formik)
+                  }
                 />
               </div>
               <p>
@@ -80,21 +97,20 @@ const Filters: FC = () => {
             >
               <h3>Stars</h3>
               <div>
-                {[1, 2, 3, 4, 5].map((star, index) => {
-                  const currentRating = index + 1;
+                {[1, 2, 3, 4, 5].map((index) => {
                   return (
                     <label key={index}>
-                      <Field type="radio" name="rating" value={currentRating} />
+                      <Field type="radio" name="rating" value={index} />
                       <span
                         className={classes.star}
                         style={{
                           color:
-                            currentRating <= (hover || formik.values.rating)
+                            index <= (starHover || formik.values.rating)
                               ? "#ffc107"
                               : "#e4e5e9",
                         }}
-                        onMouseEnter={() => setHover(currentRating)}
-                        onMouseLeave={() => setHover(0)}
+                        onMouseEnter={() => setStarHover(index)}
+                        onMouseLeave={() => setStarHover(0)}
                       >
                         <i className="bi bi-star-fill"></i>
                       </span>
@@ -131,10 +147,10 @@ const Filters: FC = () => {
             >
               <h3>Room Type</h3>
               <div className={classes.list}>
-                {rooms.map((item, index) => (
+                {ROOMS.map((room, index) => (
                   <label key={index}>
-                    <Field type="radio" name="room" value={item} />
-                    <span>{item}</span>
+                    <Field type="radio" name="room" value={room} />
+                    <span>{room}</span>
                   </label>
                 ))}
               </div>
