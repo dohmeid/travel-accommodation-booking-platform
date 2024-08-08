@@ -6,69 +6,68 @@ import React, {
   ReactNode,
   useEffect,
 } from "react";
-
-import { getAmenities, getSearchResults } from "../services/Api/homeApi";
+import { getAmenities, getSearchResults } from "../services/Api/searchApi";
+import {
+  filterResults,
+  sortResults,
+} from "../services/Utils/filterAndSortUtils";
 import { useError } from "./ErrorProvider";
+import { Amenity } from "../interfaces/interfaces";
 import {
   SearchResult,
-  Amenity,
   SearchFilters,
   SearchQuery,
-} from "../interfaces/interfaces";
-
-interface SearchContextProps {
-  amenitiesList: Amenity[];
-  filteredResults: SearchResult[];
-  sortBy: string;
-  setSortBy: React.Dispatch<React.SetStateAction<string>>;
-  setFilters: React.Dispatch<React.SetStateAction<SearchFilters>>;
-  initialFilters: SearchFilters;
-  priceRange: { min: number; max: number };
-  fetchSearchResults: (searchQuery: SearchQuery) => Promise<void>;
-}
-
-export const priceRange = { min: 0, max: 500 };
-
-export const initialFilters = {
-  minPrice: priceRange.min,
-  maxPrice: priceRange.max,
-  rating: 0,
-  amenitiesNames: [],
-  room: "",
-};
-
-const initialQuery = {
-  checkInDate: "",
-  checkOutDate: "",
-  city: "",
-  starRate: 0,
-  sort: "",
-  numberOfRooms: 1, //default: 1
-  adults: 2, //default: 2
-  children: 0, //default: 0
-};
+  SearchContextProps,
+  SortCriteria,
+} from "../interfaces/searchTypes";
 
 const SearchContext = createContext<SearchContextProps | undefined>(undefined);
 
 export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
+  //constants
+  const priceRange = { min: 0, max: 500 };
+  const initialFilters = {
+    minPrice: priceRange.min,
+    maxPrice: priceRange.max,
+    rating: 0,
+    amenitiesNames: [],
+    room: "",
+  };
+
+  //states
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
-  const [amenitiesList, setAmenitiesList] = useState<Amenity[]>([]);
   const [filteredResults, setFilteredResults] = useState<SearchResult[]>([]);
+  const [amenitiesList, setAmenitiesList] = useState<Amenity[]>([]);
   const [filters, setFilters] = useState<SearchFilters>(initialFilters);
-  const [sortBy, setSortBy] = useState<string>("Price");
+  const [sortBy, setSortBy] = useState<SortCriteria>("MinPriceFirst");
   const { setError } = useError();
 
-  //initially fetch the search results
+  //fetch amenities on initial render
   useEffect(() => {
+    const fetchAmenities = async () => {
+      try {
+        const responseData = await getAmenities();
+        setAmenitiesList(responseData);
+      } catch (error: any) {
+        setError(error);
+      }
+    };
+
     fetchAmenities();
   }, []);
 
-  //apply filters and then sort the results whenever filters or sortBy changes
+  //apply filters and sort results whenever dependencies change
   useEffect(() => {
-    applyFiltersAndSort();
+    const applyFiltersAndSorting = () => {
+      const filtered = filterResults(searchResults, filters);
+      const sorted = sortResults(filtered, sortBy);
+      setFilteredResults(sorted);
+    };
+
+    applyFiltersAndSorting();
   }, [filters, sortBy, searchResults]);
 
-  //this function fetches search results from the api
+  //fetch search results on demand
   const fetchSearchResults = async (searchQuery: SearchQuery) => {
     try {
       const responseData = await getSearchResults(searchQuery);
@@ -78,55 +77,17 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
   };
 
-  const fetchAmenities = async () => {
-    try {
-      const responseData = await getAmenities();
-      console.log(responseData);
-      setAmenitiesList(responseData);
-    } catch (error: any) {
-      setError(error);
-    }
-  };
-
-  //this function sorts the search results
-  const applyFiltersAndSort = () => {
-    let filtered = [...searchResults];
-
-    if (filters != initialFilters) {
-      filtered = filtered.filter(
-        (hotel) =>
-          hotel.roomPrice >= filters.minPrice &&
-          hotel.roomPrice <= filters.maxPrice &&
-          filters.amenitiesNames.every((selectedAmenity) =>
-            hotel.amenities.some((amenity) =>
-              amenity.name.toLowerCase().includes(selectedAmenity.toLowerCase())
-            )
-          ) &&
-          (!filters.rating || hotel.starRating == filters.rating) &&
-          (!filters.room || hotel.roomType === filters.room)
-      );
-    }
-
-    if (sortBy === "Price") {
-      filtered.sort((a, b) => b.roomPrice - a.roomPrice);
-    } else if (sortBy === "Stars") {
-      filtered.sort((a, b) => b.starRating - a.starRating);
-    }
-
-    setFilteredResults(filtered);
-  };
-
   return (
     <SearchContext.Provider
       value={{
+        initialFilters,
+        priceRange,
         filteredResults,
         amenitiesList,
         sortBy,
         fetchSearchResults,
-        setSortBy,
         setFilters,
-        initialFilters,
-        priceRange,
+        setSortBy,
       }}
     >
       {children}
@@ -134,7 +95,6 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
   );
 };
 
-//custom hook for the context
 export const useSearchContext = () => {
   const context = useContext(SearchContext);
   if (!context) {
