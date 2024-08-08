@@ -1,57 +1,49 @@
-import React, { useRef, useState, FC, ChangeEvent } from "react";
-import classes from "./HotelsSearchBar.module.css";
+import React, { useState, FC, ChangeEvent } from "react";
+import { today, tomorrow } from "../../../services/Utils/dates";
+import {
+  SearchQuery,
+  DateRange,
+  Guests,
+} from "../../../interfaces/searchTypes";
+import { useSearchContext } from "../../../context/searchProvider";
+import { useNavigate } from "react-router-dom";
+import useCurrentPage from "../../../hooks/useCurrentPage";
 import DatePicker from "./DatePicker/DatePicker";
 import GuestDropdown from "./GuestDropdown/GuestDropdown";
-import { format, addDays, parseISO } from "date-fns";
-import { SearchQuery } from "../../../interfaces/interfaces";
-import { useSearchContext } from "../../../context/searchProvider";
-import { useNavigate, useLocation } from "react-router-dom";
-
-interface Guests {
-  adults: number;
-  children: number;
-  rooms: number;
-}
-
-interface DateRange {
-  checkInDate: string;
-  checkOutDate: string;
-}
+import classes from "./HotelsSearchBar.module.css";
 
 const HotelsSearchBar: FC = () => {
+  const { isInSearchPage } = useCurrentPage();
   const { fetchSearchResults } = useSearchContext();
   const navigate = useNavigate();
-  const location = useLocation();
 
-  const today = new Date();
-  const tomorrow = addDays(today, 1);
   const [dateRange, setDateRange] = useState<DateRange>({
-    checkInDate: format(today, "yyyy-MM-dd"),
-    checkOutDate: format(tomorrow, "yyyy-MM-dd"),
+    checkInDate: today,
+    checkOutDate: tomorrow,
   });
   const [city, setCity] = useState<string>("");
   const [guestsData, setGuestsData] = useState<Guests>({
     adults: 2,
     children: 0,
-    rooms: 1,
+    numberOfRooms: 1,
   });
+
+  const handleCityChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setCity(e.target.value);
+  };
 
   const handleSearchButtonClick = () => {
     const searchQuery: SearchQuery = {
-      checkInDate: dateRange.checkInDate,
-      checkOutDate: dateRange.checkOutDate,
+      ...dateRange,
       city: city,
       starRate: 0,
       sort: "",
-      numberOfRooms: guestsData.rooms,
-      adults: guestsData.adults,
-      children: guestsData.children,
+      ...guestsData,
     };
     console.log(searchQuery);
-
     fetchSearchResults(searchQuery);
 
-    if (location.pathname !== "/main/search") {
+    if (!isInSearchPage) {
       navigate("/main/search");
     }
   };
@@ -59,7 +51,7 @@ const HotelsSearchBar: FC = () => {
   return (
     <div
       className={`${classes.searchContainer} ${
-        location.pathname === "/main/search" ? classes.horizontalSearchContainer : ""
+        isInSearchPage ? classes.horizontalSearchContainer : ""
       }`}
     >
       <div className={classes.searchInput}>
@@ -70,7 +62,7 @@ const HotelsSearchBar: FC = () => {
           aria-label="search for a string"
           placeholder="Search for hotels, cities..."
           value={city}
-          onChange={(e) => setCity(e.target.value)}
+          onChange={handleCityChange}
         />
       </div>
 

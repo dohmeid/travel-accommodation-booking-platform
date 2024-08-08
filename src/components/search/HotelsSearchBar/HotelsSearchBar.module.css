@@ -55,8 +55,9 @@
     .controlsContainer {
         width: 100%;
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
+        row-gap: 1rem;
     }
 
     .searchButton {
@@ -89,9 +90,8 @@
     width: 100%;
     border-radius: 0;
     flex-wrap: nowrap;
-    padding: 1rem 3rem;
     justify-content: space-between;
-    box-shadow: none;
+    border-radius: 1rem;
 
     .searchInput {
         width: 20%;
@@ -99,7 +99,7 @@
     }
 
     .controlsContainer {
-        width: 65%;
+        width: 70%;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -108,7 +108,146 @@
     .searchButton {
         position: relative;
         top: 0;
-        width: 10rem;
-        height: 3rem;
+        width: min-content;
+        height: 100%;
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .searchContainer {
+        width: 90%;
+
+        .searchInput {
+            input {
+                font-size: 1rem;
+            }
+        }
+
+        .controlsContainer {
+            flex-direction: column;
+            row-gap: 1rem;
+            z-index: 9;
+        }
+
+        .searchButton {
+            width: 15rem;
+        }
+    }
+
+    .horizontalSearchContainer {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 1rem 1rem;
+        border-radius: 1rem;
+
+        .searchInput {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .controlsContainer {
+            width: 100%;
+        }
+
+        .searchButton {
+            top: 2rem;
+            width: 13rem;
+            height: 2.6rem;
+            padding: 0 1rem;
+        }
+    }
+}
+
+
+@media (min-width: 600px) and (max-width: 800px) {
+    .searchContainer {
+        width: 92%;
+    }
+
+    .horizontalSearchContainer {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 1rem 1rem;
+        border-radius: 1rem;
+
+        .searchInput {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .controlsContainer {
+            width: 100%;
+        }
+
+        .searchButton {
+            top: 2rem;
+            width: 13rem;
+            height: 2.6rem;
+            padding: 0 1rem;
+        }
+    }
+}
+
+@media (min-width: 800px) and (max-width:950px) {
+    .searchContainer {
+        width: 85%;
+    }
+
+    .horizontalSearchContainer {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 1rem 1rem;
+        border-radius: 1rem;
+
+        .searchInput {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .controlsContainer {
+            width: 100%;
+        }
+
+        .searchButton {
+            top: 2rem;
+            width: 13rem;
+            height: 2.6rem;
+            padding: 0 1rem;
+        }
+    }
+}
+
+@media (min-width: 950px) and (max-width:1060px) {
+    .searchContainer {
+        width: 80%;
+    }
+
+    .horizontalSearchContainer {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 1rem 1rem;
+        border-radius: 1rem;
+
+        .searchInput {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .controlsContainer {
+            width: 100%;
+        }
+
+        .searchButton {
+            top: 2rem;
+            width: 13rem;
+            height: 2.6rem;
+            padding: 0 1rem;
+        }
     }
 }

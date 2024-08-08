@@ -1,11 +1,7 @@
-import React, { useRef, useState, FC, ChangeEvent } from "react";
+import React, { FC, useState } from "react";
+import useCurrentPage from "../../../../hooks/useCurrentPage";
+import { Guests } from "../../../../interfaces/searchTypes";
 import classes from "./GuestDropdown.module.css";
-
-interface Guests {
-  adults: number;
-  children: number;
-  rooms: number;
-}
 
 interface Props {
   guestsData: Guests;
@@ -14,67 +10,44 @@ interface Props {
 
 const GuestDropdown: FC<Props> = ({ guestsData, setGuestsData }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isInSearchPage } = useCurrentPage();
 
   const items = [
     {
       id: 1,
-      name: "Adults",
+      key: "adults" as keyof Guests,
+      label: "Adults",
       description: "ages 18 and above",
-      quantity: guestsData.adults,
     },
     {
       id: 2,
-      name: "Children",
+      key: "children" as keyof Guests,
+      label: "Children",
       description: "ages 0-17",
-      quantity: guestsData.children,
     },
-    { id: 3, name: "Rooms", description: "", quantity: guestsData.rooms },
+    {
+      id: 3,
+      key: "numberOfRooms" as keyof Guests,
+      label: "Rooms",
+      description: "",
+    },
   ];
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleDropdown = () => setIsOpen((prev) => !prev);
 
-  const incrementQuantity = (id: number) => {
-    if (id === 1) {
-      setGuestsData((prevDate) => ({
-        ...prevDate,
-        adults: guestsData.adults + 1,
-      }));
-    } else if (id === 2) {
-      setGuestsData((prevDate) => ({
-        ...prevDate,
-        children: guestsData.children + 1,
-      }));
-    } else {
-      setGuestsData((prevDate) => ({
-        ...prevDate,
-        rooms: guestsData.rooms + 1,
-      }));
-    }
-  };
-
-  const decrementQuantity = (id: number) => {
-    if (id === 1) {
-      setGuestsData((prevDate) => ({
-        ...prevDate,
-        adults: guestsData.adults - 1,
-      }));
-    } else if (id === 2) {
-      setGuestsData((prevDate) => ({
-        ...prevDate,
-        children: guestsData.children - 1,
-      }));
-    } else {
-      setGuestsData((prevDate) => ({
-        ...prevDate,
-        rooms: guestsData.rooms - 1,
-      }));
-    }
+  const updateGuestData = (key: keyof Guests, increment: boolean) => {
+    setGuestsData((prevData) => ({
+      ...prevData,
+      [key]: increment ? prevData[key] + 1 : Math.max(0, prevData[key] - 1),
+    }));
   };
 
   return (
-    <div className={classes.quantityController}>
+    <div
+      className={`${classes.quantityController} ${
+        isInSearchPage ? classes.minQuantityController : ""
+      }`}
+    >
       <div
         aria-label="Toggle dropdown"
         aria-haspopup="true"
@@ -85,9 +58,9 @@ const GuestDropdown: FC<Props> = ({ guestsData, setGuestsData }) => {
         <i className="bi bi-people-fill"></i>
         <div className={classes.details}>
           <p>
-            {items[0].quantity} adults, {items[1].quantity} children
+            {guestsData.adults} adults, {guestsData.children} children
           </p>
-          <p className={classes.room}>{items[2].quantity} room</p>
+          <p className={classes.room}>{guestsData.numberOfRooms} room</p>
         </div>
 
         {isOpen ? (
@@ -106,14 +79,18 @@ const GuestDropdown: FC<Props> = ({ guestsData, setGuestsData }) => {
           {items.map((item) => (
             <li key={item.id} className={classes.dropdownItem}>
               <div className={classes.itemDetails}>
-                <p>{item.name}</p>
+                <p>{item.label}</p>
                 <p className={classes.description}>{item.description}</p>
               </div>
 
               <div className={classes.buttonsContainer}>
-                <button onClick={() => decrementQuantity(item.id)}>-</button>
-                <p>{item.quantity}</p>
-                <button onClick={() => incrementQuantity(item.id)}>+</button>
+                <button onClick={() => updateGuestData(item.key, false)}>
+                  -
+                </button>
+                <p>{guestsData[item.key]}</p>
+                <button onClick={() => updateGuestData(item.key, true)}>
+                  +
+                </button>
               </div>
             </li>
           ))}

@@ -72,13 +72,60 @@
                 button {
                     width: 1rem;
                     height: 1rem;
-                    text-align: center;
                     border-radius: 50%;
                     border: 1px solid var(--dark-brown1);
                     background-color: transparent;
                     cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
             }
+        }
+    }
+}
+
+.minQuantityController {
+    width: 38%;
+
+    .dropdownMenu {
+        position: absolute;
+        width: 80%;
+        top: 85%;
+        left: 21%;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .quantityController {
+        width: 100%;
+
+        .dropdownMenu {
+
+            .dropdownItem {
+
+                .itemDetails {
+                    width: 50%;
+
+                    .description {
+                        font-size: 0.65rem;
+                        color: var(--dark-grey);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 600px) and (max-width: 800px) {
+
+    .quantityController {
+
+        .dropdownMenu {
+            width: 65%;
+            top: 80%;
+            left: 35%;
         }
     }
 }

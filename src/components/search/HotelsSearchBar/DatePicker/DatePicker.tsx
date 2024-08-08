@@ -1,11 +1,8 @@
-import React, { useRef, useState, FC, ChangeEvent } from "react";
-import { format, parseISO } from "date-fns";
+import React, { useRef, FC, ChangeEvent } from "react";
+import { format, parseISO, isBefore, isAfter } from "date-fns";
+import { today, tomorrow } from "../../../../services/Utils/dates";
+import { DateRange } from "../../../../interfaces/searchTypes";
 import classes from "./DatePicker.module.css";
-
-interface DateRange {
-  checkInDate: string;
-  checkOutDate: string;
-}
 
 interface Props {
   dateRange: DateRange;
@@ -13,33 +10,36 @@ interface Props {
 }
 
 const DatePicker: FC<Props> = ({ dateRange, setDateRange }) => {
-  const dateIn = useRef<HTMLInputElement>(null);
-  const dateOut = useRef<HTMLInputElement>(null);
+  const dateInRef = useRef<HTMLInputElement>(null);
+  const dateOutRef = useRef<HTMLInputElement>(null);
+  const today = format(new Date(), "yyyy-MM-dd");
 
-  const handleCheckInDateChange = (e: ChangeEvent<HTMLInputElement>) => {
-    let value = e.target.value;
-    setDateRange((prevDateRange) => ({
-      ...prevDateRange,
-      checkInDate: value,
-    }));
-  };
+  const handleDateChange =
+    (type: keyof DateRange) => (e: ChangeEvent<HTMLInputElement>) => {
+      const newDate = e.target.value;
 
-  const handleCheckOutDateChange = (e: ChangeEvent<HTMLInputElement>) => {
-    let value = e.target.value;
-    setDateRange((prevDateRange) => ({
-      ...prevDateRange,
-      checkOutDate: value,
-    }));
-  };
+      if (type === "checkInDate") {
+        if (isAfter(parseISO(newDate), parseISO(dateRange.checkOutDate))) {
+          alert("Check-in date cannot be later than check-out date.");
+          return;
+        }
+      } else if (type === "checkOutDate") {
+        if (isBefore(parseISO(newDate), parseISO(dateRange.checkInDate))) {
+          alert("Check-out date cannot be earlier than check-in date.");
+          return;
+        }
+      }
 
-  const getDayName = (date: string): string => {
-    return format(parseISO(date), "EEEE");
-  };
+      setDateRange((prevDateRange) => ({
+        ...prevDateRange,
+        [type]: newDate,
+      }));
+    };
+
+  const getDayName = (date: string) => format(parseISO(date), "EEEE");
 
   const openCalendar = (ref: React.RefObject<HTMLInputElement>) => {
-    if (ref.current) {
-      ref.current.showPicker();
-    }
+    ref.current?.showPicker();
   };
 
   return (
@@ -53,10 +53,11 @@ const DatePicker: FC<Props> = ({ dateRange, setDateRange }) => {
             type="date"
             id="checkinDate"
             name="checkinDate"
-            ref={dateIn}
+            min={today}
+            ref={dateInRef}
             value={dateRange.checkInDate}
-            onChange={handleCheckInDateChange}
-            onClick={() => openCalendar(dateIn)}
+            onChange={handleDateChange("checkInDate")}
+            onClick={() => openCalendar(dateInRef)}
           />
           <p className={classes.day}>{getDayName(dateRange.checkInDate)}</p>
         </div>
@@ -71,10 +72,11 @@ const DatePicker: FC<Props> = ({ dateRange, setDateRange }) => {
             type="date"
             id="checkoutDate"
             name="checkoutDate"
-            ref={dateOut}
+            min={tomorrow}
+            ref={dateOutRef}
             value={dateRange.checkOutDate}
-            onChange={handleCheckOutDateChange}
-            onClick={() => openCalendar(dateOut)}
+            onChange={handleDateChange("checkOutDate")}
+            onClick={() => openCalendar(dateOutRef)}
           />
           <p className={classes.day}>{getDayName(dateRange.checkOutDate)}</p>
         </div>

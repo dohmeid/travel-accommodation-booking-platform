@@ -1,5 +1,4 @@
 .datesContainer {
-    width: 48%;
     height: 3rem;
     display: flex;
     align-items: center;
@@ -56,6 +55,25 @@
         .day {
             font-size: 0.7rem;
             color: var(--dark-grey);
+        }
+    }
+}
+
+@media (max-width: 600px) {
+
+    .datesContainer {
+        width: 100%;
+        padding: 0;
+        justify-content: space-around;
+
+        .checkin,
+        .checkout {
+            padding-left: 1rem;
+
+            label {
+                margin-right: 1rem;
+            }
+
         }
     }
 }
