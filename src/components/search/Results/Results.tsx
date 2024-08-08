@@ -1,27 +1,31 @@
-import React, { ChangeEvent, FC, useEffect } from "react";
-import classes from "./Results.module.css";
+import React, { FC, ChangeEvent, useCallback } from "react";
+import { SortCriteria } from "../../../interfaces/searchTypes";
 import { useSearchContext } from "../../../context/searchProvider";
-import Card from "./Card/Card";
+import { SORT_OPTIONS } from "../../../data/sortOptions";
+import ResultCard from "./ResultCard/ResultCard";
+import classes from "./Results.module.css";
 
 const Results: FC = () => {
   const { filteredResults, sortBy, setSortBy } = useSearchContext();
 
-  const sortOptions = [
-    { id: 0, value: "Price", label: "Price" },
-    { id: 1, value: "Stars", label: "Stars" },
-  ];
-
-  const selectSortByChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSortBy(e.target.value);
-  };
+  // Use useCallback to memoize the handler function
+  const handleSortByChange = useCallback(
+    (e: ChangeEvent<HTMLSelectElement>) => {
+      const selectedValue = e.target.value as SortCriteria;
+      if (sortBy !== selectedValue) {
+        setSortBy(selectedValue);
+      }
+    },
+    [sortBy, setSortBy]
+  );
 
   return (
     <div className={classes.results}>
       <div className={` ${classes.flexContainer} ${classes.header}`}>
         <h2>Search results ({filteredResults.length})</h2>
 
-        <select value={sortBy} onChange={selectSortByChangeHandler}>
-          {sortOptions.map((option) => (
+        <select value={sortBy} onChange={handleSortByChange}>
+          {SORT_OPTIONS.map((option) => (
             <option key={option.id} value={option.value}>
               {option.label}
             </option>
@@ -34,7 +38,7 @@ const Results: FC = () => {
           <p>No items to display</p>
         ) : (
           filteredResults.map((hotel) => (
-            <Card key={hotel.hotelId} hotel={hotel} />
+            <ResultCard key={hotel.hotelId} hotel={hotel} />
           ))
         )}
       </div>

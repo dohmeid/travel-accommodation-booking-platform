@@ -1,13 +1,6 @@
 .results {
-    width: 100%;
     box-sizing: border-box;
-    padding: 1rem 3rem;
     color: var(--dark-brown1);
-    height: 33.8rem;
-    overflow-y: auto;
-    overflow-x: hidden;
-    border: 0px solid #ccc;
-
 
     .flexContainer {
         display: flex;
@@ -17,6 +10,7 @@
 
     .header {
         padding-bottom: 0.8rem;
+        margin-bottom: 2rem;
         border-bottom: 1px solid var(--dark-brown1);
 
         h2 {
@@ -24,7 +18,7 @@
         }
 
         select {
-            width: 7rem;
+            width: fit-content;
             height: 2rem;
             padding-inline-start: 0.5rem;
             font-family: var(--secondary-font);
@@ -39,5 +33,21 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+}
+
+@media (max-width: 385px) {
+    .results {
+        width: 100%;
+        background-color: aqua;
+
+        .header {
+            padding-bottom: 0.4rem;
+            margin-bottom: 1rem;
+
+            select {
+                font-size: 1rem;
+            }
+        }
     }
 }
