@@ -1,67 +1,71 @@
 import React, { FC } from "react";
-import { Room } from "../../../../interfaces/hotel";
 import { useCartContext } from "../../../../context/cartProvider";
+import { Room } from "../../../../interfaces/hotelPageTypes";
 import classes from "./RoomCard.module.css";
 
 interface Props {
-  data: Room;
+  roomData: Room;
 }
 
-const RoomCard: FC<Props> = ({ data }) => {
+const RoomCard: FC<Props> = ({ roomData }) => {
   const { addRoomToCart, isItemInCart } = useCartContext();
+  const {
+    roomId,
+    roomPhotoUrl,
+    roomType,
+    capacityOfAdults,
+    capacityOfChildren,
+    availability,
+    roomAmenities,
+    price,
+  } = roomData;
 
   const handleAddToCartButtonClick = () => {
-    addRoomToCart(data);
+    addRoomToCart(roomData);
   };
 
   return (
     <div className={classes.card}>
-      <img src={data.roomPhotoUrl}></img>
-      <h3>{data.roomType} Room</h3>
+      <img src={roomPhotoUrl} alt={`${roomType} Room`}></img>
+      <h3>{roomType} Room</h3>
 
       <div className={classes.capacity}>
         <p>
-          <i className="bi bi-people-fill"></i> {data.capacityOfAdults} adults
+          <i className="bi bi-people-fill"></i> {capacityOfAdults} adults
         </p>
         <p>
-          <i className="bi bi-person-arms-up"></i> {data.capacityOfChildren}{" "}
-          children
+          <i className="bi bi-person-arms-up"></i> {capacityOfChildren} children
         </p>
-
-        {data.availability ? (
-          <p>
-            <i className="bi bi-check-circle-fill"></i> available
-          </p>
-        ) : (
-          <p>
-            <i className="bi bi-x-circle-fill"></i> not available
-          </p>
-        )}
+        <p>
+          <i
+            className={`bi ${
+              availability ? "bi-check-circle-fill" : "bi-x-circle-fill"
+            }`}
+          ></i>{" "}
+          {availability ? "Available" : "Not available"}
+        </p>
       </div>
 
       <div className={`${classes.amenities} ${classes.flexContainer}`}>
-        {data.roomAmenities.length === 0 ? (
-          <p>no room amenities</p>
-        ) : (
-          data.roomAmenities.map((amenity, index) => (
+        {roomAmenities &&
+          roomAmenities.map((amenity, index) => (
             <p key={index} className={classes.amenity}>
               {amenity.name} - {amenity.description}
             </p>
-          ))
-        )}
+          ))}
       </div>
 
       <p className={classes.price}>
-        $<span>{data.price}</span>/night
+        $<span>{price}</span>/night
       </p>
 
       <button
         type="button"
         className={classes.addButton}
-        disabled={isItemInCart(data.roomId)}
+        disabled={isItemInCart(roomId)}
         onClick={handleAddToCartButtonClick}
       >
-        {isItemInCart(data.roomId) ? "Added" : "Add to cart"}
+        {isItemInCart(roomId) ? "Added" : "Add to cart"}
       </button>
     </div>
   );
