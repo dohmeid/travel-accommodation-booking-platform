@@ -45,7 +45,7 @@ export const HomeProvider: FC<{ children: ReactNode }> = ({ children }) => {
     };
 
     fetchHomeData();
-  }, [userId, setError]);
+  }, [userId]);
 
   return (
     <HomeContext.Provider
