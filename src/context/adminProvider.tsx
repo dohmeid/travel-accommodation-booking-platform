@@ -12,7 +12,7 @@ import {
   removeCity,
 } from "../services/Api/cityApi";
 import { getHotels,addHotel, editHotel ,removeHotel} from "../services/Api/hotelApi";
-import { Hotel, City, AdminContextType } from "../interfaces/interfaces";
+import { Hotel, City, AdminContextType } from "../interfaces/adminPageTypes";
 import { useError } from "./ErrorProvider";
 
 export const AdminContext = createContext<AdminContextType | null>(null);

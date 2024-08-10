@@ -1,6 +1,6 @@
 import axios from "axios";
 import apiService from "./apiService";
-import { City } from "../../interfaces/interfaces";
+import { City } from "../../interfaces/adminPageTypes";
 
 //this function is used to get all cities
 export const getCities = async () => {

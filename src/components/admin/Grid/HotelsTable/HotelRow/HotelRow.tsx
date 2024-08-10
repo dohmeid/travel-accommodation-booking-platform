@@ -1,5 +1,5 @@
 import React, { FC, MouseEvent } from "react";
-import { Hotel } from "../../../../../interfaces/interfaces";
+import { Hotel } from "../../../../../interfaces/adminPageTypes";
 import { UseDialog } from "../../../../../hooks/useDialog";
 import classes from "./HotelRow.module.css";
 

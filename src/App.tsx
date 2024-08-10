@@ -36,7 +36,7 @@ const App: FC = () => {
           <Route path="search" element={<SearchPage />} />
           <Route path="checkout" element={<CheckoutPage />} />
           <Route path="confirmation" element={<ConfirmationPage />} />
-          <Route path="hotel" element={<HotelPage />} />
+          <Route path="hotel/:hotelId" element={<HotelPage />} />
         </Route>
 
         <Route

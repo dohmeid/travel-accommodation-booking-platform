@@ -1,5 +1,3 @@
-import RecentHotels from "../components/home/RecentHotels/RecentHotels";
-
 export interface City {
   id: number;
   name: string;

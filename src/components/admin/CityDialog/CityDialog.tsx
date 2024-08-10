@@ -2,7 +2,7 @@ import React, { FC, useContext } from "react";
 import classes from "./CityDialog.module.css";
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
 import { AdminContext } from "../../../context/adminProvider";
-import { AdminContextType } from "../../../interfaces/interfaces";
+import { AdminContextType } from "../../../interfaces/adminPageTypes";
 import { UseDialog, DialogState } from "../../../hooks/useDialog";
 import * as Yup from "yup";
 

@@ -2,7 +2,7 @@ import React, { FC, MouseEvent, useContext } from "react";
 import classes from "./DeleteDialog.module.css";
 import { UseDialog, DialogState } from "../../../hooks/useDialog";
 import { AdminContext } from "../../../context/adminProvider";
-import { City, AdminContextType } from "../../../interfaces/interfaces";
+import { City, AdminContextType } from "../../../interfaces/adminPageTypes";
 
 interface Props {
   dialogState: DialogState;
