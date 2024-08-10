@@ -1,14 +1,13 @@
 .gallery {
-    height: fit-content;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(3, 8.5rem);
     justify-content: center;
     gap: 0.5rem 0.8rem;
     padding: 0 4rem;
+    margin-top: 2rem;
 
-
-    img {
+    .hotelImage {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -27,5 +26,50 @@
             grid-column: 1 / span 1;
             grid-row: 1 / span 3;
         }
+    }
+}
+
+@media (max-width: 400px) {
+    .gallery {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(auto, 7rem);
+        gap: 0.5rem;
+        padding: 0 1rem;
+
+        .hotelImage {
+            border-radius: 0.5rem;
+
+            &:nth-child(1) {
+                grid-column: 1 / span 1;
+                grid-row: 1 / span 2;
+            }
+        }
+    }
+}
+
+@media (min-width: 400px) and (max-width: 600px) {
+    .gallery {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(5, 7rem);
+        gap: 0.5rem;
+        padding: 0 1rem;
+
+        .hotelImage {
+            border-radius: 0.5rem;
+
+            &:nth-child(1) {
+                grid-column: 1 / span 1;
+                grid-row: 1 / span 3;
+            }
+        }
+    }
+}
+
+@media (min-width: 600px) and (max-width: 800px) {
+    .gallery {
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(3, 8rem);
+        gap: 0.5rem;
+        padding: 0 2rem;
     }
 }

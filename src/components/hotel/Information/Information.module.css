@@ -3,7 +3,13 @@
     height: fit-content;
     font-family: var(--secondary-font);
     color: var(--dark-brown1);
-    padding: 2rem 4rem;
+    padding: 4rem;
+    display: flex;
+    gap: 2rem;
+
+    .mainContainer {
+        width: 45%;
+    }
 
     .flexContainer {
         display: flex;
@@ -29,59 +35,52 @@
         }
     }
 
-    .mainContainer {
+    .overviewContainer {
+        flex-direction: column;
 
-        .sideContainer {
-            width: 60%;
+        .roomsNumber {
+            margin-top: 1rem;
+        }
 
-            h3 {
-                font-size: 0.95rem;
-                padding-bottom: 0.2rem;
+        .amenity,
+        .roomsNumber {
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 1rem;
+
+            i {
+                font-size: 1.5rem;
+                padding-right: 0.55rem;
+            }
+
+            h4 {
+                font-size: 0.85rem;
             }
 
             p {
-                font-size: 0.85rem;
-                text-align: justify;
+                font-size: 0.8rem;
             }
         }
-
-        .overviewContainer {
-            padding-bottom: 1rem;
-        }
-
-        .amenitiesContainer {
-            display: flex;
-            flex-wrap: wrap;
-            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-            width: fit-content;
-            height: fit-content;
-
-            .amenity {
-                width: 17rem;
-                height: 4.5rem;
-                border: 1px solid var(--light-grey);
-
-                padding: 0 1rem;
-                display: flex;
-                align-items: center;
-                justify-content: space-around;
-
-                i {
-                    font-size: 1.5rem;
-                    padding-right: 0.8rem;
-                }
-
-                h4 {
-                    font-size: 0.8rem;
-                }
-
-                p {
-                    font-size: 0.7rem;
-                }
-            }
-        }
-
     }
+}
 
+@media (max-width: 550px) {
+    .infoContainer {
+        padding: 3rem 2rem;
+        flex-direction: column;
+        gap: 1rem;
 
+        .mainContainer {
+            width: 100%;
+        }
+    }
+}
+
+@media (min-width: 550px) and (max-width: 800px) {
+    .infoContainer {
+        padding: 3rem 2rem;
+        gap: 1.5rem;
+    }
 }

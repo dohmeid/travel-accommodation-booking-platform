@@ -1,6 +1,6 @@
 .mapContainer {
-    width: 35%;
-    height: 16rem;
+    width: 55%;
+    height: 25rem;
     border-radius: 1rem;
     border: 1px solid var(--medium-grey);
 
@@ -8,5 +8,12 @@
         width: 100%;
         height: 100%;
         border-radius: inherit;
+    }
+}
+
+
+@media (max-width: 550px) {
+    .mapContainer {
+        width: 100%;
     }
 }

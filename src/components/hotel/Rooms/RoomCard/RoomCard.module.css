@@ -4,8 +4,6 @@
     font-family: var(--secondary-font);
     color: var(--dark-brown1);
     background-color: var(--white);
-    border-radius: 0.2rem;
-    border: 1px solid var(--light-grey);
     padding-bottom: 1rem;
     display: flex;
     flex-direction: column;
@@ -71,6 +69,7 @@
         width: 10rem;
         font-family: var(--main-font);
         font-weight: bold;
+        font-size: 1rem;
         text-transform: uppercase;
         color: var(--orange1);
         border: 1px solid var(--medium-grey);
