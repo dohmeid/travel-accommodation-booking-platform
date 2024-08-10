@@ -1,12 +1,19 @@
 import React, { FC } from "react";
-import classes from "./HotelCard.module.css";
+import { useNavigate } from "react-router-dom";
 import { Deal } from "../../../../interfaces/homePageTypes";
+import StarRating from "../../../common/StarRating/StarRating";
+import classes from "./HotelCard.module.css";
 
 interface Props {
   dealData: Deal;
 }
 
 const HotelCard: FC<Props> = ({ dealData }) => {
+  const navigate = useNavigate();
+  const handleNavigateButtonClick = () => {
+    navigate(`/main/hotel/${dealData.hotelId}`);
+  };
+
   return (
     <div className={classes.card}>
       <img src={dealData.roomPhotoUrl}></img>
@@ -14,10 +21,7 @@ const HotelCard: FC<Props> = ({ dealData }) => {
       <div className={classes.dataContainer}>
         <div className={classes.flexContainer}>
           <p className={classes.title}>{dealData.title}</p>
-          <p className={classes.starRating}>
-            <i className="bi bi-star-fill"></i>
-            {dealData.hotelStarRating}
-          </p>
+          <StarRating stars={dealData.hotelStarRating} />
         </div>
 
         <p className={classes.location}>
@@ -32,7 +36,11 @@ const HotelCard: FC<Props> = ({ dealData }) => {
             ${dealData.finalPrice}
             <span>was ${dealData.originalRoomPrice}</span>
           </p>
-          <button type="button" className={classes.hotelButton}>
+          <button
+            type="button"
+            className={classes.hotelButton}
+            onClick={handleNavigateButtonClick}
+          >
             <i className="bi bi-arrow-right"></i>
           </button>
         </div>

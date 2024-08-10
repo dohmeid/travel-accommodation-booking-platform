@@ -35,22 +35,6 @@
         }
     }
 
-    .starRating {
-        width: 2.7rem;
-        height: 1.5rem;
-        font-size: 0.7rem;
-        text-align: center;
-        align-content: center;
-        color: var(--white);
-        border-radius: 1rem;
-        background-color: var(--dark-brown2);
-
-        i {
-            color: rgb(255, 226, 36);
-            padding-right: 0.25rem;
-        }
-    }
-
     .date {
         font-size: 0.75rem;
         margin-top: 0.2rem;
