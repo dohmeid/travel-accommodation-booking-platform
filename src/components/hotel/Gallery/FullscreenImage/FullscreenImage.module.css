@@ -5,15 +5,25 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.85);
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
 
     img {
-        max-width: 90%;
-        max-height: 90%;
+        width: 90%;
+        height: 90%;
         object-fit: scale-down;
+    }
+
+    .closeButton {
+        i {
+            position: absolute;
+            top: 3%;
+            right: 5%;
+            font-size: 3rem;
+            color: var(--white);
+        }
     }
 }

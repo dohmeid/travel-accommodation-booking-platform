@@ -8,8 +8,15 @@ interface Props {
 
 const FullscreenImage: FC<Props> = ({ image, onClose }) => {
   return (
-    <div className={classes.fullscreen} onClick={onClose}>
-      <img src={image} alt="Fullscreen" />
+    <div className={classes.fullscreen}>
+      <img src={image} alt="Fullscreen hotel image" />
+      <button
+        className={classes.closeButton}
+        aria-label="Close Fullscreen Image"
+        onClick={onClose}
+      >
+        <i className="bi bi-x"></i>
+      </button>
     </div>
   );
 };
