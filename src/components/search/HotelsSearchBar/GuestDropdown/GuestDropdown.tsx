@@ -1,33 +1,36 @@
 import React, { FC, useState } from "react";
 import useCurrentPage from "../../../../hooks/useCurrentPage";
-import { Guests } from "../../../../interfaces/searchTypes";
+import { SearchQuery } from "../../../../interfaces/searchTypes";
 import classes from "./GuestDropdown.module.css";
 
 interface Props {
-  guestsData: Guests;
-  setGuestsData: React.Dispatch<React.SetStateAction<Guests>>;
+  currentSearchQuery: SearchQuery;
+  setCurrentSearchQuery: React.Dispatch<React.SetStateAction<SearchQuery>>;
 }
 
-const GuestDropdown: FC<Props> = ({ guestsData, setGuestsData }) => {
+const GuestDropdown: FC<Props> = ({
+  currentSearchQuery,
+  setCurrentSearchQuery,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const { isInSearchPage } = useCurrentPage();
 
   const items = [
     {
       id: 1,
-      key: "adults" as keyof Guests,
+      key: "adults" as keyof SearchQuery,
       label: "Adults",
       description: "ages 18 and above",
     },
     {
       id: 2,
-      key: "children" as keyof Guests,
+      key: "children" as keyof SearchQuery,
       label: "Children",
       description: "ages 0-17",
     },
     {
       id: 3,
-      key: "numberOfRooms" as keyof Guests,
+      key: "numberOfRooms" as keyof SearchQuery,
       label: "Rooms",
       description: "",
     },
@@ -35,10 +38,12 @@ const GuestDropdown: FC<Props> = ({ guestsData, setGuestsData }) => {
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
 
-  const updateGuestData = (key: keyof Guests, increment: boolean) => {
-    setGuestsData((prevData) => ({
+  const updateGuestData = (key: keyof SearchQuery, increment: boolean) => {
+    setCurrentSearchQuery((prevData) => ({
       ...prevData,
-      [key]: increment ? prevData[key] + 1 : Math.max(0, prevData[key] - 1),
+      [key]: increment
+        ? (prevData[key] as number) + 1
+        : Math.max(0, (prevData[key] as number) - 1),
     }));
   };
 
@@ -58,16 +63,19 @@ const GuestDropdown: FC<Props> = ({ guestsData, setGuestsData }) => {
         <i className="bi bi-people-fill"></i>
         <div className={classes.details}>
           <p>
-            {guestsData.adults} adults, {guestsData.children} children
+            {currentSearchQuery.adults} adults, {currentSearchQuery.children}{" "}
+            children
           </p>
-          <p className={classes.room}>{guestsData.numberOfRooms} room</p>
+          <p className={classes.room}>
+            {currentSearchQuery.numberOfRooms} rooms
+          </p>
         </div>
 
-        {isOpen ? (
-          <i className={`${classes.arrowDown} bi bi-caret-up-fill`}></i>
-        ) : (
-          <i className={`${classes.arrowDown} bi bi-caret-down-fill`}></i>
-        )}
+        <i
+          className={`${classes.arrowDown} bi bi-caret-${
+            isOpen ? "up" : "down"
+          }-fill`}
+        ></i>
       </div>
 
       {isOpen && (
@@ -84,11 +92,17 @@ const GuestDropdown: FC<Props> = ({ guestsData, setGuestsData }) => {
               </div>
 
               <div className={classes.buttonsContainer}>
-                <button onClick={() => updateGuestData(item.key, false)}>
+                <button
+                  onClick={() => updateGuestData(item.key, false)}
+                  aria-label={`Decrease ${item.label}`}
+                >
                   -
                 </button>
-                <p>{guestsData[item.key]}</p>
-                <button onClick={() => updateGuestData(item.key, true)}>
+                <p>{currentSearchQuery[item.key]}</p>
+                <button
+                  onClick={() => updateGuestData(item.key, true)}
+                  aria-label={`Increase ${item.label}`}
+                >
                   +
                 </button>
               </div>
