@@ -1,8 +1,8 @@
-import { Amenity } from "./interfaces";
+import { Amenity } from "./adminPageTypes";
 
 export interface SearchQuery {
-  checkInDate: string;
-  checkOutDate: string;
+  checkInDate: string; //default today
+  checkOutDate: string; //defualt tommorow
   city: string;
   starRate: number;
   sort: string;
@@ -36,23 +36,18 @@ export interface SearchFilters {
 export interface SearchContextProps {
   priceRange: { min: number; max: number };
   initialFilters: SearchFilters;
+  initialSearchQuery: SearchQuery;
   filteredResults: SearchResult[];
   amenitiesList: Amenity[];
   sortBy: SortCriteria;
+  searchQuery: SearchQuery;
   setFilters: React.Dispatch<React.SetStateAction<SearchFilters>>;
   setSortBy: React.Dispatch<React.SetStateAction<SortCriteria>>;
   fetchSearchResults: (searchQuery: SearchQuery) => Promise<void>;
 }
 
-export type SortCriteria = "MinPriceFirst" | "MaxPriceFirst" | "MinStarsFirst" | "MaxStarsFirst";
-
-export interface DateRange {
-  checkInDate: string;
-  checkOutDate: string;
-}
-
-export interface Guests {
-  adults: number;
-  children: number;
-  numberOfRooms: number;
-}
+export type SortCriteria =
+  | "MinPriceFirst"
+  | "MaxPriceFirst"
+  | "MinStarsFirst"
+  | "MaxStarsFirst";

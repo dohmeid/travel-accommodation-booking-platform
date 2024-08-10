@@ -10,7 +10,7 @@ import { addBooking } from "../services/Api/bookingApi";
 import { Booking, BookingConfirmation } from "../interfaces/booking";
 
 import { useError } from "./ErrorProvider";
-import { Room } from "../interfaces/hotel";
+import { Room } from "../interfaces/hotelPageTypes";
 import { useNavigate } from "react-router-dom";
 
 interface CartContextProps {

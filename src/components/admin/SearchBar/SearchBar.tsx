@@ -1,7 +1,7 @@
 import React, { FC, useState, useContext, ChangeEvent } from "react";
 import classes from "./SearchBar.module.css";
 import { AdminContext } from "../../../context/adminProvider";
-import { City, AdminContextType } from "../../../interfaces/interfaces";
+import { City, AdminContextType } from "../../../interfaces/adminPageTypes";
 
 const SearchBar: FC = () => {
   const { setSearchQuery, setSearchFilter } = useContext(
