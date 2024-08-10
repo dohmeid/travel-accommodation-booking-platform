@@ -6,13 +6,14 @@ import React, {
   ReactNode,
   useEffect,
 } from "react";
+import { today, tomorrow } from "../services/Utils/dates";
 import { getAmenities, getSearchResults } from "../services/Api/searchApi";
 import {
   filterResults,
   sortResults,
 } from "../services/Utils/filterAndSortUtils";
 import { useError } from "./ErrorProvider";
-import { Amenity } from "../interfaces/interfaces";
+import { Amenity } from "../interfaces/adminPageTypes";
 import {
   SearchResult,
   SearchFilters,
@@ -33,6 +34,16 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
     amenitiesNames: [],
     room: "",
   };
+  const initialSearchQuery = {
+    checkInDate: today,
+    checkOutDate: tomorrow,
+    city: "",
+    starRate: 0,
+    sort: "",
+    numberOfRooms: 1,
+    adults: 2,
+    children: 0,
+  };
 
   //states
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
@@ -41,6 +52,8 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [filters, setFilters] = useState<SearchFilters>(initialFilters);
   const [sortBy, setSortBy] = useState<SortCriteria>("MinPriceFirst");
   const { setError } = useError();
+  const [searchQuery, setSearchQuery] =
+    useState<SearchQuery>(initialSearchQuery);
 
   //fetch amenities on initial render
   useEffect(() => {
@@ -70,6 +83,7 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
   //fetch search results on demand
   const fetchSearchResults = async (searchQuery: SearchQuery) => {
     try {
+      setSearchQuery(searchQuery);
       const responseData = await getSearchResults(searchQuery);
       setSearchResults(responseData);
     } catch (error: any) {
@@ -81,10 +95,12 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
     <SearchContext.Provider
       value={{
         initialFilters,
+        initialSearchQuery,
         priceRange,
         filteredResults,
         amenitiesList,
         sortBy,
+        searchQuery,
         fetchSearchResults,
         setFilters,
         setSortBy,
