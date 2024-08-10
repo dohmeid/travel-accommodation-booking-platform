@@ -1,12 +1,10 @@
 import React, {
   createContext,
   useContext,
-  useState,
   FC,
   ReactNode,
-  useEffect,
+  useState,
 } from "react";
-
 import {
   getHotelGallery,
   getHotelInfo,
@@ -19,30 +17,36 @@ import {
   HotelInformation,
   Review,
   Room,
-} from "../interfaces/hotel";
+} from "../interfaces/hotelPageTypes";
 
 interface HotelContextProps {
-  //amenitiesList: Amenity[];
-  //setSortBy: React.Dispatch<React.SetStateAction<string>>;
-  //fetchSearchResults: (searchQuery: SearchQuery) => Promise<void>;
-  fetchGallery: (id: number) => Promise<GalleryImage[]>;
-  fetchInformation: (id: number) => Promise<HotelInformation>;
-  fetchReviews: (id: number) => Promise<Review[]>;
+  gallery: GalleryImage[];
+  info: HotelInformation | undefined;
+  reviews: Review[];
+  rooms: Room[];
+  fetchGallery: (id: number) => Promise<void>;
+  fetchInformation: (id: number) => Promise<void>;
+  fetchReviews: (id: number) => Promise<void>;
   fetchAvailableRooms: (
     id: number,
     checkInDate: string,
     checkOutDate: string
-  ) => Promise<Room[]>;
+  ) => Promise<void>;
 }
 
 const HotelContext = createContext<HotelContextProps | undefined>(undefined);
+
 export const HotelProvider: FC<{ children: ReactNode }> = ({ children }) => {
+  const [gallery, setGallery] = useState<GalleryImage[]>([]);
+  const [info, setInfo] = useState<HotelInformation | undefined>();
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [rooms, setRooms] = useState<Room[]>([]);
   const { setError } = useError();
 
   const fetchGallery = async (hotelId: number) => {
     try {
       const responseData = await getHotelGallery(hotelId);
-      return responseData;
+      setGallery(responseData);
     } catch (error: any) {
       setError(error);
     }
@@ -51,7 +55,7 @@ export const HotelProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const fetchInformation = async (hotelId: number) => {
     try {
       const responseData = await getHotelInfo(hotelId);
-      return responseData;
+      setInfo(responseData);
     } catch (error: any) {
       setError(error);
     }
@@ -60,7 +64,7 @@ export const HotelProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const fetchReviews = async (hotelId: number) => {
     try {
       const responseData = await getHotelReviews(hotelId);
-      return responseData;
+      setReviews(responseData);
     } catch (error: any) {
       setError(error);
     }
@@ -77,7 +81,7 @@ export const HotelProvider: FC<{ children: ReactNode }> = ({ children }) => {
         checkInDate,
         checkOutDate
       );
-      return responseData;
+      setRooms(responseData);
     } catch (error: any) {
       setError(error);
     }
@@ -86,6 +90,10 @@ export const HotelProvider: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <HotelContext.Provider
       value={{
+        gallery,
+        info,
+        reviews,
+        rooms,
         fetchGallery,
         fetchInformation,
         fetchReviews,
@@ -97,7 +105,6 @@ export const HotelProvider: FC<{ children: ReactNode }> = ({ children }) => {
   );
 };
 
-//custom hook for the context
 export const useHotelContext = () => {
   const context = useContext(HotelContext);
   if (!context) {
