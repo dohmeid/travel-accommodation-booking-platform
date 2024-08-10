@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { useNavigate } from "react-router-dom";
 import { SearchResult } from "../../../../interfaces/searchTypes";
 import StarRating from "../../../common/StarRating/StarRating";
 import classes from "./ResultCard.module.css";
@@ -8,6 +9,11 @@ interface Props {
 }
 
 const ResultCard: FC<Props> = ({ hotel }) => {
+  const navigate = useNavigate();
+  const handleNavigateButtonClick = () => {
+    navigate(`/main/hotel/${hotel.hotelId}`);
+  };
+
   const {
     roomPhotoUrl,
     hotelName,
@@ -60,7 +66,11 @@ const ResultCard: FC<Props> = ({ hotel }) => {
               ))}
           </div>
 
-          <button type="button" className={classes.seeMoreButton}>
+          <button
+            type="button"
+            className={classes.seeMoreButton}
+            onClick={handleNavigateButtonClick}
+          >
             See more
           </button>
         </div>
