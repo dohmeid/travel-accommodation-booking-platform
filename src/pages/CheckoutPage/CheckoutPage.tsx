@@ -1,7 +1,7 @@
-import React, { useState, FC } from "react";
-import classes from "./CheckoutPage.module.css";
+import React, { FC } from "react";
 import Cart from "../../components/checkout/Cart/Cart";
 import CheckoutForm from "../../components/checkout/CheckoutForm/CheckoutForm";
+import classes from "./CheckoutPage.module.css";
 
 const CheckoutPage: FC = () => {
   return (

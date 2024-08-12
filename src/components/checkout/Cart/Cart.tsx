@@ -1,12 +1,11 @@
-import React, { useState, FC, useEffect } from "react";
-import classes from "./Cart.module.css";
+import React, { FC } from "react";
 import { useCartContext } from "../../../context/cartProvider";
 import CartItem from "./CartItem/CartItem";
+import classes from "./Cart.module.css";
 
 const Cart: FC = () => {
   const { cartItems, getTotalPrice } = useCartContext();
 
-  //rendering the cart items list
   const CART_LIST = cartItems.map((item) => (
     <CartItem key={item.roomId} room={item} />
   ));
@@ -16,7 +15,7 @@ const Cart: FC = () => {
       <h2>Your Cart</h2>
       {cartItems.length === 0 ? (
         <p className={classes.noItems}>
-          No rooms booked yet 
+          No rooms booked yet
           <i className="bi bi-emoji-frown"></i>
         </p>
       ) : (

@@ -1,12 +1,10 @@
-import React, { useState, FC, useEffect } from "react";
-import classes from "./CheckoutForm.module.css";
+import React, { FC } from "react";
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
-import Snackbar from "../../common/Snackbar/Snackbar";
-
 import { useCartContext } from "../../../context/cartProvider";
-import { Booking } from "../../../interfaces/booking";
-import { useNavigate } from "react-router-dom";
+import { useBookingContext } from "../../../context/bookingProvider";
+import { currentDate } from "../../../services/Utils/dates";
+import classes from "./CheckoutForm.module.css";
 
 // the yup module schema for validating the login form
 const checkoutSchema = Yup.object().shape({
@@ -64,14 +62,8 @@ const initialCheckoutValues = {
 };
 
 const CheckoutForm: FC = () => {
-  const navigate = useNavigate();
-
-  const { cartItems, checkoutBooking, getTotalPrice } =
-    useCartContext();
-  const getCurrentDate = (): string => {
-    const date = new Date();
-    return date.toISOString();
-  };
+  const { cartItems, getTotalPrice } = useCartContext();
+  const { checkoutBooking } = useBookingContext();
 
   const handleSubmitCheckoutForm = async (
     values: FormValues,
@@ -82,14 +74,13 @@ const CheckoutForm: FC = () => {
       hotelName: "",
       roomNumber: cartItems[0].roomNumber,
       roomType: cartItems[0].roomType,
-      bookingDateTime: getCurrentDate(), //"2024-08-03T20:01:47.334Z";
+      bookingDateTime: currentDate, //"2024-08-03T20:01:47.334Z";
       totalCost: getTotalPrice(),
       paymentMethod: values.paymentMethod,
     };
 
     try {
       checkoutBooking(bookingData);
-      console.log("Successful Booking!");      
     } catch (error: any) {
       console.log(error.message);
     } finally {
