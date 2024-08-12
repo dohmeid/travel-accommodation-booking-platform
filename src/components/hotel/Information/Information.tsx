@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useHotelContext } from "../../../context/hotelProvider";
-import StarRating from "../../common/StarRating/StarRating";
+import StarRating from "../../shared/StarRating/StarRating";
 import Map from "./Map/Map";
 import classes from "./Information.module.css";
 

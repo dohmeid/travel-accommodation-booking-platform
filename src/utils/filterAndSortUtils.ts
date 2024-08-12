@@ -2,7 +2,7 @@ import {
   SearchResult,
   SearchFilters,
   SortCriteria,
-} from "../../interfaces/searchTypes";
+} from "../types/searchTypes";
 
 export const filterResults = (
   searchResults: SearchResult[],

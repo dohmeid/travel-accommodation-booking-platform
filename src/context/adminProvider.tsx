@@ -10,9 +10,9 @@ import {
   addCity,
   editCity,
   removeCity,
-} from "../services/Api/cityApi";
-import { getHotels,addHotel, editHotel ,removeHotel} from "../services/Api/hotelApi";
-import { Hotel, City, AdminContextType } from "../interfaces/adminTypes";
+} from "../services/cityApi";
+import { getHotels,addHotel, editHotel ,removeHotel} from "../services/hotelApi";
+import { Hotel, City, AdminContextType } from "../types/adminTypes";
 import { useError } from "./ErrorProvider";
 
 export const AdminContext = createContext<AdminContextType | null>(null);

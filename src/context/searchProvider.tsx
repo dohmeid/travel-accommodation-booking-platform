@@ -6,21 +6,21 @@ import React, {
   ReactNode,
   useEffect,
 } from "react";
-import { today, tomorrow } from "../services/Utils/dates";
-import { getAmenities, getSearchResults } from "../services/Api/searchApi";
+import { today, tomorrow } from "../utils/dates";
+import { getAmenities, getSearchResults } from "../services/searchApi";
 import {
   filterResults,
   sortResults,
-} from "../services/Utils/filterAndSortUtils";
+} from "../utils/filterAndSortUtils";
 import { useError } from "./ErrorProvider";
-import { Amenity } from "../interfaces/adminTypes";
+import { Amenity } from "../types/adminTypes";
 import {
   SearchResult,
   SearchFilters,
   SearchQuery,
   SearchContextProps,
   SortCriteria,
-} from "../interfaces/searchTypes";
+} from "../types/searchTypes";
 
 const SearchContext = createContext<SearchContextProps | undefined>(undefined);
 

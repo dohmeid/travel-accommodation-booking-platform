@@ -1,5 +1,5 @@
 import React, { FC, ChangeEvent, useCallback } from "react";
-import { SortCriteria } from "../../../interfaces/searchTypes";
+import { SortCriteria } from "../../../types/searchTypes";
 import { useSearchContext } from "../../../context/searchProvider";
 import { SORT_OPTIONS } from "../../../data/sortOptions";
 import ResultCard from "./ResultCard/ResultCard";

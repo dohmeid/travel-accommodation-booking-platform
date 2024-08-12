@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Destination } from "../../../../interfaces/homeTypes";
+import { Destination } from "../../../../types/homeTypes";
 import classes from "./DestinationCard.module.css";
 
 interface Props {

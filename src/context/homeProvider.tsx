@@ -10,8 +10,8 @@ import {
   getFeaturedDeals,
   getTrendingDestinations,
   getRecentHotels,
-} from "../services/Api/homeApi";
-import { HomeContextType } from "../interfaces/homeTypes";
+} from "../services/homeApi";
+import { HomeContextType } from "../types/homeTypes";
 import { useAuthContext } from "./authProvider";
 import { useError } from "./ErrorProvider";
 

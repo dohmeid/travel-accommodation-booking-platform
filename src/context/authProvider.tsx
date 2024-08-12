@@ -7,8 +7,8 @@ import React, {
   useState,
 } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContextType } from "../interfaces/auth";
-import { isTokenValid, getUserIdFromToken } from "../services/Utils/authUtils";
+import { AuthContextType } from "../types/auth";
+import { isTokenValid, getUserIdFromToken } from "../utils/authUtils";
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 

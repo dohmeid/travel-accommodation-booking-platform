@@ -1,6 +1,6 @@
 import React, { FC, useState, useCallback, ChangeEvent } from "react";
 import { Formik, Field, Form, FormikProps } from "formik";
-import { SearchFilters } from "../../../interfaces/searchTypes";
+import { SearchFilters } from "../../../types/searchTypes";
 import { useSearchContext } from "../../../context/searchProvider";
 import classes from "./Filters.module.css";
 

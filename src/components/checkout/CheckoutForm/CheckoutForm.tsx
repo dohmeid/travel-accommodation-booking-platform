@@ -3,7 +3,7 @@ import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { useCartContext } from "../../../context/cartProvider";
 import { useBookingContext } from "../../../context/bookingProvider";
-import { currentDate } from "../../../services/Utils/dates";
+import { currentDate } from "../../../utils/dates";
 import classes from "./CheckoutForm.module.css";
 
 // the yup module schema for validating the login form

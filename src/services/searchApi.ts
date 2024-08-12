@@ -1,5 +1,5 @@
 import apiService from "./apiService";
-import { SearchQuery } from "../../interfaces/searchTypes";
+import { SearchQuery } from "../types/searchTypes";
 
 //this function is used to get search results
 export const getSearchResults = async (query: SearchQuery) => {

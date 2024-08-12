@@ -1,5 +1,5 @@
 import { jsPDF } from "jspdf";
-import { BookingConfirmation } from "../../interfaces/bookingTypes";
+import { BookingConfirmation } from "../types/bookingTypes";
 
 export const generatePDF = (bookingConfirm: BookingConfirmation) => {
   if (!bookingConfirm) return;

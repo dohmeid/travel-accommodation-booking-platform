@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useBookingContext } from "../../context/bookingProvider";
-import { generatePDF } from "../../services/Utils/pdfGenerator";
+import { generatePDF } from "../../utils/pdfGenerator";
 import classes from "./ConfirmationPage.module.css";
 
 const ConfirmationPage: FC = () => {

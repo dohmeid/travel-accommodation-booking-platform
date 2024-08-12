@@ -1,10 +1,10 @@
 import React, { FC, useState } from "react";
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
-import { LoginFormValues } from "../../interfaces/auth";
-import { authenticateUser } from "../../services/Api/authApi";
+import { LoginFormValues } from "../../types/auth";
+import { authenticateUser } from "../../services/authApi";
 import { useAuthContext } from "../../context/authProvider";
-import Snackbar from "../common/Snackbar/Snackbar";
+import Snackbar from "../shared/Snackbar/Snackbar";
 import classes from "./LoginForm.module.css";
 
 const loginSchema = Yup.object().shape({

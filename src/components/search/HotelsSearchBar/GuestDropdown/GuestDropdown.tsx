@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import useCurrentPage from "../../../../hooks/useCurrentPage";
-import { SearchQuery } from "../../../../interfaces/searchTypes";
+import { SearchQuery } from "../../../../types/searchTypes";
 import classes from "./GuestDropdown.module.css";
 
 interface Props {

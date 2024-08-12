@@ -10,14 +10,14 @@ import {
   getHotelInfo,
   getHotelReviews,
   getHotelAvailableRooms,
-} from "../services/Api/hotelApi";
+} from "../services/hotelApi";
 import { useError } from "./ErrorProvider";
 import {
   GalleryImage,
   HotelInformation,
   Review,
   Room,
-} from "../interfaces/hotelTypes";
+} from "../types/hotelTypes";
 
 interface HotelContextProps {
   gallery: GalleryImage[];

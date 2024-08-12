@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { RecentHotel } from "../../../../interfaces/homeTypes";
-import StarRating from "../../../common/StarRating/StarRating";
+import { RecentHotel } from "../../../../types/homeTypes";
+import StarRating from "../../../shared/StarRating/StarRating";
 import classes from "./HotelCard.module.css";
 
 interface Props {

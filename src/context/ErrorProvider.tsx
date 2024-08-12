@@ -1,5 +1,5 @@
 import React, { createContext, useState, ReactNode, useContext } from 'react';
-import Snackbar from '../components/common/Snackbar/Snackbar';
+import Snackbar from '../components/shared/Snackbar/Snackbar';
 
 interface ErrorContextType {
   setError: (error: Error) => void;

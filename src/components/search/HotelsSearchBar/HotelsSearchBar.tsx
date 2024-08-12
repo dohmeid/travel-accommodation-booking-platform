@@ -1,7 +1,7 @@
 import React, { useState, FC, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSearchContext } from "../../../context/searchProvider";
-import { SearchQuery } from "../../../interfaces/searchTypes";
+import { SearchQuery } from "../../../types/searchTypes";
 import useCurrentPage from "../../../hooks/useCurrentPage";
 import DatePicker from "./DatePicker/DatePicker";
 import GuestDropdown from "./GuestDropdown/GuestDropdown";

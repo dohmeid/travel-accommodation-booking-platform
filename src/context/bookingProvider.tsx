@@ -8,8 +8,8 @@ import React, {
 import { useNavigate } from "react-router-dom";
 import { useError } from "./ErrorProvider";
 import { useCartContext } from "./cartProvider";
-import { addBooking } from "../services/Api/bookingApi";
-import { Booking, BookingConfirmation } from "../interfaces/bookingTypes";
+import { addBooking } from "../services/bookingApi";
+import { Booking, BookingConfirmation } from "../types/bookingTypes";
 
 interface BookingContextProps {
   bookingConfirm: BookingConfirmation | null;

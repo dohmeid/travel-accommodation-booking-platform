@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Routes, Route } from "react-router-dom";
-import CursorFollower from "./components/common/CursorFollower/CursorFollower";
+import CursorFollower from "./components/shared/CursorFollower/CursorFollower";
 import PrivateRoute from "./routes/PrivateRoute";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import UserPage from "./pages/UserPage/UserPage";

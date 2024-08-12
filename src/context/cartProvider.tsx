@@ -7,7 +7,7 @@ import React, {
   ReactNode,
   useContext,
 } from "react";
-import { Room } from "../interfaces/hotelTypes";
+import { Room } from "../types/hotelTypes";
 
 interface CartContextType {
   cartItems: Room[];

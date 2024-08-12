@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import ScrollToTopButton from "../../components/common/ScrollToTopButton/ScrollToTopButton";
+import ScrollToTopButton from "../../components/shared/ScrollToTopButton/ScrollToTopButton";
 import LandingView from "../../components/home/LandingView/LandingView";
 import FeaturedDeals from "../../components/home/FeaturedDeals/FeaturedDeals";
 import TrendingDestinations from "../../components/home/TrendingDestinations/TrendingDestinations";

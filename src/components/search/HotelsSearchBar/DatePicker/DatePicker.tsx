@@ -1,7 +1,7 @@
 import React, { useRef, FC, ChangeEvent } from "react";
 import { format, parseISO, isBefore, isAfter } from "date-fns";
-import { today, tomorrow } from "../../../../services/Utils/dates";
-import { SearchQuery } from "../../../../interfaces/searchTypes";
+import { today, tomorrow } from "../../../../utils/dates";
+import { SearchQuery } from "../../../../types/searchTypes";
 import classes from "./DatePicker.module.css";
 
 interface Props {

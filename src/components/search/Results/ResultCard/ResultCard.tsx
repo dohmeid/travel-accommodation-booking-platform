@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { SearchResult } from "../../../../interfaces/searchTypes";
-import StarRating from "../../../common/StarRating/StarRating";
+import { SearchResult } from "../../../../types/searchTypes";
+import StarRating from "../../../shared/StarRating/StarRating";
 import classes from "./ResultCard.module.css";
 
 interface Props {

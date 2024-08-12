@@ -5,8 +5,8 @@ import { BookingProvider } from "../../context/bookingProvider";
 import { HomeProvider } from "../../context/homeProvider";
 import { HotelProvider } from "../../context/hotelProvider";
 import { CartProvider } from "../../context/cartProvider";
-import MainHeader from "../../components/common/MainHeader/MainHeader";
-import Footer from "../../components/common/Footer/Footer";
+import MainHeader from "../../components/shared/MainHeader/MainHeader";
+import Footer from "../../components/shared/Footer/Footer";
 import classes from "./UserPage.module.css";
 
 const UserPage: FC = () => {

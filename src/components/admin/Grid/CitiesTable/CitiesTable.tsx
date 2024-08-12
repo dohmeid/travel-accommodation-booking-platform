@@ -3,7 +3,7 @@ import CityRow from "./CityRow/CityRow";
 import DeleteDialog from "../../DeleteDialog/DeleteDialog";
 import CityDialog from "../../CityDialog/CityDialog";
 import { AdminContext } from "../../../../context/adminProvider";
-import { City, AdminContextType } from "../../../../interfaces/adminTypes";
+import { City, AdminContextType } from "../../../../types/adminTypes";
 import useDialog from "../../../../hooks/useDialog";
 import classes from "./CitiesTable.module.css";
 

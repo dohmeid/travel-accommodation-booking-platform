@@ -1,5 +1,5 @@
 import { jwtDecode } from "jwt-decode";
-import { JwtPayload } from "../../interfaces/auth";
+import { JwtPayload } from "../types/auth";
 
 //check if token is still valid (not expired)
 export const isTokenValid = (token: string): boolean => {

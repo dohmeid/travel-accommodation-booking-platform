@@ -1,5 +1,5 @@
 import React, { FC, MouseEvent } from "react";
-import { City } from "../../../../../interfaces/adminTypes";
+import { City } from "../../../../../types/adminTypes";
 import { UseDialog } from "../../../../../hooks/useDialog";
 import classes from "./CityRow.module.css";
 
