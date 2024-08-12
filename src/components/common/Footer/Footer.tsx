@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { footerLinks } from "../../../data/footerLinks";
+import { FOOTER_LINKS } from "../../../data/footerLinks";
 import SocialLink from "./SocialLink/SocialLink";
 import classes from "./Footer.module.css";
 
@@ -13,7 +13,7 @@ const Footer: FC = () => {
   };
 
   //rendering the social media links
-  const LINKS = footerLinks.map((item) => (
+  const LINKS = FOOTER_LINKS.map((item) => (
     <li key={item.id}>
       <SocialLink linkData={item} text="" />
     </li>

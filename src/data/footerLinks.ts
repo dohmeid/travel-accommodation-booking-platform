@@ -1,4 +1,4 @@
-export const footerLinks = [
+export const FOOTER_LINKS = [
   {
     id: 0,
     link: "https://www.linkedin.com/in/dohmeid/",
