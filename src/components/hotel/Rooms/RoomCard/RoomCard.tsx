@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useCartContext } from "../../../../context/cartProvider";
-import { Room } from "../../../../interfaces/hotelPageTypes";
+import { Room } from "../../../../interfaces/hotelTypes";
 import classes from "./RoomCard.module.css";
 
 interface Props {

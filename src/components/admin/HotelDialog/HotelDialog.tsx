@@ -1,7 +1,7 @@
 import React, { FC, useContext } from "react";
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
 import { AdminContext } from "../../../context/adminProvider";
-import { AdminContextType, City, Hotel } from "../../../interfaces/adminPageTypes";
+import { AdminContextType, City, Hotel } from "../../../interfaces/adminTypes";
 import { UseDialog, DialogState } from "../../../hooks/useDialog";
 import * as Yup from "yup";
 import classes from "./HotelDialog.module.css";

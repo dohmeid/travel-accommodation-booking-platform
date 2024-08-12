@@ -17,7 +17,7 @@ import {
   HotelInformation,
   Review,
   Room,
-} from "../interfaces/hotelPageTypes";
+} from "../interfaces/hotelTypes";
 
 interface HotelContextProps {
   gallery: GalleryImage[];

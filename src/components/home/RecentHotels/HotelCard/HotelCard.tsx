@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
-import { RecentHotel } from "../../../../interfaces/homePageTypes";
+import { RecentHotel } from "../../../../interfaces/homeTypes";
 import StarRating from "../../../common/StarRating/StarRating";
 import classes from "./HotelCard.module.css";
 

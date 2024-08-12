@@ -13,7 +13,7 @@ import {
   sortResults,
 } from "../services/Utils/filterAndSortUtils";
 import { useError } from "./ErrorProvider";
-import { Amenity } from "../interfaces/adminPageTypes";
+import { Amenity } from "../interfaces/adminTypes";
 import {
   SearchResult,
   SearchFilters,

@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { City, Hotel } from "../interfaces/adminPageTypes";
+import { City, Hotel } from "../interfaces/adminTypes";
 
 export interface DialogState {
   management: "City" | "Hotel" | "";

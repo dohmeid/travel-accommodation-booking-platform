@@ -1,6 +1,6 @@
 import axios from "axios";
 import apiService from "./apiService";
-import { Booking, BookingConfirmation } from "../../interfaces/booking";
+import { Booking, BookingConfirmation } from "../../interfaces/bookingTypes";
 
 export const getBooking = async (bookingId: number) => {
   try {

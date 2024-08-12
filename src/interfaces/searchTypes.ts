@@ -1,4 +1,4 @@
-import { Amenity } from "./adminPageTypes";
+import { Amenity } from "./adminTypes";
 
 export interface SearchQuery {
   checkInDate: string; //default today

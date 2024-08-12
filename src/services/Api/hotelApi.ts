@@ -1,6 +1,6 @@
 import axios from "axios";
 import apiService from "./apiService";
-import { Hotel } from "../../interfaces/adminPageTypes";
+import { Hotel } from "../../interfaces/adminTypes";
 
 //this function is used to get all hotels
 export const getHotels = async () => {

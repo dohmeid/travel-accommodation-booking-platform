@@ -11,7 +11,7 @@ import {
   getTrendingDestinations,
   getRecentHotels,
 } from "../services/Api/homeApi";
-import { HomeContextType } from "../interfaces/homePageTypes";
+import { HomeContextType } from "../interfaces/homeTypes";
 import { useAuthContext } from "./authProvider";
 import { useError } from "./ErrorProvider";
 

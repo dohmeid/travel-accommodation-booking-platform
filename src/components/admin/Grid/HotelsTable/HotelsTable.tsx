@@ -3,7 +3,7 @@ import HotelRow from "./HotelRow/HotelRow";
 import DeleteDialog from "../../DeleteDialog/DeleteDialog";
 import HotelDialog from "../../HotelDialog/HotelDialog";
 import { AdminContext } from "../../../../context/adminProvider";
-import { Hotel, City, AdminContextType } from "../../../../interfaces/adminPageTypes";
+import { Hotel, City, AdminContextType } from "../../../../interfaces/adminTypes";
 import useDialog from "../../../../hooks/useDialog";
 import classes from "./HotelsTable.module.css";
 

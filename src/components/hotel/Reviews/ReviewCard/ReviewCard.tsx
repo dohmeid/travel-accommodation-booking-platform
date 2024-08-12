@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Review } from "../../../../interfaces/hotelPageTypes";
+import { Review } from "../../../../interfaces/hotelTypes";
 import classes from "./ReviewCard.module.css";
 
 interface Props {
