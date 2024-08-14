@@ -10,8 +10,13 @@ import {
   getFeaturedDeals,
   getTrendingDestinations,
   getRecentHotels,
-} from "../services/homeApi";
-import { HomeContextType } from "../types/homeTypes";
+} from "../api/homeService";
+import {
+  Deal,
+  Destination,
+  RecentHotel,
+  HomeContextType,
+} from "../types/homeTypes";
 import { useAuthContext } from "./authProvider";
 import { useError } from "./ErrorProvider";
 
@@ -19,33 +24,32 @@ export const HomeContext = createContext<HomeContextType | undefined>(
   undefined
 );
 export const HomeProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const { userId } = useAuthContext();
+  const [deals, setDeals] = useState<Deal[]>([]);
+  const [destinations, setDestinations] = useState<Destination[]>([]);
+  const [recentHotels, setRecentHotels] = useState<RecentHotel[]>([]);
   const { setError } = useError();
-
-  const [deals, setDeals] = useState([]);
-  const [destinations, setDestinations] = useState([]);
-  const [recentHotels, setRecentHotels] = useState([]);
+  const { getUserId } = useAuthContext();
 
   useEffect(() => {
-    const fetchHomeData = async () => {
-      try {
-        const [featuredDeals, trendingDestinations, recentHotels] =
-          await Promise.all([
-            getFeaturedDeals(),
-            getTrendingDestinations(),
-            getRecentHotels(userId),
-          ]);
-        setDeals(featuredDeals);
-        setDestinations(trendingDestinations);
-        setRecentHotels(recentHotels);
-        console.log("Home Data fetched successfully");
-      } catch (error: any) {
-        setError(error);
-      }
-    };
-
     fetchHomeData();
-  }, [userId]);
+  }, []);
+
+  const fetchHomeData = async () => {
+    try {
+      const userId = getUserId();
+      const [featuredDeals, trendingDestinations, recentHotels] =
+        await Promise.all([
+          getFeaturedDeals(),
+          getTrendingDestinations(),
+          getRecentHotels(userId),
+        ]);
+      setDeals(featuredDeals);
+      setDestinations(trendingDestinations);
+      setRecentHotels(recentHotels);
+    } catch (error: any) {
+      setError(error);
+    }
+  };
 
   return (
     <HomeContext.Provider
