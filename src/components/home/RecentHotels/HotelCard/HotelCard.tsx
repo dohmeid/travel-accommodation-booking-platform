@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { RecentHotel } from "../../../../types/homeTypes";
+import { formatDate } from "../../../../utils/dates";
 import StarRating from "../../../shared/StarRating/StarRating";
 import classes from "./HotelCard.module.css";
 
@@ -10,45 +11,49 @@ interface Props {
 
 const HotelCard: FC<Props> = ({ hotel }) => {
   const navigate = useNavigate();
+  const {
+    hotelId,
+    hotelName,
+    cityName,
+    thumbnailUrl,
+    starRating,
+    visitDate,
+    priceLowerBound,
+    priceUpperBound,
+  } = hotel;
+
   const handleNavigateButtonClick = () => {
     navigate(`/main/hotel/${hotel.hotelId}`);
   };
 
-  // Convert the ISO 8601 date string to a Date object
-  const date = new Date(hotel.visitDate);
-  const formattedDate = date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
   return (
     <div className={classes.card}>
-      <img src={hotel.thumbnailUrl}></img>
+      <img src={thumbnailUrl} alt={`${hotel.hotelName} Thumbnail`} />
 
       <div className={classes.flexContainer}>
         <p className={classes.title}>
-          {hotel.hotelName}, <span>{hotel.cityName}</span>
+          {hotelName}, <span>{cityName}</span>
         </p>
-        <StarRating stars={hotel.starRating} />
+        <StarRating stars={starRating} />
       </div>
 
       <p className={classes.date}>
-        <i className="bi bi-calendar-check"></i>
-        {formattedDate}
+        <i className="bi bi-calendar-check" />
+        {formatDate(visitDate)}
       </p>
 
       <div className={classes.flexContainer}>
         <p className={classes.price}>
-          ${hotel.priceLowerBound} - ${hotel.priceUpperBound}
+          ${priceLowerBound} - ${priceUpperBound}
           <span>/ night</span>
         </p>
         <button
           type="button"
           className={classes.hotelButton}
+          aria-label={`View details of ${hotel.hotelName}`}
           onClick={handleNavigateButtonClick}
         >
-          <i className="bi bi-arrow-right"></i>
+          <i className="bi bi-arrow-right" />
         </button>
       </div>
     </div>

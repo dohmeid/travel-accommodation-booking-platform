@@ -7,13 +7,18 @@ interface Props {
 }
 
 const DestinationCard: FC<Props> = ({ city }) => {
+  const { cityId, cityName, countryName, description, thumbnailUrl } = city;
   return (
-    <div className={classes.card} key={city.cityId}>
-      <img src={city.thumbnailUrl} alt={`${city.cityName} thumbnail`} />
+    <div className={classes.card} key={cityId}>
+      <img
+        src={thumbnailUrl}
+        alt={`${cityName} thumbnail`}
+        aria-label={`Thumbnail image of ${cityName}`}
+      />
       <p className={classes.name}>
-        {city.cityName}, <span>{city.countryName}</span>
+        {cityName}, <span>{countryName}</span>
       </p>
-      <div className={classes.description}>{city.description}</div>
+      <div className={classes.description}>{description}</div>
     </div>
   );
 };

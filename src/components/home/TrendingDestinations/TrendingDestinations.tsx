@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import { useHomeContext } from "../../../context/homeProvider";
 import DestinationCard from "./DestinationCard/DestinationCard";
 import classes from "./TrendingDestinations.module.css";
@@ -6,10 +6,17 @@ import classes from "./TrendingDestinations.module.css";
 const TrendingDestinations: FC = () => {
   const { destinations } = useHomeContext();
 
-  //rendering the destinations list
-  const DESTINATIONS = destinations.map((item) => (
-    <DestinationCard key={item.cityId} city={item} />
-  ));
+  const DESTINATIONS = useMemo(
+    () =>
+      destinations.length > 0 ? (
+        destinations.map((item) => (
+          <DestinationCard key={item.cityId} city={item} />
+        ))
+      ) : (
+        <p>No destinations to display...</p>
+      ),
+    [destinations]
+  );
 
   return (
     <div className={classes.trendingDestinationsSection}>
@@ -18,10 +25,7 @@ const TrendingDestinations: FC = () => {
         Planning you next adventure? Here are the most popular choices for
         travellers.
       </h3>
-
-      <div className={classes.list}>
-        {destinations.length === 0 ? <p>Loading...</p> : DESTINATIONS}
-      </div>
+      <div className={classes.list}>{DESTINATIONS}</div>
     </div>
   );
 };

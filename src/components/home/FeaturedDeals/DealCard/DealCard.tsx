@@ -1,45 +1,60 @@
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Deal } from "../../../../types/homeTypes";
 import StarRating from "../../../shared/StarRating/StarRating";
-import classes from "./HotelCard.module.css";
+import classes from "./DealCard.module.css";
 
 interface Props {
   dealData: Deal;
 }
 
-const HotelCard: FC<Props> = ({ dealData }) => {
+const DealCard: FC<Props> = ({ dealData }) => {
   const navigate = useNavigate();
-  const handleNavigateButtonClick = () => {
-    navigate(`/main/hotel/${dealData.hotelId}`);
-  };
+  const {
+    title,
+    description,
+    roomPhotoUrl,
+    hotelId,
+    hotelName,
+    hotelStarRating,
+    cityName,
+    originalRoomPrice,
+    discount,
+    finalPrice,
+  } = dealData;
+
+  const handleNavigateButtonClick = useCallback(() => {
+    navigate(`/main/hotel/${hotelId}`);
+  }, [navigate, hotelId]);
 
   return (
     <div className={classes.card}>
-      <img src={dealData.roomPhotoUrl}></img>
+      <img src={roomPhotoUrl} alt={`${hotelName} room`} />
 
       <div className={classes.dataContainer}>
         <div className={classes.flexContainer}>
-          <p className={classes.title}>{dealData.title}</p>
-          <StarRating stars={dealData.hotelStarRating} />
+          <p className={classes.title}>{title}</p>
+          <StarRating stars={hotelStarRating} />
         </div>
 
         <p className={classes.location}>
           <i className="bi bi-geo-alt"></i>
-          {dealData.hotelName}, {dealData.cityName}
+          {hotelName}, {cityName}
         </p>
 
-        <p className={classes.description}>{dealData.description}</p>
+        <p className={classes.description}>{description}</p>
 
         <div className={`${classes.flexContainer} ${classes.priceContainer}`}>
           <p className={classes.price}>
-            ${dealData.finalPrice}
-            <span>was ${dealData.originalRoomPrice}</span>
+            ${finalPrice}
+            <span>was ${originalRoomPrice}</span>
           </p>
+
           <button
             type="button"
             className={classes.hotelButton}
             onClick={handleNavigateButtonClick}
+            aria-label={`Navigate to details of ${hotelName}`}
           >
             <i className="bi bi-arrow-right"></i>
           </button>
@@ -49,4 +64,4 @@ const HotelCard: FC<Props> = ({ dealData }) => {
   );
 };
 
-export default HotelCard;
+export default DealCard;

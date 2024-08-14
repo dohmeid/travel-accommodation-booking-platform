@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import SearchBar from "../../search/HotelsSearchBar/HotelsSearchBar";
+import HotelsSearchBar from "../../search/HotelsSearchBar/HotelsSearchBar";
 import classes from "./LandingView.module.css";
 
 const LandingView: FC = () => {
@@ -14,7 +14,7 @@ const LandingView: FC = () => {
           perfect stay worldwide in just a few clicks.
         </p>
       </div>
-      <SearchBar />
+      <HotelsSearchBar />
     </div>
   );
 };

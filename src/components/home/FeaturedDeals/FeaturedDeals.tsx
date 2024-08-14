@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import { useHomeContext } from "../../../context/homeProvider";
-import HotelCard from "./HotelCard/HotelCard";
+import DealCard from "./DealCard/DealCard";
 import Slideshow from "../Slideshow/Slideshow";
 import classes from "./FeaturedDeals.module.css";
 
@@ -9,9 +9,10 @@ const FeaturedDeals: FC = () => {
   const CARD_WIDTH_REM = 38; // Card width in rem
 
   //generate carousel items
-  const DEALS = deals.map((deal, index) => (
-    <HotelCard key={index} dealData={deal} />
-  ));
+  const DEALS = useMemo(
+    () => deals.map((deal) => <DealCard key={deal.hotelId} dealData={deal} />),
+    [deals]
+  );
 
   return (
     <div className={classes.featuredDealsSection}>
