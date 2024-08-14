@@ -9,7 +9,12 @@ interface Props {
 }
 
 const Slideshow: FC<Props> = ({ items, renderItems, cardWidth }) => {
-  const { currentIndex, handleIndicatorClick } = useSlideshow(items);
+  const {
+    currentIndex,
+    handleIndicatorClick,
+    pauseSlideshow,
+    resumeSlideshow,
+  } = useSlideshow(items);
   const itemsLength = renderItems.length;
 
   return (
@@ -22,7 +27,19 @@ const Slideshow: FC<Props> = ({ items, renderItems, cardWidth }) => {
             width: `${itemsLength * cardWidth}rem`,
           }}
         >
-          {itemsLength > 0 ? renderItems : <p>Loading...</p>}
+          {itemsLength > 0 ? (
+            renderItems.map((item, index) => (
+              <div
+                key={index}
+                onMouseEnter={pauseSlideshow}
+                onMouseLeave={resumeSlideshow}
+              >
+                {item}
+              </div>
+            ))
+          ) : (
+            <p>No items to display...</p>
+          )}
         </div>
       </div>
 
@@ -33,8 +50,9 @@ const Slideshow: FC<Props> = ({ items, renderItems, cardWidth }) => {
             className={`${classes.dot} ${
               index === currentIndex ? classes.active : ""
             }`}
+            aria-label={`Slide ${index + 1}`}
             onClick={() => handleIndicatorClick(index)}
-          ></div>
+          />
         ))}
       </div>
     </div>
