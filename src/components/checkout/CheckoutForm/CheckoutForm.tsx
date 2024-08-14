@@ -3,7 +3,7 @@ import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { useCartContext } from "../../../context/cartProvider";
 import { useBookingContext } from "../../../context/bookingProvider";
-import { currentDate } from "../../../utils/dates";
+import { currentDateISO } from "../../../utils/dates";
 import classes from "./CheckoutForm.module.css";
 
 // the yup module schema for validating the login form
@@ -74,7 +74,7 @@ const CheckoutForm: FC = () => {
       hotelName: "",
       roomNumber: cartItems[0].roomNumber,
       roomType: cartItems[0].roomType,
-      bookingDateTime: currentDate, //"2024-08-03T20:01:47.334Z";
+      bookingDateTime: currentDateISO, //"2024-08-03T20:01:47.334Z";
       totalCost: getTotalPrice(),
       paymentMethod: values.paymentMethod,
     };
