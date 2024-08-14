@@ -25,7 +25,7 @@ const Gallery: FC = () => {
         <img
           key={image.id}
           src={image.url}
-          alt={`Gallery Image ${index + 1}`}
+          alt={`Gallery ${index + 1}`}
           className={classes.hotelImage}
           onClick={() => handleImageClick(image.url)}
         />
@@ -42,3 +42,4 @@ const Gallery: FC = () => {
 };
 
 export default Gallery;
+

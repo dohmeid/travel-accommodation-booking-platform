@@ -10,80 +10,47 @@ import {
   getHotelInfo,
   getHotelReviews,
   getHotelAvailableRooms,
-} from "../services/hotelApi";
-import { useError } from "./ErrorProvider";
+} from "../api/hotelService";
 import {
   GalleryImage,
   HotelInformation,
   Review,
   Room,
+  HotelContextProps,
 } from "../types/hotelTypes";
-
-interface HotelContextProps {
-  gallery: GalleryImage[];
-  info: HotelInformation | undefined;
-  reviews: Review[];
-  rooms: Room[];
-  fetchGallery: (id: number) => Promise<void>;
-  fetchInformation: (id: number) => Promise<void>;
-  fetchReviews: (id: number) => Promise<void>;
-  fetchAvailableRooms: (
-    id: number,
-    checkInDate: string,
-    checkOutDate: string
-  ) => Promise<void>;
-}
+import { useError } from "./ErrorProvider";
 
 const HotelContext = createContext<HotelContextProps | undefined>(undefined);
 
 export const HotelProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [gallery, setGallery] = useState<GalleryImage[]>([]);
-  const [info, setInfo] = useState<HotelInformation | undefined>();
+  const [info, setInfo] = useState<HotelInformation | null>(null);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [rooms, setRooms] = useState<Room[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { setError } = useError();
 
-  const fetchGallery = async (hotelId: number) => {
-    try {
-      const responseData = await getHotelGallery(hotelId);
-      setGallery(responseData);
-    } catch (error: any) {
-      setError(error);
-    }
-  };
-
-  const fetchInformation = async (hotelId: number) => {
-    try {
-      const responseData = await getHotelInfo(hotelId);
-      setInfo(responseData);
-    } catch (error: any) {
-      setError(error);
-    }
-  };
-
-  const fetchReviews = async (hotelId: number) => {
-    try {
-      const responseData = await getHotelReviews(hotelId);
-      setReviews(responseData);
-    } catch (error: any) {
-      setError(error);
-    }
-  };
-
-  const fetchAvailableRooms = async (
+  const fetchHotelData = async (
     hotelId: number,
     checkInDate: string,
     checkOutDate: string
   ) => {
     try {
-      const responseData = await getHotelAvailableRooms(
-        hotelId,
-        checkInDate,
-        checkOutDate
-      );
-      setRooms(responseData);
+      const [hotelGallery, hotelInfo, hotelReviews, hotelRooms] =
+        await Promise.all([
+          getHotelGallery(hotelId),
+          getHotelInfo(hotelId),
+          getHotelReviews(hotelId),
+          getHotelAvailableRooms(hotelId, checkInDate, checkOutDate),
+        ]);
+      setGallery(hotelGallery);
+      setInfo(hotelInfo);
+      setReviews(hotelReviews);
+      setRooms(hotelRooms);
     } catch (error: any) {
       setError(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -94,10 +61,8 @@ export const HotelProvider: FC<{ children: ReactNode }> = ({ children }) => {
         info,
         reviews,
         rooms,
-        fetchGallery,
-        fetchInformation,
-        fetchReviews,
-        fetchAvailableRooms,
+        isLoading,
+        fetchHotelData,
       }}
     >
       {children}

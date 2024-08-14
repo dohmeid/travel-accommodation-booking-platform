@@ -29,7 +29,7 @@ const Information: FC = () => {
           <div>
             <h2>{hotelName}</h2>
             <p>
-              <i className="bi bi-geo-alt-fill"></i>
+              <i className="bi bi-geo-alt-fill" />
               {location}
             </p>
           </div>
@@ -47,7 +47,7 @@ const Information: FC = () => {
           <ul className={classes.amenitiesContainer}>
             {amenities.map((a, index) => (
               <li key={index} className={classes.amenity}>
-                <i className="bi bi-plus-circle-fill"></i>
+                <i className="bi bi-plus-circle-fill" />
                 <div>
                   <h4>{a.name}</h4>
                   <p>{a.description}</p>
@@ -58,11 +58,7 @@ const Information: FC = () => {
         </div>
       </div>
 
-      <Map
-        hotel={hotelName}
-        latitude={latitude}
-        longitude={longitude}
-      />
+      <Map hotel={hotelName} latitude={latitude} longitude={longitude} />
     </div>
   );
 };

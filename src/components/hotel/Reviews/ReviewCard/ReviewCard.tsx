@@ -17,6 +17,7 @@ const ReviewCard: FC<Props> = ({ reviewData }) => {
           {[...Array(5)].map((_, index) => (
             <i
               key={index}
+              aria-label={`Star ${index + 1}`}
               className={`bi bi-star-fill ${
                 index < rating ? classes.filledStar : ""
               }`}

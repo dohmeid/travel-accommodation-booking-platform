@@ -31,17 +31,18 @@ const RoomCard: FC<Props> = ({ roomData }) => {
 
       <div className={classes.capacity}>
         <p>
-          <i className="bi bi-people-fill"></i> {capacityOfAdults} adults
+          <i className="bi bi-people-fill" />
+          {capacityOfAdults} adults
         </p>
         <p>
-          <i className="bi bi-person-arms-up"></i> {capacityOfChildren} children
+          <i className="bi bi-person-arms-up" /> {capacityOfChildren} children
         </p>
         <p>
           <i
             className={`bi ${
               availability ? "bi-check-circle-fill" : "bi-x-circle-fill"
             }`}
-          ></i>{" "}
+          />{" "}
           {availability ? "Available" : "Not available"}
         </p>
       </div>
@@ -64,6 +65,7 @@ const RoomCard: FC<Props> = ({ roomData }) => {
         className={classes.addButton}
         disabled={isItemInCart(roomId)}
         onClick={handleAddToCartButtonClick}
+        aria-label={isItemInCart(roomId) ? "Remove from cart" : "Add to cart"}
       >
         {isItemInCart(roomId) ? "Added" : "Add to cart"}
       </button>

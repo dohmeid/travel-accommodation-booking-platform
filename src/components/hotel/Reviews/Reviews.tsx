@@ -1,28 +1,28 @@
-import React, { FC, useState } from "react";
+import React, { FC, useCallback, useState } from "react";
 import { useHotelContext } from "../../../context/hotelProvider";
 import ReviewCard from "./ReviewCard/ReviewCard";
 import classes from "./Reviews.module.css";
 
 const Reviews: FC = () => {
   const { reviews } = useHotelContext();
-  const [visibleCount, setVisibleCount] = useState(6);
-  const [showAllReviews, setShowAllReviews] = useState(false);
+  const [isShowingAll, setIsShowingAll] = useState(false);
 
-  const handleShowMoreButtonClick = () => {
-    setVisibleCount(showAllReviews ? 6 : reviews.length); //show only 6 cards or all cards
-    setShowAllReviews(!showAllReviews);
-  };
+  const handleToggleReviews = useCallback(() => {
+    setIsShowingAll((prevState) => !prevState);
+  }, []);
 
   if (!reviews || reviews.length === 0) {
     return <p>No reviews to display</p>;
   }
+
+  const displayedReviews = isShowingAll ? reviews : reviews.slice(0, 6);
 
   return (
     <div className={classes.reviewsContainer}>
       <h2>Guests Rating & Reviews</h2>
 
       <div className={classes.cardsContainer}>
-        {reviews.slice(0, visibleCount).map((review) => (
+        {displayedReviews.map((review) => (
           <ReviewCard key={review.reviewId} reviewData={review} />
         ))}
       </div>
@@ -30,9 +30,10 @@ const Reviews: FC = () => {
       {reviews.length > 6 && (
         <button
           className={classes.showMoreButton}
-          onClick={handleShowMoreButtonClick}
+          onClick={handleToggleReviews}
+          aria-expanded={isShowingAll}
         >
-          {showAllReviews ? "Show Less" : "Show More"}
+          {isShowingAll ? "Show Less" : "Show More"}
         </button>
       )}
     </div>
