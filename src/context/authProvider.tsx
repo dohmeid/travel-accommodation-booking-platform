@@ -14,33 +14,39 @@ import { isTokenValid, getUserIdFromToken } from "../utils/authUtils";
 export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
+  const [userInfo, setUserInfo] = useState<UserInfo>({
+    authentication: localStorage.getItem("authToken"),
+    userType: localStorage.getItem("userType"),
+  });
   const navigate = useNavigate();
 
   //logout if token is expired (notValid)
   useEffect(() => {
-    if (userInfo?.authentication && !isTokenValid(userInfo.authentication)) {
+    const token = userInfo.authentication;
+    if (token && !isTokenValid(token)) {
       handleLogout();
     }
-  }, [userInfo]);
+  }, [userInfo?.authentication]);
 
-  const getUserId = useCallback((): number => {
-    if (userInfo?.authentication) {
-      return getUserIdFromToken(userInfo.authentication);
-    }
-    return -1;
-  }, [userInfo]);
+  const getUserId = useCallback(() => {
+    return userInfo.authentication
+      ? getUserIdFromToken(userInfo.authentication)
+      : -1;
+  }, [userInfo.authentication]);
 
   const handleLoginSuccess = (user: UserInfo) => {
-    setUserInfo(user);
-    localStorage.setItem("authToken", user.authentication);
-    const route = user.userType === "Admin" ? "/adminPortal" : "/main";
-    navigate(route);
+    if (user.authentication && user.userType) {
+      setUserInfo(user);
+      localStorage.setItem("authToken", user.authentication);
+      localStorage.setItem("userType", user.userType);
+      navigate(user.userType === "Admin" ? "/adminPortal" : "/main");
+    }
   };
 
   const handleLogout = () => {
-    setUserInfo(null);
+    setUserInfo({ authentication: null, userType: null });
     localStorage.removeItem("authToken");
+    localStorage.removeItem("userType");
     navigate("/login");
   };
 

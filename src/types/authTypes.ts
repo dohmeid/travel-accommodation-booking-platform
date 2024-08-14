@@ -1,6 +1,6 @@
 export interface UserInfo {
-  authentication: string;
-  userType: "Admin" | "User";
+  authentication: string | null;
+  userType: string | null;
 }
 
 export interface JwtPayload {
@@ -15,7 +15,7 @@ export interface LoginFormValues {
 }
 
 export interface AuthContextType {
-  userInfo: UserInfo | null;
+  userInfo: UserInfo;
   getUserId: () => number;
   handleLoginSuccess: (userInfo: UserInfo) => void;
   handleLogout: () => void;
