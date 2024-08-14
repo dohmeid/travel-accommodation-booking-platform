@@ -1,5 +1,5 @@
 import { jwtDecode } from "jwt-decode";
-import { JwtPayload } from "../types/auth";
+import { JwtPayload } from "../types/authTypes";
 
 //check if token is still valid (not expired)
 export const isTokenValid = (token: string): boolean => {
@@ -8,7 +8,7 @@ export const isTokenValid = (token: string): boolean => {
     const exp = payload.exp * 1000; //get expiration time in ms
     return Date.now() < exp; //check if the current time is less than the expiration time
   } catch (error) {
-    console.error("Invalid token", error);
+    console.error("Error parsing token:", error);
     return false;
   }
 };
@@ -17,11 +17,9 @@ export const isTokenValid = (token: string): boolean => {
 export const getUserIdFromToken = (token: string): number => {
   try {
     const decodedToken = jwtDecode<JwtPayload>(token);
-    const userId = Number(decodedToken.userId);
-    return !isNaN(userId) ? userId : -1;
-    // return Number(decodedToken.userId) || -1;
+    return Number(decodedToken.userId) || -1;
   } catch (error) {
-    console.error("Invalid token", error);
+    console.error("Error parsing token:", error);
     return -1;
   }
 };

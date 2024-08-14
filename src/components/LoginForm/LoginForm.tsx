@@ -1,8 +1,8 @@
 import React, { FC, useState } from "react";
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
-import { LoginFormValues } from "../../types/auth";
-import { authenticateUser } from "../../services/authApi";
+import { LoginFormValues } from "../../types/authTypes";
+import { authenticateUser } from "../../api/authService";
 import { useAuthContext } from "../../context/authProvider";
 import Snackbar from "../shared/Snackbar/Snackbar";
 import classes from "./LoginForm.module.css";
@@ -26,11 +26,8 @@ const LoginForm: FC = () => {
     { setSubmitting, setErrors }: FormikHelpers<LoginFormValues>
   ) => {
     try {
-      const { authentication, userType } = await authenticateUser(
-        values.username,
-        values.password
-      );
-      handleLoginSuccess(authentication, userType);
+      const userData = await authenticateUser(values.username, values.password);
+      handleLoginSuccess(userData);
     } catch (error: any) {
       setErrors({
         api: "Login failed. Please check your credentials and try again.",
@@ -85,13 +82,14 @@ const LoginForm: FC = () => {
                 id="showPassword"
                 type="checkbox"
                 checked={showPassword}
+                aria-label="Show or hide password"
                 onChange={() => setShowPassword(!showPassword)}
               />
-              {showPassword ? (
-                <i className="bi bi-eye-fill"></i>
-              ) : (
-                <i className="bi bi-eye-slash-fill"></i>
-              )}
+              <i
+                className={
+                  showPassword ? "bi bi-eye-fill" : "bi bi-eye-slash-fill"
+                }
+              />
             </label>
           </div>
 

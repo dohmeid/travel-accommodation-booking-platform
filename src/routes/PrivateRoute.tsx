@@ -8,9 +8,11 @@ interface Props {
 }
 
 const PrivateRoute: FC<Props> = ({ allowedRoles, children }) => {
-  const { authToken, userType } = useAuthContext();
-  const isAuthenticated = !!authToken;
-  const isAuthorized = userType && allowedRoles.includes(userType);
+  const { userInfo } = useAuthContext();
+
+  const isAuthenticated = !!userInfo?.authentication;
+  const isAuthorized =
+    userInfo?.userType && allowedRoles.includes(userInfo.userType);
 
   //if not authenticated or not authorized -> redirect to the unauthorized error page
   if (!isAuthenticated || !isAuthorized) {

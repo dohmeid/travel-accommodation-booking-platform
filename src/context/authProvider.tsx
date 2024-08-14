@@ -2,67 +2,53 @@ import React, {
   FC,
   ReactNode,
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useState,
 } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContextType } from "../types/auth";
+import { UserInfo, AuthContextType } from "../types/authTypes";
 import { isTokenValid, getUserIdFromToken } from "../utils/authUtils";
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [authToken, setAuthToken] = useState(localStorage.getItem("authToken"));
-  const [userType, setUserType] = useState(localStorage.getItem("userType"));
-  const [userId, setUserId] = useState(-1);
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const navigate = useNavigate();
 
-  //Check token validity and extract user information
+  //logout if token is expired (notValid)
   useEffect(() => {
-    if (authToken) {
-      if (isTokenValid(authToken)) {
-        setUserId(getUserIdFromToken(authToken));
-      } else {
-        handleLogout(); // Logout if token is expired
-      }
+    if (userInfo?.authentication && !isTokenValid(userInfo.authentication)) {
+      handleLogout();
     }
-  }, [authToken]);
+  }, [userInfo]);
 
-  const handleLoginSuccess = (token: string, userType: string) => {
-    setAuthToken(token);
-    setUserType(userType);
-    localStorage.setItem("authToken", token);
-    localStorage.setItem("userType", userType);
-
-    switch (userType) {
-      case "User":
-        navigate("/main");
-        break;
-      case "Admin":
-        navigate("/adminPortal");
-        break;
-      default:
-        navigate("/unauthorizedUser");
-        break;
+  const getUserId = useCallback((): number => {
+    if (userInfo?.authentication) {
+      return getUserIdFromToken(userInfo.authentication);
     }
+    return -1;
+  }, [userInfo]);
+
+  const handleLoginSuccess = (user: UserInfo) => {
+    setUserInfo(user);
+    localStorage.setItem("authToken", user.authentication);
+    const route = user.userType === "Admin" ? "/adminPortal" : "/main";
+    navigate(route);
   };
 
   const handleLogout = () => {
-    setAuthToken(null);
-    setUserType(null);
-    setUserId(-1);
+    setUserInfo(null);
     localStorage.removeItem("authToken");
-    localStorage.removeItem("userType");
     navigate("/login");
   };
 
   return (
     <AuthContext.Provider
       value={{
-        authToken,
-        userType,
-        userId,
+        userInfo,
+        getUserId,
         handleLoginSuccess,
         handleLogout,
       }}
