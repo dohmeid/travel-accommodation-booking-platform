@@ -1,56 +1,74 @@
 import { jsPDF } from "jspdf";
 import { BookingConfirmation } from "../types/bookingTypes";
 
-export const generatePDF = (bookingConfirm: BookingConfirmation) => {
-  if (!bookingConfirm) return;
+// constants for positioning and styles
+const FONT_SIZES = {
+  TITLE: 18,
+  HEADER: 14,
+  SECTION_TITLE: 13,
+  TEXT: 12,
+  FOOTER: 10,
+};
 
+const COLORS = {
+  TITLE: "#B25E39",
+  HEADER: "#473D3A",
+};
+const PADDING = 10;
+
+export const generatePDF = (bookingConfirm: BookingConfirmation) => {
   const doc = new jsPDF();
   doc.setLineWidth(0.2); // line width in units
 
-  // The title of the doc
-  doc.setFontSize(18);
-  doc.setTextColor("#B25E39");
+  // Title
+  doc.setFontSize(FONT_SIZES.TITLE);
+  doc.setTextColor(COLORS.TITLE);
   doc.setFont("bold");
-  doc.text("Booking Confirmation", 10, 15);
+  doc.text("Booking Confirmation", PADDING, 15);
 
-  // Set the secondary header for the doc
-  doc.setFontSize(14);
-  doc.setTextColor("#473D3A");
+  // Secondary header
+  doc.setFontSize(FONT_SIZES.HEADER);
+  doc.setTextColor(COLORS.HEADER);
   doc.setFont("normal");
   doc.text(
     "Thanks for your reservation, here are the details of your stay",
-    10,
+    PADDING,
     25
   );
 
-  // Set the sections titles
-  doc.setFontSize(13);
-  doc.setTextColor("#473D3A");
+  // Section titles
+  doc.setFontSize(FONT_SIZES.SECTION_TITLE);
+  doc.setTextColor(COLORS.HEADER);
   doc.setFont("italic");
-  doc.text("Payment Information", 10, 38);
-  doc.text("Booking Information", 10, 68);
+  doc.text("Payment Information", PADDING, 38);
+  doc.text("Booking Information", PADDING, 68);
 
   // Payment Information
-  doc.text(`Name: ${bookingConfirm.customerName}`, 20, 45);
-  doc.text(`Payment Method: ${bookingConfirm.paymentMethod}`, 20, 50);
-  doc.text(`Total: $${bookingConfirm.totalCost}`, 20, 55);
+  doc.setFontSize(FONT_SIZES.TEXT);
+  doc.setFont("normal");
+  doc.text(`Name: ${bookingConfirm.customerName}`, PADDING * 2, 45);
+  doc.text(`Payment Method: ${bookingConfirm.paymentMethod}`, PADDING * 2, 50);
+  doc.text(`Total: $${bookingConfirm.totalCost}`, PADDING * 2, 55);
 
   // Booking Information
-  doc.setFontSize(12);
-  doc.text(`Hotel Name: ${bookingConfirm.hotelName}`, 20, 75);
-  doc.text(`Room Number: ${bookingConfirm.roomNumber}`, 20, 80);
-  doc.text(`Room Type: ${bookingConfirm.roomType}`, 20, 85);
-  doc.text(`Booking Date & Time: ${bookingConfirm.bookingDateTime}`, 20, 90);
-  doc.text(`Booking Status: ${bookingConfirm.bookingStatus}`, 20, 95);
+  doc.text(`Hotel Name: ${bookingConfirm.hotelName}`, PADDING * 2, 75);
+  doc.text(`Room Number: ${bookingConfirm.roomNumber}`, PADDING * 2, 80);
+  doc.text(`Room Type: ${bookingConfirm.roomType}`, PADDING * 2, 85);
+  doc.text(
+    `Booking Date & Time: ${bookingConfirm.bookingDateTime}`,
+    PADDING * 2,
+    90
+  );
+  doc.text(`Booking Status: ${bookingConfirm.bookingStatus}`, PADDING * 2, 95);
   doc.text(
     `Confirmation Number: ${bookingConfirm.confirmationNumber}`,
-    20,
+    PADDING * 2,
     100
   );
 
-  // Set the footer
-  doc.setFontSize(10);
-  doc.text(`@TravelHub`, 10, 120);
+  // Footer
+  doc.setFontSize(FONT_SIZES.FOOTER);
+  doc.text(`@TravelHub`, PADDING, 120);
 
   // Save the pdf
   doc.save("booking-confirmation.pdf");

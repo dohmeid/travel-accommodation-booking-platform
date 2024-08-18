@@ -12,15 +12,12 @@ export const filterResults = (
     const matchesPrice =
       hotel.roomPrice >= filters.minPrice &&
       hotel.roomPrice <= filters.maxPrice;
-    const matchesRating =
-      !filters.rating || hotel.starRating == filters.rating;
+    const matchesRating = !filters.rating || hotel.starRating == filters.rating;
     const matchesRoomType = !filters.room || hotel.roomType === filters.room;
     const matchesAmenities =
       filters.amenitiesNames.length === 0 ||
-      filters.amenitiesNames.every((selectedAmenity) =>
-        hotel.amenities.some((amenity) =>
-          amenity.name.toLowerCase().includes(selectedAmenity.toLowerCase())
-        )
+      hotel.amenities.some((amenity) =>
+        filters.amenitiesNames.includes(amenity.name.toLowerCase())
       );
 
     return matchesPrice && matchesRating && matchesRoomType && matchesAmenities;
