@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import useCurrentPage from "../../../hooks/useCurrentPage";
 import { useAuthContext } from "../../../context/authProvider";
-import NavLink from "./NavLink/NavLink";
+import NavLink from "../NavLink/NavLink";
 import classes from "./MainHeader.module.css";
 
 const MainHeader: FC = () => {

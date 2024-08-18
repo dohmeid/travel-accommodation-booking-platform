@@ -13,4 +13,9 @@
     .active {
         text-decoration: underline;
     }
+
+    .leftNavActive {
+        color: var(--orange1);
+        font-weight: 700;
+    }
 }
