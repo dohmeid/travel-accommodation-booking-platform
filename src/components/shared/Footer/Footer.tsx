@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { FOOTER_LINKS } from "../../../data/footerLinks";
+import { FOOTER_LINKS } from "../../../constants/footerLinks";
 import SocialLink from "./SocialLink/SocialLink";
 import classes from "./Footer.module.css";
 
