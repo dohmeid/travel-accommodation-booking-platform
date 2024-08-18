@@ -38,7 +38,7 @@
         list-style: none;
         transition: width 0.3s ease-in-out;
 
-        .navItem {
+        li {
             height: 3rem;
             display: flex;
             align-items: center;
@@ -46,10 +46,8 @@
             cursor: pointer;
             margin-bottom: 1rem;
 
-            a{
-                color: var(--white);
+            a {
                 font-size: 0.8rem;
-                font-weight: normal;
                 font-family: var(--secondary-font);
                 text-decoration: none;
 

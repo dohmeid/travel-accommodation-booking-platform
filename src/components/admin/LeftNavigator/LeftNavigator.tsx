@@ -1,67 +1,61 @@
 import React, { useState, FC } from "react";
-import { NavLink } from "react-router-dom";
+import useCurrentPage from "../../../hooks/useCurrentPage";
+import NavLink from "../../shared/NavLink/NavLink";
 import classes from "./LeftNavigator.module.css";
 
 const LeftNavigator: FC = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
+  const {
+    isInCityManagementPage,
+    isInHotelManagementPage,
+    isInRoomManagementPage,
+  } = useCurrentPage();
 
-  const toggleOpen = () => {
-    setIsNavCollapsed(!isNavCollapsed);
+  const toggleNavigation = () => {
+    setIsNavCollapsed((prev) => !prev);
   };
 
   return (
     <nav
-      className={
-        isNavCollapsed ? classes.nav : `${classes.nav} ${classes.navClosed}`
-      }
+      className={`${classes.nav} ${isNavCollapsed ? "" : classes.navClosed}`}
+      aria-label="Primary Navigation"
     >
-      <button type="button" className={classes.navBtn} onClick={toggleOpen}>
+      <button
+        type="button"
+        className={classes.navBtn}
+        aria-label={isNavCollapsed ? "Close Navigation" : "Open Navigation"}
+        onClick={toggleNavigation}
+      >
         <i
-          className={`${isNavCollapsed ? classes.xIcon : classes.listIcon} ${
-            isNavCollapsed ? "bi bi-x" : "bi bi-list"
+          className={`${isNavCollapsed ? "bi bi-x" : "bi bi-list"} ${
+            isNavCollapsed ? classes.xIcon : classes.listIcon
           }`}
-        ></i>
+          aria-hidden="true"
+        />
       </button>
 
       <ul className={classes.navList}>
-        <li className={classes.navItem}>
-          <NavLink
-            to="city"
-            style={({ isActive }) => ({
-              color: isActive ? "var(--orange1)" : "var(--white)",
-              fontWeight: isActive ? "700" : "300",
-            })}
-          >
-            <i className="fa-solid fa-city"></i>
-            Manage Cities
-          </NavLink>
-        </li>
-
-        <li className={classes.navItem}>
-          <NavLink
-            to="hotel"
-            style={({ isActive }) => ({
-              color: isActive ? "var(--orange1)" : "var(--white)",
-              fontWeight: isActive ? "700" : "300",
-            })}
-          >
-            <i className="fas fa-hotel"></i>
-            Manage Hotels
-          </NavLink>
-        </li>
-
-        <li className={classes.navItem}>
-          <NavLink
-            to="room"
-            style={({ isActive }) => ({
-              color: isActive ? "var(--orange1)" : "var(--white)",
-              fontWeight: isActive ? "700" : "300",
-            })}
-          >
-            <i className="fa fa-bed" aria-hidden="true"></i>
-            Manage Rooms
-          </NavLink>
-        </li>
+        <NavLink
+          to="city"
+          isActive={isInCityManagementPage}
+          label="Manage Cities"
+          iconClass="fa-solid fa-city"
+          isLeftNav
+        />
+        <NavLink
+          to="hotel"
+          isActive={isInHotelManagementPage}
+          label="Manage Hotels"
+          iconClass="fas fa-hotel"
+          isLeftNav
+        />
+        <NavLink
+          to="room"
+          isActive={isInRoomManagementPage}
+          label="Manage Rooms"
+          iconClass="fa fa-bed"
+          isLeftNav
+        />
       </ul>
     </nav>
   );
