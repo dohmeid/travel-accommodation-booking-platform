@@ -1,14 +1,14 @@
-import React, { FC, useContext } from "react";
-import classes from "./Header.module.css";
-import adminImage from "../../../assets/images/adminProfiePicture.png";
+import React, { FC } from "react";
 import { useAuthContext } from "../../../context/authProvider";
-
+import adminImage from "../../../assets/images/adminProfiePicture.png";
+import classes from "./Header.module.css";
 
 const Header: FC = () => {
   const { handleLogout } = useAuthContext();
 
   return (
     <header className={classes.header}>
+      {/* Logo section */}
       <div className={classes.logo}>
         <i className="bi bi-airplane-fill"></i>
         <div className={classes.logoDetails}>
@@ -17,6 +17,7 @@ const Header: FC = () => {
         </div>
       </div>
 
+      {/* Profile section */}
       <div className={classes.profile}>
         <img
           className={classes.image}
@@ -28,8 +29,13 @@ const Header: FC = () => {
           <p className={classes.role}>Administrator</p>
         </div>
 
-        <button type="button" className={classes.logoutBtn} onClick={handleLogout}>
-          <i className="bi bi-box-arrow-right"></i>
+        {/* Logout button */}
+        <button
+          type="button"
+          className={classes.logoutBtn}
+          onClick={handleLogout}
+        >
+          <i className="bi bi-box-arrow-right" aria-hidden="true" />
         </button>
       </div>
     </header>

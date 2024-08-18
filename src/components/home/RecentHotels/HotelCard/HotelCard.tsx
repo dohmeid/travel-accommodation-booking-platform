@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { RecentHotel } from "../../../../types/homeTypes";
-import { formatDate } from "../../../../utils/dates";
+import { formatISODate } from "../../../../utils/dates";
 import StarRating from "../../../shared/StarRating/StarRating";
 import classes from "./HotelCard.module.css";
 
@@ -39,7 +39,7 @@ const HotelCard: FC<Props> = ({ hotel }) => {
 
       <p className={classes.date}>
         <i className="bi bi-calendar-check" />
-        {formatDate(visitDate)}
+        {formatISODate(visitDate)}
       </p>
 
       <div className={classes.flexContainer}>

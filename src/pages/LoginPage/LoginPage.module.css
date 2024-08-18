@@ -5,6 +5,8 @@
     justify-content: center;
     background-image: url(../../assets/images/loginPageBackground.jpg);
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 
     .container {
         height: 22rem;

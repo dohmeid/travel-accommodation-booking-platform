@@ -7,7 +7,6 @@ import RecentHotels from "../../components/home/RecentHotels/RecentHotels";
 import classes from "./HomePage.module.css";
 
 const HomePage: FC = () => {
-  
   return (
     <div className={classes.homePage}>
       <ScrollToTopButton />

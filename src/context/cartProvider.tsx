@@ -31,7 +31,6 @@ export const CartProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   const addRoomToCart = useCallback((room: Room) => {
     setCartItems((prevItems) => [...prevItems, { ...room }]);
-    // setCartItems([...cartItems, { ...room }]);
   }, []);
 
   const deleteRoomFromCart = (id: number) => {

@@ -1,6 +1,6 @@
 import { apiRequest, HttpMethod } from "./apiClient";
 import { SearchQuery, SearchResult } from "../types/searchTypes";
-import { Amenity } from "../types/adminTypes";
+import { Amenity } from "../types/hotelTypes";
 
 export const getSearchResults = async (query: SearchQuery) => {
   return apiRequest<SearchResult[]>(

@@ -9,11 +9,10 @@ interface Props {
 
 const CartItem: FC<Props> = ({ room }) => {
   const { deleteRoomFromCart } = useCartContext();
-  const { roomPhotoUrl, roomType, price } = room;
+  const { roomId, roomPhotoUrl, roomType, price } = room;
 
   const handleDeleteButtonClick = () => {
-    console.log("dwel");
-    deleteRoomFromCart(room.roomId);
+    deleteRoomFromCart(roomId);
   };
 
   return (
@@ -22,7 +21,8 @@ const CartItem: FC<Props> = ({ room }) => {
       <h4 className={classes.title}>{roomType} Room</h4>
       <p className={classes.price}>${price}/night</p>
       <button type="button" onClick={handleDeleteButtonClick}>
-        Delete<i className="bi bi-trash3"></i>
+        Delete
+        <i className="bi bi-trash3" />
       </button>
     </div>
   );

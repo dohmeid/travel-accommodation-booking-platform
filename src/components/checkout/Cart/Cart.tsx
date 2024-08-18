@@ -16,7 +16,7 @@ const Cart: FC = () => {
       {cartItems.length === 0 ? (
         <p className={classes.noItems}>
           No rooms booked yet
-          <i className="bi bi-emoji-frown"></i>
+          <i className="bi bi-emoji-frown" />
         </p>
       ) : (
         <ul>{CART_LIST}</ul>
