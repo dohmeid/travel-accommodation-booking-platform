@@ -4,166 +4,68 @@ import React, {
   createContext,
   useState,
   useEffect,
+  useContext,
 } from "react";
 import {
   getCities,
   addCity,
   editCity,
   removeCity,
-} from "../services/cityApi";
-import { getHotels,addHotel, editHotel ,removeHotel} from "../services/hotelApi";
+} from "../api/manageCitiesService";
+import {
+  getHotels,
+  addHotel,
+  editHotel,
+  removeHotel,
+} from "../api/manageHotelsService";
 import { Hotel, City, AdminContextType } from "../types/adminTypes";
-import { useError } from "./ErrorProvider";
+import { useAdminCrud } from "../hooks/useAdminCrud";
 
 export const AdminContext = createContext<AdminContextType | null>(null);
-
 export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [cities, setCities] = useState<City[]>([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchFilter, setSearchFilter] = useState("name");
-
   const [hotels, setHotels] = useState<Hotel[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchOption, setSearchOption] = useState("name");
 
-  const { setError } = useError();
+  const { fetchData, createData, updateData, deleteData } = useAdminCrud();
 
   useEffect(() => {
-    fetchCities();
-    fetchHotels();
+    fetchData(getCities, setCities);
+    fetchData(getHotels, setHotels);
   }, []);
 
   //--------------------managing cities functions
-  //get all cities
-  const fetchCities = async () => {
-    try {
-      const responseData = await getCities();
-      setCities(responseData);
-    } catch (error: any) {
-      setError(error);
-    }
-  };
+  const createCity = (cityData: City) =>
+    createData(addCity, cityData, setCities);
+  const updateCity = (cityData: City) =>
+    updateData(editCity, cityData, setCities);
+  const deleteCity = (id: number) => deleteData(removeCity, id, setCities);
 
-  //add new city
-  const createCity = async (cityData: City) => {
-    try {
-      const responseData = await addCity(cityData);
-      //fetchCities();
-      setCities([...cities, { ...responseData }]); //add the new city to the cities list
-    } catch (error: any) {
-      setError(error);
-    }
-  };
-
-  //update a city
-  const updateCity = async (cityData: City) => {
-    try {
-      const responseData = await editCity(cityData);
-      //update the city in the original cities list
-      setCities(
-        cities.map((city) =>
-          city.id === cityData.id
-            ? {
-                ...city,
-                name: cityData.name,
-                description: cityData.description,
-              }
-            : city
-        )
-      );
-    } catch (error: any) {
-      setError(error);
-    }
-  };
-
-  //delete a city
-  const deleteCity = async (id: number) => {
-    try {
-      const responseData = await removeCity(id);
-      setCities(cities.filter((city) => city.id !== id)); //delete the city from the cities list
-    } catch (error: any) {
-      setError(error);
-    }
-  };
-
-  //this function returns the cities list to display on the screen - either original list or filtered based on search filters
   const getFilteredCities = (): City[] => {
-    if (searchQuery !== "" && searchFilter === "name") {
-      return cities.filter((city) =>
-        city.name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    } else if (searchQuery !== "" && searchFilter === "description") {
-      return cities.filter((city) =>
-        city.description.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    } else {
-      return cities;
-    }
+    const query = searchQuery.toLowerCase();
+    return cities.filter((city) =>
+      searchOption === "name"
+        ? city.name.toLowerCase().includes(query)
+        : city.description.toLowerCase().includes(query)
+    );
   };
 
   //--------------------managing hotels functions
-  //get all hotels
-  const fetchHotels = async () => {
-    try {
-      const responseData = await getHotels();
-      setHotels(responseData);
-    } catch (error: any) {
-      setError(error);
-    }
-  };
+  const createHotel = (cityID: number, hotelData: Hotel) =>
+    createData((data) => addHotel(cityID, data), hotelData, setHotels);
+  const updateHotel = (hotelData: Hotel) =>
+    updateData(editHotel, hotelData, setHotels);
+  const deleteHotel = (hotelId: number) =>
+    deleteData((id) => removeHotel(id), hotelId, setHotels);
 
-  //add new city
-  const createHotel= async (cityID: number, hotelData: Hotel) => {
-    try {
-      const responseData = await addHotel(cityID,hotelData);
-      //hotelData
-      setHotels([...hotels, { ...responseData }]); //add the new hotel to the hotels list
-    } catch (error: any) {
-      setError(error);
-    }
-  };
-
-  //update a hotel
-  const updateHotel = async (hotelData: Hotel) => {
-    try {
-      const responseData = await editHotel(hotelData);
-      //update the city in the original cities list
-      setHotels(
-        hotels.map((hotel) =>
-          hotel.id === hotelData.id
-            ? {
-                ...hotel,
-                ...hotelData,
-              }
-            : hotel
-        )
-      );
-    } catch (error: any) {
-      setError(error);
-    }
-  };
-
-  //delete a hotel
-  const deleteHotel = async (cityId: number,hotelId: number) => {
-    try {
-      const responseData = await removeHotel(cityId, hotelId);
-      setHotels(hotels.filter((hotel) => hotel.id !== hotelId)); //delete the hotel from the hotels list
-    } catch (error: any) {
-      setError(error);
-    }
-  };
-
-  //this function returns the cities list to display on the screen - either original list or filtered based on search filters
   const getFilteredHotels = (): Hotel[] => {
-    if (searchQuery !== "" && searchFilter === "name") {
-      return hotels.filter((hotel) =>
-        hotel.name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    } else if (searchQuery !== "" && searchFilter === "description") {
-      return hotels.filter((hotel) =>
-        hotel.description.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    } else {
-      return hotels;
-    }
+    const query = searchQuery.toLowerCase();
+    return hotels.filter((hotel) =>
+      searchOption === "name"
+        ? hotel.name.toLowerCase().includes(query)
+        : hotel.description.toLowerCase().includes(query)
+    );
   };
 
   return (
@@ -171,7 +73,7 @@ export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
       value={{
         cities,
         setSearchQuery,
-        setSearchFilter,
+        setSearchOption,
         createCity,
         updateCity,
         deleteCity,
@@ -187,4 +89,12 @@ export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
       {children}
     </AdminContext.Provider>
   );
+};
+
+export const useAdminContext = () => {
+  const context = useContext(AdminContext);
+  if (!context) {
+    throw new Error("useAdminContext must be used within AdminProvider");
+  }
+  return context;
 };

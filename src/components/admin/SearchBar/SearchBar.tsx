@@ -1,15 +1,12 @@
-import React, { FC, useState, useContext, ChangeEvent } from "react";
+import React, { FC, ChangeEvent } from "react";
 import classes from "./SearchBar.module.css";
-import { AdminContext } from "../../../context/adminProvider";
-import { City, AdminContextType } from "../../../types/adminTypes";
+import { useAdminContext } from "../../../context/AdminProvider";
 
 const SearchBar: FC = () => {
-  const { setSearchQuery, setSearchFilter } = useContext(
-    AdminContext
-  ) as AdminContextType;
+  const { setSearchQuery, setSearchOption } = useAdminContext();
 
-  const handleSelectOptionChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSearchFilter(e.target.value);
+  const handleSearchOptionChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSearchOption(e.target.value);
   };
 
   const handleSearchInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +28,7 @@ const SearchBar: FC = () => {
 
       <select
         className={classes.optionsDropdown}
-        onChange={handleSelectOptionChange}
+        onChange={handleSearchOptionChange}
       >
         <option value="name">Name</option>
         <option value="description">Description</option>
