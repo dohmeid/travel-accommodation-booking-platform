@@ -28,7 +28,7 @@ const Snackbar: FC<SnackbarProps> = ({ type, message, onClose }) => {
       clearInterval(interval);
       clearTimeout(timer);
     };
-  }, []);
+  }, [onClose]);
 
   const snackbarClass = `${classes.snackBar} ${classes[type]}`;
 

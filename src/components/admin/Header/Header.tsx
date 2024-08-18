@@ -22,7 +22,7 @@ const Header: FC = () => {
         <img
           className={classes.image}
           src={adminImage}
-          alt="Admin profile picture"
+          alt="Admin profile"
         />
         <div className={classes.details}>
           <p className={classes.name}>Doha Hmeid</p>

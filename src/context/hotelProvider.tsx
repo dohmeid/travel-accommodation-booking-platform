@@ -47,8 +47,8 @@ export const HotelProvider: FC<{ children: ReactNode }> = ({ children }) => {
       setInfo(hotelInfo);
       setReviews(hotelReviews);
       setRooms(hotelRooms);
-    } catch (error: any) {
-      notify(NotificationType.ERROR, error.message);
+    } catch (error) {
+      notify(NotificationType.ERROR, (error as Error).message);
     } finally {
       setIsLoading(false);
     }

@@ -46,8 +46,8 @@ export const HomeProvider: FC<{ children: ReactNode }> = ({ children }) => {
       setDeals(featuredDeals);
       setDestinations(trendingDestinations);
       setRecentHotels(recentHotels);
-    } catch (error: any) {
-      notify(NotificationType.ERROR, error.message);
+    } catch (error) {
+      notify(NotificationType.ERROR, (error as Error).message);
     }
   };
 

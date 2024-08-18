@@ -64,8 +64,8 @@ apiClient.interceptors.response.use(
 export const apiRequest = async <T>(
   method: HttpMethod,
   url: string,
-  data?: any,
-  params?: Record<string, any>,
+  data?: unknown,
+  params?: unknown,
 ): Promise<T> => {
   const config: AxiosRequestConfig = {
     method,
@@ -76,9 +76,12 @@ export const apiRequest = async <T>(
   try {
     const response = await apiClient(config);
     return response.data;
-  } catch (error: any) {
-    throw new Error(
-      `${error.message}, ${method.toUpperCase()} error in ${url} request`,
-    );
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(
+        `${error.message}, ${method.toUpperCase()} error in ${url} request`,
+      );
+    }
+    throw new Error('An unknown error occurred');
   }
 };

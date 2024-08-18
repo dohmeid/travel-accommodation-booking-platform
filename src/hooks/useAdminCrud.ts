@@ -17,8 +17,8 @@ export const useAdminCrud = () => {
     try {
       const responseData = await fetchFunction();
       setState(responseData);
-    } catch (error: any) {
-      notify(NotificationType.ERROR, error.message);
+    } catch (error) {
+      notify(NotificationType.ERROR, (error as Error).message);
     }
   };
 
@@ -31,8 +31,8 @@ export const useAdminCrud = () => {
       const responseData = await createFunction(data);
       setState((prevData) => [...prevData, responseData]);
       notify(NotificationType.SUCCESS, 'created new item successfully');
-    } catch (error: any) {
-      notify(NotificationType.ERROR, error.message);
+    } catch (error) {
+      notify(NotificationType.ERROR, (error as Error).message);
     }
   };
 
@@ -49,8 +49,8 @@ export const useAdminCrud = () => {
         ),
       );
       notify(NotificationType.SUCCESS, 'updated successfully');
-    } catch (error: any) {
-      notify(NotificationType.ERROR, error.message);
+    } catch (error) {
+      notify(NotificationType.ERROR, (error as Error).message);
     }
   };
 
@@ -63,8 +63,8 @@ export const useAdminCrud = () => {
       await deleteFunction(id);
       setState((prevData) => prevData.filter((item) => item.id !== id));
       notify(NotificationType.SUCCESS, 'deleted successfully');
-    } catch (error: any) {
-      notify(NotificationType.ERROR, error.message);
+    } catch (error) {
+      notify(NotificationType.ERROR, (error as Error).message);
     }
   };
 

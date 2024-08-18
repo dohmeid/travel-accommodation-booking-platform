@@ -12,9 +12,11 @@ import classes from './HotelPage.module.css';
 const HotelPage: FC = () => {
   const { fetchHotelData, isLoading } = useHotelContext();
   const { searchQuery } = useSearchContext();
-
   const { hotelId } = useParams<{ hotelId: string }>();
-  const id = parseInt(hotelId!);
+  let id = 0;
+  if (hotelId) {
+    id = parseInt(hotelId);
+  }
 
   useEffect(() => {
     fetchHotelData(id, searchQuery.checkInDate, searchQuery.checkOutDate);

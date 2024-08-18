@@ -32,8 +32,8 @@ export const BookingProvider: FC<{ children: ReactNode }> = ({ children }) => {
       setBookingConfirm(responseData);
       clearCart();
       navigate('/main/confirmation');
-    } catch (error: any) {
-      notify(NotificationType.ERROR, error.message);
+    } catch (error) {
+      notify(NotificationType.ERROR, (error as Error).message);
     }
   };
 

@@ -84,7 +84,7 @@ const CheckoutForm: FC = () => {
     try {
       checkoutBooking(bookingData);
       notify(NotificationType.SUCCESS, 'checkout successfully!');
-    } catch (error: any) {
+    } catch {
       notify(
         NotificationType.ERROR,
         'An error occurred during checkout. Please try again.',

@@ -3,7 +3,7 @@ import { useSlideshow } from '../../../hooks/useSlideshow';
 import classes from './Slideshow.module.css';
 
 interface Props {
-  items: any[];
+  items: unknown[];
   renderItems: JSX.Element[];
   cardWidth: number;
 }

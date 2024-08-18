@@ -1,4 +1,4 @@
-import React, { useState, FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import classes from './StarRating.module.css';
 
 interface Props {

@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
+import * as Yup from 'yup';
 import { useAdminContext } from '../../../context/AdminProvider';
 import { UseDialog, DialogState } from '../../../hooks/useDialog';
-import * as Yup from 'yup';
 import classes from './CityDialog.module.css';
 
 // the yup module schema for validating the form

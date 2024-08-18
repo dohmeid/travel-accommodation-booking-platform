@@ -12,7 +12,6 @@ interface Props {
 const HotelCard: FC<Props> = ({ hotel }) => {
   const navigate = useNavigate();
   const {
-    hotelId,
     hotelName,
     cityName,
     thumbnailUrl,

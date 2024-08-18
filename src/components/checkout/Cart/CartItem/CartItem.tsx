@@ -17,7 +17,7 @@ const CartItem: FC<Props> = ({ room }) => {
 
   return (
     <div className={classes.item}>
-      <img src={roomPhotoUrl} alt="room image" />
+      <img src={roomPhotoUrl} alt="the room" />
       <h4 className={classes.title}>{roomType} Room</h4>
       <p className={classes.price}>${price}/night</p>
       <button type="button" onClick={handleDeleteButtonClick}>

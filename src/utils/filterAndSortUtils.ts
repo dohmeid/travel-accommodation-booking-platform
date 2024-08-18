@@ -12,7 +12,7 @@ export const filterResults = (
     const matchesPrice =
       hotel.roomPrice >= filters.minPrice &&
       hotel.roomPrice <= filters.maxPrice;
-    const matchesRating = !filters.rating || hotel.starRating == filters.rating;
+    const matchesRating = !filters.rating || Number(hotel.starRating) === Number(filters.rating);
     const matchesRoomType = !filters.room || hotel.roomType === filters.room;
     const matchesAmenities =
       filters.amenitiesNames.length === 0 ||

@@ -29,7 +29,7 @@ const LoginForm: FC = () => {
     try {
       const userData = await authenticateUser(values.username, values.password);
       handleLoginSuccess(userData);
-    } catch (error: any) {
+    } catch {
       setErrors({
         api: 'Login failed. Please check your credentials and try again.',
       });

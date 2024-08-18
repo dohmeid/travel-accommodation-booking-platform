@@ -42,8 +42,8 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
       try {
         const responseData = await getAmenities();
         setAmenitiesList(responseData);
-      } catch (error: any) {
-        notify(NotificationType.ERROR, error.message);
+      } catch (error) {
+        notify(NotificationType.ERROR, (error as Error).message);
       }
     };
 
@@ -67,8 +67,8 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
     try {
       const responseData = await getSearchResults(searchQuery);
       setSearchResults(responseData);
-    } catch (error: any) {
-      notify(NotificationType.ERROR, error.message);
+    } catch (error) {
+      notify(NotificationType.ERROR, (error as Error).message);
     }
   };
 
