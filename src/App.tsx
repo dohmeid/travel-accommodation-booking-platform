@@ -1,61 +1,72 @@
-import React, { FC } from "react";
+import React, { FC, lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import CursorFollower from "./components/shared/CursorFollower/CursorFollower";
 import PrivateRoute from "./routes/PrivateRoute";
-import LoginPage from "./pages/LoginPage/LoginPage";
-import UserPage from "./pages/UserPage/UserPage";
-import HomePage from "./pages/HomePage/HomePage";
-import SearchPage from "./pages/SearchPage/SearchPage";
-import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
-import HotelPage from "./pages/HotelPage/HotelPage";
-import ConfirmationPage from "./pages/ConfirmationPage/ConfirmationPage";
-import AdminPage from "./pages/AdminPage/AdminPage";
-import Grid from "./components/admin/Grid/Grid";
-import NotFoundErrorPage from "./pages/NotFoundErrorPage/NotFoundErrorPage";
-import UnauthorizedErrorPage from "./pages/UnauthorizedErrorPage/UnauthorizedErrorPage";
+import CursorFollower from "./components/shared/CursorFollower/CursorFollower";
+import Spinner from "./components/shared/Spinner/Spinner";
+
+// Lazy load the pages
+const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
+const UserPage = lazy(() => import("./pages/UserPage/UserPage"));
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const SearchPage = lazy(() => import("./pages/SearchPage/SearchPage"));
+const CheckoutPage = lazy(() => import("./pages/CheckoutPage/CheckoutPage"));
+const HotelPage = lazy(() => import("./pages/HotelPage/HotelPage"));
+const ConfirmationPage = lazy(
+  () => import("./pages/ConfirmationPage/ConfirmationPage")
+);
+const AdminPage = lazy(() => import("./pages/AdminPage/AdminPage"));
+const Grid = lazy(() => import("./components/admin/Grid/Grid"));
+const NotFoundErrorPage = lazy(
+  () => import("./pages/NotFoundErrorPage/NotFoundErrorPage")
+);
+const UnauthorizedErrorPage = lazy(
+  () => import("./pages/UnauthorizedErrorPage/UnauthorizedErrorPage")
+);
 
 const App: FC = () => {
   return (
     <>
       <CursorFollower />
 
-      <Routes>
-        <Route index element={<LoginPage />} />
-        <Route path="login" element={<LoginPage />} />
+      <Suspense fallback={<Spinner />}>
+        <Routes>
+          <Route index element={<LoginPage />} />
+          <Route path="login" element={<LoginPage />} />
 
-        <Route
-          path="main"
-          element={
-            <PrivateRoute allowedRoles={["User"]}>
-              <UserPage />
-            </PrivateRoute>
-          }
-        >
-          <Route index element={<HomePage />} />
-          <Route path="home" element={<HomePage />} />
-          <Route path="search" element={<SearchPage />} />
-          <Route path="checkout" element={<CheckoutPage />} />
-          <Route path="confirmation" element={<ConfirmationPage />} />
-          <Route path="hotel/:hotelId" element={<HotelPage />} />
-        </Route>
+          <Route
+            path="main"
+            element={
+              <PrivateRoute allowedRoles={["User"]}>
+                <UserPage />
+              </PrivateRoute>
+            }
+          >
+            <Route index element={<HomePage />} />
+            <Route path="home" element={<HomePage />} />
+            <Route path="search" element={<SearchPage />} />
+            <Route path="checkout" element={<CheckoutPage />} />
+            <Route path="confirmation" element={<ConfirmationPage />} />
+            <Route path="hotel/:hotelId" element={<HotelPage />} />
+          </Route>
 
-        <Route
-          path="adminPortal"
-          element={
-            <PrivateRoute allowedRoles={["Admin"]}>
-              <AdminPage />
-            </PrivateRoute>
-          }
-        >
-          <Route index element={<Grid gridType="city" />} />
-          <Route path="city" element={<Grid gridType="city" />} />
-          <Route path="hotel" element={<Grid gridType="hotel" />} />
-          <Route path="room" element={<Grid gridType="city" />} />
-        </Route>
+          <Route
+            path="adminPortal"
+            element={
+              <PrivateRoute allowedRoles={["Admin"]}>
+                <AdminPage />
+              </PrivateRoute>
+            }
+          >
+            <Route index element={<Grid gridType="city" />} />
+            <Route path="city" element={<Grid gridType="city" />} />
+            <Route path="hotel" element={<Grid gridType="hotel" />} />
+            <Route path="room" element={<Grid gridType="city" />} />
+          </Route>
 
-        <Route path="unauthorizedUser" element={<UnauthorizedErrorPage />} />
-        <Route path="*" element={<NotFoundErrorPage />} />
-      </Routes>
+          <Route path="unauthorizedUser" element={<UnauthorizedErrorPage />} />
+          <Route path="*" element={<NotFoundErrorPage />} />
+        </Routes>
+      </Suspense>
     </>
   );
 };
