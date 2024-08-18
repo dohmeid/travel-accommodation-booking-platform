@@ -1,11 +1,12 @@
+export interface Amenity {
+  id?: number;
+  name: string;
+  description: string;
+}
+
 export interface GalleryImage {
   id: number;
   url: string;
-}
-
-interface Amenity {
-  name: string;
-  description: string;
 }
 
 export interface HotelInformation {
@@ -38,4 +39,17 @@ export interface Room {
   roomAmenities: Amenity[];
   price: number;
   availability: boolean;
+}
+
+export interface HotelContextProps {
+  gallery: GalleryImage[];
+  info: HotelInformation | null;
+  reviews: Review[];
+  rooms: Room[];
+  isLoading: boolean;
+  fetchHotelData: (
+    id: number,
+    checkInDate: string,
+    checkOutDate: string
+  ) => Promise<void>;
 }
