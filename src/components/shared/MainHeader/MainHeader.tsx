@@ -1,8 +1,8 @@
-import React, { FC } from "react";
-import useCurrentPage from "../../../hooks/useCurrentPage";
-import { useAuthContext } from "../../../context/authProvider";
-import NavLink from "../NavLink/NavLink";
-import classes from "./MainHeader.module.css";
+import React, { FC } from 'react';
+import useCurrentPage from '../../../hooks/useCurrentPage';
+import { useAuthContext } from '../../../context/authProvider';
+import NavLink from '../NavLink/NavLink';
+import classes from './MainHeader.module.css';
 
 const MainHeader: FC = () => {
   const { handleLogout } = useAuthContext();
@@ -11,7 +11,7 @@ const MainHeader: FC = () => {
   return (
     <header
       className={`${classes.header} ${
-        isInHomePage ? classes.transparentHeader : ""
+        isInHomePage ? classes.transparentHeader : ''
       }`}
     >
       <p className={classes.logo}>

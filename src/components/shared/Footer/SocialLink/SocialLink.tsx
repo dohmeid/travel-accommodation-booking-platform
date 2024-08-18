@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import classes from "./SocialLink.module.css";
+import React, { FC } from 'react';
+import classes from './SocialLink.module.css';
 
 interface Props {
   linkData: {

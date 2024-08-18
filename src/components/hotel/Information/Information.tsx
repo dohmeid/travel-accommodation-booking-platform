@@ -1,8 +1,8 @@
-import React, { FC } from "react";
-import { useHotelContext } from "../../../context/hotelProvider";
-import StarRating from "../../shared/StarRating/StarRating";
-import Map from "./Map/Map";
-import classes from "./Information.module.css";
+import React, { FC } from 'react';
+import { useHotelContext } from '../../../context/hotelProvider';
+import StarRating from '../../shared/StarRating/StarRating';
+import Map from './Map/Map';
+import classes from './Information.module.css';
 
 const Information: FC = () => {
   const { info } = useHotelContext();

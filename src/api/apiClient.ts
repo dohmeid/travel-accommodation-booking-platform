@@ -1,26 +1,26 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 //enum for HTTP methods
 export enum HttpMethod {
-  GET = "get",
-  POST = "post",
-  PUT = "put",
-  DELETE = "delete",
+  GET = 'get',
+  POST = 'post',
+  PUT = 'put',
+  DELETE = 'delete',
 }
 
 //create an Axios instance with default configuration
 const apiClient = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
   headers: {
-    accept: "application/json, text/plain",
-    "Content-Type": "application/json",
+    accept: 'application/json, text/plain',
+    'Content-Type': 'application/json',
   },
 });
 
 //axios request interceptor -> used to authenticate API requests with the token
 apiClient.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("authToken");
+    const token = localStorage.getItem('authToken');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -28,7 +28,7 @@ apiClient.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 //axios response interceptor -> creates centralized error handling mechanism
@@ -42,30 +42,30 @@ apiClient.interceptors.response.use(
 
     switch (statusCode) {
       case 400:
-        errorMessage = "Bad Request";
+        errorMessage = 'Bad Request';
         break;
       case 401:
         //logout the user
-        errorMessage = "Unauthorized User. Redirecting to login...";
+        errorMessage = 'Unauthorized User. Redirecting to login...';
         break;
       case 403:
-        errorMessage = "Forbidden error";
+        errorMessage = 'Forbidden error';
         break;
       case 404:
-        errorMessage = "Resource not found";
+        errorMessage = 'Resource not found';
         break;
       default:
         break;
     }
     return Promise.reject(new Error(errorMessage));
-  }
+  },
 );
 
 export const apiRequest = async <T>(
   method: HttpMethod,
   url: string,
   data?: any,
-  params?: Record<string, any>
+  params?: Record<string, any>,
 ): Promise<T> => {
   const config: AxiosRequestConfig = {
     method,
@@ -78,7 +78,7 @@ export const apiRequest = async <T>(
     return response.data;
   } catch (error: any) {
     throw new Error(
-      `${error.message}, ${method.toUpperCase()} error in ${url} request`
+      `${error.message}, ${method.toUpperCase()} error in ${url} request`,
     );
   }
 };

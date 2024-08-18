@@ -1,18 +1,18 @@
-import { Amenity } from "./hotelTypes";
+import { Amenity } from './hotelTypes';
 
 export enum RoomTypes {
-  Cabin = "Cabin",
-  KingSuite = "King Suite",
-  OceanView = "Ocean View",
-  Standard = "Standard",
-  Double = "Double",
+  Cabin = 'Cabin',
+  KingSuite = 'King Suite',
+  OceanView = 'Ocean View',
+  Standard = 'Standard',
+  Double = 'Double',
 }
 
 export enum SortCriteria {
-  MinPriceFirst = "MinPriceFirst",
-  MaxPriceFirst = "MaxPriceFirst",
-  MinStarsFirst = "MinStarsFirst",
-  MaxStarsFirst = "MaxStarsFirst",
+  MinPriceFirst = 'MinPriceFirst',
+  MaxPriceFirst = 'MaxPriceFirst',
+  MinStarsFirst = 'MinStarsFirst',
+  MaxStarsFirst = 'MaxStarsFirst',
 }
 
 export interface SearchQuery {

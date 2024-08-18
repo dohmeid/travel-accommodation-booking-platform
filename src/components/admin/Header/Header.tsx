@@ -1,7 +1,7 @@
-import React, { FC } from "react";
-import { useAuthContext } from "../../../context/authProvider";
-import adminImage from "../../../assets/images/adminProfiePicture.png";
-import classes from "./Header.module.css";
+import React, { FC } from 'react';
+import { useAuthContext } from '../../../context/authProvider';
+import adminImage from '../../../assets/images/adminProfiePicture.png';
+import classes from './Header.module.css';
 
 const Header: FC = () => {
   const { handleLogout } = useAuthContext();

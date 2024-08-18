@@ -1,8 +1,8 @@
-import React, { FC, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import { Deal } from "../../../../types/homeTypes";
-import StarRating from "../../../shared/StarRating/StarRating";
-import classes from "./DealCard.module.css";
+import React, { FC, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Deal } from '../../../../types/homeTypes';
+import StarRating from '../../../shared/StarRating/StarRating';
+import classes from './DealCard.module.css';
 
 interface Props {
   dealData: Deal;
@@ -19,7 +19,6 @@ const DealCard: FC<Props> = ({ dealData }) => {
     hotelStarRating,
     cityName,
     originalRoomPrice,
-    discount,
     finalPrice,
   } = dealData;
 

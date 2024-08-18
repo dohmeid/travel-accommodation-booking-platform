@@ -1,11 +1,11 @@
-import React, { useState, FC, ChangeEvent } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSearchContext } from "../../../context/searchProvider";
-import { SearchQuery } from "../../../types/searchTypes";
-import useCurrentPage from "../../../hooks/useCurrentPage";
-import DatePicker from "./DatePicker/DatePicker";
-import GuestDropdown from "./GuestDropdown/GuestDropdown";
-import classes from "./HotelsSearchBar.module.css";
+import React, { useState, FC, ChangeEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSearchContext } from '../../../context/searchProvider';
+import { SearchQuery } from '../../../types/searchTypes';
+import useCurrentPage from '../../../hooks/useCurrentPage';
+import DatePicker from './DatePicker/DatePicker';
+import GuestDropdown from './GuestDropdown/GuestDropdown';
+import classes from './HotelsSearchBar.module.css';
 
 const HotelsSearchBar: FC = () => {
   const { isInSearchPage } = useCurrentPage();
@@ -21,14 +21,14 @@ const HotelsSearchBar: FC = () => {
   const handleSearchButtonClick = () => {
     fetchSearchResults(currentSearchQuery);
     if (!isInSearchPage) {
-      navigate("/main/search");
+      navigate('/main/search');
     }
   };
 
   return (
     <div
       className={`${classes.searchContainer} ${
-        isInSearchPage ? classes.horizontalSearchContainer : ""
+        isInSearchPage ? classes.horizontalSearchContainer : ''
       }`}
     >
       <div className={classes.searchInput}>

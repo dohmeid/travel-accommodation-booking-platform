@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-import { Destination } from "../../../../types/homeTypes";
-import classes from "./DestinationCard.module.css";
+import React, { FC } from 'react';
+import { Destination } from '../../../../types/homeTypes';
+import classes from './DestinationCard.module.css';
 
 interface Props {
   city: Destination;

@@ -1,8 +1,8 @@
-import React, { FC, useMemo } from "react";
-import { useHomeContext } from "../../../context/homeProvider";
-import DealCard from "./DealCard/DealCard";
-import Slideshow from "../Slideshow/Slideshow";
-import classes from "./FeaturedDeals.module.css";
+import React, { FC, useMemo } from 'react';
+import { useHomeContext } from '../../../context/homeProvider';
+import DealCard from './DealCard/DealCard';
+import Slideshow from '../Slideshow/Slideshow';
+import classes from './FeaturedDeals.module.css';
 
 const FeaturedDeals: FC = () => {
   const { deals } = useHomeContext();
@@ -11,7 +11,7 @@ const FeaturedDeals: FC = () => {
   //generate carousel items
   const DEALS = useMemo(
     () => deals.map((deal) => <DealCard key={deal.hotelId} dealData={deal} />),
-    [deals]
+    [deals],
   );
 
   return (

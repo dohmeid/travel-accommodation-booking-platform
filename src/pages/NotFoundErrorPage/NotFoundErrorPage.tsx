@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-import { useNavigate } from "react-router-dom";
-import classes from "./NotFoundErrorPage.module.css";
+import React, { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+import classes from './NotFoundErrorPage.module.css';
 
 const NotFoundErrorPage: FC = () => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const NotFoundErrorPage: FC = () => {
     <div className={classes.container}>
       <div className={classes.overlay}>
         <h1>404</h1>
-        <h2>UH OH! You're lost.</h2>
+        <h2>UH OH! You &apos re lost.</h2>
         <p>
           The page you are looking for does not exist. How you got here is a
           mystery. But you can click the button below to go back to the previous

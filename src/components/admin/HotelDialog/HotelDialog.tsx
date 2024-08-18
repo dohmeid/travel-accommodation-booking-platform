@@ -1,29 +1,29 @@
-import React, { FC } from "react";
-import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
-import { useAdminContext } from "../../../context/AdminProvider";
-import { UseDialog, DialogState } from "../../../hooks/useDialog";
-import * as Yup from "yup";
-import classes from "./HotelDialog.module.css";
+import React, { FC } from 'react';
+import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
+import { useAdminContext } from '../../../context/AdminProvider';
+import { UseDialog, DialogState } from '../../../hooks/useDialog';
+import * as Yup from 'yup';
+import classes from './HotelDialog.module.css';
 
 const hotelSchema = Yup.object().shape({
-  name: Yup.string().required("Hotel name is a required field!"),
-  description: Yup.string().required("Hotel description is a required field!"),
-  cityId: Yup.number().required("Hotel city is a required field!"),
+  name: Yup.string().required('Hotel name is a required field!'),
+  description: Yup.string().required('Hotel description is a required field!'),
+  cityId: Yup.number().required('Hotel city is a required field!'),
   hotelType: Yup.number()
-    .required("Hotel type is a required field!")
-    .min(0, "Hotel type must be at least 0"),
+    .required('Hotel type is a required field!')
+    .min(0, 'Hotel type must be at least 0'),
   starRating: Yup.number()
-    .required("Hotel star rating is a required field!")
-    .min(0, "Star rating must be at least 0")
-    .max(5, "Star rating must be 5 or less"),
+    .required('Hotel star rating is a required field!')
+    .min(0, 'Star rating must be at least 0')
+    .max(5, 'Star rating must be 5 or less'),
   latitude: Yup.number()
-    .required("Hotel latitude is a required field!")
-    .min(-90, "Latitude must be at least -90")
-    .max(90, "Latitude must be 90 or less"),
+    .required('Hotel latitude is a required field!')
+    .min(-90, 'Latitude must be at least -90')
+    .max(90, 'Latitude must be 90 or less'),
   longitude: Yup.number()
-    .required("Hotel longitude is a required field!")
-    .min(-180, "Longitude must be at least -180")
-    .max(180, "Longitude must be 180 or less"),
+    .required('Hotel longitude is a required field!')
+    .min(-180, 'Longitude must be at least -180')
+    .max(180, 'Longitude must be 180 or less'),
 });
 
 interface DialogFormValues {
@@ -38,16 +38,16 @@ interface DialogFormValues {
 
 interface Props {
   dialogState: DialogState;
-  closeDialog: UseDialog["closeDialog"];
+  closeDialog: UseDialog['closeDialog'];
 }
 
 const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
   const { cities, createHotel, updateHotel } = useAdminContext();
-  const { management, type, isOpen, cityData, hotelData } = dialogState;
+  const { type, isOpen, hotelData } = dialogState;
 
   const initialHotelValues = {
-    name: hotelData?.name || "",
-    description: hotelData?.description || "",
+    name: hotelData?.name || '',
+    description: hotelData?.description || '',
     cityId: 0,
     hotelType: hotelData?.hotelType || 0,
     starRating: hotelData?.starRating || 0,
@@ -57,7 +57,7 @@ const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
 
   const handleSubmitAddForm = async (
     values: DialogFormValues,
-    { setSubmitting }: FormikHelpers<DialogFormValues>
+    { setSubmitting }: FormikHelpers<DialogFormValues>,
   ) => {
     const newHotel = {
       id: hotelData?.id || 0,
@@ -71,9 +71,9 @@ const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
     const cityId = values.cityId;
 
     try {
-      if (type === "Add") {
+      if (type === 'Add') {
         await createHotel(cityId, newHotel);
-      } else if (type === "Update") {
+      } else if (type === 'Update') {
         await updateHotel(newHotel);
       }
     } finally {
@@ -82,13 +82,13 @@ const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
     }
   };
 
-  if (!isOpen || !["Add", "Update"].includes(type)) return null;
+  if (!isOpen || !['Add', 'Update'].includes(type)) return null;
 
   //Hotel: id, name, description, hotelType, starRating, latitude, longitude, actions(delete,update)
 
   return (
     <div className={classes.dialogContainer}>
-      <h2>{type === "Add" ? "Add New Hotel" : "Update Hotel"}</h2>
+      <h2>{type === 'Add' ? 'Add New Hotel' : 'Update Hotel'}</h2>
 
       <Formik
         initialValues={initialHotelValues}
@@ -136,7 +136,7 @@ const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
               />
             </div>
 
-            {type === "Add" && (
+            {type === 'Add' && (
               <div className={classes.inputContainer}>
                 <label htmlFor="cityId">Hotel City</label>
                 <Field
@@ -251,12 +251,12 @@ const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
                 disabled={formik.isSubmitting || !formik.isValid}
               >
                 {formik.isSubmitting
-                  ? type === "Add"
-                    ? "Adding..."
-                    : "Updating..."
-                  : type === "Add"
-                  ? "Add"
-                  : "Update"}
+                  ? type === 'Add'
+                    ? 'Adding...'
+                    : 'Updating...'
+                  : type === 'Add'
+                    ? 'Add'
+                    : 'Update'}
               </button>
             </div>
           </Form>

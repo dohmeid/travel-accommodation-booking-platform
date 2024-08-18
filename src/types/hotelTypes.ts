@@ -50,6 +50,6 @@ export interface HotelContextProps {
   fetchHotelData: (
     id: number,
     checkInDate: string,
-    checkOutDate: string
+    checkOutDate: string,
   ) => Promise<void>;
 }

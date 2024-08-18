@@ -1,6 +1,6 @@
-import React, { FC, ReactNode } from "react";
-import { Navigate } from "react-router-dom";
-import { useAuthContext } from "../context/authProvider";
+import React, { FC, ReactNode } from 'react';
+import { Navigate } from 'react-router-dom';
+import { useAuthContext } from '../context/authProvider';
 
 interface Props {
   allowedRoles: string[];

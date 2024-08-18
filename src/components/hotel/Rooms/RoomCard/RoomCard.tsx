@@ -1,7 +1,7 @@
-import React, { FC } from "react";
-import { useCartContext } from "../../../../context/cartProvider";
-import { Room } from "../../../../types/hotelTypes";
-import classes from "./RoomCard.module.css";
+import React, { FC } from 'react';
+import { useCartContext } from '../../../../context/cartProvider';
+import { Room } from '../../../../types/hotelTypes';
+import classes from './RoomCard.module.css';
 
 interface Props {
   roomData: Room;
@@ -40,10 +40,10 @@ const RoomCard: FC<Props> = ({ roomData }) => {
         <p>
           <i
             className={`bi ${
-              availability ? "bi-check-circle-fill" : "bi-x-circle-fill"
+              availability ? 'bi-check-circle-fill' : 'bi-x-circle-fill'
             }`}
-          />{" "}
-          {availability ? "Available" : "Not available"}
+          />{' '}
+          {availability ? 'Available' : 'Not available'}
         </p>
       </div>
 
@@ -65,9 +65,9 @@ const RoomCard: FC<Props> = ({ roomData }) => {
         className={classes.addButton}
         disabled={isItemInCart(roomId)}
         onClick={handleAddToCartButtonClick}
-        aria-label={isItemInCart(roomId) ? "Remove from cart" : "Add to cart"}
+        aria-label={isItemInCart(roomId) ? 'Remove from cart' : 'Add to cart'}
       >
-        {isItemInCart(roomId) ? "Added" : "Add to cart"}
+        {isItemInCart(roomId) ? 'Added' : 'Add to cart'}
       </button>
     </div>
   );

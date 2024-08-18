@@ -4,12 +4,12 @@ import React, {
   useState,
   FC,
   ReactNode,
-} from "react";
-import { useNavigate } from "react-router-dom";
-import { useNotification, NotificationType } from "./NotificationProvider";
-import { useCartContext } from "./cartProvider";
-import { addBooking } from "../api/bookingService";
-import { Booking, BookingConfirmation } from "../types/bookingTypes";
+} from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useNotification, NotificationType } from './NotificationProvider';
+import { useCartContext } from './cartProvider';
+import { addBooking } from '../api/bookingService';
+import { Booking, BookingConfirmation } from '../types/bookingTypes';
 
 interface BookingContextProps {
   bookingConfirm: BookingConfirmation | null;
@@ -17,7 +17,7 @@ interface BookingContextProps {
 }
 
 const BookingContext = createContext<BookingContextProps | undefined>(
-  undefined
+  undefined,
 );
 export const BookingProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [bookingConfirm, setBookingConfirm] =
@@ -31,7 +31,7 @@ export const BookingProvider: FC<{ children: ReactNode }> = ({ children }) => {
       const responseData = await addBooking(bookingDetails);
       setBookingConfirm(responseData);
       clearCart();
-      navigate("/main/confirmation");
+      navigate('/main/confirmation');
     } catch (error: any) {
       notify(NotificationType.ERROR, error.message);
     }
@@ -52,7 +52,7 @@ export const BookingProvider: FC<{ children: ReactNode }> = ({ children }) => {
 export const useBookingContext = () => {
   const context = useContext(BookingContext);
   if (!context) {
-    throw new Error("useBookingContext must be used within BookingProvider");
+    throw new Error('useBookingContext must be used within BookingProvider');
   }
   return context;
 };

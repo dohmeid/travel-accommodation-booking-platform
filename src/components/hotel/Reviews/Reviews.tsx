@@ -1,7 +1,7 @@
-import React, { FC, useCallback, useState } from "react";
-import { useHotelContext } from "../../../context/hotelProvider";
-import ReviewCard from "./ReviewCard/ReviewCard";
-import classes from "./Reviews.module.css";
+import React, { FC, useCallback, useState } from 'react';
+import { useHotelContext } from '../../../context/hotelProvider';
+import ReviewCard from './ReviewCard/ReviewCard';
+import classes from './Reviews.module.css';
 
 const Reviews: FC = () => {
   const { reviews } = useHotelContext();
@@ -33,7 +33,7 @@ const Reviews: FC = () => {
           onClick={handleToggleReviews}
           aria-expanded={isShowingAll}
         >
-          {isShowingAll ? "Show Less" : "Show More"}
+          {isShowingAll ? 'Show Less' : 'Show More'}
         </button>
       )}
     </div>

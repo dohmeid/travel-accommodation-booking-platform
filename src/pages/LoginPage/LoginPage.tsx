@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-import LoginForm from "../../components/LoginForm/LoginForm";
-import classes from "./LoginPage.module.css";
+import React, { FC } from 'react';
+import LoginForm from '../../components/LoginForm/LoginForm';
+import classes from './LoginPage.module.css';
 
 const LoginPage: FC = () => {
   return (

@@ -5,28 +5,28 @@ import React, {
   useState,
   useEffect,
   useContext,
-} from "react";
+} from 'react';
 import {
   getCities,
   addCity,
   editCity,
   removeCity,
-} from "../api/manageCitiesService";
+} from '../api/manageCitiesService';
 import {
   getHotels,
   addHotel,
   editHotel,
   removeHotel,
-} from "../api/manageHotelsService";
-import { Hotel, City, AdminContextType } from "../types/adminTypes";
-import { useAdminCrud } from "../hooks/useAdminCrud";
+} from '../api/manageHotelsService';
+import { Hotel, City, AdminContextType } from '../types/adminTypes';
+import { useAdminCrud } from '../hooks/useAdminCrud';
 
 export const AdminContext = createContext<AdminContextType | null>(null);
 export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [cities, setCities] = useState<City[]>([]);
   const [hotels, setHotels] = useState<Hotel[]>([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchOption, setSearchOption] = useState("name");
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchOption, setSearchOption] = useState('name');
 
   const { fetchData, createData, updateData, deleteData } = useAdminCrud();
 
@@ -45,9 +45,9 @@ export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const getFilteredCities = (): City[] => {
     const query = searchQuery.toLowerCase();
     return cities.filter((city) =>
-      searchOption === "name"
+      searchOption === 'name'
         ? city.name.toLowerCase().includes(query)
-        : city.description.toLowerCase().includes(query)
+        : city.description.toLowerCase().includes(query),
     );
   };
 
@@ -62,9 +62,9 @@ export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const getFilteredHotels = (): Hotel[] => {
     const query = searchQuery.toLowerCase();
     return hotels.filter((hotel) =>
-      searchOption === "name"
+      searchOption === 'name'
         ? hotel.name.toLowerCase().includes(query)
-        : hotel.description.toLowerCase().includes(query)
+        : hotel.description.toLowerCase().includes(query),
     );
   };
 
@@ -94,7 +94,7 @@ export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
 export const useAdminContext = () => {
   const context = useContext(AdminContext);
   if (!context) {
-    throw new Error("useAdminContext must be used within AdminProvider");
+    throw new Error('useAdminContext must be used within AdminProvider');
   }
   return context;
 };

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from 'react';
 
 export const useSlideshow = (items: any[]) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -13,7 +13,7 @@ export const useSlideshow = (items: any[]) => {
       }, intervalTime);
       return () => clearInterval(interval);
     }
-  }, [items, intervalTime,isPaused]);
+  }, [items, intervalTime, isPaused]);
 
   //handle carousel indicator (dot) click
   const handleIndicatorClick = (index: number) => {
@@ -28,5 +28,10 @@ export const useSlideshow = (items: any[]) => {
     setIsPaused(false);
   }, []);
 
-  return { currentIndex, handleIndicatorClick, pauseSlideshow, resumeSlideshow  };
+  return {
+    currentIndex,
+    handleIndicatorClick,
+    pauseSlideshow,
+    resumeSlideshow,
+  };
 };

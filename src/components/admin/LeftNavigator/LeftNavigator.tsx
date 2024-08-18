@@ -1,7 +1,7 @@
-import React, { useState, FC } from "react";
-import useCurrentPage from "../../../hooks/useCurrentPage";
-import NavLink from "../../shared/NavLink/NavLink";
-import classes from "./LeftNavigator.module.css";
+import React, { useState, FC } from 'react';
+import useCurrentPage from '../../../hooks/useCurrentPage';
+import NavLink from '../../shared/NavLink/NavLink';
+import classes from './LeftNavigator.module.css';
 
 const LeftNavigator: FC = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
@@ -17,17 +17,17 @@ const LeftNavigator: FC = () => {
 
   return (
     <nav
-      className={`${classes.nav} ${isNavCollapsed ? "" : classes.navClosed}`}
+      className={`${classes.nav} ${isNavCollapsed ? '' : classes.navClosed}`}
       aria-label="Primary Navigation"
     >
       <button
         type="button"
         className={classes.navBtn}
-        aria-label={isNavCollapsed ? "Close Navigation" : "Open Navigation"}
+        aria-label={isNavCollapsed ? 'Close Navigation' : 'Open Navigation'}
         onClick={toggleNavigation}
       >
         <i
-          className={`${isNavCollapsed ? "bi bi-x" : "bi bi-list"} ${
+          className={`${isNavCollapsed ? 'bi bi-x' : 'bi bi-list'} ${
             isNavCollapsed ? classes.xIcon : classes.listIcon
           }`}
           aria-hidden="true"

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import classes from "./CursorFollower.module.css";
+import React, { useState, useEffect } from 'react';
+import classes from './CursorFollower.module.css';
 
 const CursorFollower = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -9,10 +9,10 @@ const CursorFollower = () => {
       setPosition({ x: e.clientX, y: e.clientY });
     };
 
-    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener('mousemove', handleMouseMove);
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
@@ -22,7 +22,6 @@ const CursorFollower = () => {
       style={{
         left: position.x,
         top: position.y,
-        
       }}
     ></div>
   );

@@ -1,26 +1,26 @@
-import React, { FC, lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
-import PrivateRoute from "./routes/PrivateRoute";
-import CursorFollower from "./components/shared/CursorFollower/CursorFollower";
-import Spinner from "./components/shared/Spinner/Spinner";
+import React, { FC, lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import PrivateRoute from './routes/PrivateRoute';
+import CursorFollower from './components/shared/CursorFollower/CursorFollower';
+import Spinner from './components/shared/Spinner/Spinner';
 
 // Lazy load the pages
-const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
-const UserPage = lazy(() => import("./pages/UserPage/UserPage"));
-const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
-const SearchPage = lazy(() => import("./pages/SearchPage/SearchPage"));
-const CheckoutPage = lazy(() => import("./pages/CheckoutPage/CheckoutPage"));
-const HotelPage = lazy(() => import("./pages/HotelPage/HotelPage"));
+const LoginPage = lazy(() => import('./pages/LoginPage/LoginPage'));
+const UserPage = lazy(() => import('./pages/UserPage/UserPage'));
+const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
+const SearchPage = lazy(() => import('./pages/SearchPage/SearchPage'));
+const CheckoutPage = lazy(() => import('./pages/CheckoutPage/CheckoutPage'));
+const HotelPage = lazy(() => import('./pages/HotelPage/HotelPage'));
 const ConfirmationPage = lazy(
-  () => import("./pages/ConfirmationPage/ConfirmationPage")
+  () => import('./pages/ConfirmationPage/ConfirmationPage'),
 );
-const AdminPage = lazy(() => import("./pages/AdminPage/AdminPage"));
-const Grid = lazy(() => import("./components/admin/Grid/Grid"));
+const AdminPage = lazy(() => import('./pages/AdminPage/AdminPage'));
+const Grid = lazy(() => import('./components/admin/Grid/Grid'));
 const NotFoundErrorPage = lazy(
-  () => import("./pages/NotFoundErrorPage/NotFoundErrorPage")
+  () => import('./pages/NotFoundErrorPage/NotFoundErrorPage'),
 );
 const UnauthorizedErrorPage = lazy(
-  () => import("./pages/UnauthorizedErrorPage/UnauthorizedErrorPage")
+  () => import('./pages/UnauthorizedErrorPage/UnauthorizedErrorPage'),
 );
 
 const App: FC = () => {
@@ -36,7 +36,7 @@ const App: FC = () => {
           <Route
             path="main"
             element={
-              <PrivateRoute allowedRoles={["User"]}>
+              <PrivateRoute allowedRoles={['User']}>
                 <UserPage />
               </PrivateRoute>
             }
@@ -52,7 +52,7 @@ const App: FC = () => {
           <Route
             path="adminPortal"
             element={
-              <PrivateRoute allowedRoles={["Admin"]}>
+              <PrivateRoute allowedRoles={['Admin']}>
                 <AdminPage />
               </PrivateRoute>
             }

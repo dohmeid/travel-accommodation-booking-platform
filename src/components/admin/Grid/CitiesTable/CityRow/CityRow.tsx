@@ -1,9 +1,9 @@
-import React, { FC, MouseEvent } from "react";
-import { City } from "../../../../../types/adminTypes";
-import useDialog from "../../../../../hooks/useDialog";
-import DeleteDialog from "../../../DeleteDialog/DeleteDialog";
-import CityDialog from "../../../CityDialog/CityDialog";
-import classes from "./CityRow.module.css";
+import React, { FC, MouseEvent } from 'react';
+import { City } from '../../../../../types/adminTypes';
+import useDialog from '../../../../../hooks/useDialog';
+import DeleteDialog from '../../../DeleteDialog/DeleteDialog';
+import CityDialog from '../../../CityDialog/CityDialog';
+import classes from './CityRow.module.css';
 
 interface Props {
   cityData: City;
@@ -15,13 +15,13 @@ const CityRow: FC<Props> = ({ cityData }) => {
   //this function opens the update city dialog
   const handleEditButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    openDialog("City", "Update", cityData);
+    openDialog('City', 'Update', cityData);
   };
 
   //this function opens the delete city dialog
   const handleTrashButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    openDialog("City", "Delete", cityData);
+    openDialog('City', 'Delete', cityData);
   };
 
   return (

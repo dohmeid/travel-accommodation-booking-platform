@@ -1,7 +1,7 @@
-import React, { FC, useMemo } from "react";
-import { useAdminContext } from "../../../../context/AdminProvider";
-import CityRow from "./CityRow/CityRow";
-import classes from "./CitiesTable.module.css";
+import React, { FC, useMemo } from 'react';
+import { useAdminContext } from '../../../../context/AdminProvider';
+import CityRow from './CityRow/CityRow';
+import classes from './CitiesTable.module.css';
 
 const CitiesTable: FC = () => {
   const { getFilteredCities } = useAdminContext();

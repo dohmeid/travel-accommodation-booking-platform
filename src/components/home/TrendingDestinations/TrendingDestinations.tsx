@@ -1,7 +1,7 @@
-import React, { FC, useMemo } from "react";
-import { useHomeContext } from "../../../context/homeProvider";
-import DestinationCard from "./DestinationCard/DestinationCard";
-import classes from "./TrendingDestinations.module.css";
+import React, { FC, useMemo } from 'react';
+import { useHomeContext } from '../../../context/homeProvider';
+import DestinationCard from './DestinationCard/DestinationCard';
+import classes from './TrendingDestinations.module.css';
 
 const TrendingDestinations: FC = () => {
   const { destinations } = useHomeContext();
@@ -15,7 +15,7 @@ const TrendingDestinations: FC = () => {
       ) : (
         <p>No destinations to display...</p>
       ),
-    [destinations]
+    [destinations],
   );
 
   return (

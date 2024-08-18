@@ -1,9 +1,9 @@
-import React, { FC } from "react";
-import { useNavigate } from "react-router-dom";
-import { RecentHotel } from "../../../../types/homeTypes";
-import { formatISODate } from "../../../../utils/dates";
-import StarRating from "../../../shared/StarRating/StarRating";
-import classes from "./HotelCard.module.css";
+import React, { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { RecentHotel } from '../../../../types/homeTypes';
+import { formatISODate } from '../../../../utils/dates';
+import StarRating from '../../../shared/StarRating/StarRating';
+import classes from './HotelCard.module.css';
 
 interface Props {
   hotel: RecentHotel;

@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-import { useAuthContext } from "../../context/authProvider";
-import classes from "./UnauthorizedErrorPage.module.css";
+import React, { FC } from 'react';
+import { useAuthContext } from '../../context/authProvider';
+import classes from './UnauthorizedErrorPage.module.css';
 
 const UnauthorizedErrorPage: FC = () => {
   const { handleLogout } = useAuthContext();

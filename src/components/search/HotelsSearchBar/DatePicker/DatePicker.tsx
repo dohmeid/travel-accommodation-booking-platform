@@ -1,13 +1,13 @@
-import React, { useRef, FC, ChangeEvent } from "react";
+import React, { useRef, FC, ChangeEvent } from 'react';
 import {
   getToday,
   getTomorrow,
   isValidCheckInDate,
   isValidCheckOutDate,
   getDayName,
-} from "../../../../utils/dates";
-import { SearchQuery } from "../../../../types/searchTypes";
-import classes from "./DatePicker.module.css";
+} from '../../../../utils/dates';
+import { SearchQuery } from '../../../../types/searchTypes';
+import classes from './DatePicker.module.css';
 
 interface Props {
   currentSearchQuery: SearchQuery;
@@ -22,18 +22,18 @@ const DatePicker: FC<Props> = ({
   const dateOutRef = useRef<HTMLInputElement>(null);
 
   const handleDateChange =
-    (type: "checkInDate" | "checkOutDate") =>
+    (type: 'checkInDate' | 'checkOutDate') =>
     (e: ChangeEvent<HTMLInputElement>) => {
       const newDate = e.target.value;
 
-      if (type === "checkInDate") {
+      if (type === 'checkInDate') {
         if (!isValidCheckInDate(newDate, currentSearchQuery.checkOutDate)) {
-          alert("Check-in date cannot be later than check-out date.");
+          alert('Check-in date cannot be later than check-out date.');
           return;
         }
-      } else if (type === "checkOutDate") {
+      } else if (type === 'checkOutDate') {
         if (!isValidCheckOutDate(currentSearchQuery.checkInDate, newDate)) {
-          alert("Check-out date cannot be earlier than check-in date.");
+          alert('Check-out date cannot be earlier than check-in date.');
           return;
         }
       }
@@ -62,7 +62,7 @@ const DatePicker: FC<Props> = ({
             min={getToday()}
             ref={dateInRef}
             value={currentSearchQuery.checkInDate}
-            onChange={handleDateChange("checkInDate")}
+            onChange={handleDateChange('checkInDate')}
             onClick={() => openCalendar(dateInRef)}
           />
           <p className={classes.day}>
@@ -83,7 +83,7 @@ const DatePicker: FC<Props> = ({
             min={getTomorrow()}
             ref={dateOutRef}
             value={currentSearchQuery.checkOutDate}
-            onChange={handleDateChange("checkOutDate")}
+            onChange={handleDateChange('checkOutDate')}
             onClick={() => openCalendar(dateOutRef)}
           />
           <p className={classes.day}>

@@ -5,22 +5,22 @@ import React, {
   FC,
   ReactNode,
   useEffect,
-} from "react";
-import { getAmenities, getSearchResults } from "../api/searchService";
-import { filterResults, sortResults } from "../utils/filterAndSortUtils";
-import { useNotification, NotificationType } from "./NotificationProvider";
-import { Amenity } from "../types/hotelTypes";
+} from 'react';
+import { getAmenities, getSearchResults } from '../api/searchService';
+import { filterResults, sortResults } from '../utils/filterAndSortUtils';
+import { useNotification, NotificationType } from './NotificationProvider';
+import { Amenity } from '../types/hotelTypes';
 import {
   SearchResult,
   SearchFilters,
   SearchQuery,
   SearchContextProps,
   SortCriteria,
-} from "../types/searchTypes";
+} from '../types/searchTypes';
 import {
   INITIAL_FILTERS,
   INITIAL_SEARCH_QUERY,
-} from "../constants/searchDefaults";
+} from '../constants/searchDefaults';
 
 const SearchContext = createContext<SearchContextProps | undefined>(undefined);
 
@@ -30,7 +30,7 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [amenitiesList, setAmenitiesList] = useState<Amenity[]>([]);
   const [filters, setFilters] = useState<SearchFilters>(INITIAL_FILTERS);
   const [sortBy, setSortBy] = useState<SortCriteria>(
-    SortCriteria.MinPriceFirst
+    SortCriteria.MinPriceFirst,
   );
   const [searchQuery, setSearchQuery] =
     useState<SearchQuery>(INITIAL_SEARCH_QUERY);
@@ -92,7 +92,7 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
 export const useSearchContext = () => {
   const context = useContext(SearchContext);
   if (!context) {
-    throw new Error("useSearchContext must be used within a SearchProvider");
+    throw new Error('useSearchContext must be used within a SearchProvider');
   }
   return context;
 };

@@ -1,9 +1,9 @@
-import React, { FC, MouseEvent } from "react";
-import { Hotel } from "../../../../../types/adminTypes";
-import useDialog from "../../../../../hooks/useDialog";
-import DeleteDialog from "../../../DeleteDialog/DeleteDialog";
-import HotelDialog from "../../../HotelDialog/HotelDialog";
-import classes from "./HotelRow.module.css";
+import React, { FC, MouseEvent } from 'react';
+import { Hotel } from '../../../../../types/adminTypes';
+import useDialog from '../../../../../hooks/useDialog';
+import DeleteDialog from '../../../DeleteDialog/DeleteDialog';
+import HotelDialog from '../../../HotelDialog/HotelDialog';
+import classes from './HotelRow.module.css';
 
 interface Props {
   hotelData: Hotel;
@@ -17,13 +17,13 @@ const HotelRow: FC<Props> = ({ hotelData }) => {
   //this function opens the update city dialog
   const handleEditButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    openDialog("Hotel", "Update", hotelData);
+    openDialog('Hotel', 'Update', hotelData);
   };
 
   //this function opens the delete city dialog
   const handleTrashButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    openDialog("Hotel", "Delete", hotelData);
+    openDialog('Hotel', 'Delete', hotelData);
   };
 
   return (

@@ -1,21 +1,21 @@
-import React, { FC, useState } from "react";
-import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
-import * as Yup from "yup";
-import { LoginFormValues } from "../../types/authTypes";
-import { authenticateUser } from "../../api/authService";
-import { useAuthContext } from "../../context/authProvider";
-import { NotificationType } from "../../context/NotificationProvider";
-import Snackbar from "../shared/Snackbar/Snackbar";
-import classes from "./LoginForm.module.css";
+import React, { FC, useState } from 'react';
+import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
+import * as Yup from 'yup';
+import { LoginFormValues } from '../../types/authTypes';
+import { authenticateUser } from '../../api/authService';
+import { useAuthContext } from '../../context/authProvider';
+import { NotificationType } from '../../context/NotificationProvider';
+import Snackbar from '../shared/Snackbar/Snackbar';
+import classes from './LoginForm.module.css';
 
 const loginSchema = Yup.object().shape({
-  username: Yup.string().required("Username is a required field!"),
-  password: Yup.string().required("Password is a required field!"),
+  username: Yup.string().required('Username is a required field!'),
+  password: Yup.string().required('Password is a required field!'),
 });
 
 const initialLoginValues = {
-  username: "",
-  password: "",
+  username: '',
+  password: '',
 };
 
 const LoginForm: FC = () => {
@@ -24,14 +24,14 @@ const LoginForm: FC = () => {
 
   const handleSubmitLoginForm = async (
     values: LoginFormValues,
-    { setSubmitting, setErrors }: FormikHelpers<LoginFormValues>
+    { setSubmitting, setErrors }: FormikHelpers<LoginFormValues>,
   ) => {
     try {
       const userData = await authenticateUser(values.username, values.password);
       handleLoginSuccess(userData);
     } catch (error: any) {
       setErrors({
-        api: "Login failed. Please check your credentials and try again.",
+        api: 'Login failed. Please check your credentials and try again.',
       });
     } finally {
       setSubmitting(false);
@@ -66,7 +66,7 @@ const LoginForm: FC = () => {
           </div>
           <div className={classes.inputContainer}>
             <Field
-              type={showPassword ? "text" : "password"}
+              type={showPassword ? 'text' : 'password'}
               name="password"
               id="password"
               placeholder="Password"
@@ -88,7 +88,7 @@ const LoginForm: FC = () => {
               />
               <i
                 className={
-                  showPassword ? "bi bi-eye-fill" : "bi bi-eye-slash-fill"
+                  showPassword ? 'bi bi-eye-fill' : 'bi bi-eye-slash-fill'
                 }
               />
             </label>
@@ -99,7 +99,7 @@ const LoginForm: FC = () => {
             className={classes.loginButton}
             disabled={formik.isSubmitting || !formik.isValid}
           >
-            {formik.isSubmitting ? "Logging in..." : "Login"}
+            {formik.isSubmitting ? 'Logging in...' : 'Login'}
           </button>
 
           {formik.errors.api && (

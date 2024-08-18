@@ -1,41 +1,41 @@
-import React, { FC } from "react";
-import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
-import * as Yup from "yup";
+import React, { FC } from 'react';
+import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
+import * as Yup from 'yup';
 import {
   NotificationType,
   useNotification,
-} from "../../../context/NotificationProvider";
-import { useCartContext } from "../../../context/cartProvider";
-import { useBookingContext } from "../../../context/bookingProvider";
-import { getCurrentDateISO } from "../../../utils/dates";
-import classes from "./CheckoutForm.module.css";
+} from '../../../context/NotificationProvider';
+import { useCartContext } from '../../../context/cartProvider';
+import { useBookingContext } from '../../../context/bookingProvider';
+import { getCurrentDateISO } from '../../../utils/dates';
+import classes from './CheckoutForm.module.css';
 
 const checkoutSchema = Yup.object().shape({
   firstName: Yup.string()
-    .required("first name is required!")
-    .min(3, "first name must be 3 characters minimum"),
+    .required('first name is required!')
+    .min(3, 'first name must be 3 characters minimum'),
   lastName: Yup.string()
-    .required("last name is required!")
-    .min(3, "last name must be 3 characters minimum"),
+    .required('last name is required!')
+    .min(3, 'last name must be 3 characters minimum'),
   email: Yup.string()
-    .email("It should be a valid email")
-    .required("email is required!"),
+    .email('It should be a valid email')
+    .required('email is required!'),
   phoneNumber: Yup.string()
-    .required("phone number is required!")
-    .matches(/^\d{8}$/, "Phone number must be exactly 8 digits long"),
-  paymentMethod: Yup.string().required("payment method is required!"),
+    .required('phone number is required!')
+    .matches(/^\d{8}$/, 'Phone number must be exactly 8 digits long'),
+  paymentMethod: Yup.string().required('payment method is required!'),
   cardNumber: Yup.string()
-    .required("card number is required!")
-    .matches(/^\d{4}-\d{4}-\d{4}-\d{4}$/, "Invalid card number"),
+    .required('card number is required!')
+    .matches(/^\d{4}-\d{4}-\d{4}-\d{4}$/, 'Invalid card number'),
   cardExpiryDate: Yup.string()
-    .required("card expiry date is required!")
+    .required('card expiry date is required!')
     .matches(
       /^(0[1-9]|1[0-2])\/?([0-9]{2})$/,
-      "Invalid expiry date format (MM/YY)"
+      'Invalid expiry date format (MM/YY)',
     ),
   cardCVV: Yup.string()
-    .required("Card Verification Value is required!")
-    .matches(/^\d{3,4}$/, "Invalid CVV"),
+    .required('Card Verification Value is required!')
+    .matches(/^\d{3,4}$/, 'Invalid CVV'),
   requests: Yup.string(),
 });
 
@@ -52,15 +52,15 @@ interface FormValues {
 }
 
 const initialCheckoutValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  phoneNumber: "",
-  paymentMethod: "masterCard",
-  cardNumber: "",
-  cardExpiryDate: "",
-  cardCVV: "",
-  requests: "",
+  firstName: '',
+  lastName: '',
+  email: '',
+  phoneNumber: '',
+  paymentMethod: 'masterCard',
+  cardNumber: '',
+  cardExpiryDate: '',
+  cardCVV: '',
+  requests: '',
 };
 
 const CheckoutForm: FC = () => {
@@ -70,11 +70,11 @@ const CheckoutForm: FC = () => {
 
   const handleSubmitCheckoutForm = async (
     values: FormValues,
-    { setSubmitting }: FormikHelpers<FormValues>
+    { setSubmitting }: FormikHelpers<FormValues>,
   ) => {
     const bookingData = {
-      customerName: values.firstName + " " + values.lastName,
-      hotelName: "",
+      customerName: values.firstName + ' ' + values.lastName,
+      hotelName: '',
       roomNumber: cartItems[0].roomNumber,
       roomType: cartItems[0].roomType,
       bookingDateTime: getCurrentDateISO(), //"2024-08-03T20:01:47.334Z";
@@ -83,11 +83,11 @@ const CheckoutForm: FC = () => {
     };
     try {
       checkoutBooking(bookingData);
-      notify(NotificationType.SUCCESS, "checkout successfully!");
+      notify(NotificationType.SUCCESS, 'checkout successfully!');
     } catch (error: any) {
       notify(
         NotificationType.ERROR,
-        "An error occurred during checkout. Please try again."
+        'An error occurred during checkout. Please try again.',
       );
     } finally {
       setSubmitting(false);
@@ -263,7 +263,7 @@ const CheckoutForm: FC = () => {
                 formik.isSubmitting || !formik.isValid || cartItems.length === 0
               }
             >
-              {formik.isSubmitting ? "Processing..." : "Checkout"}
+              {formik.isSubmitting ? 'Processing...' : 'Checkout'}
             </button>
           </Form>
         )}

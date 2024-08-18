@@ -1,10 +1,10 @@
-import React, { FC } from "react";
-import { Outlet } from "react-router-dom";
-import { AdminProvider } from "../../context/AdminProvider";
-import LeftNavigator from "../../components/admin/LeftNavigator/LeftNavigator";
-import Header from "../../components/admin/Header/Header";
-import SearchBar from "../../components/admin/SearchBar/SearchBar";
-import classes from "./AdminPage.module.css";
+import React, { FC } from 'react';
+import { Outlet } from 'react-router-dom';
+import { AdminProvider } from '../../context/AdminProvider';
+import LeftNavigator from '../../components/admin/LeftNavigator/LeftNavigator';
+import Header from '../../components/admin/Header/Header';
+import SearchBar from '../../components/admin/SearchBar/SearchBar';
+import classes from './AdminPage.module.css';
 
 const AdminPage: FC = () => {
   return (

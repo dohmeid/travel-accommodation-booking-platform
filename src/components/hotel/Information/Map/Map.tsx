@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import classes from "./Map.module.css";
+import React, { FC } from 'react';
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import classes from './Map.module.css';
 
 interface Props {
   hotel: string;

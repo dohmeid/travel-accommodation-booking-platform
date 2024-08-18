@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-import { useSlideshow } from "../../../hooks/useSlideshow";
-import classes from "./Slideshow.module.css";
+import React, { FC } from 'react';
+import { useSlideshow } from '../../../hooks/useSlideshow';
+import classes from './Slideshow.module.css';
 
 interface Props {
   items: any[];
@@ -48,7 +48,7 @@ const Slideshow: FC<Props> = ({ items, renderItems, cardWidth }) => {
           <div
             key={index}
             className={`${classes.dot} ${
-              index === currentIndex ? classes.active : ""
+              index === currentIndex ? classes.active : ''
             }`}
             aria-label={`Slide ${index + 1}`}
             onClick={() => handleIndicatorClick(index)}

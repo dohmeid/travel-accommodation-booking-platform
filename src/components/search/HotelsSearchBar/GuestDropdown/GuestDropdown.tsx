@@ -1,8 +1,8 @@
-import React, { FC, useState } from "react";
-import useCurrentPage from "../../../../hooks/useCurrentPage";
-import { SearchQuery } from "../../../../types/searchTypes";
-import { GUEST_DROPDOWN_ITEMS } from "../../../../constants/searchDefaults";
-import classes from "./GuestDropdown.module.css";
+import React, { FC, useState } from 'react';
+import useCurrentPage from '../../../../hooks/useCurrentPage';
+import { SearchQuery } from '../../../../types/searchTypes';
+import { GUEST_DROPDOWN_ITEMS } from '../../../../constants/searchDefaults';
+import classes from './GuestDropdown.module.css';
 
 interface Props {
   currentSearchQuery: SearchQuery;
@@ -30,7 +30,7 @@ const GuestDropdown: FC<Props> = ({
   return (
     <div
       className={`${classes.quantityController} ${
-        isInSearchPage ? classes.minQuantityController : ""
+        isInSearchPage ? classes.minQuantityController : ''
       }`}
     >
       <div
@@ -40,10 +40,10 @@ const GuestDropdown: FC<Props> = ({
         onClick={toggleDropdown}
         className={classes.dropdownToggle}
       >
-        <i className="bi bi-people-fill"/>
+        <i className="bi bi-people-fill" />
         <div className={classes.details}>
           <p>
-            {currentSearchQuery.adults} adults, {currentSearchQuery.children}{" "}
+            {currentSearchQuery.adults} adults, {currentSearchQuery.children}{' '}
             children
           </p>
           <p className={classes.room}>
@@ -53,7 +53,7 @@ const GuestDropdown: FC<Props> = ({
 
         <i
           className={`${classes.arrowDown} bi bi-caret-${
-            isOpen ? "up" : "down"
+            isOpen ? 'up' : 'down'
           }-fill`}
         ></i>
       </div>

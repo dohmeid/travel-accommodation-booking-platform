@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import classes from "./FullscreenImage.module.css";
+import React, { FC } from 'react';
+import classes from './FullscreenImage.module.css';
 
 interface Props {
   image: string;

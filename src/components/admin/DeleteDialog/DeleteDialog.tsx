@@ -1,11 +1,11 @@
-import React, { FC, MouseEvent } from "react";
-import { UseDialog, DialogState } from "../../../hooks/useDialog";
-import { useAdminContext } from "../../../context/AdminProvider";
-import classes from "./DeleteDialog.module.css";
+import React, { FC, MouseEvent } from 'react';
+import { UseDialog, DialogState } from '../../../hooks/useDialog';
+import { useAdminContext } from '../../../context/AdminProvider';
+import classes from './DeleteDialog.module.css';
 
 interface Props {
   dialogState: DialogState;
-  closeDialog: UseDialog["closeDialog"];
+  closeDialog: UseDialog['closeDialog'];
 }
 
 const DeleteDialog: FC<Props> = ({ dialogState, closeDialog }) => {
@@ -14,15 +14,15 @@ const DeleteDialog: FC<Props> = ({ dialogState, closeDialog }) => {
 
   const handleDeleteButtonClick = async (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    if (management === "City" && cityData) {
+    if (management === 'City' && cityData) {
       await deleteCity(cityData.id);
-    } else if (management === "Hotel" && hotelData) {
+    } else if (management === 'Hotel' && hotelData) {
       await deleteHotel(hotelData.id);
     }
     closeDialog();
   };
 
-  if (!isOpen || type !== "Delete") return null;
+  if (!isOpen || type !== 'Delete') return null;
 
   return (
     <div className={classes.deleteDialog}>

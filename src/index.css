@@ -4,22 +4,22 @@
 /*************************** custom css style ********************************/
 :root {
   --transparent-white: hsla(0, 0%, 100%, 0.77);
-  --white: #FFFFFF;
-  --light-grey: #F3F3F3;
-  --medium-grey: #BEBFB5;
-  --dark-grey: #ABACA3;
-  --orange1: #B25E39;
-  --orange2: #AA6548;
-  --brown-sugar: #B28E6A;
-  --dark-brown1: #473D3A;
-  --dark-brown2: #4F382E;
+  --white: #ffffff;
+  --light-grey: #f3f3f3;
+  --medium-grey: #bebfb5;
+  --dark-grey: #abaca3;
+  --orange1: #b25e39;
+  --orange2: #aa6548;
+  --brown-sugar: #b28e6a;
+  --dark-brown1: #473d3a;
+  --dark-brown2: #4f382e;
 
   /*for error messages*/
   --light-red: rgba(255, 226, 226, 0.95);
   --red: red;
 
-  --main-font: "League Spartan", sans-serif;
-  --secondary-font: "Montserrat", serif;
+  --main-font: 'League Spartan', sans-serif;
+  --secondary-font: 'Montserrat', serif;
 }
 
 /*************************** general styles ********************************/
@@ -44,7 +44,7 @@ body {
 }
 
 body::-webkit-scrollbar {
-  width: var(--sb-size)
+  width: var(--sb-size);
 }
 
 body::-webkit-scrollbar-track {
@@ -69,7 +69,6 @@ body::-webkit-scrollbar-thumb {
   color: var(--white);
 }
 
-
 /*************************** media queries styles ********************************/
 /*
 the styling uses rem unit which relates to top element (html) font-size
@@ -82,7 +81,6 @@ so, to make responsive components, this font-size is reduced based on screen siz
   html {
     font-size: 10px;
   }
-
 }
 
 /*for small devices - mobile phones and some tablets*/

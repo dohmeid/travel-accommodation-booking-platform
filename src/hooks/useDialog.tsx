@@ -1,9 +1,9 @@
-import { useCallback, useState } from "react";
-import { City, Hotel } from "../types/adminTypes";
+import { useCallback, useState } from 'react';
+import { City, Hotel } from '../types/adminTypes';
 
 export interface DialogState {
-  management: "City" | "Hotel" | "Room" | "";
-  type: "Add" | "Update" | "Delete" | "";
+  management: 'City' | 'Hotel' | 'Room' | '';
+  type: 'Add' | 'Update' | 'Delete' | '';
   isOpen: boolean;
   cityData?: City;
   hotelData?: Hotel;
@@ -12,41 +12,41 @@ export interface DialogState {
 export interface UseDialog {
   dialogState: DialogState;
   openDialog: (
-    management: DialogState["management"],
-    type: DialogState["type"],
-    data?: City | Hotel
+    management: DialogState['management'],
+    type: DialogState['type'],
+    data?: City | Hotel,
   ) => void;
   closeDialog: () => void;
 }
 
 const useDialog = (): UseDialog => {
   const [dialogState, setDialogState] = useState<DialogState>({
-    management: "",
-    type: "",
+    management: '',
+    type: '',
     isOpen: false,
   });
 
   const openDialog = useCallback(
     (
-      management: DialogState["management"],
-      type: DialogState["type"],
-      data?: City | Hotel
+      management: DialogState['management'],
+      type: DialogState['type'],
+      data?: City | Hotel,
     ) => {
       setDialogState({
         management,
         type,
         isOpen: true,
-        cityData: management === "City" ? (data as City) : undefined,
-        hotelData: management === "Hotel" ? (data as Hotel) : undefined,
+        cityData: management === 'City' ? (data as City) : undefined,
+        hotelData: management === 'Hotel' ? (data as Hotel) : undefined,
       });
     },
-    []
+    [],
   );
 
   const closeDialog = useCallback(() => {
     setDialogState({
-      management: "",
-      type: "",
+      management: '',
+      type: '',
       isOpen: false,
       cityData: undefined,
       hotelData: undefined,

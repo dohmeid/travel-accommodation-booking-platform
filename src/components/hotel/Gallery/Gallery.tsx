@@ -1,7 +1,7 @@
-import React, { FC, useState } from "react";
-import { useHotelContext } from "../../../context/hotelProvider";
-import FullscreenImage from "./FullscreenImage/FullscreenImage";
-import classes from "./Gallery.module.css";
+import React, { FC, useState } from 'react';
+import { useHotelContext } from '../../../context/hotelProvider';
+import FullscreenImage from './FullscreenImage/FullscreenImage';
+import classes from './Gallery.module.css';
 
 const Gallery: FC = () => {
   const { gallery } = useHotelContext();
@@ -42,4 +42,3 @@ const Gallery: FC = () => {
 };
 
 export default Gallery;
-

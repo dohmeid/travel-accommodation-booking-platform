@@ -1,19 +1,18 @@
 .mapContainer {
-    width: 55%;
-    height: 25rem;
-    border-radius: 1rem;
-    border: 1px solid var(--medium-grey);
+  width: 55%;
+  height: 25rem;
+  border-radius: 1rem;
+  border: 1px solid var(--medium-grey);
 
-    .map {
-        width: 100%;
-        height: 100%;
-        border-radius: inherit;
-    }
+  .map {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+  }
 }
 
-
 @media (max-width: 550px) {
-    .mapContainer {
-        width: 100%;
-    }
+  .mapContainer {
+    width: 100%;
+  }
 }

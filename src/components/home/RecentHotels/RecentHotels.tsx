@@ -1,8 +1,8 @@
-import React, { FC, useMemo } from "react";
-import { useHomeContext } from "../../../context/homeProvider";
-import HotelCard from "./HotelCard/HotelCard";
-import Slideshow from "../Slideshow/Slideshow";
-import classes from "./RecentHotels.module.css";
+import React, { FC, useMemo } from 'react';
+import { useHomeContext } from '../../../context/homeProvider';
+import HotelCard from './HotelCard/HotelCard';
+import Slideshow from '../Slideshow/Slideshow';
+import classes from './RecentHotels.module.css';
 
 const RecentHotels: FC = () => {
   const { recentHotels } = useHomeContext();
@@ -13,7 +13,7 @@ const RecentHotels: FC = () => {
       recentHotels.map((hotel, index) => (
         <HotelCard key={index} hotel={hotel} />
       )),
-    [recentHotels]
+    [recentHotels],
   );
 
   return (

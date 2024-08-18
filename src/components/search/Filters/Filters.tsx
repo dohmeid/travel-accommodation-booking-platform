@@ -1,12 +1,12 @@
-import React, { FC, useState, useCallback, ChangeEvent } from "react";
-import { Formik, Field, Form, FormikProps } from "formik";
-import { useSearchContext } from "../../../context/searchProvider";
-import { SearchFilters, RoomTypes } from "../../../types/searchTypes";
+import React, { FC, useState, useCallback, ChangeEvent } from 'react';
+import { Formik, Field, Form, FormikProps } from 'formik';
+import { useSearchContext } from '../../../context/searchProvider';
+import { SearchFilters, RoomTypes } from '../../../types/searchTypes';
 import {
   PRICE_RANGE,
   INITIAL_FILTERS,
-} from "../../../constants/searchDefaults";
-import classes from "./Filters.module.css";
+} from '../../../constants/searchDefaults';
+import classes from './Filters.module.css';
 
 const Filters: FC = () => {
   const { amenitiesList, setFilters } = useSearchContext();
@@ -16,24 +16,24 @@ const Filters: FC = () => {
     (values: SearchFilters) => {
       setFilters(values);
     },
-    [setFilters]
+    [setFilters],
   );
 
   const handlePriceChange = useCallback(
     (
       e: ChangeEvent<HTMLInputElement>,
-      type: "minPrice" | "maxPrice",
-      formik: FormikProps<SearchFilters>
+      type: 'minPrice' | 'maxPrice',
+      formik: FormikProps<SearchFilters>,
     ) => {
       const value = Number(e.target.value);
       if (
-        (type === "minPrice" && value <= formik.values.maxPrice) ||
-        (type === "maxPrice" && value >= formik.values.minPrice)
+        (type === 'minPrice' && value <= formik.values.maxPrice) ||
+        (type === 'maxPrice' && value >= formik.values.minPrice)
       ) {
         formik.setFieldValue(type, value);
       }
     },
-    []
+    [],
   );
 
   return (
@@ -70,7 +70,7 @@ const Filters: FC = () => {
                   step="1"
                   value={formik.values.minPrice}
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    handlePriceChange(e, "minPrice", formik)
+                    handlePriceChange(e, 'minPrice', formik)
                   }
                 />
 
@@ -83,7 +83,7 @@ const Filters: FC = () => {
                   step="1"
                   value={formik.values.maxPrice}
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    handlePriceChange(e, "maxPrice", formik)
+                    handlePriceChange(e, 'maxPrice', formik)
                   }
                 />
               </div>
@@ -106,8 +106,8 @@ const Filters: FC = () => {
                         style={{
                           color:
                             index <= (starHover || formik.values.rating)
-                              ? "#ffc107"
-                              : "#e4e5e9",
+                              ? '#ffc107'
+                              : '#e4e5e9',
                         }}
                         onMouseEnter={() => setStarHover(index)}
                         onMouseLeave={() => setStarHover(0)}

@@ -5,13 +5,13 @@ import React, {
   ReactNode,
   useContext,
   useCallback,
-} from "react";
-import Snackbar from "../components/shared/Snackbar/Snackbar";
+} from 'react';
+import Snackbar from '../components/shared/Snackbar/Snackbar';
 
 export enum NotificationType {
-  SUCCESS = "success",
-  WARNING = "warning",
-  ERROR = "error",
+  SUCCESS = 'success',
+  WARNING = 'warning',
+  ERROR = 'error',
 }
 
 interface NotificationContextType {
@@ -19,7 +19,7 @@ interface NotificationContextType {
 }
 
 const NotificationContext = createContext<NotificationContextType | undefined>(
-  undefined
+  undefined,
 );
 export const NotificationProvider: FC<{ children: ReactNode }> = ({
   children,
@@ -55,7 +55,7 @@ export const useNotification = (): NotificationContextType => {
   const context = useContext(NotificationContext);
   if (!context) {
     throw new Error(
-      "useNotification must be used within an NotificationProvider"
+      'useNotification must be used within an NotificationProvider',
     );
   }
   return context;

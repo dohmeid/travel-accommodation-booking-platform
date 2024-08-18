@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-import HotelsSearchBar from "../../search/HotelsSearchBar/HotelsSearchBar";
-import classes from "./LandingView.module.css";
+import React, { FC } from 'react';
+import HotelsSearchBar from '../../search/HotelsSearchBar/HotelsSearchBar';
+import classes from './LandingView.module.css';
 
 const LandingView: FC = () => {
   return (

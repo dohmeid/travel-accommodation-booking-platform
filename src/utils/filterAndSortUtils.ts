@@ -2,11 +2,11 @@ import {
   SearchResult,
   SearchFilters,
   SortCriteria,
-} from "../types/searchTypes";
+} from '../types/searchTypes';
 
 export const filterResults = (
   searchResults: SearchResult[],
-  filters: SearchFilters
+  filters: SearchFilters,
 ): SearchResult[] => {
   return searchResults.filter((hotel) => {
     const matchesPrice =
@@ -17,7 +17,7 @@ export const filterResults = (
     const matchesAmenities =
       filters.amenitiesNames.length === 0 ||
       hotel.amenities.some((amenity) =>
-        filters.amenitiesNames.includes(amenity.name.toLowerCase())
+        filters.amenitiesNames.includes(amenity.name.toLowerCase()),
       );
 
     return matchesPrice && matchesRating && matchesRoomType && matchesAmenities;
@@ -26,18 +26,18 @@ export const filterResults = (
 
 export const sortResults = (
   filteredResults: SearchResult[],
-  sortBy: SortCriteria
+  sortBy: SortCriteria,
 ): SearchResult[] => {
   const sortedResults = [...filteredResults];
 
   switch (sortBy) {
-    case "MinPriceFirst":
+    case 'MinPriceFirst':
       return sortedResults.sort((a, b) => a.roomPrice - b.roomPrice);
-    case "MaxPriceFirst":
+    case 'MaxPriceFirst':
       return sortedResults.sort((a, b) => b.roomPrice - a.roomPrice);
-    case "MinStarsFirst":
+    case 'MinStarsFirst':
       return sortedResults.sort((a, b) => a.starRating - b.starRating);
-    case "MaxStarsFirst":
+    case 'MaxStarsFirst':
       return sortedResults.sort((a, b) => b.starRating - a.starRating);
     default:
       return sortedResults;

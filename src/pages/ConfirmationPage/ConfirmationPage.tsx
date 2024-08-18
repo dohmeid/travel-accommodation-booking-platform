@@ -1,11 +1,11 @@
-import React, { FC } from "react";
-import { useBookingContext } from "../../context/bookingProvider";
+import React, { FC } from 'react';
+import { useBookingContext } from '../../context/bookingProvider';
 import {
   NotificationType,
   useNotification,
-} from "../../context/NotificationProvider";
-import { generatePDF } from "../../utils/pdfGenerator";
-import classes from "./ConfirmationPage.module.css";
+} from '../../context/NotificationProvider';
+import { generatePDF } from '../../utils/pdfGenerator';
+import classes from './ConfirmationPage.module.css';
 
 const ConfirmationPage: FC = () => {
   const { notify } = useNotification();
@@ -22,23 +22,23 @@ const ConfirmationPage: FC = () => {
   }
 
   const paymentInfoList = [
-    { label: "Name", value: bookingConfirm.customerName },
-    { label: "Payment Method", value: bookingConfirm.paymentMethod },
-    { label: "Total", value: `$${bookingConfirm.totalCost}` },
+    { label: 'Name', value: bookingConfirm.customerName },
+    { label: 'Payment Method', value: bookingConfirm.paymentMethod },
+    { label: 'Total', value: `$${bookingConfirm.totalCost}` },
   ];
 
   const bookingInfoList = [
-    { label: "Hotel Name", value: bookingConfirm.hotelName },
-    { label: "Room Number", value: bookingConfirm.roomNumber },
-    { label: "Room Type", value: bookingConfirm.roomType },
-    { label: "Booking Date & Time", value: bookingConfirm.bookingDateTime },
-    { label: "Booking Status", value: bookingConfirm.bookingStatus },
-    { label: "Confirmation Number", value: bookingConfirm.confirmationNumber },
+    { label: 'Hotel Name', value: bookingConfirm.hotelName },
+    { label: 'Room Number', value: bookingConfirm.roomNumber },
+    { label: 'Room Type', value: bookingConfirm.roomType },
+    { label: 'Booking Date & Time', value: bookingConfirm.bookingDateTime },
+    { label: 'Booking Status', value: bookingConfirm.bookingStatus },
+    { label: 'Confirmation Number', value: bookingConfirm.confirmationNumber },
   ];
 
   const handleSavePDF = () => {
     generatePDF(bookingConfirm);
-    notify(NotificationType.SUCCESS, "checkout successfully!");
+    notify(NotificationType.SUCCESS, 'checkout successfully!');
   };
 
   return (

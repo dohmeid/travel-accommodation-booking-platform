@@ -1,7 +1,7 @@
-import React, { FC, useMemo } from "react";
-import { useAdminContext } from "../../../../context/AdminProvider";
-import HotelRow from "./HotelRow/HotelRow";
-import classes from "./HotelsTable.module.css";
+import React, { FC, useMemo } from 'react';
+import { useAdminContext } from '../../../../context/AdminProvider';
+import HotelRow from './HotelRow/HotelRow';
+import classes from './HotelsTable.module.css';
 
 const HotelsTable: FC = () => {
   const { getFilteredHotels } = useAdminContext();

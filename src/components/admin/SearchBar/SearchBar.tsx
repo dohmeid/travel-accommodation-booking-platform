@@ -1,6 +1,6 @@
-import React, { FC, ChangeEvent } from "react";
-import classes from "./SearchBar.module.css";
-import { useAdminContext } from "../../../context/AdminProvider";
+import React, { FC, ChangeEvent } from 'react';
+import classes from './SearchBar.module.css';
+import { useAdminContext } from '../../../context/AdminProvider';
 
 const SearchBar: FC = () => {
   const { setSearchQuery, setSearchOption } = useAdminContext();
@@ -10,7 +10,7 @@ const SearchBar: FC = () => {
   };
 
   const handleSearchInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    let searchInput = e.target.value;
+    const searchInput = e.target.value;
     setSearchQuery(searchInput);
   };
 

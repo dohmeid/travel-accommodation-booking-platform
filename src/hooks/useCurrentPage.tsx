@@ -1,15 +1,15 @@
-import { useMemo } from "react";
-import { useLocation } from "react-router-dom";
+import { useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const ROUTES = {
-  MAIN: "/main",
-  HOME: "/main/home",
-  SEARCH: "/main/search",
-  CHECKOUT: "/main/checkout",
-  ADMIN_PORTAL: "/adminPortal",
-  CITY_MANAGEMENT: "/adminPortal/city",
-  HOTEL_MANAGEMENT: "/adminPortal/hotel",
-  ROOM_MANAGEMENT: "/adminPortal/room",
+  MAIN: '/main',
+  HOME: '/main/home',
+  SEARCH: '/main/search',
+  CHECKOUT: '/main/checkout',
+  ADMIN_PORTAL: '/adminPortal',
+  CITY_MANAGEMENT: '/adminPortal/city',
+  HOTEL_MANAGEMENT: '/adminPortal/hotel',
+  ROOM_MANAGEMENT: '/adminPortal/room',
 };
 
 const useCurrentPage = () => {
@@ -27,7 +27,7 @@ const useCurrentPage = () => {
       isInHotelManagementPage: pathname === ROUTES.HOTEL_MANAGEMENT,
       isInRoomManagementPage: pathname === ROUTES.ROOM_MANAGEMENT,
     }),
-    [pathname]
+    [pathname],
   );
 };
 

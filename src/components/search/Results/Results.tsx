@@ -1,9 +1,9 @@
-import React, { FC, ChangeEvent, useCallback, useMemo } from "react";
-import { SortCriteria } from "../../../types/searchTypes";
-import { useSearchContext } from "../../../context/searchProvider";
-import { SORT_OPTIONS } from "../../../constants/sortOptions";
-import ResultCard from "./ResultCard/ResultCard";
-import classes from "./Results.module.css";
+import React, { FC, ChangeEvent, useCallback, useMemo } from 'react';
+import { SortCriteria } from '../../../types/searchTypes';
+import { useSearchContext } from '../../../context/searchProvider';
+import { SORT_OPTIONS } from '../../../constants/sortOptions';
+import ResultCard from './ResultCard/ResultCard';
+import classes from './Results.module.css';
 
 const Results: FC = () => {
   const { filteredResults, sortBy, setSortBy } = useSearchContext();
@@ -15,7 +15,7 @@ const Results: FC = () => {
         setSortBy(selectedValue);
       }
     },
-    [sortBy, setSortBy]
+    [sortBy, setSortBy],
   );
 
   const SEARCH_RESULTS = useMemo(
@@ -23,7 +23,7 @@ const Results: FC = () => {
       filteredResults.map((hotel) => (
         <ResultCard key={hotel.hotelId} hotel={hotel} />
       )),
-    [filteredResults]
+    [filteredResults],
   );
 
   return (

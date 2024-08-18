@@ -4,21 +4,21 @@ import React, {
   FC,
   ReactNode,
   useState,
-} from "react";
+} from 'react';
 import {
   getHotelGallery,
   getHotelInfo,
   getHotelReviews,
   getHotelAvailableRooms,
-} from "../api/hotelService";
+} from '../api/hotelService';
 import {
   GalleryImage,
   HotelInformation,
   Review,
   Room,
   HotelContextProps,
-} from "../types/hotelTypes";
-import { NotificationType, useNotification } from "./NotificationProvider";
+} from '../types/hotelTypes';
+import { NotificationType, useNotification } from './NotificationProvider';
 
 const HotelContext = createContext<HotelContextProps | undefined>(undefined);
 
@@ -33,7 +33,7 @@ export const HotelProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const fetchHotelData = async (
     hotelId: number,
     checkInDate: string,
-    checkOutDate: string
+    checkOutDate: string,
   ) => {
     try {
       const [hotelGallery, hotelInfo, hotelReviews, hotelRooms] =
@@ -73,7 +73,7 @@ export const HotelProvider: FC<{ children: ReactNode }> = ({ children }) => {
 export const useHotelContext = () => {
   const context = useContext(HotelContext);
   if (!context) {
-    throw new Error("useHotelContext must be used within a HotelProvider");
+    throw new Error('useHotelContext must be used within a HotelProvider');
   }
   return context;
 };

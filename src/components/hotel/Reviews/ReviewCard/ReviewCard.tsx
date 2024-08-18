@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-import { Review } from "../../../../types/hotelTypes";
-import classes from "./ReviewCard.module.css";
+import React, { FC } from 'react';
+import { Review } from '../../../../types/hotelTypes';
+import classes from './ReviewCard.module.css';
 
 interface Props {
   reviewData: Review;
@@ -19,7 +19,7 @@ const ReviewCard: FC<Props> = ({ reviewData }) => {
               key={index}
               aria-label={`Star ${index + 1}`}
               className={`bi bi-star-fill ${
-                index < rating ? classes.filledStar : ""
+                index < rating ? classes.filledStar : ''
               }`}
             ></i>
           ))}

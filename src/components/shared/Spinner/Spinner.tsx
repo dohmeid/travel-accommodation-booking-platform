@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import classes from "./Spinner.module.css";
+import React, { FC } from 'react';
+import classes from './Spinner.module.css';
 
 const Spinner: FC = () => {
   return (

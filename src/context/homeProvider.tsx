@@ -5,23 +5,23 @@ import React, {
   useState,
   useEffect,
   useContext,
-} from "react";
+} from 'react';
 import {
   getFeaturedDeals,
   getTrendingDestinations,
   getRecentHotels,
-} from "../api/homeService";
+} from '../api/homeService';
 import {
   Deal,
   Destination,
   RecentHotel,
   HomeContextType,
-} from "../types/homeTypes";
-import { useAuthContext } from "./authProvider";
-import { NotificationType, useNotification } from "./NotificationProvider";
+} from '../types/homeTypes';
+import { useAuthContext } from './authProvider';
+import { NotificationType, useNotification } from './NotificationProvider';
 
 export const HomeContext = createContext<HomeContextType | undefined>(
-  undefined
+  undefined,
 );
 export const HomeProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [deals, setDeals] = useState<Deal[]>([]);
@@ -67,7 +67,7 @@ export const HomeProvider: FC<{ children: ReactNode }> = ({ children }) => {
 export const useHomeContext = () => {
   const context = useContext(HomeContext);
   if (context === undefined) {
-    throw new Error("useHomeContext must be used within a HomeProvider");
+    throw new Error('useHomeContext must be used within a HomeProvider');
   }
   return context;
 };

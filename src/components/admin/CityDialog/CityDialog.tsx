@@ -1,16 +1,16 @@
-import React, { FC } from "react";
-import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
-import { useAdminContext } from "../../../context/AdminProvider";
-import { UseDialog, DialogState } from "../../../hooks/useDialog";
-import * as Yup from "yup";
-import classes from "./CityDialog.module.css";
+import React, { FC } from 'react';
+import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
+import { useAdminContext } from '../../../context/AdminProvider';
+import { UseDialog, DialogState } from '../../../hooks/useDialog';
+import * as Yup from 'yup';
+import classes from './CityDialog.module.css';
 
 // the yup module schema for validating the form
 const citySchema = Yup.object().shape({
-  name: Yup.string().required("City name is a required field!"),
+  name: Yup.string().required('City name is a required field!'),
   description: Yup.string()
-    .required("City description is a required field!")
-    .min(3, "Description should be at least 3 characters long"),
+    .required('City description is a required field!')
+    .min(3, 'Description should be at least 3 characters long'),
 });
 
 interface DialogFormValues {
@@ -20,21 +20,21 @@ interface DialogFormValues {
 
 interface Props {
   dialogState: DialogState;
-  closeDialog: UseDialog["closeDialog"];
+  closeDialog: UseDialog['closeDialog'];
 }
 
 const CityDialog: FC<Props> = ({ dialogState, closeDialog }) => {
   const { createCity, updateCity } = useAdminContext();
-  const { management, type, isOpen, cityData, hotelData } = dialogState;
+  const { type, isOpen, cityData } = dialogState;
 
   const initialCityValues = {
-    name: cityData?.name || "",
-    description: cityData?.description || "",
+    name: cityData?.name || '',
+    description: cityData?.description || '',
   };
 
   const handleSubmitAddForm = async (
     values: DialogFormValues,
-    { setSubmitting }: FormikHelpers<DialogFormValues>
+    { setSubmitting }: FormikHelpers<DialogFormValues>,
   ) => {
     const newCity = {
       id: cityData?.id || 0,
@@ -43,9 +43,9 @@ const CityDialog: FC<Props> = ({ dialogState, closeDialog }) => {
     };
 
     try {
-      if (type === "Add") {
+      if (type === 'Add') {
         await createCity(newCity);
-      } else if (type === "Update") {
+      } else if (type === 'Update') {
         await updateCity(newCity);
       }
     } finally {
@@ -54,11 +54,11 @@ const CityDialog: FC<Props> = ({ dialogState, closeDialog }) => {
     }
   };
 
-  if (!isOpen || !["Add", "Update"].includes(type)) return null;
+  if (!isOpen || !['Add', 'Update'].includes(type)) return null;
 
   return (
     <div className={classes.dialogContainer}>
-      <h2>{dialogState.type === "Add" ? "Add New City" : "Update City"}</h2>
+      <h2>{dialogState.type === 'Add' ? 'Add New City' : 'Update City'}</h2>
 
       <Formik
         initialValues={initialCityValues}
@@ -119,12 +119,12 @@ const CityDialog: FC<Props> = ({ dialogState, closeDialog }) => {
                 disabled={formik.isSubmitting || !formik.isValid}
               >
                 {formik.isSubmitting
-                  ? type === "Add"
-                    ? "Adding..."
-                    : "Updating..."
-                  : type === "Add"
-                  ? "Add"
-                  : "Update"}
+                  ? type === 'Add'
+                    ? 'Adding...'
+                    : 'Updating...'
+                  : type === 'Add'
+                    ? 'Add'
+                    : 'Update'}
               </button>
             </div>
           </Form>

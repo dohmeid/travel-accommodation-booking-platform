@@ -1,15 +1,15 @@
-import { apiRequest, HttpMethod } from "./apiClient";
+import { apiRequest, HttpMethod } from './apiClient';
 import {
   GalleryImage,
   HotelInformation,
   Review,
   Room,
-} from "../types/hotelTypes";
+} from '../types/hotelTypes';
 
 export const getHotelGallery = async (hotelId: number) => {
   return apiRequest<GalleryImage[]>(
     HttpMethod.GET,
-    `/api/hotels/${hotelId}/gallery`
+    `/api/hotels/${hotelId}/gallery`,
   );
 };
 
@@ -24,7 +24,7 @@ export const getHotelReviews = async (hotelId: number) => {
 export const getHotelAvailableRooms = async (
   hotelId: number,
   checkInDate: string,
-  checkOutDate: string
+  checkOutDate: string,
 ) => {
   return apiRequest<Room[]>(
     HttpMethod.GET,
@@ -33,6 +33,6 @@ export const getHotelAvailableRooms = async (
     {
       checkInDate,
       checkOutDate,
-    }
+    },
   );
 };

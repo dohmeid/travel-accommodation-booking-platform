@@ -1,6 +1,6 @@
-import React, { useState, FC, useEffect } from "react";
-import {NotificationType} from "../../../context/NotificationProvider";
-import classes from "./Snackbar.module.css";
+import React, { useState, FC, useEffect } from 'react';
+import { NotificationType } from '../../../context/NotificationProvider';
+import classes from './Snackbar.module.css';
 
 interface SnackbarProps {
   type: NotificationType;
@@ -35,11 +35,11 @@ const Snackbar: FC<SnackbarProps> = ({ type, message, onClose }) => {
   const getIcon = () => {
     switch (type) {
       case NotificationType.SUCCESS:
-        return "bi bi-check-circle-fill"; // Success icon
+        return 'bi bi-check-circle-fill'; // Success icon
       case NotificationType.WARNING:
-        return "bi bi-exclamation-triangle-fill"; // Warning icon
+        return 'bi bi-exclamation-triangle-fill'; // Warning icon
       case NotificationType.ERROR:
-        return "bi bi-x-circle-fill"; // Error icon
+        return 'bi bi-x-circle-fill'; // Error icon
     }
   };
 

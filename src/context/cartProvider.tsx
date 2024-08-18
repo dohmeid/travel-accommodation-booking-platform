@@ -6,8 +6,8 @@ import React, {
   useCallback,
   ReactNode,
   useContext,
-} from "react";
-import { Room } from "../types/hotelTypes";
+} from 'react';
+import { Room } from '../types/hotelTypes';
 
 interface CartContextType {
   cartItems: Room[];
@@ -21,12 +21,12 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [cartItems, setCartItems] = useState<Room[]>(
-    JSON.parse(localStorage.getItem("cartItems") || "[]") as Room[]
+    JSON.parse(localStorage.getItem('cartItems') || '[]') as Room[],
   );
 
   //update the local storage whenever cartItems change
   useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }, [cartItems]);
 
   const addRoomToCart = useCallback((room: Room) => {
@@ -35,7 +35,7 @@ export const CartProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   const deleteRoomFromCart = (id: number) => {
     setCartItems((prevItems) =>
-      prevItems.filter((cartItem) => cartItem.roomId !== id)
+      prevItems.filter((cartItem) => cartItem.roomId !== id),
     );
   };
 
@@ -45,12 +45,12 @@ export const CartProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   const isItemInCart = useCallback(
     (id: number) => cartItems.some((cartItem) => cartItem.roomId === id),
-    [cartItems]
+    [cartItems],
   );
 
   const clearCart = useCallback(() => {
     setCartItems([]);
-    localStorage.removeItem("cartItems");
+    localStorage.removeItem('cartItems');
   }, []);
 
   return (
@@ -72,7 +72,7 @@ export const CartProvider: FC<{ children: ReactNode }> = ({ children }) => {
 export const useCartContext = () => {
   const context = useContext(CartContext);
   if (context === undefined) {
-    throw new Error("useCartContext must be used within a CartProvider");
+    throw new Error('useCartContext must be used within a CartProvider');
   }
   return context;
 };

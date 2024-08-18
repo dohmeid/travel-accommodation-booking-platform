@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-import { Link } from "react-router-dom";
-import classes from "./NavLink.module.css";
+import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
+import classes from './NavLink.module.css';
 
 interface Props {
   to: string;
@@ -17,7 +17,7 @@ const NavLink: FC<Props> = ({ to, isActive, label, iconClass, isLeftNav }) => {
     } else if (isActive && !isLeftNav) {
       return classes.active;
     }
-    return "";
+    return '';
   })();
 
   return (

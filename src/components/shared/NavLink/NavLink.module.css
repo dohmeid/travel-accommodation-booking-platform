@@ -1,21 +1,21 @@
 .link {
-    a {
-        font-family: var(--main-font);
-        font-weight: 500;
-        color: var(--white);
-        text-decoration: none;
+  a {
+    font-family: var(--main-font);
+    font-weight: 500;
+    color: var(--white);
+    text-decoration: none;
 
-        &:hover {
-            text-decoration: underline;
-        }
+    &:hover {
+      text-decoration: underline;
     }
+  }
 
-    .active {
-        text-decoration: underline;
-    }
+  .active {
+    text-decoration: underline;
+  }
 
-    .leftNavActive {
-        color: var(--orange1);
-        font-weight: 700;
-    }
+  .leftNavActive {
+    color: var(--orange1);
+    font-weight: 700;
+  }
 }

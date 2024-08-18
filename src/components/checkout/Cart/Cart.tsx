@@ -1,7 +1,7 @@
-import React, { FC } from "react";
-import { useCartContext } from "../../../context/cartProvider";
-import CartItem from "./CartItem/CartItem";
-import classes from "./Cart.module.css";
+import React, { FC } from 'react';
+import { useCartContext } from '../../../context/cartProvider';
+import CartItem from './CartItem/CartItem';
+import classes from './Cart.module.css';
 
 const Cart: FC = () => {
   const { cartItems, getTotalPrice } = useCartContext();
