@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import useCurrentPage from "../../../../hooks/useCurrentPage";
 import { SearchQuery } from "../../../../types/searchTypes";
+import { GUEST_DROPDOWN_ITEMS } from "../../../../constants/searchDefaults";
 import classes from "./GuestDropdown.module.css";
 
 interface Props {
@@ -12,29 +13,8 @@ const GuestDropdown: FC<Props> = ({
   currentSearchQuery,
   setCurrentSearchQuery,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const { isInSearchPage } = useCurrentPage();
-
-  const items = [
-    {
-      id: 1,
-      key: "adults" as keyof SearchQuery,
-      label: "Adults",
-      description: "ages 18 and above",
-    },
-    {
-      id: 2,
-      key: "children" as keyof SearchQuery,
-      label: "Children",
-      description: "ages 0-17",
-    },
-    {
-      id: 3,
-      key: "numberOfRooms" as keyof SearchQuery,
-      label: "Rooms",
-      description: "",
-    },
-  ];
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
 
@@ -60,7 +40,7 @@ const GuestDropdown: FC<Props> = ({
         onClick={toggleDropdown}
         className={classes.dropdownToggle}
       >
-        <i className="bi bi-people-fill"></i>
+        <i className="bi bi-people-fill"/>
         <div className={classes.details}>
           <p>
             {currentSearchQuery.adults} adults, {currentSearchQuery.children}{" "}
@@ -84,7 +64,7 @@ const GuestDropdown: FC<Props> = ({
           aria-orientation="vertical"
           className={classes.dropdownMenu}
         >
-          {items.map((item) => (
+          {GUEST_DROPDOWN_ITEMS.map((item) => (
             <li key={item.id} className={classes.dropdownItem}>
               <div className={classes.itemDetails}>
                 <p>{item.label}</p>

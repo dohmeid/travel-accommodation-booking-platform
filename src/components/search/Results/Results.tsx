@@ -1,14 +1,13 @@
-import React, { FC, ChangeEvent, useCallback } from "react";
+import React, { FC, ChangeEvent, useCallback, useMemo } from "react";
 import { SortCriteria } from "../../../types/searchTypes";
 import { useSearchContext } from "../../../context/searchProvider";
-import { SORT_OPTIONS } from "../../../data/sortOptions";
+import { SORT_OPTIONS } from "../../../constants/sortOptions";
 import ResultCard from "./ResultCard/ResultCard";
 import classes from "./Results.module.css";
 
 const Results: FC = () => {
   const { filteredResults, sortBy, setSortBy } = useSearchContext();
 
-  // Use useCallback to memoize the handler function
   const handleSortByChange = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
       const selectedValue = e.target.value as SortCriteria;
@@ -17,6 +16,14 @@ const Results: FC = () => {
       }
     },
     [sortBy, setSortBy]
+  );
+
+  const SEARCH_RESULTS = useMemo(
+    () =>
+      filteredResults.map((hotel) => (
+        <ResultCard key={hotel.hotelId} hotel={hotel} />
+      )),
+    [filteredResults]
   );
 
   return (
@@ -37,9 +44,7 @@ const Results: FC = () => {
         {filteredResults.length === 0 ? (
           <p>No items to display</p>
         ) : (
-          filteredResults.map((hotel) => (
-            <ResultCard key={hotel.hotelId} hotel={hotel} />
-          ))
+          SEARCH_RESULTS
         )}
       </div>
     </div>

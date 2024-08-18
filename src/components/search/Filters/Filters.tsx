@@ -1,14 +1,15 @@
 import React, { FC, useState, useCallback, ChangeEvent } from "react";
 import { Formik, Field, Form, FormikProps } from "formik";
-import { SearchFilters } from "../../../types/searchTypes";
 import { useSearchContext } from "../../../context/searchProvider";
+import { SearchFilters, RoomTypes } from "../../../types/searchTypes";
+import {
+  PRICE_RANGE,
+  INITIAL_FILTERS,
+} from "../../../constants/searchDefaults";
 import classes from "./Filters.module.css";
 
-const ROOMS = ["Cabin", "King Suite", "Ocean View", "Standard", "Double"];
-
 const Filters: FC = () => {
-  const { priceRange, initialFilters, amenitiesList, setFilters } =
-    useSearchContext();
+  const { amenitiesList, setFilters } = useSearchContext();
   const [starHover, setStarHover] = useState(0);
 
   const handleSubmitFilterForm = useCallback(
@@ -18,7 +19,6 @@ const Filters: FC = () => {
     [setFilters]
   );
 
-  //stable function that remains the same across renders
   const handlePriceChange = useCallback(
     (
       e: ChangeEvent<HTMLInputElement>,
@@ -38,7 +38,7 @@ const Filters: FC = () => {
 
   return (
     <div className={classes.filters}>
-      <Formik initialValues={initialFilters} onSubmit={handleSubmitFilterForm}>
+      <Formik initialValues={INITIAL_FILTERS} onSubmit={handleSubmitFilterForm}>
         {(formik) => (
           <Form>
             <div
@@ -65,8 +65,8 @@ const Filters: FC = () => {
                   type="range"
                   id="minPrice"
                   name="minPrice"
-                  min={priceRange.min}
-                  max={priceRange.max}
+                  min={PRICE_RANGE.MIN}
+                  max={PRICE_RANGE.MAX}
                   step="1"
                   value={formik.values.minPrice}
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -78,8 +78,8 @@ const Filters: FC = () => {
                   type="range"
                   id="maxPrice"
                   name="maxPrice"
-                  min={priceRange.min}
-                  max={priceRange.max}
+                  min={PRICE_RANGE.MIN}
+                  max={PRICE_RANGE.MAX}
                   step="1"
                   value={formik.values.maxPrice}
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -112,7 +112,7 @@ const Filters: FC = () => {
                         onMouseEnter={() => setStarHover(index)}
                         onMouseLeave={() => setStarHover(0)}
                       >
-                        <i className="bi bi-star-fill"></i>
+                        <i className="bi bi-star-fill" />
                       </span>
                     </label>
                   );
@@ -147,7 +147,7 @@ const Filters: FC = () => {
             >
               <h3>Room Type</h3>
               <div className={classes.list}>
-                {ROOMS.map((room, index) => (
+                {Object.values(RoomTypes).map((room, index) => (
                   <label key={index}>
                     <Field type="radio" name="room" value={room} />
                     <span>{room}</span>

@@ -10,10 +10,6 @@ interface Props {
 
 const ResultCard: FC<Props> = ({ hotel }) => {
   const navigate = useNavigate();
-  const handleNavigateButtonClick = () => {
-    navigate(`/main/hotel/${hotel.hotelId}`);
-  };
-
   const {
     roomPhotoUrl,
     hotelName,
@@ -23,11 +19,16 @@ const ResultCard: FC<Props> = ({ hotel }) => {
     roomPrice,
     discount,
     amenities,
+    hotelId,
   } = hotel;
+
+  const handleNavigateButtonClick = () => {
+    navigate(`/main/hotel/${hotelId}`);
+  };
 
   return (
     <div className={classes.card}>
-      <img src={roomPhotoUrl} alt={`Photo of a room at ${hotelName}`} />
+      <img src={roomPhotoUrl} alt={`Room at ${hotelName}`} />
 
       <div className={classes.dataContainer}>
         <div className={`${classes.titleContainer} ${classes.flexContainer}`}>
@@ -37,7 +38,7 @@ const ResultCard: FC<Props> = ({ hotel }) => {
 
         <div className={classes.locationContainer}>
           <p className={classes.type}>
-            <i className="bi bi-geo-alt" aria-hidden="true"></i>Location
+            <i className="bi bi-geo-alt" aria-hidden="true"/>Location
           </p>
           <p className={classes.location}>{cityName}</p>
         </div>

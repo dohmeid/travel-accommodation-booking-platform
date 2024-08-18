@@ -6,14 +6,10 @@ import React, {
   ReactNode,
   useEffect,
 } from "react";
-import { today, tomorrow } from "../utils/dates";
-import { getAmenities, getSearchResults } from "../services/searchApi";
-import {
-  filterResults,
-  sortResults,
-} from "../utils/filterAndSortUtils";
-import { useError } from "./ErrorProvider";
-import { Amenity } from "../types/adminTypes";
+import { getAmenities, getSearchResults } from "../api/searchService";
+import { filterResults, sortResults } from "../utils/filterAndSortUtils";
+import { useNotification, NotificationType } from "./NotificationProvider";
+import { Amenity } from "../types/hotelTypes";
 import {
   SearchResult,
   SearchFilters,
@@ -21,39 +17,24 @@ import {
   SearchContextProps,
   SortCriteria,
 } from "../types/searchTypes";
+import {
+  INITIAL_FILTERS,
+  INITIAL_SEARCH_QUERY,
+} from "../constants/searchDefaults";
 
 const SearchContext = createContext<SearchContextProps | undefined>(undefined);
 
 export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  //constants
-  const priceRange = { min: 0, max: 500 };
-  const initialFilters = {
-    minPrice: priceRange.min,
-    maxPrice: priceRange.max,
-    rating: 0,
-    amenitiesNames: [],
-    room: "",
-  };
-  const initialSearchQuery = {
-    checkInDate: today,
-    checkOutDate: tomorrow,
-    city: "",
-    starRate: 0,
-    sort: "",
-    numberOfRooms: 1,
-    adults: 2,
-    children: 0,
-  };
-
-  //states
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
   const [filteredResults, setFilteredResults] = useState<SearchResult[]>([]);
   const [amenitiesList, setAmenitiesList] = useState<Amenity[]>([]);
-  const [filters, setFilters] = useState<SearchFilters>(initialFilters);
-  const [sortBy, setSortBy] = useState<SortCriteria>("MinPriceFirst");
-  const { setError } = useError();
+  const [filters, setFilters] = useState<SearchFilters>(INITIAL_FILTERS);
+  const [sortBy, setSortBy] = useState<SortCriteria>(
+    SortCriteria.MinPriceFirst
+  );
   const [searchQuery, setSearchQuery] =
-    useState<SearchQuery>(initialSearchQuery);
+    useState<SearchQuery>(INITIAL_SEARCH_QUERY);
+  const { notify } = useNotification();
 
   //fetch amenities on initial render
   useEffect(() => {
@@ -62,7 +43,7 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
         const responseData = await getAmenities();
         setAmenitiesList(responseData);
       } catch (error: any) {
-        setError(error);
+        notify(NotificationType.ERROR, error.message);
       }
     };
 
@@ -82,21 +63,18 @@ export const SearchProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   //fetch search results on demand
   const fetchSearchResults = async (searchQuery: SearchQuery) => {
+    setSearchQuery(searchQuery); //save the latest search query
     try {
-      setSearchQuery(searchQuery);
       const responseData = await getSearchResults(searchQuery);
       setSearchResults(responseData);
     } catch (error: any) {
-      setError(error);
+      notify(NotificationType.ERROR, error.message);
     }
   };
 
   return (
     <SearchContext.Provider
       value={{
-        initialFilters,
-        initialSearchQuery,
-        priceRange,
         filteredResults,
         amenitiesList,
         sortBy,

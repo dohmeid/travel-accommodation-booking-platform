@@ -1,6 +1,11 @@
 import React, { useRef, FC, ChangeEvent } from "react";
-import { format, parseISO, isBefore, isAfter } from "date-fns";
-import { today, tomorrow } from "../../../../utils/dates";
+import {
+  getToday,
+  getTomorrow,
+  isValidCheckInDate,
+  isValidCheckOutDate,
+  getDayName,
+} from "../../../../utils/dates";
 import { SearchQuery } from "../../../../types/searchTypes";
 import classes from "./DatePicker.module.css";
 
@@ -22,16 +27,12 @@ const DatePicker: FC<Props> = ({
       const newDate = e.target.value;
 
       if (type === "checkInDate") {
-        if (
-          isAfter(parseISO(newDate), parseISO(currentSearchQuery.checkOutDate))
-        ) {
+        if (!isValidCheckInDate(newDate, currentSearchQuery.checkOutDate)) {
           alert("Check-in date cannot be later than check-out date.");
           return;
         }
       } else if (type === "checkOutDate") {
-        if (
-          isBefore(parseISO(newDate), parseISO(currentSearchQuery.checkInDate))
-        ) {
+        if (!isValidCheckOutDate(currentSearchQuery.checkInDate, newDate)) {
           alert("Check-out date cannot be earlier than check-in date.");
           return;
         }
@@ -42,8 +43,6 @@ const DatePicker: FC<Props> = ({
         [type]: newDate,
       });
     };
-
-  const getDayName = (date: string) => format(parseISO(date), "EEEE");
 
   const openCalendar = (ref: React.RefObject<HTMLInputElement>) => {
     ref.current?.showPicker();
@@ -60,7 +59,7 @@ const DatePicker: FC<Props> = ({
             type="date"
             id="checkinDate"
             name="checkinDate"
-            min={today}
+            min={getToday()}
             ref={dateInRef}
             value={currentSearchQuery.checkInDate}
             onChange={handleDateChange("checkInDate")}
@@ -74,14 +73,14 @@ const DatePicker: FC<Props> = ({
 
       <div className={classes.checkout}>
         <label htmlFor="checkoutDate">
-          Checkout <i className="bi bi-calendar-x"></i>
+          Checkout <i className="bi bi-calendar-x" />
         </label>
         <div>
           <input
             type="date"
             id="checkoutDate"
             name="checkoutDate"
-            min={tomorrow}
+            min={getTomorrow()}
             ref={dateOutRef}
             value={currentSearchQuery.checkOutDate}
             onChange={handleDateChange("checkOutDate")}

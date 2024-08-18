@@ -19,9 +19,7 @@ const HotelsSearchBar: FC = () => {
   };
 
   const handleSearchButtonClick = () => {
-    console.log(currentSearchQuery);
     fetchSearchResults(currentSearchQuery);
-
     if (!isInSearchPage) {
       navigate("/main/search");
     }
@@ -39,7 +37,7 @@ const HotelsSearchBar: FC = () => {
           type="search"
           name="search"
           aria-label="search for a string"
-          placeholder="Search for hotels, cities..."
+          placeholder="Search for hotels..."
           value={currentSearchQuery.city}
           onChange={handleCityChange}
         />

@@ -1,11 +1,26 @@
-import { Amenity } from "./adminTypes";
+import { Amenity } from "./hotelTypes";
+
+export enum RoomTypes {
+  Cabin = "Cabin",
+  KingSuite = "King Suite",
+  OceanView = "Ocean View",
+  Standard = "Standard",
+  Double = "Double",
+}
+
+export enum SortCriteria {
+  MinPriceFirst = "MinPriceFirst",
+  MaxPriceFirst = "MaxPriceFirst",
+  MinStarsFirst = "MinStarsFirst",
+  MaxStarsFirst = "MaxStarsFirst",
+}
 
 export interface SearchQuery {
   checkInDate: string; //default today
   checkOutDate: string; //defualt tommorow
   city: string;
   starRate: number;
-  sort: string;
+  sort: SortCriteria;
   numberOfRooms: number; //default: 1
   adults: number; //default: 2
   children: number; //default: 0
@@ -18,7 +33,7 @@ export interface SearchResult {
   latitude: number;
   longitude: number;
   roomPrice: number;
-  roomType: string;
+  roomType: RoomTypes;
   cityName: string;
   roomPhotoUrl: string;
   discount: number;
@@ -34,9 +49,6 @@ export interface SearchFilters {
 }
 
 export interface SearchContextProps {
-  priceRange: { min: number; max: number };
-  initialFilters: SearchFilters;
-  initialSearchQuery: SearchQuery;
   filteredResults: SearchResult[];
   amenitiesList: Amenity[];
   sortBy: SortCriteria;
@@ -45,9 +57,3 @@ export interface SearchContextProps {
   setSortBy: React.Dispatch<React.SetStateAction<SortCriteria>>;
   fetchSearchResults: (searchQuery: SearchQuery) => Promise<void>;
 }
-
-export type SortCriteria =
-  | "MinPriceFirst"
-  | "MaxPriceFirst"
-  | "MinStarsFirst"
-  | "MaxStarsFirst";

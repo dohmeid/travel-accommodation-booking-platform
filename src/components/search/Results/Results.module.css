@@ -39,7 +39,6 @@
 @media (max-width: 385px) {
     .results {
         width: 100%;
-        background-color: aqua;
 
         .header {
             padding-bottom: 0.4rem;
