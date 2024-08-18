@@ -1,58 +1,65 @@
 import React, { FC, MouseEvent } from "react";
 import { Hotel } from "../../../../../types/adminTypes";
-import { UseDialog } from "../../../../../hooks/useDialog";
+import useDialog from "../../../../../hooks/useDialog";
+import DeleteDialog from "../../../DeleteDialog/DeleteDialog";
+import HotelDialog from "../../../HotelDialog/HotelDialog";
 import classes from "./HotelRow.module.css";
 
 interface Props {
   hotelData: Hotel;
-  openDialog: UseDialog["openDialog"];
 }
 
-const HotelRow: FC<Props> = ({ hotelData, openDialog }) => {
+const HotelRow: FC<Props> = ({ hotelData }) => {
+  const { dialogState, openDialog, closeDialog } = useDialog();
+  const { id, name, description, hotelType, starRating, latitude, longitude } =
+    hotelData;
+
   //this function opens the update city dialog
   const handleEditButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    openDialog("Hotel", "Update", null, hotelData);
+    openDialog("Hotel", "Update", hotelData);
   };
 
   //this function opens the delete city dialog
   const handleTrashButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    e.stopPropagation();
-    openDialog("Hotel", "Delete", null, hotelData);
+    openDialog("Hotel", "Delete", hotelData);
   };
 
-  //Hotel: id, name, description, hotelType, starRating, latitude, longitude, actions(delete,update)
-
   return (
-    <tr className={classes.row}>
-      <td>{hotelData.id}</td>
-      <td>{hotelData.name}</td>
-      <td className={classes.descriptionRow}>{hotelData.description}</td>
-      <td>{hotelData.hotelType}</td>
-      <td>{hotelData.starRating}</td>
-      <td>{hotelData.latitude}</td>
-      <td>{hotelData.longitude}</td>
-      <td className={classes.buttons}>
-        <button
-          type="submit"
-          className={classes.editBtn}
-          aria-label="Update city information"
-          onClick={handleEditButtonClick}
-        >
-          <i className="bi bi-pencil-fill"></i>
-        </button>
+    <>
+      <tr className={classes.row}>
+        <td>{id}</td>
+        <td>{name}</td>
+        <td className={classes.descriptionRow}>{description}</td>
+        <td>{hotelType}</td>
+        <td>{starRating}</td>
+        <td>{latitude}</td>
+        <td>{longitude}</td>
+        <td className={classes.buttons}>
+          <button
+            type="button"
+            className={classes.editBtn}
+            aria-label="Update city information"
+            onClick={handleEditButtonClick}
+          >
+            <i className="bi bi-pencil-fill"></i>
+          </button>
 
-        <button
-          type="submit"
-          className={classes.deleteBtn}
-          aria-label="Delete city"
-          onClick={handleTrashButtonClick}
-        >
-          <i className="bi bi-trash-fill"></i>
-        </button>
-      </td>
-    </tr>
+          <button
+            type="button"
+            className={classes.deleteBtn}
+            aria-label="Delete city"
+            onClick={handleTrashButtonClick}
+          >
+            <i className="bi bi-trash-fill"></i>
+          </button>
+        </td>
+      </tr>
+
+      <DeleteDialog dialogState={dialogState} closeDialog={closeDialog} />
+      <HotelDialog dialogState={dialogState} closeDialog={closeDialog} />
+    </>
   );
 };
 

@@ -1,12 +1,10 @@
-import React, { FC, useContext } from "react";
+import React, { FC } from "react";
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
-import { AdminContext } from "../../../context/adminProvider";
-import { AdminContextType, City, Hotel } from "../../../types/adminTypes";
+import { useAdminContext } from "../../../context/AdminProvider";
 import { UseDialog, DialogState } from "../../../hooks/useDialog";
 import * as Yup from "yup";
 import classes from "./HotelDialog.module.css";
 
-// the yup module schema for validating the form
 const hotelSchema = Yup.object().shape({
   name: Yup.string().required("Hotel name is a required field!"),
   description: Yup.string().required("Hotel description is a required field!"),
@@ -44,18 +42,17 @@ interface Props {
 }
 
 const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
-  const { cities, createHotel, updateHotel } = useContext(
-    AdminContext
-  ) as AdminContextType;
+  const { cities, createHotel, updateHotel } = useAdminContext();
+  const { management, type, isOpen, cityData, hotelData } = dialogState;
 
   const initialHotelValues = {
-    name: dialogState.hotelData.name,
-    description: dialogState.hotelData.description,
+    name: hotelData?.name || "",
+    description: hotelData?.description || "",
     cityId: 0,
-    hotelType: dialogState.hotelData.hotelType,
-    starRating: dialogState.hotelData.starRating,
-    latitude: dialogState.hotelData.latitude,
-    longitude: dialogState.hotelData.longitude,
+    hotelType: hotelData?.hotelType || 0,
+    starRating: hotelData?.starRating || 0,
+    latitude: hotelData?.latitude || 0,
+    longitude: hotelData?.longitude || 0,
   };
 
   const handleSubmitAddForm = async (
@@ -63,7 +60,7 @@ const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
     { setSubmitting }: FormikHelpers<DialogFormValues>
   ) => {
     const newHotel = {
-      id: dialogState.hotelData.id,
+      id: hotelData?.id || 0,
       name: values.name,
       description: values.description,
       hotelType: values.hotelType,
@@ -73,29 +70,25 @@ const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
     };
     const cityId = values.cityId;
 
-    if (dialogState.type === "Add") {
-      createHotel(cityId, newHotel);
-    } else {
-      //dialogState.type === "Update"
-      console.log(newHotel);
-      updateHotel(newHotel);
+    try {
+      if (type === "Add") {
+        await createHotel(cityId, newHotel);
+      } else if (type === "Update") {
+        await updateHotel(newHotel);
+      }
+    } finally {
+      closeDialog();
+      setSubmitting(false);
     }
-
-    closeDialog();
-    setSubmitting(false);
   };
 
-  if (
-    !dialogState.isOpen ||
-    (dialogState.type !== "Add" && dialogState.type !== "Update")
-  )
-    return null;
+  if (!isOpen || !["Add", "Update"].includes(type)) return null;
 
   //Hotel: id, name, description, hotelType, starRating, latitude, longitude, actions(delete,update)
 
   return (
     <div className={classes.dialogContainer}>
-      <h2>{dialogState.type === "Add" ? "Add New Hotel" : "Update Hotel"}</h2>
+      <h2>{type === "Add" ? "Add New Hotel" : "Update Hotel"}</h2>
 
       <Formik
         initialValues={initialHotelValues}
@@ -143,7 +136,7 @@ const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
               />
             </div>
 
-            {dialogState.type === "Add" && (
+            {type === "Add" && (
               <div className={classes.inputContainer}>
                 <label htmlFor="cityId">Hotel City</label>
                 <Field
@@ -213,6 +206,7 @@ const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
                   aria-describedby="latitude"
                   min="-90"
                   max="90"
+                  step="any"
                   className={classes.numberField}
                 />
                 <ErrorMessage
@@ -231,6 +225,7 @@ const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
                   aria-describedby="longitude"
                   min="-180"
                   max="180"
+                  step="any"
                   className={classes.numberField}
                 />
                 <ErrorMessage
@@ -256,10 +251,10 @@ const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
                 disabled={formik.isSubmitting || !formik.isValid}
               >
                 {formik.isSubmitting
-                  ? dialogState.type === "Add"
+                  ? type === "Add"
                     ? "Adding..."
                     : "Updating..."
-                  : dialogState.type === "Add"
+                  : type === "Add"
                   ? "Add"
                   : "Update"}
               </button>

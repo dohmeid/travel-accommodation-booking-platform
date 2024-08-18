@@ -1,8 +1,7 @@
-import React, { FC, MouseEvent, useContext } from "react";
-import classes from "./DeleteDialog.module.css";
+import React, { FC, MouseEvent } from "react";
 import { UseDialog, DialogState } from "../../../hooks/useDialog";
-import { AdminContext } from "../../../context/adminProvider";
-import { City, AdminContextType } from "../../../types/adminTypes";
+import { useAdminContext } from "../../../context/AdminProvider";
+import classes from "./DeleteDialog.module.css";
 
 interface Props {
   dialogState: DialogState;
@@ -10,38 +9,37 @@ interface Props {
 }
 
 const DeleteDialog: FC<Props> = ({ dialogState, closeDialog }) => {
-  const { deleteCity,deleteHotel } = useContext(AdminContext) as AdminContextType;
+  const { deleteCity, deleteHotel } = useAdminContext();
+  const { management, type, isOpen, cityData, hotelData } = dialogState;
 
-  //this function activates when the user clicks on the delete button
   const handleDeleteButtonClick = async (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    if (dialogState.management === "City") {
-      deleteCity(dialogState.cityData.id);
-    } else {
-      let cityId = 0; //todo -- search for the city id for the hotel to delete
-      deleteHotel(cityId,dialogState.cityData.id);
+    if (management === "City" && cityData) {
+      await deleteCity(cityData.id);
+    } else if (management === "Hotel" && hotelData) {
+      await deleteHotel(hotelData.id);
     }
     closeDialog();
   };
 
-  if (!dialogState.isOpen || dialogState.type !== "Delete") return null;
+  if (!isOpen || type !== "Delete") return null;
 
   return (
     <div className={classes.deleteDialog}>
-      <h2>{dialogState.management} Deletion</h2>
-      <h3>Are you certain you wish to delete this {dialogState.management}?</h3>
+      <h2>{`${management} Deletion`}</h2>
+      <h3>{`Are you certain you wish to delete this ${management}?`}</h3>
 
       <div className={classes.buttons}>
         <button
-          className={classes.cancelBtn}
           type="button"
+          className={classes.cancelBtn}
           onClick={closeDialog}
         >
           Cancel
         </button>
         <button
-          className={classes.deleteBtn}
           type="button"
+          className={classes.deleteBtn}
           onClick={handleDeleteButtonClick}
         >
           Delete

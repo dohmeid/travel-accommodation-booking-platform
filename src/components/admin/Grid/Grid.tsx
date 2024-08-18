@@ -1,10 +1,9 @@
 import React, { FC } from "react";
+import useDialog from "../../../hooks/useDialog";
 import CitiesTable from "./CitiesTable/CitiesTable";
 import HotelsTable from "./HotelsTable/HotelsTable";
 import CityDialog from "../CityDialog/CityDialog";
 import HotelDialog from "../HotelDialog/HotelDialog";
-
-import useDialog from "../../../hooks/useDialog";
 import classes from "./Grid.module.css";
 
 interface GridProps {
@@ -15,21 +14,19 @@ const Grid: FC<GridProps> = ({ gridType }) => {
   const { dialogState, openDialog, closeDialog } = useDialog();
 
   let title = "";
-  if(gridType==="city"){
+  if (gridType === "city") {
     title = "Cities List";
-  }
-  else if(gridType==="hotel"){
+  } else if (gridType === "hotel") {
     title = "Hotels List";
-  }
-  else{
+  } else {
     title = "Rooms List";
   }
 
   const handleCreateButtonClick = () => {
     if (gridType === "city") {
-      openDialog("City", "Add", null, null);
+      openDialog("City", "Add");
     } else {
-      openDialog("Hotel", "Add", null, null);
+      openDialog("Hotel", "Add");
     }
   };
 
