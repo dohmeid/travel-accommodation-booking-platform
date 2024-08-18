@@ -1,11 +1,12 @@
 import { apiRequest, HttpMethod } from "./apiClient";
 import { Hotel } from "../types/adminTypes";
+import { HotelInformation } from "../types/hotelTypes";
 
 export const getHotels = async () => {
   return apiRequest<Hotel[]>(HttpMethod.GET, "/api/hotels", undefined, {
     name: "",
     searchQuery: "",
-    pageSize: 10,
+    pageSize: 15,
     pageNumber: 1,
   });
 };
@@ -27,10 +28,15 @@ export const editHotel = async (updatedHotel: Hotel) => {
   );
 };
 
+export const getHotelInfo = async (hotelId: number) => {
+  return apiRequest<HotelInformation>(HttpMethod.GET, `/api/hotels/${hotelId}`);
+};
+
 //delete a hotel within a specified city
-export const removeHotel = async (cityId: number, hotelId: number) => {
+export const removeHotel = async (hotelId: number) => {
+  const hotelInfo = await getHotelInfo(hotelId);
   return apiRequest<string>(
     HttpMethod.DELETE,
-    `/api/cities/${cityId}/hotels/${hotelId}`
+    `/api/cities/${hotelInfo.cityId}/hotels/${hotelId}`
   );
 };
