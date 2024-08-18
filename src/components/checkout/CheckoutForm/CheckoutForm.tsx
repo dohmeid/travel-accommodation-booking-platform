@@ -1,12 +1,15 @@
 import React, { FC } from "react";
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
+import {
+  NotificationType,
+  useNotification,
+} from "../../../context/NotificationProvider";
 import { useCartContext } from "../../../context/cartProvider";
 import { useBookingContext } from "../../../context/bookingProvider";
-import { currentDateISO } from "../../../utils/dates";
+import { getCurrentDateISO } from "../../../utils/dates";
 import classes from "./CheckoutForm.module.css";
 
-// the yup module schema for validating the login form
 const checkoutSchema = Yup.object().shape({
   firstName: Yup.string()
     .required("first name is required!")
@@ -19,9 +22,8 @@ const checkoutSchema = Yup.object().shape({
     .required("email is required!"),
   phoneNumber: Yup.string()
     .required("phone number is required!")
-    .length(8, "phone number must be 8 numbers long"),
+    .matches(/^\d{8}$/, "Phone number must be exactly 8 digits long"),
   paymentMethod: Yup.string().required("payment method is required!"),
-
   cardNumber: Yup.string()
     .required("card number is required!")
     .matches(/^\d{4}-\d{4}-\d{4}-\d{4}$/, "Invalid card number"),
@@ -33,7 +35,7 @@ const checkoutSchema = Yup.object().shape({
     ),
   cardCVV: Yup.string()
     .required("Card Verification Value is required!")
-    .matches(/^[0-9]{3,4}$/, "Invalid CVV"),
+    .matches(/^\d{3,4}$/, "Invalid CVV"),
   requests: Yup.string(),
 });
 
@@ -62,6 +64,7 @@ const initialCheckoutValues = {
 };
 
 const CheckoutForm: FC = () => {
+  const { notify } = useNotification();
   const { cartItems, getTotalPrice } = useCartContext();
   const { checkoutBooking } = useBookingContext();
 
@@ -74,15 +77,18 @@ const CheckoutForm: FC = () => {
       hotelName: "",
       roomNumber: cartItems[0].roomNumber,
       roomType: cartItems[0].roomType,
-      bookingDateTime: currentDateISO, //"2024-08-03T20:01:47.334Z";
+      bookingDateTime: getCurrentDateISO(), //"2024-08-03T20:01:47.334Z";
       totalCost: getTotalPrice(),
       paymentMethod: values.paymentMethod,
     };
-
     try {
       checkoutBooking(bookingData);
+      notify(NotificationType.SUCCESS, "checkout successfully!");
     } catch (error: any) {
-      console.log(error.message);
+      notify(
+        NotificationType.ERROR,
+        "An error occurred during checkout. Please try again."
+      );
     } finally {
       setSubmitting(false);
     }
@@ -152,7 +158,7 @@ const CheckoutForm: FC = () => {
 
             <div className={classes.inputContainer}>
               <Field
-                type="text"
+                type="tel"
                 name="phoneNumber"
                 id="phoneNumber"
                 placeholder="Phone Number"
@@ -253,9 +259,11 @@ const CheckoutForm: FC = () => {
             <button
               type="submit"
               className={classes.checkoutButton}
-              disabled={formik.isSubmitting || !formik.isValid}
+              disabled={
+                formik.isSubmitting || !formik.isValid || cartItems.length === 0
+              }
             >
-              {formik.isSubmitting ? "Checkout..." : "Checkout"}
+              {formik.isSubmitting ? "Processing..." : "Checkout"}
             </button>
           </Form>
         )}

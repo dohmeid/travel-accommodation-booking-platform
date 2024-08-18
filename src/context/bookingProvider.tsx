@@ -6,9 +6,9 @@ import React, {
   ReactNode,
 } from "react";
 import { useNavigate } from "react-router-dom";
-import { useError } from "./ErrorProvider";
+import { useNotification, NotificationType } from "./NotificationProvider";
 import { useCartContext } from "./cartProvider";
-import { addBooking } from "../services/bookingApi";
+import { addBooking } from "../api/bookingService";
 import { Booking, BookingConfirmation } from "../types/bookingTypes";
 
 interface BookingContextProps {
@@ -16,23 +16,24 @@ interface BookingContextProps {
   checkoutBooking: (bookingDetails: Booking) => void;
 }
 
-const BookingContext = createContext<BookingContextProps | undefined>(undefined);
+const BookingContext = createContext<BookingContextProps | undefined>(
+  undefined
+);
 export const BookingProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const { setError } = useError();
+  const [bookingConfirm, setBookingConfirm] =
+    useState<BookingConfirmation | null>(null);
   const { clearCart } = useCartContext();
+  const { notify } = useNotification();
   const navigate = useNavigate();
-
-  const [bookingConfirm, setBookingConfirm] = useState<BookingConfirmation | null>(null);
 
   const checkoutBooking = async (bookingDetails: Booking) => {
     try {
       const responseData = await addBooking(bookingDetails);
       setBookingConfirm(responseData);
-      console.log(bookingConfirm);
       clearCart();
       navigate("/main/confirmation");
     } catch (error: any) {
-      setError(error);
+      notify(NotificationType.ERROR, error.message);
     }
   };
 

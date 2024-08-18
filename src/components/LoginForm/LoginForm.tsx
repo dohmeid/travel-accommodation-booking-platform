@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { LoginFormValues } from "../../types/authTypes";
 import { authenticateUser } from "../../api/authService";
 import { useAuthContext } from "../../context/authProvider";
+import { NotificationType } from "../../context/NotificationProvider";
 import Snackbar from "../shared/Snackbar/Snackbar";
 import classes from "./LoginForm.module.css";
 
@@ -101,7 +102,12 @@ const LoginForm: FC = () => {
             {formik.isSubmitting ? "Logging in..." : "Login"}
           </button>
 
-          {formik.errors.api && <Snackbar message={formik.errors.api} />}
+          {formik.errors.api && (
+            <Snackbar
+              type={NotificationType.ERROR}
+              message={formik.errors.api}
+            />
+          )}
         </Form>
       )}
     </Formik>

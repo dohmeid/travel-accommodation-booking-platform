@@ -18,7 +18,7 @@ import {
   HomeContextType,
 } from "../types/homeTypes";
 import { useAuthContext } from "./authProvider";
-import { useError } from "./ErrorProvider";
+import { NotificationType, useNotification } from "./NotificationProvider";
 
 export const HomeContext = createContext<HomeContextType | undefined>(
   undefined
@@ -27,7 +27,7 @@ export const HomeProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [deals, setDeals] = useState<Deal[]>([]);
   const [destinations, setDestinations] = useState<Destination[]>([]);
   const [recentHotels, setRecentHotels] = useState<RecentHotel[]>([]);
-  const { setError } = useError();
+  const { notify } = useNotification();
   const { getUserId } = useAuthContext();
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export const HomeProvider: FC<{ children: ReactNode }> = ({ children }) => {
       setDestinations(trendingDestinations);
       setRecentHotels(recentHotels);
     } catch (error: any) {
-      setError(error);
+      notify(NotificationType.ERROR, error.message);
     }
   };
 

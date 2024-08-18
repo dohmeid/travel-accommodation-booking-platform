@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { AuthProvider } from "./context/authProvider";
 import { BrowserRouter } from "react-router-dom";
-import { ErrorProvider } from "./context/ErrorProvider";
+import { NotificationProvider } from "./context/NotificationProvider";
 import "./index.css";
 
 const root = ReactDOM.createRoot(
@@ -12,12 +12,12 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <ErrorProvider>
+    <NotificationProvider>
       <BrowserRouter>
         <AuthProvider>
           <App />
         </AuthProvider>
       </BrowserRouter>
-    </ErrorProvider>
+    </NotificationProvider>
   </React.StrictMode>
 );

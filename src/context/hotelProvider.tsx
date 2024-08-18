@@ -18,7 +18,7 @@ import {
   Room,
   HotelContextProps,
 } from "../types/hotelTypes";
-import { useError } from "./ErrorProvider";
+import { NotificationType, useNotification } from "./NotificationProvider";
 
 const HotelContext = createContext<HotelContextProps | undefined>(undefined);
 
@@ -28,7 +28,7 @@ export const HotelProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [rooms, setRooms] = useState<Room[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { setError } = useError();
+  const { notify } = useNotification();
 
   const fetchHotelData = async (
     hotelId: number,
@@ -48,7 +48,7 @@ export const HotelProvider: FC<{ children: ReactNode }> = ({ children }) => {
       setReviews(hotelReviews);
       setRooms(hotelRooms);
     } catch (error: any) {
-      setError(error);
+      notify(NotificationType.ERROR, error.message);
     } finally {
       setIsLoading(false);
     }

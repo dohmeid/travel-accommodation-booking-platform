@@ -1,17 +1,21 @@
 import React, { FC } from "react";
 import { useBookingContext } from "../../context/bookingProvider";
+import {
+  NotificationType,
+  useNotification,
+} from "../../context/NotificationProvider";
 import { generatePDF } from "../../utils/pdfGenerator";
 import classes from "./ConfirmationPage.module.css";
 
 const ConfirmationPage: FC = () => {
+  const { notify } = useNotification();
   const { bookingConfirm } = useBookingContext();
 
   if (!bookingConfirm) {
     return (
       <div className={classes.confirmationContainer}>
         <p>
-          No booking information available <i className="bi bi-emoji-frown"></i>
-          .
+          No booking information available <i className="bi bi-emoji-frown" />.
         </p>
       </div>
     );
@@ -31,6 +35,11 @@ const ConfirmationPage: FC = () => {
     { label: "Booking Status", value: bookingConfirm.bookingStatus },
     { label: "Confirmation Number", value: bookingConfirm.confirmationNumber },
   ];
+
+  const handleSavePDF = () => {
+    generatePDF(bookingConfirm);
+    notify(NotificationType.SUCCESS, "checkout successfully!");
+  };
 
   return (
     <div className={classes.confirmationContainer}>
@@ -64,7 +73,7 @@ const ConfirmationPage: FC = () => {
         type="button"
         className={classes.saveButton}
         aria-label="Save Confirmation as PDF"
-        onClick={() => generatePDF(bookingConfirm)}
+        onClick={handleSavePDF}
       >
         Save Confirmation as PDF
         <i className="bi bi-download"></i>

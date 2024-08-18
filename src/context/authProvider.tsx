@@ -10,6 +10,10 @@ import React, {
 import { useNavigate } from "react-router-dom";
 import { UserInfo, AuthContextType } from "../types/authTypes";
 import { isTokenValid, getUserIdFromToken } from "../utils/authUtils";
+import {
+  useNotification,
+  NotificationType,
+} from "../context/NotificationProvider";
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
@@ -18,6 +22,7 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
     authentication: localStorage.getItem("authToken"),
     userType: localStorage.getItem("userType"),
   });
+  const { notify } = useNotification();
   const navigate = useNavigate();
 
   //logout if token is expired (notValid)
@@ -40,6 +45,7 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
       localStorage.setItem("authToken", user.authentication);
       localStorage.setItem("userType", user.userType);
       navigate(user.userType === "Admin" ? "/adminPortal" : "/main");
+      notify(NotificationType.SUCCESS, "Welcome Back!");
     }
   };
 
