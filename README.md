@@ -20,21 +20,43 @@ Users can look for hotels, access detailed information, and make reservations, w
 
 ## :dart: Features
 1. **User-Friendly Interface**
-TravelHub boasts a clean, simple, and intuitive design that significantly enhances the user experience for both travelers and administrators. The streamlined booking process is tailored to make navigation and reservations effortless for users of all backgrounds.
-
+   - TravelHub offers a clean, simple, and intuitive interface that significantly enhances the user experience for both travelers and administrators. The streamlined booking process ensures that navigation and reservations are effortless for users of all backgrounds, making it easy to find and book accommodations.
 2. **Responsive Design**
-The website is fully responsive, ensuring optimal performance across all screen sizes. Whether accessed on desktops, tablets, or mobile devices, users can expect a consistent and enjoyable experience.
-
+   - The platform is fully responsive, ensuring optimal performance across all screen sizes. Whether accessed on desktops, tablets, or mobile devices, users can expect a consistent and enjoyable experience, with no compromise on functionality or aesthetics.
 3. **Accessibility**
-TravelHub prioritizes inclusivity by adhering to accessibility standards, making it friendly for users with special needs. The site is optimized for screen readers, allowing all users to navigate and utilize its features with ease.
-
+   - TravelHub prioritizes inclusivity by adhering to accessibility standards, making the platform friendly for users with special needs. The site is optimized for screen readers, ensuring that all users can navigate and utilize its features with ease.
 4. **Secure System**
-Implementing the best security practices, TravelHub features protected routing that ensures only authenticated users can access the site. Normal users are redirected to user-specific pages, while administrators have secure access to the administration portal, safeguarding sensitive information and functionalities.
-
+   - TravelHub implements best-in-class security practices, featuring protected routing that ensures only authenticated users can access the platform. Regular users are guided to user-specific pages, while administrators have secure access to the admin portal, safeguarding sensitive information and functionalities.
 5. **Graceful Error Handling**
-TravelHub enhances user experience by providing informative feedback during operations. Users receive success notifications for successful actions and error alerts for failures. The application effectively handles HTTP 404 (Page Not Found) errors with a dedicated page, as well as HTTP 401 (Unauthorized) errors. Additionally, in the event of unexpected HTTP 500 errors, the application displays a specific error page with a "Try Again" option, allowing users to easily attempt their actions once more.
-
-
+   - TravelHub enhances the user experience by providing clear and informative feedback during operations. Users receive success notifications for completed actions and error alerts when issues arise. The application also effectively handles HTTP errors, such as:
+     - **401 (Unauthorized)**   -> Displays a dedicated page for this error.
+     - **404 (Page Not Found)** -> Displays a dedicated page for this error.
+     - **500 (Server Error)**   -> Uses an error boundary to catch unexpected errors and displays a specific page with a "Try Again" option, allowing users to attempt their actions once more.
+6. **Dynamic Home Page**
+   - TravelHub offers a visually captivating homepage designed to engage users from the start. Key sections include:
+     - **Featured Deals**: Showcases special hotel offers with star ratings and essential details for quick and easy comparison.
+     - **Recently Visited Hotels**: A personalized section displaying the last hotels a user visited, making it convenient to revisit or book again.
+     - **Trending Destinations**: A curated list of popular cities, presented with attractive visuals to spark interest and inspire travel plans.
+7. **Robust Search Functionality**
+   - TravelHub provides a powerful and user-friendly search experience with:
+     - **Central Search Bar**: Allows users to easily find hotels, with an interactive calendar for selecting check-in and check-out dates.
+     - **Guest and Room Controls**: Users can specify the number of adults, children, and room preferences.
+     - **Infinite Scroll**: Displays search results on a dedicated page with seamless infinite scrolling, allowing users to browse hotels without page reloads.
+     - **Comprehensive Filters**: Advanced filtering options for refining search results by price range, star rating, amenities, and room types, ensuring users find exactly what they’re looking for.
+8. **Detailed Hotel Pages**
+   - Each hotel has a dedicated page packed with all the information a user needs to make an informed booking decision, including:
+     - **High-Quality Image Galleries**: Featuring fullscreen view options for an immersive visual experience.
+     - **Comprehensive Information**: Detailed descriptions, guest reviews, and an interactive map highlighting nearby attractions.
+     - **Available Rooms**: Users can view room descriptions, images, and prices, with an easy "Add to Cart" option for booking.
+9. **Secure Checkout Process**
+   - TravelHub ensures a smooth and secure checkout experience by providing:
+     - **Cart Overview**: A checkout page displaying all selected rooms with options to remove any, alongside a summary of total items and price.
+     - **User-Friendly Forms**: Simple forms for entering personal and payment details securely.
+     - **Booking Confirmation**: Upon completion, users are directed to a confirmation page that provides booking details, including confirmation number, hotel address, and total price, with the option to save the booking confirmation as a PDF.
+10. **Comprehensive Admin Portal**
+   - TravelHub includes an admin portal designed for easy management of the website’s content and data:
+     - **Intuitive Management Tools**: TravelHub includes an admin portal designed for easy management of the website’s content and data.
+     - **Detailed Grids**: Provides a clear overview of all data, allowing admins to view, update, create, or delete entities with ease, ensuring the website remains up-to-date and well-maintained.
 
 ### **Tech Stack** Technical Details :space_invader: Technologies Used
 - **React**: For rendering UI components.
