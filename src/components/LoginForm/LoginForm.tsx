@@ -97,7 +97,12 @@ const LoginForm: FC = () => {
           <button
             type="submit"
             className={classes.loginButton}
-            disabled={formik.isSubmitting || !formik.isValid}
+            disabled={
+              formik.isSubmitting ||
+              !formik.isValid ||
+              !formik.values.username ||
+              !formik.values.password
+            }
           >
             {formik.isSubmitting ? 'Logging in...' : 'Login'}
           </button>

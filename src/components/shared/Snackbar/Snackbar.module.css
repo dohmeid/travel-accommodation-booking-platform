@@ -74,7 +74,7 @@
 }
 
 .warning {
-  --yellow: rgb(136, 121, 33);
+  --yellow: #887921;
   color: var(--yellow);
   background-color: rgba(250, 240, 165, 0.92);
   border: 1px solid var(--yellow);

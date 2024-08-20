@@ -69,6 +69,7 @@ const Snackbar: FC<SnackbarProps> = ({ type, message, onClose }) => {
       <div className={classes.progressBarContainer}>
         <div
           className={classes.progressBar}
+          role="progressbar"
           style={{ width: `${progress}%` }}
         />
       </div>
