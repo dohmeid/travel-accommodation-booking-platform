@@ -161,28 +161,31 @@ Other Dependencies
 
 
 
-
 ### :eye: Preview
 You can access a live demo of this application here -> https://shopping-list-makeup-store.netlify.app/ 
 
-### :joystick: Getting Started 
-To run this application locally, follow these steps:
-1. Clone the repository:
-   ```
-   git clone https://github.com/dohmeid/.git
-   ```
-2. Go to folder 
-   ```
-   cd 
-   ```
-3. Install the required dependencies from package.json
-   ```
-   npm i
-   ```
 
+
+### :joystick: Installation
+To run TravelHub locally, follow these steps:
+1. Clone the repository:
+  **`git clone https://github.com/dohmeid/travel-accommodation-booking-platform.git`**
+2. Navigate to the project directory:  
+ **`cd travel-accommodation-booking-platform`**
+3. Install the required dependencies from package.json
+**`npm install`**
 4. Start the development server using:
-   ```
-    npm start
+**`npm start`**
+5. Once the server is running, open your web browser and navigate to http://localhost:3000 to view the application.
+
+Running Tests
+if you want to run the tests for TravelHub, follow these steps:
+1. Ensure Dependencies Are Installed
+2. Run the Test Suite
+**`npm test`** <br>
+Now, you are ready to explore and contribute to the TravelHub project!
+
+
 
 ## Acknowledgements
 TravelHub was created as the capstone project for my Front-End Development internship at [Foothill Technology Solutions](https://www.foothillsolutions.com/).
