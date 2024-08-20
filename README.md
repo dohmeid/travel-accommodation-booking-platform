@@ -20,6 +20,7 @@ The application boasts an easy-to-navigate interface with powerful features that
 Users can look for hotels, access detailed information, and make reservations, while the admin panel facilitates efficient management of cities, hotels, and rooms.
 
 
+
 ## :dart: Features
 1. **User-Friendly Interface** <br>
 TravelHub offers a clean, intuitive interface that enhances the user experience for both travelers and administrators. The streamlined booking process ensures easy navigation and hassle-free reservations for users of all backgrounds.
@@ -70,6 +71,7 @@ TravelHub includes an admin portal designed for easy management of the websiteâ€
 	- **Detailed Grids**: Provides a clear overview of all data, allowing admins to view, update, create, or delete entities with ease, ensuring the website remains up-to-date and well-maintained.
 
 
+
 ## :paintbrush: Website Design
 Below are the key components and resources used in the design process:
 
@@ -97,6 +99,19 @@ You can explore the font options here: [Google Fonts](https://fonts.google.com/)
 | Secondary Color3 | ![#b28e6a](https://via.placeholder.com/10/b28e6a?text=+) #b28e6a |
 | Secondary Color4 | ![#473d3a](https://via.placeholder.com/10/473d3a?text=+) #473d3a |
 </div>
+
+
+
+## Project Management and Tracking
+For the development process of TravelHub, I utilized **Linear.app**, a project management tool designed to help track tasks, deadlines, and overall progress. Below is the workflow overview:
+1. Workspace Creation: I created a new workspace in Linear specifically for the TravelHub project.
+2. Timeline Setup: I established the start and expected finish times for the application development.
+3. Milestones Definition: Major milestones were defined along with deadlines for each. Breaking the project into manageable tasks simplifies tracking and management.
+4. Development Process: I initiated the development by implementing the first milestone, followed by subsequent ones.
+5. Task Management: Each new milestone was divided into multiple issues or 'todos,' which I implemented sequentially until the milestone was completed. <br>
+Below is a snapshot of the workspace showing the project details and major milestones.
+![image](https://github.com/user-attachments/assets/a86e6e14-17d8-4477-be49-cd4e5a45d094)
+
 
 
 
