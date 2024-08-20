@@ -18,7 +18,22 @@ TravelHub is an all-in-one travel booking platform developed with React and Type
 The application boasts an easy-to-navigate interface with powerful features that serve both travelers and administrators.
 Users can look for hotels, access detailed information, and make reservations, while the admin panel facilitates efficient management of cities, hotels, and rooms.
 
-### :dart: Features
+## :dart: Features
+1. **User-Friendly Interface**
+TravelHub boasts a clean, simple, and intuitive design that significantly enhances the user experience for both travelers and administrators. The streamlined booking process is tailored to make navigation and reservations effortless for users of all backgrounds.
+
+2. **Responsive Design**
+The website is fully responsive, ensuring optimal performance across all screen sizes. Whether accessed on desktops, tablets, or mobile devices, users can expect a consistent and enjoyable experience.
+
+3. **Accessibility**
+TravelHub prioritizes inclusivity by adhering to accessibility standards, making it friendly for users with special needs. The site is optimized for screen readers, allowing all users to navigate and utilize its features with ease.
+
+4. **Secure System**
+Implementing the best security practices, TravelHub features protected routing that ensures only authenticated users can access the site. Normal users are redirected to user-specific pages, while administrators have secure access to the administration portal, safeguarding sensitive information and functionalities.
+
+5. **Graceful Error Handling**
+TravelHub enhances user experience by providing informative feedback during operations. Users receive success notifications for successful actions and error alerts for failures. The application effectively handles HTTP 404 (Page Not Found) errors with a dedicated page, as well as HTTP 401 (Unauthorized) errors. Additionally, in the event of unexpected HTTP 500 errors, the application displays a specific error page with a "Try Again" option, allowing users to easily attempt their actions once more.
+
 
 
 ### **Tech Stack** Technical Details :space_invader: Technologies Used
