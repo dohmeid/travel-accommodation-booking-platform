@@ -130,21 +130,37 @@ Below is a snapshot of the workspace showing the project details and major miles
 
 
 
+## :space_invader: **Technologies Used**
+This project utilizes a variety of modern technologies and libraries to create a robust and efficient web application. The following technologies are used in TravelHub:
+
+Frontend Technologies
+- **React**: A JavaScript library for building user interfaces.
+- **TypeScript**: A superset of JavaScript that adds static types for better development experience and code quality.
+- **React Router DOM**: A routing library for managing navigation and rendering different components based on the URL.
+- **Axios**: A promise-based HTTP client for making API requests.
+- **Formik**: A library for building forms in React with easy validation and state management.
+- **Yup**: A schema builder for value parsing and validation.
+- **Date-fns**: A library for date manipulation and formatting.
+- **Leaflet**: A JavaScript library for interactive maps.
+- **React-Leaflet**: A React wrapper for Leaflet to easily integrate maps into React applications.
+
+Development Tools
+- **ESLint**: A tool for identifying and fixing problems in JavaScript/TypeScript code.
+- **Prettier**: A code formatter that enforces a consistent style.
+- **React Scripts**: Scripts for running and building React applications.
+
+Testing Libraries
+- **React Testing Library**: A set of utilities for testing React components.
+- **Jest**: A JavaScript/TypeScript testing framework for unit testing components and functions.
+- **Jest-DOM**: Custom matchers for Jest to test the state of the DOM.
+
+Other Dependencies
+- **JWT Decode**: A library for decoding JSON Web Tokens.
+- **jsPDF**: A library for generating PDF documents in JavaScript.
+- **React Error Boundary**: A React component for handling errors in the component tree gracefully.
 
 
-### **Tech Stack** Technical Details :space_invader: Technologies Used
-- **React**: For rendering UI components.
-- **TypeScript**: For type safety and better development experience.
-- **Formik**: For handling form state and validation.
-- **React Router**: For navigation and routing management.
-- **Axios**: For making API calls with centralized error handling and token management.
-- **Storybook**: For building and testing UI components in isolation (bonus feature).
-<div align="left">
-    <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" height="30" />
-    <img src="https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white" height="30" />
-    <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" height="30" />
-    <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white" height="30" />
-</div>
+
 
 ### :eye: Preview
 You can access a live demo of this application here -> https://shopping-list-makeup-store.netlify.app/ 
