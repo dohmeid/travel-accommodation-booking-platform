@@ -67,6 +67,9 @@ TravelHub includes an admin portal designed for easy management of the websiteâ€
 	- **Intuitive Management Tools**: TravelHub includes an admin portal designed for easy management of the websiteâ€™s content and data.
 	- **Detailed Grids**: Provides a clear overview of all data, allowing admins to view, update, create, or delete entities with ease, ensuring the website remains up-to-date and well-maintained.
 
+## :paintbrush: Design
+
+
 ### **Tech Stack** Technical Details :space_invader: Technologies Used
 - **React**: For rendering UI components.
 - **TypeScript**: For type safety and better development experience.
