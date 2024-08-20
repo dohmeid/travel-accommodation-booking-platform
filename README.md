@@ -13,10 +13,12 @@
 - [Acknowledgements](#acknowledgements)
 - [Contact](#-contact)
 
+
 ## :stars: What is TravelHub?
 TravelHub is an all-in-one travel booking platform developed with React and TypeScript, aimed at delivering a seamless and user-friendly experience for finding and booking accommodations.
 The application boasts an easy-to-navigate interface with powerful features that serve both travelers and administrators.
 Users can look for hotels, access detailed information, and make reservations, while the admin panel facilitates efficient management of cities, hotels, and rooms.
+
 
 ## :dart: Features
 1. **User-Friendly Interface** <br>
@@ -67,7 +69,36 @@ TravelHub includes an admin portal designed for easy management of the websiteâ€
 	- **Intuitive Management Tools**: TravelHub includes an admin portal designed for easy management of the websiteâ€™s content and data.
 	- **Detailed Grids**: Provides a clear overview of all data, allowing admins to view, update, create, or delete entities with ease, ensuring the website remains up-to-date and well-maintained.
 
-## :paintbrush: Design
+
+## :paintbrush: Website Design
+Below are the key components and resources used in the design process:
+
+ - **Initial Flow**: the initial flow of the website was outlined using FTS, which can be viewed here -> [Excalidraw Flow](https://excalidraw.com/)
+![image](https://github.com/user-attachments/assets/2e4b1dec-52a4-4bdd-b52b-c7b6e56196a1)
+
+ - **Prototyping**: Figma was utilized to create the initial design for TravelHub. You can explore the design by following this link -> [Figma Prototype](https://www.figma.com/design/G2NaaHuF1Frc0mZsddlVBk/TravelHub?node-id=87-42&t=W9HSAhkRVwwJHbor-1)
+![image](https://github.com/user-attachments/assets/099fe12c-be9f-4a9d-9f5b-435b2a02ab4d)
+
+ - **Icons**: Bootstrap Icons were used throughout the website for a cohesive visual language. You can view the available icons here -> [Bootstrap Icons](https://icons.getbootstrap.com/)
+
+ - **Typography**: Google Fonts was used for the website's typography, incorporating the following fonts:  
+	- **Main Font:** "League Spartan"  
+	- **Secondary Font:** "Montserrat"  
+You can explore the font options here: [Google Fonts](https://fonts.google.com/)
+
+ - **Color Reference**: the following color palette was utilized in the design to create a harmonious visual identity:
+<div align="center"> 
+
+| Color | Hex |
+| --------------- | ---------------------------------------------------------------- |
+| Primary Color | ![#b25e39](https://via.placeholder.com/10/b25e39?text=+) #b25e39 |
+| Secondary Color1 | ![#f3f3f3](https://via.placeholder.com/10/f3f3f3?text=+) #f3f3f3 |
+| Secondary Color2 | ![#bebfb5](https://via.placeholder.com/10/bebfb5?text=+) #bebfb5 |
+| Secondary Color3 | ![#b28e6a](https://via.placeholder.com/10/b28e6a?text=+) #b28e6a |
+| Secondary Color4 | ![#473d3a](https://via.placeholder.com/10/473d3a?text=+) #473d3a |
+</div>
+
+
 
 
 ### **Tech Stack** Technical Details :space_invader: Technologies Used
@@ -86,21 +117,6 @@ TravelHub includes an admin portal designed for easy management of the websiteâ€
 
 ### :eye: Preview
 You can access a live demo of this application here -> https://shopping-list-makeup-store.netlify.app/ 
-
-
-### :art: Color Reference
-<div align="center"> 
-
-| Color | Hex |
-| --------------- | ---------------------------------------------------------------- |
-| Primary Color | ![#fbd7e1](https://via.placeholder.com/10/fbd7e1?text=+) #fbd7e1 |
-| Secondary Color1 | ![#e39bc4](https://via.placeholder.com/10/e39bc4?text=+) #e39bc4 |
-| Secondary Color2 | ![#e7709c](https://via.placeholder.com/10/e7709c?text=+) #e7709c |
-| Secondary Color3 | ![#bc518c](https://via.placeholder.com/10/bc518c?text=+) #bc518c |
-| Secondary Color4 | ![#b8a7cbff](https://via.placeholder.com/10/b8a7cbff?text=+) #b8a7cbff |
-| Secondary Color5 | ![#b089be](https://via.placeholder.com/10/b089be?text=+) #b089be |
-| Secondary Color6 | ![#614e6c](https://via.placeholder.com/10/614e6c?text=+) #614e6c |
-</div>
 
 ### :joystick: Getting Started 
 To run this application locally, follow these steps:
