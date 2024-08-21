@@ -13,6 +13,7 @@ const MainHeader: FC = () => {
       className={`${classes.header} ${
         isInHomePage ? classes.transparentHeader : ''
       }`}
+      role="banner"
     >
       <p className={classes.logo}>
         <span>

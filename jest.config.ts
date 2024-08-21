@@ -24,7 +24,7 @@ const config: Config = {
 
   // The test environment that will be used for testing
   testEnvironment: 'jsdom',
-
+  preset: 'ts-jest',
   testPathIgnorePatterns: [
     '/node_modules/',
     '/src/__tests__/components/render.tsx',
