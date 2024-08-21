@@ -159,7 +159,6 @@ TravelHub ensures a smooth and secure checkout experience by providing:
 	 - **Booking Confirmation**: Upon completion, users are directed to a confirmation page that provides booking details, including confirmation number, hotel address, and total price, with the option to save the booking confirmation as a PDF.
 
 10. 📈 **Comprehensive Admin Portal** <br>
-TravelHub includes an admin portal designed for easy management of the website’s content and data:
 	- **Intuitive Management Tools**: TravelHub includes an admin portal designed for easy management of the website’s content and data.
 	- **Detailed Grids**: Provides a clear overview of all data, allowing admins to view, update, create, or delete entities with ease, ensuring the website remains up-to-date and well-maintained.
 
@@ -244,10 +243,14 @@ Now, you are ready to explore and contribute to the TravelHub project!
 ## :medal_sports: Acknowledgements
 TravelHub was created as the capstone project for my Front-End Development internship at [Foothill Technology Solutions](https://www.foothillsolutions.com/).
 This project incorporates all the skills and technologies I acquired during this experience. 
-I want to extend my gratitude to FTS for offering this incredible opportunity, as well as for their guidance and support along the way.
+I extend my gratitude to FTS for offering this incredible opportunity and providing guidance and support throughout the process.<br> <br>
+<div align="center">
+    <img src="https://github.com/user-attachments/assets/a7d479d1-c0e5-4a93-8bbc-6f7d4dae4163" width=400 heigh=200/>
+</div>
+
 
 ## :envelope_with_arrow: Contact
-If you have any questions or comments about TravelHub, please contact **[Doha Hmeid](doha.hmeid@gmail.com)** via  doha.hmeid@gmail.com.
+If you have any questions or comments about TravelHub, please contact **[Doha Hmeid]** via  doha.hmeid@gmail.com.
 <br>
 <br>
 <br>
