@@ -57,9 +57,6 @@ Below are the key components and resources used in the design process:
  - **Initial Flow**: the initial flow of the website was outlined using FTS, which can be viewed here -> [Excalidraw Flow](https://excalidraw.com/)
 ![image](https://github.com/user-attachments/assets/2e4b1dec-52a4-4bdd-b52b-c7b6e56196a1)
 
- - **Prototyping**: Figma was utilized to create the initial design for TravelHub. You can explore the design by following this link -> [Figma Prototype](https://www.figma.com/design/G2NaaHuF1Frc0mZsddlVBk/TravelHub?node-id=87-42&t=W9HSAhkRVwwJHbor-1)
-![image](https://github.com/user-attachments/assets/099fe12c-be9f-4a9d-9f5b-435b2a02ab4d)
-
  - **Icons**: Bootstrap Icons were used throughout the website for a cohesive visual language. You can view the available icons here -> [Bootstrap Icons](https://icons.getbootstrap.com/)
 
  - **Typography**: Google Fonts was used for the website's typography, incorporating the following fonts:  
@@ -78,6 +75,11 @@ You can explore the font options here: [Google Fonts](https://fonts.google.com/)
 | Secondary Color3 | ![#b28e6a](https://via.placeholder.com/10/b28e6a?text=+) #b28e6a |
 | Secondary Color4 | ![#473d3a](https://via.placeholder.com/10/473d3a?text=+) #473d3a |
 </div>
+
+ - **Prototyping**: Figma was utilized to create the initial design for TravelHub. You can explore the design by following this link -> [Figma Prototype](https://www.figma.com/design/G2NaaHuF1Frc0mZsddlVBk/TravelHub?node-id=87-42&t=W9HSAhkRVwwJHbor-1)
+![image](https://github.com/user-attachments/assets/099fe12c-be9f-4a9d-9f5b-435b2a02ab4d)
+
+
 
 
 
@@ -164,7 +166,47 @@ TravelHub includes an admin portal designed for easy management of the websiteâ€
 
 
 ## :eye: Website Pages
-You can access a live demo of this application here -> https://shopping-list-makeup-store.netlify.app/ 
+You can access a live demo of this application here ->
+1. Login page
+![image](https://github.com/user-attachments/assets/aa6a7934-98d8-4b8e-9442-64bb8fe8951e)
+
+2. Home page
+![image](https://github.com/user-attachments/assets/82b9c5e7-6cd8-43e1-bc48-0668d430302d)
+![image](https://github.com/user-attachments/assets/6d2fbb40-b214-4ddc-bde5-2bd12cce9a82)
+![image](https://github.com/user-attachments/assets/65d580aa-f9fb-4370-9b0f-0e461a035f43)
+![image](https://github.com/user-attachments/assets/be1e6708-aaa4-46cc-8192-a9e74e277061)
+
+3. Search Page
+![image](https://github.com/user-attachments/assets/13f7dcc5-3804-4632-b4ce-ad841a5a754f)
+
+4. Hotel Page
+![image](https://github.com/user-attachments/assets/93b52e86-0229-4c61-b952-ea292a61ad2d)
+![image](https://github.com/user-attachments/assets/62afb540-949a-4087-a4f9-9312aa7bbe48)
+![image](https://github.com/user-attachments/assets/89b957b7-ec9a-469f-a3ac-e671f097d6cb)
+![image](https://github.com/user-attachments/assets/038e67a8-1bab-45d1-bccc-25de91df3650)
+
+5. Cart & Checkout Page
+![image](https://github.com/user-attachments/assets/d0ca92a5-f6e8-4211-8749-8a9fb15e2de5)
+
+6. Booking Confirmation Page
+![image](https://github.com/user-attachments/assets/8063c928-b340-43ca-8215-bcf9e4082f46)
+Booking Confirmation Pdf
+![image](https://github.com/user-attachments/assets/ff016521-514e-49cb-bef2-d049022ca7ea)
+
+8. Admin Page - manage cities
+![image](https://github.com/user-attachments/assets/c79398b3-10a6-493c-96ef-68f80764ef7d)
+
+9. Admin Page - manage hotels
+![image](https://github.com/user-attachments/assets/62c403b7-a9ac-4c29-b58e-d5679b2a09f7)
+
+10. Unauthorized Error Page - 401 http error
+![image](https://github.com/user-attachments/assets/565afb2b-6aeb-4e4c-bfc1-15bc5baee813)
+
+11. Page Not Found Error Page - 404 http error
+![image](https://github.com/user-attachments/assets/6f4a6a67-29de-447a-8edc-b3751e47aa83)
+
+12. Unexpected Error Page
+![image](https://github.com/user-attachments/assets/d80a3420-9907-4645-a993-04abe5f5284e)
 
 
 
@@ -180,11 +222,11 @@ To run TravelHub locally, follow these steps:
 **`npm start`**
 5. Once the server is running, open your web browser and navigate to http://localhost:3000 to view the application.
 
-Running Tests
-if you want to run the tests for TravelHub, follow these steps:
-1. Ensure Dependencies Are Installed
-2. Run the Test Suite
-**`npm test`** <br>
+Running tests - if you want to run the tests for TravelHub, follow these steps:
+1. Ensure dependencies are installed
+2. Run the test suite
+**`npm test`**
+
 Now, you are ready to explore and contribute to the TravelHub project!
 
 
