@@ -33,6 +33,7 @@
     }
 
     pre {
+      text-overflow: ellipsis;
       margin-bottom: 1.5rem;
     }
 
@@ -77,10 +78,16 @@
 @media (max-width: 780px) {
   .container {
     .overlay {
-      padding: 5rem 2rem;
+      width: 30rem;
+      padding: 5rem 0rem;
 
       p {
         width: fit-content;
+      }
+
+      pre {
+        white-space: pre;
+        text-overflow: clip;
       }
     }
   }
