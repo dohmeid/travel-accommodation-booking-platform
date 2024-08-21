@@ -1,7 +1,7 @@
 <div align="center">
   <br>
   <h1> :small_airplane: TravelHub :small_airplane:</h1>
-  <h3>Travel and Accommodation Booking Platform - Your Ultimate Gateway to Unforgettable Adventures! :zap: :sparkles: :confetti_ball: </h3>
+  <h3>Travel and Accommodation Booking Platform - Your Ultimate Gateway to Unforgettable Adventures! :zap: :sparkles: </h3>
 </div>
 <br>
 
@@ -19,6 +19,9 @@
     <img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" height="30" />
     <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" height="30" />
 </div>
+
+![image](https://github.com/user-attachments/assets/d3d25f0a-0cdc-451b-a050-1f34734fefe2)
+
 
 ## :star2: What is TravelHub?
 TravelHub is an all-in-one travel booking platform developed with React and TypeScript, aimed at delivering a seamless and user-friendly experience for finding and booking accommodations.
