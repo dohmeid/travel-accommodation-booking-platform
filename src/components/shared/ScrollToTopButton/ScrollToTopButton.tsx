@@ -10,7 +10,12 @@ const ScrollToTopButton: FC = () => {
   };
 
   return (
-    <button className={classes.scrollButton} onClick={scrollToTop}>
+    <button
+      type="button"
+      role="scroll to top"
+      className={classes.scrollButton}
+      onClick={scrollToTop}
+    >
       <i className="bi bi-arrow-up-short"></i>
     </button>
   );
