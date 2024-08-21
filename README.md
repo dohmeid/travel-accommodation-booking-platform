@@ -57,7 +57,7 @@ Below is a snapshot of the workspace showing the project details and major miles
 ## :paintbrush: Website Design
 Below are the key components and resources used in the design process:
 
- - **Initial Flow**: the initial flow of the website was outlined using FTS, which can be viewed here -> [Excalidraw Flow](https://excalidraw.com/)
+ - **Initial Flow**: the initial flow of the website was outlined by FTS, which can be viewed here -> [Excalidraw Flow](https://excalidraw.com/)
 ![image](https://github.com/user-attachments/assets/2e4b1dec-52a4-4bdd-b52b-c7b6e56196a1)
 
  - **Icons**: Bootstrap Icons were used throughout the website for a cohesive visual language. You can view the available icons here -> [Bootstrap Icons](https://icons.getbootstrap.com/)
