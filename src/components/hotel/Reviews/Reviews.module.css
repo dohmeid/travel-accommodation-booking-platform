@@ -1,0 +1,52 @@
+.reviewsContainer {
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .showMoreButton {
+    background-color: var(--orange1);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
+    box-sizing: border-box;
+    color: var(--white);
+    cursor: pointer;
+    font-family: var(--secondary-font);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+    margin-top: 2rem;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:focus {
+      box-shadow: rgba(164, 111, 46, 0.4) 0 0 0 3px;
+      outline: none;
+    }
+
+    &:active {
+      box-shadow: rgba(164, 111, 46, 0.4) 0 0 0 3px;
+    }
+  }
+}
+
+@media (max-width: 385px) {
+}
+
+/*for small devices - mobile phones and some tablets*/
+@media (min-width: 385px) and (max-width: 600px) {
+  html {
+    font-size: 11px;
+  }
+}

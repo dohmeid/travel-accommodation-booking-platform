@@ -1,0 +1,88 @@
+.container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(210, 255, 245);
+  background: radial-gradient(
+    circle,
+    rgba(210, 255, 245, 1) 0%,
+    rgba(247, 151, 55, 1) 100%
+  );
+
+  .overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    font-family: var(--secondary-font);
+    color: var(--dark-brown2);
+    padding: 4rem 8rem;
+
+    h1 {
+      font-size: 6rem;
+      margin-bottom: 0.3rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.3rem;
+    }
+
+    p {
+      width: 40rem;
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    button {
+      font-family: var(--secondary-font);
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.8rem 3rem;
+      border-radius: 2rem;
+      border: 4px solid var(--orange1);
+      background: transparent;
+      transition: 0.2s ease;
+      cursor: pointer;
+      z-index: 1;
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0%;
+        height: 100%;
+        border-radius: 2rem;
+        background: var(--orange1);
+        z-index: -1;
+        transition: 0.2s ease;
+      }
+
+      &:hover {
+        color: var(--white);
+        transition: 0.2s ease;
+
+        &:before {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 735px) {
+  .container {
+    .overlay {
+      padding: 4rem 2rem;
+
+      p {
+        width: fit-content;
+      }
+    }
+  }
+}

@@ -1,0 +1,76 @@
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 8.5rem);
+  justify-content: center;
+  gap: 0.5rem 0.8rem;
+  padding: 0 4rem;
+  margin-top: 2rem;
+
+  .hotelImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 0.7rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow:
+        rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+        rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    }
+
+    &:nth-child(1) {
+      grid-column: 1 / span 1;
+      grid-row: 1 / span 3;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(auto, 7rem);
+    gap: 0.5rem;
+    padding: 0 1rem;
+
+    .hotelImage {
+      border-radius: 0.5rem;
+
+      &:nth-child(1) {
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 2;
+      }
+    }
+  }
+}
+
+@media (min-width: 400px) and (max-width: 600px) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 7rem);
+    gap: 0.5rem;
+    padding: 0 1rem;
+
+    .hotelImage {
+      border-radius: 0.5rem;
+
+      &:nth-child(1) {
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 3;
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) and (max-width: 800px) {
+  .gallery {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 8rem);
+    gap: 0.5rem;
+    padding: 0 2rem;
+  }
+}

@@ -1,0 +1,14 @@
+.featuredDealsSection {
+  width: 100%;
+  padding: 8rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 450px) {
+  .featuredDealsSection {
+    padding: 6rem 1rem;
+  }
+}

@@ -1,0 +1,86 @@
+.infoContainer {
+  width: 100%;
+  height: fit-content;
+  font-family: var(--secondary-font);
+  color: var(--dark-brown1);
+  padding: 4rem;
+  display: flex;
+  gap: 2rem;
+
+  .mainContainer {
+    width: 45%;
+  }
+
+  .flexContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .headerContainer {
+    align-items: center;
+    border-bottom: 1px solid var(--medium-grey);
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.8rem;
+
+    h2 {
+      font-family: var(--main-font);
+      color: var(--orange1);
+      margin-bottom: 0.3rem;
+    }
+
+    p {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--dark-grey);
+    }
+  }
+
+  .overviewContainer {
+    flex-direction: column;
+
+    .roomsNumber {
+      margin-top: 1rem;
+    }
+
+    .amenity,
+    .roomsNumber {
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      margin-bottom: 1rem;
+
+      i {
+        font-size: 1.5rem;
+        padding-right: 0.55rem;
+      }
+
+      h4 {
+        font-size: 0.85rem;
+      }
+
+      p {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  .infoContainer {
+    padding: 3rem 2rem;
+    flex-direction: column;
+    gap: 1rem;
+
+    .mainContainer {
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 550px) and (max-width: 800px) {
+  .infoContainer {
+    padding: 3rem 2rem;
+    gap: 1.5rem;
+  }
+}

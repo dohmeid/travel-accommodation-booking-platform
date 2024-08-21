@@ -1,0 +1,12 @@
+.link {
+  color: var(--orange1);
+
+  i {
+    font-size: 1.1rem;
+  }
+
+  &:hover {
+    color: var(--dark-brown1);
+    transition: 0.4s color ease-in-out;
+  }
+}

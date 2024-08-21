@@ -1,0 +1,202 @@
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-1000px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.dialogContainer {
+  position: fixed;
+  top: 0%;
+  right: 0%;
+  width: 30rem;
+  height: 100%;
+  border-radius: 0.7rem;
+  background-color: var(--white);
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  animation: slide-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+
+  h2 {
+    font-family: var(--main-font);
+    color: var(--orange1);
+    margin-bottom: 1.5rem;
+  }
+
+  .dialogForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .inputContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-bottom: 1.3rem;
+
+      label {
+        font-family: var(--secondary-font);
+        color: var(--dark-brown1);
+        padding-bottom: 0.4rem;
+      }
+
+      .nameField,
+      .descriptionField,
+      .numberField,
+      .cityIdField {
+        padding: 0 1rem;
+        font-size: 0.85rem;
+        font-family: var(--secondary-font);
+        color: var(--dark-brown1);
+        background-color: transparent;
+        border: 1px solid var(--orange1);
+        border-radius: 0.7rem;
+
+        &:focus {
+          outline-color: var(--orange1);
+        }
+      }
+
+      .nameField,
+      .cityIdField {
+        height: 3rem;
+      }
+
+      .descriptionField {
+        box-sizing: border-box;
+        padding-top: 1rem;
+        resize: none;
+      }
+
+      .errorAlert {
+        color: red;
+        text-align: center;
+        font-size: 0.7rem;
+        font-weight: 600;
+        font-style: italic;
+        padding-top: 0.8em;
+      }
+    }
+
+    .numbersContainer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .inputContainer {
+        align-items: center;
+        height: 100%;
+        width: 100%;
+
+        .numberField {
+          width: 3rem;
+          height: 2.5rem;
+          padding: 0;
+          text-align: center;
+        }
+
+        .errorAlert {
+          position: relative;
+          bottom: 0;
+        }
+      }
+    }
+
+    .buttonsContainer {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+
+      button {
+        width: 5rem;
+        height: 2.5rem;
+        text-align: center;
+        font-family: var(--secondary-font);
+        font-weight: bold;
+        font-size: 0.85rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        background-color: transparent;
+        color: var(--dark-grey-shade);
+
+        &:focus {
+          outline: 2px solid var(--dark-brown1);
+        }
+      }
+
+      .cancelButton {
+        margin-right: 0.5rem;
+        color: var(--dark-grey);
+        border: 1px solid var(--medium-grey);
+
+        &:hover {
+          background-color: var(--medium-grey);
+          color: var(--white);
+          transition: 0.2s all ease-in-out;
+        }
+      }
+
+      .addUpdateButton {
+        color: var(--orange1);
+        border: 1px solid var(--orange1);
+
+        &:not(:disabled):hover {
+          background-color: var(--orange1);
+          color: var(--white);
+          transition: 0.2s all ease-in-out;
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}
+
+/*************************** media queries styles ********************************/
+/*for small devices - mobile phones and some tablets*/
+@media (max-width: 600px) {
+  .dialogContainer {
+    padding: 4rem 1rem 0 1rem;
+
+    h2 {
+      padding-top: 2rem;
+      font-size: 2rem;
+    }
+
+    .dialogForm {
+      .inputContainer {
+        margin-bottom: 3rem;
+
+        .errorAlert {
+          font-size: 1rem;
+          padding-top: 1rem;
+        }
+      }
+
+      .buttonsContainer {
+        margin-top: 5rem;
+
+        button {
+          width: 8rem;
+          height: 3.5rem;
+        }
+
+        .cancelButton {
+          margin-right: 1.5rem;
+        }
+      }
+    }
+  }
+}

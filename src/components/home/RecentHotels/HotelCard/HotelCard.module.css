@@ -1,0 +1,78 @@
+.card {
+  width: 20rem;
+  height: 28rem;
+  padding: 1rem;
+  margin-right: 4rem;
+  font-family: var(--secondary-font);
+  color: var(--dark-brown2);
+  border-radius: 0.7rem;
+  border: 1px solid var(--orange1);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  &:hover {
+    cursor: pointer;
+    border: 2px solid var(--orange1);
+    box-shadow: rgba(255, 147, 23, 0.3) 5px 5px 5px 5px;
+    transition: 0.1s all ease-in-out;
+  }
+
+  img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .flexContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .title {
+    font-family: var(--main-font);
+    font-weight: 600;
+    font-size: 1.2rem;
+
+    span {
+      font-weight: normal;
+      font-size: 0.9rem;
+      color: var(--dark-grey);
+    }
+  }
+
+  .date {
+    font-size: 0.75rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+
+    i {
+      padding-right: 0.4rem;
+    }
+  }
+
+  .price {
+    font-weight: bolder;
+    font-size: 0.85rem;
+
+    span {
+      font-weight: normal;
+      font-size: 0.75rem;
+      padding-left: 0.6rem;
+      color: var(--dark-grey);
+    }
+  }
+
+  .hotelButton {
+    font-size: 1.8rem;
+    color: var(--orange1);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--dark-brown2);
+    }
+  }
+}

@@ -1,0 +1,41 @@
+.card {
+  width: 23rem;
+  padding: 1rem 1rem;
+  font-family: var(--secondary-font);
+  color: var(--dark-brown1);
+  border: 1px solid var(--light-grey);
+  border-radius: 0.7rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+  .flexContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+
+    .title {
+      font-weight: 500;
+      font-family: var(--main-font);
+    }
+
+    .stars {
+      i {
+        margin-right: 0.25rem;
+        color: var(--medium-grey);
+      }
+
+      .filledStar {
+        color: #fad043;
+      }
+    }
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: rgba(157, 76, 17, 0.4) 0px 4px 12px;
+  }
+}

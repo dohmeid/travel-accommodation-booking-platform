@@ -1,0 +1,77 @@
+.datesContainer {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--light-grey);
+  padding: 0 1rem;
+
+  .checkin,
+  .checkout {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 0.5rem;
+    font-family: var(--secondary-font);
+    color: var(--dark-brown1);
+    border: 1px solid transparent;
+
+    label {
+      margin-right: 0.8rem;
+    }
+
+    &:hover {
+      border: 1px solid var(--dark-grey);
+      border-radius: 0.5rem;
+    }
+
+    /* Hide calendar icon for all browsers */
+    input[type='date']::-webkit-calendar-picker-indicator {
+      display: none;
+    }
+
+    input[type='date'] {
+      background-color: transparent;
+      border: none;
+      font-size: 1rem;
+      color: var(--dark-brown1);
+      font-family: var(--secondary-font);
+      font-size: 0.85rem;
+      padding: 0;
+      background: transparent;
+      /* Remove the default styling */
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .day {
+      font-size: 0.7rem;
+      color: var(--dark-grey);
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .datesContainer {
+    width: 100%;
+    padding: 0;
+    justify-content: space-around;
+
+    .checkin,
+    .checkout {
+      padding-left: 1rem;
+
+      label {
+        margin-right: 1rem;
+      }
+    }
+  }
+}

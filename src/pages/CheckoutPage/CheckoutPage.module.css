@@ -1,0 +1,40 @@
+.checkoutPageContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 4rem 3rem;
+}
+
+@media (max-width: 400px) {
+  .checkoutPageContainer {
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 1.2rem;
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 600px) {
+  .checkoutPageContainer {
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 2rem;
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 850px) {
+  .checkoutPageContainer {
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 3rem;
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 850px) and (max-width: 1060px) {
+  .checkoutPageContainer {
+    padding: 3rem 2rem;
+    gap: 1.5rem;
+  }
+}

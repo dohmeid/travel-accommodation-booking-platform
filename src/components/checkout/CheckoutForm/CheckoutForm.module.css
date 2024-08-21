@@ -1,0 +1,116 @@
+.formContainer {
+  width: 25rem;
+  height: fit-content;
+  padding: 2rem 1.3rem;
+  font-family: var(--secondary-font);
+  color: var(--dark-brown1);
+  border-radius: 1rem;
+  border: 1px solid var(--medium-grey);
+
+  h2 {
+    font-family: var(--main-font);
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .checkoutForm {
+    display: flex;
+    flex-direction: column;
+
+    .flexContainer {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .inputContainer {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-bottom: 1rem;
+
+      input,
+      select,
+      textarea {
+        height: 2.8rem;
+        padding-left: 0.8rem;
+        font-size: 0.8rem;
+        font-family: var(--secondary-font);
+        border: 1px solid var(--medium-grey);
+        border-radius: 0.25rem;
+
+        &:focus {
+          outline: 1.5px solid var(--orange1);
+        }
+      }
+
+      textarea {
+        box-sizing: border-box;
+        padding-top: 0.5rem;
+        height: auto;
+        resize: none;
+      }
+
+      .errorAlert {
+        color: red;
+        font-size: 0.55rem;
+        font-weight: 600;
+        font-style: italic;
+        padding-top: 0.2rem;
+      }
+    }
+
+    .checkoutButton {
+      background-color: var(--orange1);
+      border: 1px solid transparent;
+      border-radius: 6px;
+      box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
+      box-sizing: border-box;
+      color: var(--white);
+      cursor: pointer;
+      font-family: var(--secondary-font);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.8rem 1rem;
+      width: 100%;
+      align-self: flex-end;
+
+      &:not(:disabled):hover {
+        opacity: 0.8;
+      }
+
+      &:not(:disabled):focus {
+        box-shadow: rgba(164, 111, 46, 0.4) 0 0 0 3px;
+        outline: none;
+      }
+
+      &:not(:disabled):active {
+        box-shadow: rgba(164, 111, 46, 0.4) 0 0 0 3px;
+      }
+
+      &:disabled {
+        background-color: var(--medium-grey);
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .formContainer {
+    align-self: center;
+    width: 95%;
+    padding: 2rem 1.3rem;
+    border-radius: 0;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 850px) {
+  .formContainer {
+    align-self: center;
+    width: 80%;
+    padding: 2rem 1.3rem;
+    border-radius: 0;
+  }
+}

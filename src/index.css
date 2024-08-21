@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/*************************** custom css style ********************************/
+:root {
+  --transparent-white: hsla(0, 0%, 100%, 0.77);
+  --white: #ffffff;
+  --light-grey: #f3f3f3;
+  --medium-grey: #bebfb5;
+  --dark-grey: #abaca3;
+  --orange1: #b25e39;
+  --orange2: #aa6548;
+  --brown-sugar: #b28e6a;
+  --dark-brown1: #473d3a;
+  --dark-brown2: #4f382e;
+
+  /*for error messages*/
+  --light-red: rgba(255, 226, 226, 0.95);
+  --red: red;
+
+  --main-font: 'League Spartan', sans-serif;
+  --secondary-font: 'Montserrat', serif;
+}
+
+/*************************** general styles ********************************/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth !important;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  /*custom scroll bar*/
+  --sb-track-color: var(--medium-grey);
+  --sb-thumb-color: var(--orange1);
+  --sb-size: 15px;
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 0px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 5px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}
+
+/* to change the color of highlighted text */
+::selection {
+  background-color: var(--brown-sugar);
+  color: var(--white);
+}
+
+/*************************** media queries styles ********************************/
+/*
+the styling uses rem unit which relates to top element (html) font-size
+so, to make responsive components, this font-size is reduced based on screen size
+*/
+
+/*************************** media queries styles ********************************/
+/*for small devices - mobile phones and some tablets*/
+@media (max-width: 385px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+/*for small devices - mobile phones and some tablets*/
+@media (min-width: 385px) and (max-width: 600px) {
+  html {
+    font-size: 11px;
+  }
+}
+
+/*for medium devices - tablets*/
+@media (min-width: 600px) and (max-width: 951px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+/*for medium devices -  tablets*/
+@media (min-width: 951px) and (max-width: 1350px) {
+  html {
+    font-size: 14px;
+  }
+}

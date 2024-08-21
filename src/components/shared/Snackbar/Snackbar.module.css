@@ -1,0 +1,107 @@
+.snackBar {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 30rem;
+  height: fit-content;
+  padding: 1rem;
+  font-family: var(--secondary-font);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 1rem;
+  box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    display 3s linear 0s,
+    opacity 300ms;
+
+  i {
+    font-size: 1.2rem;
+  }
+
+  .message {
+    font-size: 0.85rem;
+  }
+
+  .closeButton {
+    height: fit-content;
+    width: fit-content;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+    i {
+      font-size: 2rem;
+    }
+  }
+
+  .progressBarContainer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 98%;
+    height: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: inherit;
+
+    .progressBar {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      transition: width 0.2s linear;
+    }
+  }
+}
+
+.success {
+  color: green;
+  background-color: rgba(198, 243, 198, 0.9);
+  border: 1px solid green;
+
+  i {
+    color: green;
+  }
+
+  .progressBarContainer {
+    .progressBar {
+      background-color: green;
+    }
+  }
+}
+
+.warning {
+  --yellow: #887921;
+  color: var(--yellow);
+  background-color: rgba(250, 240, 165, 0.92);
+  border: 1px solid var(--yellow);
+
+  i {
+    color: var(--yellow);
+  }
+
+  .progressBarContainer {
+    .progressBar {
+      background-color: var(--yellow);
+    }
+  }
+}
+
+.error {
+  color: var(--red);
+  background-color: var(--light-red);
+  border: 1px solid var(--red);
+
+  i {
+    color: var(--red);
+  }
+
+  .progressBarContainer {
+    .progressBar {
+      background-color: var(--red);
+    }
+  }
+}

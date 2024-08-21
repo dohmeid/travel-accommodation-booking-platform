@@ -1,0 +1,56 @@
+.gridContainer {
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--white);
+  border: 1px solid var(--medium-grey);
+  border-radius: 0.6rem;
+
+  .gridHeader {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+
+    h2 {
+      font-family: var(--main-font);
+      color: var(--dark-brown1);
+    }
+
+    .createBtn {
+      width: 6rem;
+      height: 2.5rem;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      border-style: none;
+      color: var(--white);
+      background-color: var(--orange1);
+      cursor: pointer;
+
+      &:hover,
+      :focus {
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+/*************************** media queries styles ********************************/
+/*for small devices - mobile phones and some tablets*/
+@media (max-width: 550px) {
+  .gridContainer {
+    padding: 1.5rem 0.5rem;
+
+    .gridHeader {
+      height: auto;
+      padding: 0 1rem;
+      margin-bottom: 2.5rem;
+    }
+  }
+}

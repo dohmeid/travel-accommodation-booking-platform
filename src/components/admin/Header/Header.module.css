@@ -1,0 +1,123 @@
+.header {
+  height: 4.2rem;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--white);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 10px;
+
+  .logo {
+    font-family: var(--main-font);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+      color: var(--orange1);
+      font-size: 2.3rem;
+      padding-right: 0.5rem;
+    }
+
+    .logoDetails {
+      h1 {
+        font-size: 1.7rem;
+        font-weight: 600;
+        color: var(--dark-brown1);
+      }
+
+      h2 {
+        font-size: 0.9rem;
+        font-weight: normal;
+        color: var(--dark-grey);
+      }
+    }
+  }
+
+  .profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .image {
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 50%;
+      object-fit: scale-down;
+      overflow: hidden;
+      border: 1px solid var(--medium-grey);
+    }
+
+    .details {
+      text-align: left;
+      font-family: var(--main-font);
+      font-weight: normal;
+      margin-left: 0.5rem;
+      margin-right: 1rem;
+      padding-right: 1rem;
+      border-right: 1px solid var(--dark-grey);
+
+      .name {
+        font-size: 1.1rem;
+        color: var(--dark-brown2);
+        margin-bottom: 0.3rem;
+      }
+
+      .role {
+        font-size: 0.8rem;
+        color: var(--dark-grey);
+      }
+    }
+
+    .logoutBtn {
+      color: var(--dark-brown2);
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      i {
+        font-size: 1.5rem;
+        font-weight: bolder;
+      }
+
+      &:hover {
+        color: var(--orange2);
+      }
+    }
+  }
+}
+
+/*************************** media queries styles ********************************/
+/*for small devices - mobile phones and some tablets*/
+@media (max-width: 600px) {
+  .header {
+    height: 4.5rem;
+    padding: 0 1rem;
+
+    .logo {
+      i {
+        font-size: 2rem;
+      }
+
+      .logoDetails {
+        h1 {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    .profile {
+      .details {
+        margin-right: 0.6rem;
+        padding-right: 0.6rem;
+      }
+
+      .logoutBtn {
+        i {
+          font-size: 1.4rem;
+          font-weight: bolder;
+        }
+      }
+    }
+  }
+}

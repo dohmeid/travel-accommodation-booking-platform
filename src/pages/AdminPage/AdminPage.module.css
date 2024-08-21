@@ -1,0 +1,43 @@
+.adminPage {
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  background-color: var(--light-grey);
+
+  .main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .body {
+      height: 100%;
+      padding: 3rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+/*************************** media queries styles ********************************/
+/*for small devices - mobile phones and some tablets*/
+@media (max-width: 600px) {
+  .adminPage {
+    .main {
+      .body {
+        padding: 3rem 2rem;
+      }
+    }
+  }
+}
+
+/*for medium devices - tablets*/
+@media (min-width: 600px) and (max-width: 951px) {
+  .adminPage {
+    .main {
+      .body {
+        padding: 3rem 3rem;
+      }
+    }
+  }
+}

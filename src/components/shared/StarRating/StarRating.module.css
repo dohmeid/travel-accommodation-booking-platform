@@ -1,0 +1,15 @@
+.starRating {
+  width: 3rem;
+  height: 1.65rem;
+  font-size: 0.75rem;
+  text-align: center;
+  align-content: center;
+  color: var(--white);
+  border-radius: 1rem;
+  background-color: var(--dark-brown2);
+
+  i {
+    color: rgb(255, 226, 36);
+    padding-right: 0.25rem;
+  }
+}

@@ -1,0 +1,94 @@
+.card {
+  width: 22rem;
+  height: 32rem;
+  font-family: var(--secondary-font);
+  color: var(--dark-brown1);
+  background-color: var(--white);
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    box-shadow:
+      rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    transition: all 0.2s ease-in-out;
+  }
+
+  img {
+    width: 100%;
+    height: 45%;
+    object-fit: cover;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-family: var(--main-font);
+    margin-bottom: 0.5rem;
+  }
+
+  .capacity {
+    display: flex;
+    gap: 0 0.8rem;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .amenities {
+    padding: 0 0.7rem;
+    height: 23%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .amenity {
+      text-align: justify;
+      font-size: 0.75rem;
+      color: var(--dark-grey);
+    }
+  }
+
+  .price {
+    font-size: 0.8rem;
+    color: var(--dark-grey);
+    margin-bottom: 1rem;
+
+    span {
+      font-size: 1.2rem;
+      color: var(--orange1);
+    }
+  }
+
+  .addButton {
+    padding: 0.75rem 0;
+    width: 10rem;
+    font-family: var(--main-font);
+    font-weight: bold;
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--orange1);
+    border: 1px solid var(--medium-grey);
+    background-color: var(--white);
+
+    &:not(:disabled):hover {
+      cursor: pointer;
+      color: var(--white);
+      background-color: var(--orange1);
+      transition: 0.3s all linear;
+    }
+
+    &:disabled {
+      background-color: var(--medium-grey);
+      cursor: not-allowed;
+    }
+  }
+}

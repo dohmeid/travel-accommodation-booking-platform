@@ -1,0 +1,212 @@
+.filters {
+  width: 20rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: var(--secondary-font);
+  color: var(--dark-brown1);
+  background-color: var(--white);
+  border-right: 1px solid var(--medium-grey);
+
+  .flexContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+
+    label,
+    h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      align-self: flex-start;
+      font-style: italic;
+    }
+
+    p {
+      font-size: 0.85rem;
+      color: var(--orange1);
+    }
+  }
+
+  .titleContainer {
+    flex-direction: row;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--medium-grey);
+
+    h2 {
+      color: var(--orange1);
+      font-family: var(--main-font);
+      font-weight: 600;
+    }
+
+    .clearButton {
+      color: var(--dark-grey);
+      font-family: var(--secondary-font);
+      font-weight: 500;
+      border: 1.5px solid transparent;
+      background-color: transparent;
+
+      &:hover {
+        cursor: pointer;
+        border-bottom: 1.5px solid var(--dark-grey);
+      }
+    }
+  }
+
+  .priceContainer {
+    .rangeContainer {
+      position: relative;
+      width: 100%;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+
+      input[type='range'] {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 5px;
+        background: var(--medium-grey);
+        border-radius: 5px;
+        position: absolute;
+        pointer-events: none;
+
+        &::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          background: var(--orange1);
+          cursor: pointer;
+          pointer-events: auto;
+          transition: all 0.3s ease-in-out;
+        }
+
+        &::-moz-range-thumb {
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          background: var(--orange1);
+          cursor: pointer;
+          pointer-events: auto;
+          transition: all 0.3s ease-in-out;
+        }
+      }
+    }
+  }
+
+  .starsContainer {
+    input[type='radio'] {
+      display: none;
+    }
+
+    .star {
+      cursor: pointer;
+      font-size: 1.5rem;
+      margin: 0 0.5rem;
+    }
+  }
+
+  .amenitiesContainer,
+  .roomContainer {
+    .list {
+      align-self: flex-start;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding-inline-start: 1.5rem;
+      padding-top: 0.3rem;
+
+      input {
+        margin-right: 0.5rem;
+      }
+
+      span {
+        font-size: 0.75rem;
+      }
+    }
+  }
+
+  .applyButton {
+    height: 2.5rem;
+    width: 100%;
+    font-size: 1rem;
+    font-family: var(--main-font);
+    font-weight: 500;
+    color: var(--white);
+    border: none;
+    border-radius: 5rem;
+    background-color: var(--orange1);
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.7;
+      transition: 0.2s all linear;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .filters {
+    width: 100%;
+    padding: 2rem;
+    border: 1px solid var(--medium-grey);
+    border-radius: 1rem;
+
+    .flexContainer {
+      margin-bottom: 0.8rem;
+    }
+
+    .titleContainer {
+      padding-bottom: 0.5rem;
+
+      .clearButton {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 450px) and (max-width: 768px) {
+  .filters {
+    width: 100%;
+    border: 1px solid var(--medium-grey);
+    border-radius: 1rem;
+
+    form {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .flexContainer {
+      margin-bottom: 0;
+    }
+
+    .titleContainer {
+      width: 100%;
+      padding-bottom: 0;
+    }
+
+    .priceContainer {
+      width: 45%;
+    }
+
+    .starsContainer {
+      width: 45%;
+    }
+
+    .amenitiesContainer,
+    .roomContainer {
+      width: 45%;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 850px) {
+  .filters {
+    padding: 1rem;
+  }
+}

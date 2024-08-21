@@ -1,0 +1,117 @@
+@import url('https://use.fontawesome.com/releases/v6.6.0/css/all.css');
+
+.nav {
+  padding-top: 1rem;
+  width: fit-content;
+  background-color: var(--dark-brown2);
+
+  .navBtn {
+    width: 4rem;
+    margin-bottom: 2.5rem;
+    font-size: 2.2rem;
+    color: var(--white);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    i {
+      display: inline-block;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .xIcon {
+      transform: rotate(180deg);
+    }
+
+    .listIcon {
+      transform: rotate(0deg);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .navList {
+    width: 10rem;
+    overflow: hidden;
+    list-style: none;
+    transition: width 0.3s ease-in-out;
+
+    li {
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-bottom: 1rem;
+
+      a {
+        font-size: 0.8rem;
+        font-family: var(--secondary-font);
+        text-decoration: none;
+
+        i {
+          font-size: 1rem;
+          padding-right: 0.5rem;
+        }
+      }
+
+      &:hover {
+        a {
+          color: var(--orange1);
+          font-weight: 600;
+          transition: 0.15s all ease;
+        }
+      }
+    }
+  }
+}
+
+.navClosed {
+  .navList {
+    width: 0;
+    transition: width 0.3s ease-in-out;
+  }
+}
+
+/*************************** media queries styles ********************************/
+/*for small devices - mobile phones and some tablets*/
+@media (max-width: 600px) {
+  .nav {
+    .navBtn {
+      margin-bottom: 0.8rem;
+    }
+
+    .navList {
+      height: 100%;
+      position: fixed;
+      z-index: 100;
+      background-color: var(--dark-brown2);
+      width: 100%;
+      padding-top: 3rem;
+
+      .navItem {
+        height: 5.5rem;
+        margin-bottom: 0;
+        border-bottom: 0.1px solid var(--white);
+
+        a {
+          font-size: 1rem;
+
+          i {
+            font-size: 1.5rem;
+            padding-right: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  .navClosed {
+    .navList {
+      width: 0;
+      transition: width 0.3s ease-in-out;
+    }
+  }
+}

@@ -1,0 +1,55 @@
+.slideshow {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  .carousel {
+    overflow: hidden;
+    width: 75%;
+
+    .cards {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+  }
+
+  .dots {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .dot {
+      width: 0.7rem;
+      height: 0.7rem;
+      margin: 0 0.5rem;
+      background-color: var(--medium-grey);
+      border-radius: 50%;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--orange1);
+      }
+
+      &.active {
+        background-color: var(--orange1);
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .slideshow {
+    .carousel {
+      width: 100%;
+
+      .cards {
+        margin: 0 0;
+      }
+    }
+  }
+}

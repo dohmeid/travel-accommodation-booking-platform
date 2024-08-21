@@ -1,0 +1,102 @@
+.loginForm {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--secondary-font);
+  color: var(--dark-brown2);
+
+  .inputContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 18rem;
+    margin-bottom: 1rem;
+
+    input[type='text'],
+    input[type='password'] {
+      height: 3rem;
+      padding-left: 1.8rem;
+      font-size: 0.85rem;
+      font-family: var(--secondary-font);
+      background-color: transparent;
+      border: 2px solid var(--white);
+      border-radius: 2rem;
+
+      &::placeholder {
+        color: var(--dark-brown2);
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .errorAlert {
+      color: red;
+      text-align: center;
+      font-size: 0.6rem;
+      font-weight: 600;
+      font-style: italic;
+      padding-top: 0.3rem;
+    }
+
+    .showPasswordLabel {
+      position: absolute;
+      top: 8px;
+      left: 84%;
+      cursor: pointer;
+      font-size: 1.5rem;
+
+      input[type='checkbox'] {
+        display: none;
+      }
+    }
+  }
+
+  .loginButton {
+    width: 18rem;
+    height: 3rem;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+    font-family: var(--main-font);
+    color: var(--orange2);
+    background-color: var(--white);
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+/*for small devices - mobile phones and some tablets*/
+@media (max-width: 600px) {
+  .loginForm {
+    height: fit-content;
+    width: 100%;
+    padding-top: 2.5rem;
+
+    .inputContainer {
+      input[type='text'],
+      input[type='password'] {
+        font-size: 1rem;
+      }
+
+      .showPasswordLabel {
+        top: 7px;
+      }
+    }
+
+    button {
+      font-size: 1.3rem;
+    }
+  }
+}

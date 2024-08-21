@@ -1,0 +1,93 @@
+.deleteDialog {
+  position: fixed;
+  top: 32%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  width: 43rem;
+  height: 13rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.7rem;
+  background-color: var(--white);
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  animation: scale-in-center 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+
+  h2 {
+    font-family: var(--main-font);
+    color: var(--orange1);
+  }
+
+  h3 {
+    font-family: var(--secondary-font);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--dark-brown1);
+  }
+
+  .buttons {
+    align-self: end;
+
+    button {
+      padding: 0.6rem 1rem;
+      text-align: center;
+      font-family: var(--secondary-font);
+      font-weight: bold;
+      font-size: 0.85rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--dark-brown1);
+      cursor: pointer;
+      background-color: transparent;
+      color: var(--dark-grey-shade);
+
+      &:focus {
+        outline: 2px solid black;
+      }
+    }
+
+    .cancelBtn {
+      margin-right: 0.5rem;
+      color: var(--dark-grey);
+      border: 1px solid var(--medium-grey);
+
+      &:hover {
+        background-color: var(--medium-grey);
+        color: var(--white);
+        transition: 0.2s all ease-in-out;
+      }
+    }
+
+    .deleteBtn {
+      color: var(--orange1);
+      border: 1px solid var(--orange1);
+
+      &:hover {
+        background-color: var(--orange1);
+        color: var(--white);
+        transition: 0.2s all ease-in-out;
+      }
+    }
+  }
+}
+
+@keyframes scale-in-center {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/*************************** media queries styles ********************************/
+/*for small devices - mobile phones and some tablets*/
+@media (max-width: 550px) {
+  .deleteDialog {
+    width: 28rem;
+    height: 15rem;
+  }
+}

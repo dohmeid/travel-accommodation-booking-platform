@@ -1,0 +1,177 @@
+.item {
+  width: 100%;
+  height: 10rem;
+  color: var(--dark-brown1);
+  font-family: var(--secondary-font);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--medium-grey);
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px;
+    scale: 1.05;
+    transition: 0.5s all ease-in-out;
+  }
+
+  img {
+    width: 15rem;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    padding: 0.9rem 0;
+  }
+
+  .title {
+    width: 30%;
+  }
+
+  .price {
+    font-size: 0.9rem;
+    width: 8rem;
+  }
+
+  button {
+    padding: 0.7rem 1rem;
+    color: var(--white);
+    background-color: var(--dark-brown1);
+    border: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    font-size: 1rem;
+
+    i {
+      padding-left: 0.4rem;
+    }
+
+    &:hover {
+      opacity: 0.85;
+      transition: 0.3s all ease-in-out;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .item {
+    height: fit-content;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    gap: 0.5rem;
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px;
+      scale: 1;
+      transition: 0.5s all ease-in-out;
+    }
+
+    img {
+      width: 100%;
+      height: 12rem;
+      object-fit: cover;
+      padding: 0;
+    }
+
+    .title {
+      width: fit-content;
+    }
+
+    .price {
+      width: fit-content;
+    }
+  }
+}
+
+@media (min-width: 421px) and (max-width: 500px) {
+  .item {
+    height: 10rem;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    img {
+      width: 12rem;
+      padding: 0.8rem 0;
+    }
+
+    .title {
+      width: 9rem;
+      text-overflow: ellipsis;
+    }
+
+    .price {
+      width: fit-content;
+    }
+
+    button {
+      padding: 0.5rem;
+
+      i {
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+@media (min-width: 500px) and (max-width: 850px) {
+  .item {
+    height: 10rem;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    img {
+      width: 15rem;
+    }
+
+    .title {
+      width: fit-content;
+    }
+
+    .price {
+      width: fit-content;
+    }
+
+    button {
+      padding: 0.5rem;
+
+      i {
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+@media (min-width: 850px) and (max-width: 1000px) {
+  .item {
+    height: 10rem;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    img {
+      width: 14rem;
+      height: auto;
+    }
+
+    .title {
+      width: fit-content;
+    }
+
+    .price {
+      width: fit-content;
+    }
+
+    button {
+      width: 6rem;
+      height: 2rem;
+      padding: 0;
+      font-size: 0.8rem;
+
+      i {
+        padding-left: 0;
+      }
+    }
+  }
+}

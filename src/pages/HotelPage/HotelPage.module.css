@@ -1,0 +1,8 @@
+.hotelPage {
+  h2 {
+    font-size: 1.8rem;
+    font-family: var(--main-font);
+    color: var(--orange1);
+    margin-bottom: 2rem;
+  }
+}

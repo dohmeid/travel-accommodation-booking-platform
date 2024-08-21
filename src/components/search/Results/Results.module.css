@@ -1,0 +1,52 @@
+.results {
+  box-sizing: border-box;
+  color: var(--dark-brown1);
+
+  .flexContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header {
+    padding-bottom: 0.8rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--dark-brown1);
+
+    h2 {
+      font-family: var(--main-font);
+    }
+
+    select {
+      width: fit-content;
+      height: 2rem;
+      padding-inline-start: 0.5rem;
+      font-family: var(--secondary-font);
+      color: var(--dark-brown1);
+      border-color: var(--dark-grey);
+      border-radius: 0.5rem;
+    }
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 385px) {
+  .results {
+    width: 100%;
+
+    .header {
+      padding-bottom: 0.4rem;
+      margin-bottom: 1rem;
+
+      select {
+        font-size: 1rem;
+      }
+    }
+  }
+}

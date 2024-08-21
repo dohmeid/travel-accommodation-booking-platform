@@ -1,0 +1,21 @@
+.scrollButton {
+  position: fixed;
+  width: 2.5rem;
+  height: 2.5rem;
+  bottom: 70px;
+  right: 25px;
+  font-size: 2rem;
+  border-radius: 50%;
+  border: 2px solid var(--dark-brown1);
+  color: var(--dark-brown1);
+  background: var(--white);
+  z-index: 100;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--orange1);
+    border: 2px solid var(--orange1);
+    box-shadow: 3px 3px 2px 2px var(--orange1);
+    transition: 0.3s;
+  }
+}

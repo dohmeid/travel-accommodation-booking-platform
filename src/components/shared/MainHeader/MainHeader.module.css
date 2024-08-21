@@ -1,0 +1,88 @@
+.header {
+  width: 100%;
+  height: 3.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background-color: var(--dark-brown2);
+  opacity: 0.95;
+
+  .logo {
+    font-size: 1.5rem;
+    font-family: var(--main-font);
+    font-weight: bold;
+    color: var(--white);
+
+    span {
+      color: var(--orange1);
+
+      i {
+        font-size: 2rem;
+        padding-right: 0.2rem;
+      }
+    }
+  }
+
+  .navbar {
+    width: 15rem;
+
+    .list {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+    }
+  }
+
+  .logoutButton {
+    font-family: var(--secondary-font);
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.9rem;
+    color: var(--dark-brown1);
+    border-radius: 2rem;
+    border: 1px solid transparent;
+    background-color: var(--white);
+    cursor: pointer;
+
+    i {
+      padding-left: 0.2rem;
+    }
+
+    &:hover {
+      color: var(--white);
+      border-color: var(--white);
+      background-color: var(--dark-brown1);
+      transition: all 0.2s ease-in-out;
+    }
+  }
+}
+
+/*style for the header in the home page*/
+.transparentHeader {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+}
+
+@media (max-width: 450px) {
+  .header {
+    padding: 0 1rem;
+
+    .logo {
+      font-size: 1.3rem;
+    }
+
+    .navbar {
+      width: 11.5rem;
+    }
+
+    .logoutButton {
+      font-size: 0.7rem;
+      padding: 0.4rem;
+    }
+  }
+}

@@ -1,0 +1,114 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #c9c6c6, #f1f2f6);
+
+  .overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    font-family: var(--secondary-font);
+    color: var(--dark-brown2);
+    padding: 5rem 10rem;
+
+    .lock {
+      border-radius: 5px;
+      width: 55px;
+      height: 45px;
+      background-color: var(--dark-brown2);
+      position: relative;
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        border-left: 5px solid var(--dark-brown2);
+        height: 20px;
+        width: 15px;
+        left: calc(50% - 12.5px);
+      }
+
+      &::before {
+        top: -30px;
+        border: 5px solid var(--dark-brown2);
+        border-bottom-color: transparent;
+        border-radius: 15px 15px 0 0;
+        height: 30px;
+      }
+
+      &::after {
+        top: -10px;
+        border-right: 5px solid transparent;
+      }
+    }
+
+    h1 {
+      font-size: 6rem;
+      margin-bottom: 0.3rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.3rem;
+    }
+
+    p {
+      width: 40rem;
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    button {
+      font-family: var(--secondary-font);
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.8rem 3rem;
+      border-radius: 2rem;
+      border: 4px solid var(--orange1);
+      background: transparent;
+      transition: 0.2s ease;
+      cursor: pointer;
+      z-index: 1;
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0%;
+        height: 100%;
+        border-radius: 2rem;
+        background: var(--orange1);
+        z-index: -1;
+        transition: 0.2s ease;
+      }
+
+      &:hover {
+        color: var(--white);
+        transition: 0.2s ease;
+
+        &:before {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 780px) {
+  .container {
+    .overlay {
+      padding: 5rem 2rem;
+
+      p {
+        width: fit-content;
+      }
+    }
+  }
+}
