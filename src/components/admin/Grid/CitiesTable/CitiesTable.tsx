@@ -1,11 +1,16 @@
 import React, { FC, useMemo } from 'react';
 import { useAdminContext } from '../../../../context/AdminProvider';
+import Spinner from '../../../shared/Spinner/Spinner';
 import CityRow from './CityRow/CityRow';
 import classes from './CitiesTable.module.css';
 
 const CitiesTable: FC = () => {
-  const { getFilteredCities } = useAdminContext();
+  const { getFilteredCities, isLoading } = useAdminContext();
   const citiesArray = useMemo(() => getFilteredCities(), [getFilteredCities]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <table className={classes.grid}>

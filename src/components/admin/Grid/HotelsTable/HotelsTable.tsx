@@ -1,13 +1,16 @@
 import React, { FC, useMemo } from 'react';
 import { useAdminContext } from '../../../../context/AdminProvider';
 import HotelRow from './HotelRow/HotelRow';
+import Spinner from '../../../shared/Spinner/Spinner';
 import classes from './HotelsTable.module.css';
 
 const HotelsTable: FC = () => {
-  const { getFilteredHotels } = useAdminContext();
+  const { getFilteredHotels, isLoading } = useAdminContext();
 
   const hotelsArray = useMemo(() => getFilteredHotels(), [getFilteredHotels]);
-
+  if (isLoading) {
+    return <Spinner />;
+  }
   return (
     <table className={classes.grid}>
       <thead>

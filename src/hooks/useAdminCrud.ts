@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   useNotification,
   NotificationType,
@@ -9,6 +10,7 @@ interface Identifiable {
 
 export const useAdminCrud = () => {
   const { notify } = useNotification();
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async <T extends Identifiable>(
     fetchFunction: () => Promise<T[]>,
@@ -19,6 +21,8 @@ export const useAdminCrud = () => {
       setState(responseData);
     } catch (error) {
       notify(NotificationType.ERROR, (error as Error).message);
+    }finally {
+      setIsLoading(false);
     }
   };
 
@@ -69,6 +73,7 @@ export const useAdminCrud = () => {
   };
 
   return {
+    isLoading,
     fetchData,
     createData,
     updateData,

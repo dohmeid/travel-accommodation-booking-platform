@@ -1,9 +1,10 @@
 .deleteDialog {
   position: fixed;
-  top: 35%;
-  left: calc(width/2);
-  width: 40rem;
-  height: 12rem;
+  top: 32%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  width: 43rem;
+  height: 13rem;
   padding: 0.5rem 1.5rem;
   border-radius: 0.7rem;
   background-color: var(--white);

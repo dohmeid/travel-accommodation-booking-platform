@@ -1,6 +1,7 @@
 import React, { FC, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import PrivateRoute from './routes/PrivateRoute';
+import { GridType } from './types/adminTypes';
 import MyErrorBoundary from './components/shared/ErrorBoundary/ErrorBoundary';
 import CursorFollower from './components/shared/CursorFollower/CursorFollower';
 import Spinner from './components/shared/Spinner/Spinner';
@@ -59,10 +60,13 @@ const App: FC = () => {
                 </PrivateRoute>
               }
             >
-              <Route index element={<Grid gridType="city" />} />
-              <Route path="city" element={<Grid gridType="city" />} />
-              <Route path="hotel" element={<Grid gridType="hotel" />} />
-              <Route path="room" element={<Grid gridType="city" />} />
+              <Route index element={<Grid gridType={GridType.CITY} />} />
+              <Route path="city" element={<Grid gridType={GridType.CITY} />} />
+              <Route
+                path="hotel"
+                element={<Grid gridType={GridType.HOTEL} />}
+              />
+              <Route path="room" element={<Grid gridType={GridType.ROOM} />} />
             </Route>
 
             <Route

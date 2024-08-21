@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
-import { City, Hotel } from '../types/adminTypes';
+import { City, GridType, Hotel } from '../types/adminTypes';
 
 export interface DialogState {
-  management: 'City' | 'Hotel' | 'Room' | '';
-  type: 'Add' | 'Update' | 'Delete' | '';
+  management: GridType;
+  type: 'Add' | 'Update' | 'Delete';
   isOpen: boolean;
   cityData?: City;
   hotelData?: Hotel;
@@ -12,7 +12,7 @@ export interface DialogState {
 export interface UseDialog {
   dialogState: DialogState;
   openDialog: (
-    management: DialogState['management'],
+    management: GridType,
     type: DialogState['type'],
     data?: City | Hotel,
   ) => void;
@@ -21,23 +21,19 @@ export interface UseDialog {
 
 const useDialog = (): UseDialog => {
   const [dialogState, setDialogState] = useState<DialogState>({
-    management: '',
-    type: '',
+    management: GridType.CITY,
+    type: 'Add',
     isOpen: false,
   });
 
   const openDialog = useCallback(
-    (
-      management: DialogState['management'],
-      type: DialogState['type'],
-      data?: City | Hotel,
-    ) => {
+    (management: GridType, type: DialogState['type'], data?: City | Hotel) => {
       setDialogState({
         management,
         type,
         isOpen: true,
-        cityData: management === 'City' ? (data as City) : undefined,
-        hotelData: management === 'Hotel' ? (data as Hotel) : undefined,
+        cityData: management === GridType.CITY ? (data as City) : undefined,
+        hotelData: management === GridType.HOTEL ? (data as Hotel) : undefined,
       });
     },
     [],
@@ -45,8 +41,8 @@ const useDialog = (): UseDialog => {
 
   const closeDialog = useCallback(() => {
     setDialogState({
-      management: '',
-      type: '',
+      management: GridType.CITY,
+      type: 'Add',
       isOpen: false,
       cityData: undefined,
       hotelData: undefined,

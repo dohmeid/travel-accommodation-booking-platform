@@ -1,3 +1,9 @@
+export enum GridType {
+  CITY = 'city',
+  HOTEL = 'hotel',
+  ROOM = 'room',
+}
+
 export interface City {
   id: number;
   name: string;
@@ -15,6 +21,7 @@ export interface Hotel {
 }
 
 export interface AdminContextType {
+  isLoading: boolean;
   cities: City[];
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
   setSearchOption: React.Dispatch<React.SetStateAction<string>>;

@@ -28,7 +28,8 @@ export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchOption, setSearchOption] = useState('name');
 
-  const { fetchData, createData, updateData, deleteData } = useAdminCrud();
+  const { fetchData, createData, updateData, deleteData, isLoading } =
+    useAdminCrud();
 
   useEffect(() => {
     fetchData(getCities, setCities);
@@ -71,6 +72,7 @@ export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <AdminContext.Provider
       value={{
+        isLoading,
         cities,
         setSearchQuery,
         setSearchOption,

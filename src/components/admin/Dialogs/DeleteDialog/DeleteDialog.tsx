@@ -1,6 +1,7 @@
 import React, { FC, MouseEvent } from 'react';
-import { UseDialog, DialogState } from '../../../hooks/useDialog';
-import { useAdminContext } from '../../../context/AdminProvider';
+import { UseDialog, DialogState } from '../../../../hooks/useDialog';
+import { useAdminContext } from '../../../../context/AdminProvider';
+import { GridType } from '../../../../types/adminTypes';
 import classes from './DeleteDialog.module.css';
 
 interface Props {
@@ -14,9 +15,9 @@ const DeleteDialog: FC<Props> = ({ dialogState, closeDialog }) => {
 
   const handleDeleteButtonClick = async (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    if (management === 'City' && cityData) {
+    if (management === GridType.CITY && cityData) {
       await deleteCity(cityData.id);
-    } else if (management === 'Hotel' && hotelData) {
+    } else if (management === GridType.HOTEL && hotelData) {
       await deleteHotel(hotelData.id);
     }
     closeDialog();
