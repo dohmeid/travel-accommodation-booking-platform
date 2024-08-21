@@ -9,14 +9,18 @@ interface ErrorBoundaryProps {
 const MyErrorBoundary: React.FC<ErrorBoundaryProps> = ({ children }) => {
   const [retryCount, setRetryCount] = useState(0);
 
-  function logErrorToService(error: Error, errorInfo: ErrorInfo) {
+  const handleReset = () => {
+    setRetryCount((prev) => prev + 1);
+  };
+
+  const logErrorToService = (error: Error, errorInfo: ErrorInfo) => {
     console.error('Logging error:', error, errorInfo);
-  }
+  };
 
   return (
     <ErrorBoundary
       FallbackComponent={UnexpectedErrorPage}
-      onReset={() => setRetryCount(retryCount + 1)}
+      onReset={handleReset}
       resetKeys={[retryCount]}
       onError={logErrorToService}
     >
