@@ -31,8 +31,8 @@ Users can look for hotels, access detailed information, and make reservations, w
 [:page_facing_up: Table of Contents](#page_facing_up-table-of-contents) <br>
 [:mantelpiece_clock: Project Management and Tracking](#mantelpiece_clock-project-management-and-tracking) <br>
 [:paintbrush: Website Design](#paintbrush-website-design) <br>
-[:dart: Features](#dart-features) <br>
 [:space_invader: Technologies Used](#space_invader-technologies-used) <br>
+[:dart: Features](#dart-features) <br>
 [:eye: Website Pages](#eye-website-pages) <br>
 [:hammer_and_wrench: Installation](#hammer_and_wrench-installation) <br>
 [:medal_sports: Acknowledgements](#medal_sports-acknowledgements) <br>
@@ -78,6 +78,38 @@ You can explore the font options here: [Google Fonts](https://fonts.google.com/)
 | Secondary Color3 | ![#b28e6a](https://via.placeholder.com/10/b28e6a?text=+) #b28e6a |
 | Secondary Color4 | ![#473d3a](https://via.placeholder.com/10/473d3a?text=+) #473d3a |
 </div>
+
+
+
+## :space_invader: **Technologies Used**
+This project utilizes a variety of modern technologies and libraries to create a robust and efficient web application. The following technologies are used in TravelHub:
+
+Frontend Technologies
+- **React**: A JavaScript library for building user interfaces.
+- **TypeScript**: A superset of JavaScript that adds static types for better development experience and code quality.
+- **React Router DOM**: A routing library for managing navigation and rendering different components based on the URL.
+- **Axios**: A promise-based HTTP client for making API requests.
+- **Formik**: A library for building forms in React with easy validation and state management.
+- **Yup**: A schema builder for value parsing and validation.
+- **Date-fns**: A library for date manipulation and formatting.
+- **Leaflet**: A JavaScript library for interactive maps.
+- **React-Leaflet**: A React wrapper for Leaflet to easily integrate maps into React applications.
+
+Development Tools
+- **ESLint**: A tool for identifying and fixing problems in JavaScript/TypeScript code.
+- **Prettier**: A code formatter that enforces a consistent style.
+- **React Scripts**: Scripts for running and building React applications.
+
+Testing Libraries
+- **React Testing Library**: A set of utilities for testing React components.
+- **Jest**: A JavaScript/TypeScript testing framework for unit testing components and functions.
+- **Jest-DOM**: Custom matchers for Jest to test the state of the DOM.
+
+Other Dependencies
+- **JWT Decode**: A library for decoding JSON Web Tokens.
+- **jsPDF**: A library for generating PDF documents in JavaScript.
+- **React Error Boundary**: A React component for handling errors in the component tree gracefully.
+
 
 
 ## :dart: Features
@@ -129,35 +161,6 @@ TravelHub includes an admin portal designed for easy management of the websiteâ€
 	- **Intuitive Management Tools**: TravelHub includes an admin portal designed for easy management of the websiteâ€™s content and data.
 	- **Detailed Grids**: Provides a clear overview of all data, allowing admins to view, update, create, or delete entities with ease, ensuring the website remains up-to-date and well-maintained.
 
-
-## :space_invader: **Technologies Used**
-This project utilizes a variety of modern technologies and libraries to create a robust and efficient web application. The following technologies are used in TravelHub:
-
-Frontend Technologies
-- **React**: A JavaScript library for building user interfaces.
-- **TypeScript**: A superset of JavaScript that adds static types for better development experience and code quality.
-- **React Router DOM**: A routing library for managing navigation and rendering different components based on the URL.
-- **Axios**: A promise-based HTTP client for making API requests.
-- **Formik**: A library for building forms in React with easy validation and state management.
-- **Yup**: A schema builder for value parsing and validation.
-- **Date-fns**: A library for date manipulation and formatting.
-- **Leaflet**: A JavaScript library for interactive maps.
-- **React-Leaflet**: A React wrapper for Leaflet to easily integrate maps into React applications.
-
-Development Tools
-- **ESLint**: A tool for identifying and fixing problems in JavaScript/TypeScript code.
-- **Prettier**: A code formatter that enforces a consistent style.
-- **React Scripts**: Scripts for running and building React applications.
-
-Testing Libraries
-- **React Testing Library**: A set of utilities for testing React components.
-- **Jest**: A JavaScript/TypeScript testing framework for unit testing components and functions.
-- **Jest-DOM**: Custom matchers for Jest to test the state of the DOM.
-
-Other Dependencies
-- **JWT Decode**: A library for decoding JSON Web Tokens.
-- **jsPDF**: A library for generating PDF documents in JavaScript.
-- **React Error Boundary**: A React component for handling errors in the component tree gracefully.
 
 
 ## :eye: Website Pages
