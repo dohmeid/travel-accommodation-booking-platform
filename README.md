@@ -199,13 +199,23 @@ Booking Confirmation Pdf
 9. Admin Page - manage hotels
 ![image](https://github.com/user-attachments/assets/62c403b7-a9ac-4c29-b58e-d5679b2a09f7)
 
-10. Unauthorized Error Page - 401 http error
+	Delete item 
+	![image](https://github.com/user-attachments/assets/2991f76a-9d5b-4f28-908e-3653de0dc13e)
+	
+	Add item
+	![image](https://github.com/user-attachments/assets/a6caf2d0-9034-4c05-982c-ac6afbf22302)
+	
+	Update item
+	![image](https://github.com/user-attachments/assets/77055ec6-cc64-415a-a570-d214285d24bb)
+
+
+11. Unauthorized Error Page - 401 http error
 ![image](https://github.com/user-attachments/assets/565afb2b-6aeb-4e4c-bfc1-15bc5baee813)
 
-11. Page Not Found Error Page - 404 http error
+12. Page Not Found Error Page - 404 http error
 ![image](https://github.com/user-attachments/assets/6f4a6a67-29de-447a-8edc-b3751e47aa83)
 
-12. Unexpected Error Page
+13. Unexpected Error Page
 ![image](https://github.com/user-attachments/assets/d80a3420-9907-4645-a993-04abe5f5284e)
 
 
