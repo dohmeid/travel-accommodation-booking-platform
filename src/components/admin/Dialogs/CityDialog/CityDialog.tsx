@@ -58,8 +58,6 @@ const CityDialog: FC<Props> = ({ dialogState, closeDialog }) => {
 
   return (
     <div className={classes.dialogContainer}>
-      <h2>{dialogState.type === 'Add' ? 'Add New City' : 'Update City'}</h2>
-
       <Formik
         initialValues={initialCityValues}
         validationSchema={citySchema}
@@ -70,6 +68,10 @@ const CityDialog: FC<Props> = ({ dialogState, closeDialog }) => {
             aria-labelledby="add-update-city-form"
             className={classes.dialogForm}
           >
+            <h2>
+              {dialogState.type === 'Add' ? 'Add New City' : 'Update City'}
+            </h2>
+
             <div className={classes.inputContainer}>
               <Field
                 type="text"
@@ -116,7 +118,12 @@ const CityDialog: FC<Props> = ({ dialogState, closeDialog }) => {
               <button
                 type="submit"
                 className={classes.addUpdateButton}
-                disabled={formik.isSubmitting || !formik.isValid}
+                disabled={
+                  formik.isSubmitting ||
+                  !formik.isValid ||
+                  !formik.values.name ||
+                  !formik.values.description
+                }
               >
                 {formik.isSubmitting
                   ? type === 'Add'

@@ -88,8 +88,6 @@ const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
 
   return (
     <div className={classes.dialogContainer}>
-      <h2>{type === 'Add' ? 'Add New Hotel' : 'Update Hotel'}</h2>
-
       <Formik
         initialValues={initialHotelValues}
         validationSchema={hotelSchema}
@@ -100,6 +98,8 @@ const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
             aria-labelledby="add-update-hotel-form"
             className={classes.dialogForm}
           >
+            <h2>{type === 'Add' ? 'Add New Hotel' : 'Update Hotel'}</h2>
+
             <div className={classes.inputContainer}>
               <label htmlFor="name">Hotel Name</label>
               <Field
@@ -248,7 +248,16 @@ const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
               <button
                 type="submit"
                 className={classes.addUpdateButton}
-                disabled={formik.isSubmitting || !formik.isValid}
+                disabled={
+                  formik.isSubmitting ||
+                  !formik.isValid ||
+                  !formik.values.description ||
+                  !formik.values.hotelType ||
+                  !formik.values.latitude ||
+                  !formik.values.longitude ||
+                  !formik.values.name ||
+                  !formik.values.starRating
+                }
               >
                 {formik.isSubmitting
                   ? type === 'Add'

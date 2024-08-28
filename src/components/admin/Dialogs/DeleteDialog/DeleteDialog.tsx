@@ -26,25 +26,27 @@ const DeleteDialog: FC<Props> = ({ dialogState, closeDialog }) => {
   if (!isOpen || type !== 'Delete') return null;
 
   return (
-    <div className={classes.deleteDialog}>
-      <h2>{`${management} Deletion`}</h2>
-      <h3>{`Are you certain you wish to delete this ${management}?`}</h3>
+    <div className={classes.overlay}>
+      <div className={classes.deleteDialog}>
+        <h2>{`${management} Deletion`}</h2>
+        <h3>{`Are you certain you wish to delete this ${management}?`}</h3>
 
-      <div className={classes.buttons}>
-        <button
-          type="button"
-          className={classes.cancelBtn}
-          onClick={closeDialog}
-        >
-          Cancel
-        </button>
-        <button
-          type="button"
-          className={classes.deleteBtn}
-          onClick={handleDeleteButtonClick}
-        >
-          Delete
-        </button>
+        <div className={classes.buttons}>
+          <button
+            type="button"
+            className={classes.cancelBtn}
+            onClick={closeDialog}
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            className={classes.deleteBtn}
+            onClick={handleDeleteButtonClick}
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,52 +1,42 @@
-@keyframes slide-in-left {
-  0% {
-    transform: translateX(-1000px);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
 .dialogContainer {
   position: fixed;
-  top: 0%;
-  right: 0%;
-  width: 30rem;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
-  border-radius: 0.7rem;
-  background-color: var(--white);
-  box-shadow: rgba(0, 0, 0, 0.3) 2px 5px 15px;
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0 2rem;
-  animation: slide-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-
-  h2 {
-    font-family: var(--main-font);
-    color: var(--orange1);
-    margin-bottom: 1.5rem;
-  }
+  justify-content: flex-end;
+  z-index: 1;
 
   .dialogForm {
-    width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 4rem 0;
+    width: 30rem;
+    height: 100%;
+    background-color: var(--white);
+
+    animation: slide-in-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+
+    h2 {
+      font-family: var(--main-font);
+      color: var(--orange1);
+      margin-bottom: 1rem;
+    }
 
     .inputContainer {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      margin-bottom: 1.3rem;
+      width: 80%;
 
       label {
         font-family: var(--secondary-font);
         color: var(--dark-brown1);
-        padding-bottom: 0.4rem;
+        padding-bottom: 0.2rem;
       }
 
       .nameField,
@@ -54,7 +44,7 @@
       .numberField,
       .cityIdField {
         padding: 0 1rem;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         font-family: var(--secondary-font);
         color: var(--dark-brown1);
         background-color: transparent;
@@ -89,24 +79,16 @@
 
     .numbersContainer {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      width: 80%;
 
       .inputContainer {
         align-items: center;
-        height: 100%;
-        width: 100%;
 
         .numberField {
-          width: 3rem;
+          padding: 0 0.4rem;
+          width: 5rem;
           height: 2.5rem;
-          padding: 0;
           text-align: center;
-        }
-
-        .errorAlert {
-          position: relative;
-          bottom: 0;
         }
       }
     }
@@ -117,12 +99,12 @@
       margin-top: 1rem;
 
       button {
-        width: 5rem;
+        width: 6rem;
         height: 2.5rem;
         text-align: center;
         font-family: var(--secondary-font);
         font-weight: bold;
-        font-size: 0.85rem;
+        font-size: 0.95rem;
         border-radius: 0.5rem;
         cursor: pointer;
         background-color: transparent;
@@ -164,39 +146,55 @@
   }
 }
 
-/*************************** media queries styles ********************************/
-/*for small devices - mobile phones and some tablets*/
-@media (max-width: 600px) {
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-1000px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 500px) {
   .dialogContainer {
-    padding: 4rem 1rem 0 1rem;
+    justify-content: center;
+    align-items: center;
 
     h2 {
-      padding-top: 2rem;
       font-size: 2rem;
     }
 
     .dialogForm {
+      width: 90%;
+      height: 70%;
+      border-radius: 1rem;
+
       .inputContainer {
-        margin-bottom: 3rem;
+        font-size: 1.2rem;
 
         .errorAlert {
-          font-size: 1rem;
-          padding-top: 1rem;
+          font-size: 0.95rem;
         }
       }
 
       .buttonsContainer {
-        margin-top: 5rem;
-
-        button {
-          width: 8rem;
-          height: 3.5rem;
-        }
+        margin-top: 3rem;
 
         .cancelButton {
           margin-right: 1.5rem;
         }
       }
+    }
+  }
+}
+
+@media (min-width: 500px) and (max-width: 700px) {
+  .dialogContainer {
+    .dialogForm {
+      padding: 10rem 0;
     }
   }
 }
