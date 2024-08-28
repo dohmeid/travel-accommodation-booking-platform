@@ -1,6 +1,6 @@
 .fullscreen {
   position: fixed;
-  z-index: 5000;
+  z-index: 2;
   top: 0;
   left: 0;
   right: 0;
@@ -9,7 +9,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
 
   img {
     width: 90%;
@@ -19,6 +18,7 @@
 
   .closeButton {
     i {
+      cursor: pointer;
       position: absolute;
       top: 3%;
       right: 5%;
