@@ -40,9 +40,7 @@ const HotelsTable: FC = () => {
 
       <tfoot>
         <tr>
-          <td>
-            Total: <span>{hotelsArray.length}</span>
-          </td>
+          <td>Total: {hotelsArray.length}</td>
         </tr>
       </tfoot>
     </table>

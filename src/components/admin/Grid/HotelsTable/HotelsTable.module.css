@@ -1,58 +1,59 @@
 .grid {
-  height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(8, auto);
-  column-gap: 1rem;
+  border-collapse: collapse;
 
   thead,
   tbody,
   tr {
-    display: grid;
-    grid-column: 1 / -1;
-    grid-template-columns: subgrid;
+    display: contents;
+    font-family: var(--secondary-font);
   }
 
-  thead {
-    tr {
+  thead th {
+    color: var(--medium-grey);
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  thead,
+  tbody {
+
+    th,
+    td {
+      padding: 0.85rem;
+      text-align: center;
+      overflow-wrap: break-word;
       border-bottom: 1px solid var(--medium-grey);
-
-      th {
-        text-align: center;
-        position: sticky;
-        font-size: 0.8rem;
-        font-family: var(--secondary-font);
-        color: var(--medium-grey);
-        padding-bottom: 1rem;
-      }
     }
   }
 
-  tfoot {
-    padding-top: 1.5rem;
-
-    tr {
-      grid-template-columns: 1fr;
-
-      td {
-        font-size: 0.8rem;
-        font-family: var(--secondary-font);
-        font-weight: 600;
-        color: var(--dark-brown1);
-      }
-    }
+  tfoot td {
+    padding-top: 2rem;
   }
 }
 
-/*************************** media queries styles ********************************/
-/*for small devices - mobile phones and some tablets*/
-@media (max-width: 550px) {
+@media (max-width: 750px) {
   .grid {
-    column-gap: 0.5rem;
-    grid-template-columns: 1rem 5rem 1fr 2.5rem;
 
-    tfoot {
-      padding-left: 1rem;
+    thead th {
+      font-size: 0.6rem;
+      font-weight: 600;
+      overflow-wrap: word-break;
+    }
+
+    tbody td {
+      overflow-wrap: anywhere;
+    }
+
+    thead,
+    tbody {
+
+      th,
+      td {
+        padding: 0.55rem 0.25rem;
+      }
     }
   }
 }

@@ -44,8 +44,6 @@
   }
 }
 
-/*************************** media queries styles ********************************/
-/*for small devices - mobile phones and some tablets*/
 @media (max-width: 550px) {
   .grid {
     column-gap: 0.5rem;

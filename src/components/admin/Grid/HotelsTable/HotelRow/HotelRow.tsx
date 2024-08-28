@@ -1,5 +1,5 @@
 import React, { FC, MouseEvent } from 'react';
-import { Hotel,GridType } from '../../../../../types/adminTypes';
+import { Hotel, GridType } from '../../../../../types/adminTypes';
 import useDialog from '../../../../../hooks/useDialog';
 import DeleteDialog from '../../../Dialogs/DeleteDialog/DeleteDialog';
 import HotelDialog from '../../../Dialogs/HotelDialog/HotelDialog';
@@ -31,7 +31,7 @@ const HotelRow: FC<Props> = ({ hotelData }) => {
       <tr className={classes.row}>
         <td>{id}</td>
         <td>{name}</td>
-        <td className={classes.descriptionRow}>{description}</td>
+        <td>{description}</td>
         <td>{hotelType}</td>
         <td>{starRating}</td>
         <td>{latitude}</td>

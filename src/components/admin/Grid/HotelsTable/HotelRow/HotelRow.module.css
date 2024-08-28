@@ -6,14 +6,7 @@
   color: var(--dark-brown1);
   padding: 1rem 0;
 
-  .descriptionRow {
-    text-align: center;
-  }
-
   .buttons {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
 
     button {
       background-color: transparent;
@@ -30,6 +23,7 @@
 
     .editBtn {
       color: var(--dark-brown1);
+      margin-right: 0.15rem;
     }
 
     .deleteBtn {
@@ -38,10 +32,8 @@
   }
 }
 
-/*************************** media queries styles ********************************/
-/*for small devices - mobile phones and some tablets*/
 @media (max-width: 550px) {
   .row {
-    text-align: left;
+    padding: 0.85rem 0;
   }
 }

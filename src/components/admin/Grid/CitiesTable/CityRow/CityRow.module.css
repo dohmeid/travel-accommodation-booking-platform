@@ -38,8 +38,6 @@
   }
 }
 
-/*************************** media queries styles ********************************/
-/*for small devices - mobile phones and some tablets*/
 @media (max-width: 550px) {
   .row {
     text-align: left;
