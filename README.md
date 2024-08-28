@@ -202,13 +202,16 @@ Booking Confirmation Pdf
 ![image](https://github.com/user-attachments/assets/62c403b7-a9ac-4c29-b58e-d5679b2a09f7)
 
 	Delete item 
-	![image](https://github.com/user-attachments/assets/2991f76a-9d5b-4f28-908e-3653de0dc13e)
-	
+	![image](https://github.com/user-attachments/assets/60f3b07d-09ad-441c-830d-70f5d65114e7)
+
 	Add item
-	![image](https://github.com/user-attachments/assets/a6caf2d0-9034-4c05-982c-ac6afbf22302)
-	
+	![image](https://github.com/user-attachments/assets/689062a0-cb98-4d61-b10d-374736fa5868)
+	![image](https://github.com/user-attachments/assets/475c7d24-42a8-4689-a4a4-01947881fbfd)
+
 	Update item
-	![image](https://github.com/user-attachments/assets/77055ec6-cc64-415a-a570-d214285d24bb)
+	![image](https://github.com/user-attachments/assets/da49892e-459a-44ba-9330-a21b5b403ccd)
+	![image](https://github.com/user-attachments/assets/4ce318ec-cbb5-414c-82b3-92b06d6a404e)
+
 
 
 11. Unauthorized Error Page - 401 http error
