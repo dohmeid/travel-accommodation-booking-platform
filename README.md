@@ -210,7 +210,7 @@ Booking Confirmation Pdf
 
 	Update item
 	![image](https://github.com/user-attachments/assets/da49892e-459a-44ba-9330-a21b5b403ccd)
-	![image](https://github.com/user-attachments/assets/4ce318ec-cbb5-414c-82b3-92b06d6a404e)
+	![image](https://github.com/user-attachments/assets/31a36cca-9fcd-40d1-a963-3b7d651da721)
 
 
 
