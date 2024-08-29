@@ -1,43 +1,14 @@
 import React, { FC } from 'react';
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
-import * as Yup from 'yup';
 import {
   NotificationType,
   useNotification,
 } from '../../../context/NotificationProvider';
+import { checkoutSchema } from '../../../schemas/validationSchemas';
 import { useCartContext } from '../../../context/cartProvider';
 import { useBookingContext } from '../../../context/bookingProvider';
 import { getCurrentDateISO } from '../../../utils/dates';
 import classes from './CheckoutForm.module.css';
-
-const checkoutSchema = Yup.object().shape({
-  firstName: Yup.string()
-    .required('first name is required!')
-    .min(3, 'first name must be 3 characters minimum'),
-  lastName: Yup.string()
-    .required('last name is required!')
-    .min(3, 'last name must be 3 characters minimum'),
-  email: Yup.string()
-    .email('It should be a valid email')
-    .required('email is required!'),
-  phoneNumber: Yup.string()
-    .required('phone number is required!')
-    .matches(/^\d{8}$/, 'Phone number must be exactly 8 digits long'),
-  paymentMethod: Yup.string().required('payment method is required!'),
-  cardNumber: Yup.string()
-    .required('card number is required!')
-    .matches(/^\d{4}-\d{4}-\d{4}-\d{4}$/, 'Invalid card number'),
-  cardExpiryDate: Yup.string()
-    .required('card expiry date is required!')
-    .matches(
-      /^(0[1-9]|1[0-2])\/?([0-9]{2})$/,
-      'Invalid expiry date format (MM/YY)',
-    ),
-  cardCVV: Yup.string()
-    .required('Card Verification Value is required!')
-    .matches(/^\d{3,4}$/, 'Invalid CVV'),
-  requests: Yup.string(),
-});
 
 interface FormValues {
   firstName: string;

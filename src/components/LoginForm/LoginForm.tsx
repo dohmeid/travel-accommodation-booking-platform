@@ -1,17 +1,12 @@
 import React, { FC, useState } from 'react';
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
-import * as Yup from 'yup';
 import { LoginFormValues } from '../../types/authTypes';
 import { authenticateUser } from '../../api/authService';
 import { useAuthContext } from '../../context/authProvider';
 import { NotificationType } from '../../context/NotificationProvider';
+import { loginSchema } from '../../schemas/validationSchemas';
 import Snackbar from '../shared/Snackbar/Snackbar';
 import classes from './LoginForm.module.css';
-
-const loginSchema = Yup.object().shape({
-  username: Yup.string().required('Username is a required field!'),
-  password: Yup.string().required('Password is a required field!'),
-});
 
 const initialLoginValues = {
   username: '',

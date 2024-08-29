@@ -1,17 +1,10 @@
 import React, { FC } from 'react';
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
-import * as Yup from 'yup';
+import { cityDialogSchema } from '../../../../schemas/validationSchemas';
 import { useAdminContext } from '../../../../context/AdminProvider';
 import { UseDialog, DialogState } from '../../../../hooks/useDialog';
 import { City } from '../../../../types/adminTypes';
 import classes from './CityDialog.module.css';
-
-const citySchema = Yup.object().shape({
-  name: Yup.string().required('City name is a required field!'),
-  description: Yup.string()
-    .required('City description is a required field!')
-    .min(3, 'Description should be at least 3 characters long'),
-});
 
 interface DialogFormValues {
   name: string;
@@ -59,7 +52,7 @@ const CityDialog: FC<Props> = ({ dialogState, closeDialog }) => {
     <div className={classes.dialogContainer}>
       <Formik
         initialValues={initialCityValues}
-        validationSchema={citySchema}
+        validationSchema={cityDialogSchema}
         onSubmit={handleSubmitForm}
       >
         {(formik) => (
