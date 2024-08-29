@@ -1,52 +1,46 @@
 import { useCallback, useState } from 'react';
 import { City, GridType, Hotel } from '../types/adminTypes';
 
-export interface DialogState {
-  management: GridType;
-  type: 'Add' | 'Update' | 'Delete';
+export interface DialogState<T = unknown> {
+  type: GridType;
+  mode: 'Add' | 'Update' | 'Delete';
   isOpen: boolean;
-  cityData?: City;
-  hotelData?: Hotel;
+  data?: T;
 }
 
 export interface UseDialog {
-  dialogState: DialogState;
+  dialogState: DialogState<City | Hotel>;
   openDialog: (
-    management: GridType,
-    type: DialogState['type'],
+    type: GridType,
+    mode: DialogState['mode'],
     data?: City | Hotel,
   ) => void;
   closeDialog: () => void;
 }
 
-const useDialog = (): UseDialog => {
-  const [dialogState, setDialogState] = useState<DialogState>({
-    management: GridType.CITY,
-    type: 'Add',
+const useDialog = () => {
+  const initialState: DialogState = {
+    type: GridType.CITY,
+    mode: 'Add',
     isOpen: false,
-  });
+  };
+
+  const [dialogState, setDialogState] = useState<DialogState>(initialState);
 
   const openDialog = useCallback(
-    (management: GridType, type: DialogState['type'], data?: City | Hotel) => {
+    (type: GridType, mode: DialogState['mode'], data?: City | Hotel) => {
       setDialogState({
-        management,
         type,
+        mode,
         isOpen: true,
-        cityData: management === GridType.CITY ? (data as City) : undefined,
-        hotelData: management === GridType.HOTEL ? (data as Hotel) : undefined,
+        data,
       });
     },
     [],
   );
 
   const closeDialog = useCallback(() => {
-    setDialogState({
-      management: GridType.CITY,
-      type: 'Add',
-      isOpen: false,
-      cityData: undefined,
-      hotelData: undefined,
-    });
+    setDialogState(initialState);
   }, []);
 
   return { dialogState, openDialog, closeDialog };

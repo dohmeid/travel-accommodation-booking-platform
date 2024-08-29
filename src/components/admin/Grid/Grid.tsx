@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
-import useDialog from '../../../hooks/useDialog';
-import { GridType } from '../../../types/adminTypes';
-import CitiesTable from './CitiesTable/CitiesTable';
-import HotelsTable from './HotelsTable/HotelsTable';
+import { City, GridType, Hotel } from '../../../types/adminTypes';
+import useDialog, { DialogState } from '../../../hooks/useDialog';
 import CityDialog from '../Dialogs/CityDialog/CityDialog';
 import HotelDialog from '../Dialogs/HotelDialog/HotelDialog';
+import DeleteDialog from '../Dialogs/DeleteDialog/DeleteDialog';
+import Table from './Table/Table';
 import classes from './Grid.module.css';
 
 interface GridProps {
@@ -24,36 +24,28 @@ const Grid: FC<GridProps> = ({ gridType }) => {
     openDialog(gridType, 'Add');
   };
 
-  const renderTable = () => {
-    switch (gridType) {
-      case GridType.CITY:
-        return <CitiesTable />;
-      case GridType.HOTEL:
-        return <HotelsTable />;
-      case GridType.ROOM:
-        return <CitiesTable />;
-      default:
-        return null;
-    }
-  };
-
   const renderDialog = () => {
-    switch (gridType) {
-      case GridType.CITY:
-        return (
-          <CityDialog dialogState={dialogState} closeDialog={closeDialog} />
-        );
-      case GridType.HOTEL:
-        return (
-          <HotelDialog dialogState={dialogState} closeDialog={closeDialog} />
-        );
-      case GridType.ROOM:
-        return (
-          <CityDialog dialogState={dialogState} closeDialog={closeDialog} />
-        );
-      default:
-        return null;
-    }
+    const dialogMap: Record<GridType, JSX.Element> = {
+      [GridType.CITY]: (
+        <CityDialog
+          dialogState={dialogState as DialogState<City>}
+          closeDialog={closeDialog}
+        />
+      ),
+      [GridType.HOTEL]: (
+        <HotelDialog
+          dialogState={dialogState as DialogState<Hotel>}
+          closeDialog={closeDialog}
+        />
+      ),
+      [GridType.ROOM]: (
+        <CityDialog
+          dialogState={dialogState as DialogState<City>}
+          closeDialog={closeDialog}
+        />
+      ),
+    };
+    return dialogMap[gridType] || null;
   };
 
   return (
@@ -71,8 +63,9 @@ const Grid: FC<GridProps> = ({ gridType }) => {
         </button>
       </div>
 
-      {renderTable()}
+      <Table type={gridType} openDialog={openDialog} />
       {renderDialog()}
+      <DeleteDialog dialogState={dialogState} closeDialog={closeDialog} />
     </div>
   );
 };
