@@ -2,9 +2,9 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { AuthContext } from '../../../context/authProvider';
-import { NotificationProvider } from '../../../context/NotificationProvider';
-import MainHeader from '../../../components/shared/MainHeader/MainHeader';
+import { AuthContext } from '../../context/authProvider';
+import { NotificationProvider } from '../../context/NotificationProvider';
+import MainHeader from '../../components/shared/MainHeader/MainHeader';
 
 const userInfo = { authentication: null, userType: null };
 const getUserId = jest.fn();

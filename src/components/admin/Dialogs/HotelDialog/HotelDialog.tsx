@@ -3,6 +3,7 @@ import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { useAdminContext } from '../../../../context/AdminProvider';
 import { UseDialog, DialogState } from '../../../../hooks/useDialog';
+import { Hotel } from '../../../../types/adminTypes';
 import classes from './HotelDialog.module.css';
 
 const hotelSchema = Yup.object().shape({
@@ -37,13 +38,13 @@ interface DialogFormValues {
 }
 
 interface Props {
-  dialogState: DialogState;
+  dialogState: DialogState<Hotel>;
   closeDialog: UseDialog['closeDialog'];
 }
 
 const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
   const { cities, createHotel, updateHotel } = useAdminContext();
-  const { type, isOpen, hotelData } = dialogState;
+  const { mode, isOpen, data: hotelData } = dialogState;
 
   const initialHotelValues = {
     name: hotelData?.name || '',
@@ -55,25 +56,20 @@ const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
     longitude: hotelData?.longitude || 0,
   };
 
-  const handleSubmitAddForm = async (
+  const handleSubmitForm = async (
     values: DialogFormValues,
     { setSubmitting }: FormikHelpers<DialogFormValues>,
   ) => {
     const newHotel = {
       id: hotelData?.id || 0,
-      name: values.name,
-      description: values.description,
-      hotelType: values.hotelType,
-      starRating: values.starRating,
-      latitude: values.latitude,
-      longitude: values.longitude,
+      ...values,
     };
     const cityId = values.cityId;
 
     try {
-      if (type === 'Add') {
+      if (mode === 'Add') {
         await createHotel(cityId, newHotel);
-      } else if (type === 'Update') {
+      } else if (mode === 'Update') {
         await updateHotel(newHotel);
       }
     } finally {
@@ -82,24 +78,22 @@ const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
     }
   };
 
-  if (!isOpen || !['Add', 'Update'].includes(type)) return null;
-
-  //Hotel: id, name, description, hotelType, starRating, latitude, longitude, actions(delete,update)
+  if (!isOpen || !['Add', 'Update'].includes(mode)) return null;
 
   return (
     <div className={classes.dialogContainer}>
-      <h2>{type === 'Add' ? 'Add New Hotel' : 'Update Hotel'}</h2>
-
       <Formik
         initialValues={initialHotelValues}
         validationSchema={hotelSchema}
-        onSubmit={handleSubmitAddForm}
+        onSubmit={handleSubmitForm}
       >
         {(formik) => (
           <Form
             aria-labelledby="add-update-hotel-form"
             className={classes.dialogForm}
           >
+            <h2>{mode === 'Add' ? 'Add New Hotel' : 'Update Hotel'}</h2>
+
             <div className={classes.inputContainer}>
               <label htmlFor="name">Hotel Name</label>
               <Field
@@ -136,7 +130,7 @@ const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
               />
             </div>
 
-            {type === 'Add' && (
+            {mode === 'Add' && (
               <div className={classes.inputContainer}>
                 <label htmlFor="cityId">Hotel City</label>
                 <Field
@@ -248,13 +242,18 @@ const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
               <button
                 type="submit"
                 className={classes.addUpdateButton}
-                disabled={formik.isSubmitting || !formik.isValid}
+                disabled={
+                  formik.isSubmitting ||
+                  !formik.isValid ||
+                  !formik.values.description ||
+                  !formik.values.name
+                }
               >
                 {formik.isSubmitting
-                  ? type === 'Add'
+                  ? mode === 'Add'
                     ? 'Adding...'
                     : 'Updating...'
-                  : type === 'Add'
+                  : mode === 'Add'
                     ? 'Add'
                     : 'Update'}
               </button>

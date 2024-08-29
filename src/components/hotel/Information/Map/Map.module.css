@@ -3,6 +3,7 @@
   height: 25rem;
   border-radius: 1rem;
   border: 1px solid var(--medium-grey);
+  z-index: 1;
 
   .map {
     width: 100%;

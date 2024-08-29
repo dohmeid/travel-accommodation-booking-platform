@@ -3,9 +3,9 @@ import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { useAdminContext } from '../../../../context/AdminProvider';
 import { UseDialog, DialogState } from '../../../../hooks/useDialog';
+import { City } from '../../../../types/adminTypes';
 import classes from './CityDialog.module.css';
 
-// the yup module schema for validating the form
 const citySchema = Yup.object().shape({
   name: Yup.string().required('City name is a required field!'),
   description: Yup.string()
@@ -19,33 +19,32 @@ interface DialogFormValues {
 }
 
 interface Props {
-  dialogState: DialogState;
+  dialogState: DialogState<City>;
   closeDialog: UseDialog['closeDialog'];
 }
 
 const CityDialog: FC<Props> = ({ dialogState, closeDialog }) => {
   const { createCity, updateCity } = useAdminContext();
-  const { type, isOpen, cityData } = dialogState;
+  const { mode, isOpen, data: cityData } = dialogState;
 
   const initialCityValues = {
     name: cityData?.name || '',
     description: cityData?.description || '',
   };
 
-  const handleSubmitAddForm = async (
+  const handleSubmitForm = async (
     values: DialogFormValues,
     { setSubmitting }: FormikHelpers<DialogFormValues>,
   ) => {
     const newCity = {
       id: cityData?.id || 0,
-      name: values.name,
-      description: values.description,
+      ...values,
     };
 
     try {
-      if (type === 'Add') {
+      if (mode === 'Add') {
         await createCity(newCity);
-      } else if (type === 'Update') {
+      } else if (mode === 'Update') {
         await updateCity(newCity);
       }
     } finally {
@@ -54,22 +53,22 @@ const CityDialog: FC<Props> = ({ dialogState, closeDialog }) => {
     }
   };
 
-  if (!isOpen || !['Add', 'Update'].includes(type)) return null;
+  if (!isOpen || !['Add', 'Update'].includes(mode)) return null;
 
   return (
     <div className={classes.dialogContainer}>
-      <h2>{dialogState.type === 'Add' ? 'Add New City' : 'Update City'}</h2>
-
       <Formik
         initialValues={initialCityValues}
         validationSchema={citySchema}
-        onSubmit={handleSubmitAddForm}
+        onSubmit={handleSubmitForm}
       >
         {(formik) => (
           <Form
             aria-labelledby="add-update-city-form"
             className={classes.dialogForm}
           >
+            <h2>{mode === 'Add' ? 'Add New City' : 'Update City'}</h2>
+
             <div className={classes.inputContainer}>
               <Field
                 type="text"
@@ -116,13 +115,18 @@ const CityDialog: FC<Props> = ({ dialogState, closeDialog }) => {
               <button
                 type="submit"
                 className={classes.addUpdateButton}
-                disabled={formik.isSubmitting || !formik.isValid}
+                disabled={
+                  formik.isSubmitting ||
+                  !formik.isValid ||
+                  !formik.values.name ||
+                  !formik.values.description
+                }
               >
                 {formik.isSubmitting
-                  ? type === 'Add'
+                  ? mode === 'Add'
                     ? 'Adding...'
                     : 'Updating...'
-                  : type === 'Add'
+                  : mode === 'Add'
                     ? 'Add'
                     : 'Update'}
               </button>
