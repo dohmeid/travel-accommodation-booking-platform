@@ -3,7 +3,7 @@ import { useBookingContext } from '../../context/bookingProvider';
 import {
   NotificationType,
   useNotification,
-} from '../../context/NotificationProvider';
+} from '../../context/notificationProvider';
 import { generatePDF } from '../../utils/pdfGenerator';
 import classes from './ConfirmationPage.module.css';
 

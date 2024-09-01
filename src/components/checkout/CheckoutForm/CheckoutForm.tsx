@@ -3,7 +3,7 @@ import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
 import {
   NotificationType,
   useNotification,
-} from '../../../context/NotificationProvider';
+} from '../../../context/notificationProvider';
 import { checkoutSchema } from '../../../schemas/validationSchemas';
 import { useCartContext } from '../../../context/cartProvider';
 import { useBookingContext } from '../../../context/bookingProvider';

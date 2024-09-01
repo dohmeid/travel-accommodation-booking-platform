@@ -18,7 +18,7 @@ import {
   Room,
   HotelContextProps,
 } from '../types/hotelTypes';
-import { NotificationType, useNotification } from './NotificationProvider';
+import { NotificationType, useNotification } from './notificationProvider';
 
 const HotelContext = createContext<HotelContextProps | undefined>(undefined);
 

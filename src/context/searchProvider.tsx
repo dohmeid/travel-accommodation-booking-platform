@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import { getAmenities, getSearchResults } from '../api/searchService';
 import { filterResults, sortResults } from '../utils/filterAndSortUtils';
-import { useNotification, NotificationType } from './NotificationProvider';
+import { useNotification, NotificationType } from './notificationProvider';
 import { Amenity } from '../types/hotelTypes';
 import {
   SearchResult,

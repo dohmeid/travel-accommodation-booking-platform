@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { screen, fireEvent, act, waitFor } from '@testing-library/react';
 import { render } from './render';
 import Snackbar from '../../components/shared/Snackbar/Snackbar';
-import { NotificationType } from '../../context/NotificationProvider';
+import { NotificationType } from '../../context/notificationProvider';
 
 jest.useFakeTimers();
 

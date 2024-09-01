@@ -3,7 +3,7 @@ import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
 import { LoginFormValues } from '../../types/authTypes';
 import { authenticateUser } from '../../api/authService';
 import { useAuthContext } from '../../context/authProvider';
-import { NotificationType } from '../../context/NotificationProvider';
+import { NotificationType } from '../../context/notificationProvider';
 import { loginSchema } from '../../schemas/validationSchemas';
 import Snackbar from '../shared/Snackbar/Snackbar';
 import classes from './LoginForm.module.css';
