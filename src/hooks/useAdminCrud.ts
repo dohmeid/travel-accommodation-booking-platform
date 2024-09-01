@@ -1,8 +1,7 @@
-import { useState } from 'react';
 import {
   useNotification,
   NotificationType,
-} from '../context/NotificationProvider';
+} from '../context/notificationProvider';
 
 interface Identifiable {
   id: number;
@@ -10,21 +9,6 @@ interface Identifiable {
 
 export const useAdminCrud = () => {
   const { notify } = useNotification();
-  const [isLoading, setIsLoading] = useState(true);
-
-  const fetchData = async <T extends Identifiable>(
-    fetchFunction: () => Promise<T[]>,
-    setState: React.Dispatch<React.SetStateAction<T[]>>,
-  ) => {
-    try {
-      const responseData = await fetchFunction();
-      setState(responseData);
-    } catch (error) {
-      notify(NotificationType.ERROR, (error as Error).message);
-    }finally {
-      setIsLoading(false);
-    }
-  };
 
   const createData = async <T extends Identifiable>(
     createFunction: (data: T) => Promise<T>,
@@ -73,8 +57,6 @@ export const useAdminCrud = () => {
   };
 
   return {
-    isLoading,
-    fetchData,
     createData,
     updateData,
     deleteData,

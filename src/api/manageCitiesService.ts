@@ -1,13 +1,20 @@
-import { apiRequest, HttpMethod } from './apiClient';
+import { apiClient, apiRequest, HttpMethod } from './apiClient';
 import { City } from '../types/adminTypes';
 
-export const getCities = async () => {
-  return apiRequest<City[]>(HttpMethod.GET, '/api/cities', undefined, {
-    name: '',
-    searchQuery: '',
-    pageSize: 10,
-    pageNumber: 1,
-  });
+export const getCities = async (pageNumber: number) => {
+  try {
+    const response = await apiClient.get('/api/cities', {
+      params: {
+        name: '',
+        searchQuery: '',
+        pageSize: 15,
+        pageNumber: pageNumber,
+      },
+    });
+    return response;
+  } catch (error) {
+    throw new Error('Error fetching cities:' + error);
+  }
 };
 
 export const addCity = async (newCity: City) => {

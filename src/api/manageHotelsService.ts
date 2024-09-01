@@ -1,14 +1,21 @@
-import { apiRequest, HttpMethod } from './apiClient';
+import { apiClient, apiRequest, HttpMethod } from './apiClient';
 import { Hotel } from '../types/adminTypes';
 import { HotelInformation } from '../types/hotelTypes';
 
-export const getHotels = async () => {
-  return apiRequest<Hotel[]>(HttpMethod.GET, '/api/hotels', undefined, {
-    name: '',
-    searchQuery: '',
-    pageSize: 15,
-    pageNumber: 1,
-  });
+export const getHotels = async (pageNumber: number) => {
+  try {
+    const response = await apiClient.get('/api/hotels', {
+      params: {
+        name: '',
+        searchQuery: '',
+        pageSize: 10,
+        pageNumber: pageNumber,
+      },
+    });
+    return response;
+  } catch (error) {
+    throw new Error('Error fetching hotels:' + error);
+  }
 };
 
 //create a new hotel in a specified city

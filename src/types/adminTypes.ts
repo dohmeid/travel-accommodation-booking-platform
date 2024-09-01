@@ -4,6 +4,13 @@ export enum GridType {
   ROOM = 'room',
 }
 
+export interface Pagination {
+  CurrentPage: number;
+  TotalPageCount: number;
+  TotalItemCount: number;
+  PageSize: number;
+}
+
 export interface City {
   id: number;
   name: string;
@@ -21,8 +28,12 @@ export interface Hotel {
 }
 
 export interface AdminContextType {
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   isLoading: boolean;
   cities: City[];
+  page: number;
+  paginationData: Pagination;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
   setSearchOption: React.Dispatch<React.SetStateAction<string>>;
 

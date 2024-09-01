@@ -7,19 +7,20 @@ import React, {
   useContext,
 } from 'react';
 import {
-  getCities,
   addCity,
   editCity,
+  getCities,
   removeCity,
 } from '../api/manageCitiesService';
 import {
-  getHotels,
   addHotel,
   editHotel,
+  getHotels,
   removeHotel,
 } from '../api/manageHotelsService';
-import { Hotel, City, AdminContextType } from '../types/adminTypes';
+import { Hotel, City, AdminContextType, Pagination } from '../types/adminTypes';
 import { useAdminCrud } from '../hooks/useAdminCrud';
+import { NotificationType, useNotification } from './notificationProvider';
 
 export const AdminContext = createContext<AdminContextType | null>(null);
 export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
@@ -27,14 +28,52 @@ export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchOption, setSearchOption] = useState('name');
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
+  const [paginationData, setPaginationData] = useState<Pagination>({
+    CurrentPage: 0,
+    TotalPageCount: 0,
+    TotalItemCount: 0,
+    PageSize: 0,
+  });
 
-  const { fetchData, createData, updateData, deleteData, isLoading } =
-    useAdminCrud();
+  const { notify } = useNotification();
+  const { createData, updateData, deleteData } = useAdminCrud();
+
+  const fetchCities = async () => {
+    setIsLoading(true);
+    try {
+      const response = await getCities(page);
+      setCities(response.data);
+    } catch (error: unknown) {
+      notify(NotificationType.ERROR, (error as Error).message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const fetchHotels = async () => {
+    try {
+      setIsLoading(true);
+      const response = await getHotels(page);
+      const pagination = JSON.parse(response.headers['x-pagination']);
+      setHotels(response.data);
+      setPaginationData(pagination);
+    } catch (error: unknown) {
+      notify(NotificationType.ERROR, (error as Error).message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    fetchData(getCities, setCities);
-    fetchData(getHotels, setHotels);
+    fetchCities();
+    fetchHotels();
   }, []);
+
+  useEffect(() => {
+    fetchHotels();
+  }, [page]);
 
   //--------------------managing cities functions
   const createCity = (cityData: City) =>
@@ -72,7 +111,12 @@ export const AdminProvider: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <AdminContext.Provider
       value={{
+        page,
         isLoading,
+        paginationData,
+        setIsLoading,
+        setPage,
+
         cities,
         setSearchQuery,
         setSearchOption,

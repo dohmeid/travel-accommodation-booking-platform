@@ -1,19 +1,17 @@
 .row {
-    border-bottom: 1px solid var(--medium-grey);
     text-align: center;
     font-size: 0.7rem;
     font-family: var(--secondary-font);
     color: var(--dark-brown1);
-    padding: 1rem 0;
 
     .descriptionRow {
         text-align: justify;
     }
 
     .buttons {
+        height: 100%;
         display: flex;
         align-items: center;
-        justify-content: space-evenly;
 
         button {
             background-color: transparent;
@@ -30,6 +28,7 @@
 
         .editBtn {
             color: var(--dark-brown1);
+            margin-right: 0.2rem;
         }
 
         .deleteBtn {
