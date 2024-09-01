@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Outlet } from 'react-router-dom';
-import { AdminProvider } from '../../context/AdminProvider';
+import { AdminProvider } from "../../context/adminProvider";
 import LeftNavigator from '../../components/admin/LeftNavigator/LeftNavigator';
 import Header from '../../components/admin/Header/Header';
 import SearchBar from '../../components/admin/SearchBar/SearchBar';

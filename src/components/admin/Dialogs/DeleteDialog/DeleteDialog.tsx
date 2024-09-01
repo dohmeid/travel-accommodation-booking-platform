@@ -1,6 +1,6 @@
 import React, { FC, MouseEvent } from 'react';
 import { UseDialog, DialogState } from '../../../../hooks/useDialog';
-import { useAdminContext } from '../../../../context/AdminProvider';
+import { useAdminContext } from '../../../../context/adminProvider';
 import { City, GridType, Hotel } from '../../../../types/adminTypes';
 import classes from './DeleteDialog.module.css';
 
@@ -17,7 +17,7 @@ const DeleteDialog: FC<Props> = ({ dialogState, closeDialog }) => {
     e.stopPropagation();
     if (data) {
       const itemId = (data as City | Hotel).id; //type assertion
-      if (type === GridType.CITY) {
+      if (type === GridType.CITY || type === GridType.ROOM) {
         await deleteCity(itemId);
       } else if (type === GridType.HOTEL) {
         await deleteHotel(itemId);

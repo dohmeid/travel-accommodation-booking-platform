@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
 import { cityDialogSchema } from '../../../../schemas/validationSchemas';
-import { useAdminContext } from '../../../../context/AdminProvider';
+import { useAdminContext } from '../../../../context/adminProvider';
 import { UseDialog, DialogState } from '../../../../hooks/useDialog';
 import { City } from '../../../../types/adminTypes';
 import classes from './CityDialog.module.css';
