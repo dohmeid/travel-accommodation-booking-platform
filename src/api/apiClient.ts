@@ -9,7 +9,7 @@ export enum HttpMethod {
 }
 
 //create an Axios instance with default configuration
-const apiClient = axios.create({
+export const apiClient = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
   headers: {
     accept: 'application/json, text/plain',
