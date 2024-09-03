@@ -45,7 +45,6 @@ apiClient.interceptors.response.use(
         errorMessage = 'Bad Request';
         break;
       case 401:
-        //logout the user
         errorMessage = 'Unauthorized User. Redirecting to login...';
         break;
       case 403:

@@ -1,20 +1,13 @@
-import { apiClient, apiRequest, HttpMethod } from './apiClient';
+import { apiRequest, HttpMethod } from './apiClient';
 import { City } from '../types/adminTypes';
 
-export const getCities = async (pageNumber: number) => {
-  try {
-    const response = await apiClient.get('/api/cities', {
-      params: {
-        name: '',
-        searchQuery: '',
-        pageSize: 15,
-        pageNumber: pageNumber,
-      },
-    });
-    return response;
-  } catch (error) {
-    throw new Error('Error fetching cities:' + error);
-  }
+export const getCities = async () => {
+  return apiRequest<City[]>(HttpMethod.GET, `/api/cities`, undefined, {
+    name: '', //search in cities is handles in client-side for better user experience
+    searchQuery: '',
+    pageSize: 15,
+    pageNumber: 1, //note: this endpoint doesn't support pagination (only 8 results back)
+  });
 };
 
 export const addCity = async (newCity: City) => {

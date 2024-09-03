@@ -2,12 +2,16 @@ import { apiClient, apiRequest, HttpMethod } from './apiClient';
 import { Hotel } from '../types/adminTypes';
 import { HotelInformation } from '../types/hotelTypes';
 
-export const getHotels = async (pageNumber: number) => {
+export const getHotels = async (
+  pageNumber: number,
+  nameQuery: string,
+  descriptionQuery: string,
+) => {
   try {
     const response = await apiClient.get('/api/hotels', {
       params: {
-        name: '',
-        searchQuery: '',
+        name: nameQuery,
+        searchQuery: descriptionQuery,
         pageSize: 10,
         pageNumber: pageNumber,
       },
