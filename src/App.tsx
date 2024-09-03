@@ -17,7 +17,8 @@ const ConfirmationPage = lazy(
   () => import('./pages/ConfirmationPage/ConfirmationPage'),
 );
 const AdminPage = lazy(() => import('./pages/AdminPage/AdminPage'));
-const Grid = lazy(() => import('./components/admin/Grid/Grid'));
+const Body = lazy(() => import('./components/admin/Body/Body'));
+
 const NotFoundErrorPage = lazy(
   () => import('./pages/NotFoundErrorPage/NotFoundErrorPage'),
 );
@@ -60,13 +61,13 @@ const App: FC = () => {
                 </PrivateRoute>
               }
             >
-              <Route index element={<Grid gridType={GridType.CITY} />} />
-              <Route path="city" element={<Grid gridType={GridType.CITY} />} />
+              <Route index element={<Body gridType={GridType.CITY} />} />
+              <Route path="city" element={<Body gridType={GridType.CITY} />} />
               <Route
                 path="hotel"
-                element={<Grid gridType={GridType.HOTEL} />}
+                element={<Body gridType={GridType.HOTEL} />}
               />
-              <Route path="room" element={<Grid gridType={GridType.ROOM} />} />
+              <Route path="room" element={<Body gridType={GridType.ROOM} />} />
             </Route>
 
             <Route
