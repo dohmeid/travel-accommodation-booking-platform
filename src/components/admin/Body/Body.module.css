@@ -1,0 +1,20 @@
+.body {
+    height: 100%;
+    width: 100%;
+    padding: 3rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+    .body {
+        padding: 3rem 1rem;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 800px) {
+    .body {
+        padding: 3rem 2rem;
+    }
+}
