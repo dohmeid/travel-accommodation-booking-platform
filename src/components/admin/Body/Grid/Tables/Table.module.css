@@ -7,6 +7,8 @@
     width: 100%;
     height: fit-content;
     display: grid;
+    border-collapse: collapse;
+    table-layout: fixed;
 
     thead,
     tbody,
@@ -19,26 +21,26 @@
         color: var(--medium-grey);
         font-size: 0.9rem;
         font-weight: 700;
+        text-align: center;
     }
 
+    thead th,
+    tbody td {
 
-    thead,
-    tbody {
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        th,
-        td {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.85rem;
-            text-align: center;
-            overflow-wrap: break-word;
-            border-bottom: 1px solid var(--medium-grey);
-        }
+        padding: 0.85rem;
+        text-align: center;
+        overflow-wrap: break-word;
+        border-bottom: 1px solid var(--medium-grey);
     }
 
-    .noDataRow {
-       column-span: 4;
+    .noDataRow td {
+        text-align: center;
+        font-weight: 500;
+        color: var(--dark-brown2);
     }
 }
 
@@ -97,24 +99,33 @@
 .cityGrid {
     grid-template-columns: 1fr 1fr 4fr 1fr;
 
+    .noDataRow td {
+        grid-column: span 4;
+    }
 }
 
 .hotelGrid {
     grid-template-columns: 1fr 1fr 4fr 1fr 1fr 1fr 1fr 1fr;
+
+    .noDataRow td {
+        grid-column: span 8;
+    }
 }
 
 .roomGrid {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 2fr 1fr 1fr 1fr;
+
+    .noDataRow td {
+        grid-column: span 9;
+    }
 }
 
 
 @media (max-width: 410px) {
     .grid {
-        min-height: 45rem;
-        height: fit-content;
 
         thead th {
-            font-size: 0.6rem;
+            font-size: 0.66rem;
             overflow-wrap: word-break;
         }
 
@@ -160,7 +171,6 @@
 
 @media (min-width: 410px) and (max-width: 810px) {
     .grid {
-        min-height: 45rem;
         height: fit-content;
 
         thead th {

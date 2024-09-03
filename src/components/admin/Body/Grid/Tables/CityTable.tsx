@@ -51,7 +51,7 @@ const CityTable: FC<Props> = ({ openDialog }) => {
               ))
             ) : (
               <tr className={classes.noDataRow}>
-                <td colSpan={4}>No data to display</td>
+                <td>No data to display </td>
               </tr>
             )}
           </tbody>

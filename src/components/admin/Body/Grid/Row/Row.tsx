@@ -23,7 +23,9 @@ const Row: FC<Props> = ({ data, type, openDialog }) => {
         <>
           <td>{id}</td>
           <td>{name}</td>
-          <td className={classes.descriptionRow}>{description}</td>
+          <td className={type === GridType.CITY ? classes.descriptionRow : ''}>
+            {description}
+          </td>
         </>
       );
     }
