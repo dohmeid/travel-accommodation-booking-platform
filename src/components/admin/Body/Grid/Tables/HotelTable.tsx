@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC, useEffect } from 'react';
 import { UseDialog } from '../../../../../hooks/useDialog';
 import { GridType } from '../../../../../types/adminTypes';
 import { HOTEL_HEADER } from '../../../../../constants/gridConstants';
-import useHotels from '../../../../../hooks/useHotelsManagement';
+import useHotelsManagement from '../../../../../hooks/useHotelsManagement';
 import Spinner from '../../../../shared/Spinner/Spinner';
 import Row from '../Row/Row';
 import classes from './Table.module.css';
@@ -13,7 +13,7 @@ interface Props {
 
 const Table: FC<Props> = ({ openDialog }) => {
   //**************************STATES & HOOKS*******************************
-  const { hotelsResponse, fetchHotels, isLoading } = useHotels();
+  const { hotelsResponse, fetchHotels, isLoading } = useHotelsManagement();
   const { data: hotels, pagination: paginationData } = hotelsResponse;
   const currPage = paginationData.CurrentPage;
 

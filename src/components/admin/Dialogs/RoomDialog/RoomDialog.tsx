@@ -1,44 +1,44 @@
 import React, { FC } from 'react';
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
-import { cityDialogSchema } from '../../../../schemas/validationSchemas';
+import { roomDialogSchema } from '../../../../schemas/validationSchemas';
 import { UseDialog, DialogState } from '../../../../hooks/useDialog';
-import { City } from '../../../../types/adminTypes';
-import useCitiesManagement from '../../../../hooks/useCitiesManagement';
-import classes from './CityDialog.module.css';
+import { Room } from '../../../../types/adminTypes';
+import useRoomsManagement from '../../../../hooks/useRoomsManagement';
+import classes from './RoomDialog.module.css';
 
 interface DialogFormValues {
-  name: string;
-  description: string;
+  roomNumber: string;
+  cost: number;
 }
 
 interface Props {
-  dialogState: DialogState<City>;
+  dialogState: DialogState<Room>;
   closeDialog: UseDialog['closeDialog'];
 }
 
-const CityDialog: FC<Props> = ({ dialogState, closeDialog }) => {
-  const { createCity, updateCity } = useCitiesManagement();
-  const { mode, isOpen, data: cityData } = dialogState;
+const RoomDialog: FC<Props> = ({ dialogState, closeDialog }) => {
+  const { createRoom, updateRoom } = useRoomsManagement();
+  const { mode, isOpen, data } = dialogState;
 
-  const initialCityValues = {
-    name: cityData?.name || '',
-    description: cityData?.description || '',
+  const initialRoomValues = {
+    roomNumber: data ? String(data?.roomNumber) : '',
+    cost: data?.price || 0,
   };
 
   const handleSubmitForm = async (
     values: DialogFormValues,
     { setSubmitting }: FormikHelpers<DialogFormValues>,
   ) => {
-    const newCity = {
-      id: cityData?.id || 0,
+    const newRoom = {
+      id: data?.roomId,
       ...values,
     };
 
     try {
       if (mode === 'Add') {
-        await createCity(newCity);
+        await createRoom(newRoom);
       } else if (mode === 'Update') {
-        await updateCity(newCity);
+        if (data) await updateRoom(data, newRoom);
       }
     } finally {
       closeDialog();
@@ -51,29 +51,29 @@ const CityDialog: FC<Props> = ({ dialogState, closeDialog }) => {
   return (
     <div className={classes.dialogContainer}>
       <Formik
-        initialValues={initialCityValues}
-        validationSchema={cityDialogSchema}
+        initialValues={initialRoomValues}
+        validationSchema={roomDialogSchema}
         onSubmit={handleSubmitForm}
       >
         {(formik) => (
           <Form
-            aria-labelledby="add-update-city-form"
+            aria-labelledby="add-update-room-form"
             className={classes.dialogForm}
           >
-            <h2>{mode === 'Add' ? 'Add New City' : 'Update City'}</h2>
+            <h2>{mode === 'Add' ? 'Add New Room' : 'Update Room'}</h2>
 
             <div className={classes.inputContainer}>
               <Field
                 type="text"
-                name="name"
-                id="name"
-                placeholder="City name"
-                aria-describedby="city-name"
+                name="roomNumber"
+                id="roomNumber"
+                placeholder="Room number"
+                aria-describedby="room-number"
                 autoComplete="true"
                 className={classes.nameField}
               />
               <ErrorMessage
-                name="name"
+                name="roomNumber"
                 component="div"
                 className={classes.errorAlert}
               />
@@ -81,16 +81,16 @@ const CityDialog: FC<Props> = ({ dialogState, closeDialog }) => {
 
             <div className={classes.inputContainer}>
               <Field
-                as="textarea"
-                id="description"
-                name="description"
-                rows={13}
-                placeholder="City description..."
-                aria-describedby="city-description"
-                className={classes.descriptionField}
+                type="number"
+                name="cost"
+                id="cost"
+                placeholder="Cost"
+                aria-describedby="cost"
+                autoComplete="true"
+                className={classes.nameField}
               />
               <ErrorMessage
-                name="description"
+                name="cost"
                 component="div"
                 className={classes.errorAlert}
               />
@@ -111,8 +111,8 @@ const CityDialog: FC<Props> = ({ dialogState, closeDialog }) => {
                 disabled={
                   formik.isSubmitting ||
                   !formik.isValid ||
-                  !formik.values.name ||
-                  !formik.values.description
+                  !formik.values.roomNumber ||
+                  !formik.values.cost
                 }
               >
                 {formik.isSubmitting
@@ -131,4 +131,4 @@ const CityDialog: FC<Props> = ({ dialogState, closeDialog }) => {
   );
 };
 
-export default CityDialog;
+export default RoomDialog;

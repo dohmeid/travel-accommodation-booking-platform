@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
 import { hotelDialogSchema } from '../../../../schemas/validationSchemas';
-import { useAdminContext } from '../../../../context/adminProvider';
 import { UseDialog, DialogState } from '../../../../hooks/useDialog';
 import { Hotel } from '../../../../types/adminTypes';
+import useHotelsManagement from '../../../../hooks/useHotelsManagement';
+import useCitiesManagement from '../../../../hooks/useCitiesManagement';
 import classes from './HotelDialog.module.css';
 
 interface DialogFormValues {
@@ -22,8 +23,14 @@ interface Props {
 }
 
 const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
-  const { cities, createHotel, updateHotel } = useAdminContext();
+  const { cities, fetchCities } = useCitiesManagement();
+  const { createHotel, updateHotel } = useHotelsManagement();
   const { mode, isOpen, data: hotelData } = dialogState;
+
+  //initially fetch the cities to display then in the dialog options
+  useEffect(() => {
+    fetchCities();
+  }, []);
 
   const initialHotelValues = {
     name: hotelData?.name || '',

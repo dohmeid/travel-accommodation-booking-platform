@@ -61,3 +61,10 @@ export const hotelDialogSchema = Yup.object().shape({
     .min(-180, 'Longitude must be at least -180')
     .max(180, 'Longitude must be 180 or less'),
 });
+
+export const roomDialogSchema = Yup.object().shape({
+  roomNumber: Yup.string().required('Room number is a required field!'),
+  cost: Yup.number()
+    .required('Cost is a required field!')
+    .min(0, 'Room cost must be at least 0'),
+});

@@ -1,7 +1,9 @@
 import React, { FC, MouseEvent } from 'react';
 import { UseDialog, DialogState } from '../../../../hooks/useDialog';
-import { useAdminContext } from '../../../../context/adminProvider';
-import { City, GridType, Hotel } from '../../../../types/adminTypes';
+import { City, GridType, Hotel, Room } from '../../../../types/adminTypes';
+import useCitiesManagement from '../../../../hooks/useCitiesManagement';
+import useHotelsManagement from '../../../../hooks/useHotelsManagement';
+import useRooms from '../../../../hooks/useRoomsManagement';
 import classes from './DeleteDialog.module.css';
 
 interface Props {
@@ -10,17 +12,22 @@ interface Props {
 }
 
 const DeleteDialog: FC<Props> = ({ dialogState, closeDialog }) => {
-  const { deleteCity, deleteHotel } = useAdminContext();
+  const { deleteCity } = useCitiesManagement();
+  const { deleteHotel } = useHotelsManagement();
+  const { deleteRoom } = useRooms();
+
   const { type, mode, isOpen, data } = dialogState;
 
   const handleDeleteButtonClick = async (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     if (data) {
       const itemId = (data as City | Hotel).id; //type assertion
-      if (type === GridType.CITY || type === GridType.ROOM) {
+      if (type === GridType.CITY) {
         await deleteCity(itemId);
       } else if (type === GridType.HOTEL) {
         await deleteHotel(itemId);
+      } else {
+        await deleteRoom((data as Room).roomId);
       }
       closeDialog();
     }

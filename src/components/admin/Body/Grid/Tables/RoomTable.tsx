@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { UseDialog } from '../../../../../hooks/useDialog';
 import { GridType } from '../../../../../types/adminTypes';
 import { ROOM_HEADER } from '../../../../../constants/gridConstants';
-import useRooms from '../../../../../hooks/useRoomsManagement';
+import useRoomsManagement from '../../../../../hooks/useRoomsManagement';
 import Spinner from '../../../../shared/Spinner/Spinner';
 import Row from '../Row/Row';
 import classes from './Table.module.css';
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const RoomTable: FC<Props> = ({ openDialog }) => {
-  const { fetchRooms, isLoading, getFilteredRooms } = useRooms();
+  const { fetchRooms, isLoading, getFilteredRooms } = useRoomsManagement();
 
   useEffect(() => {
     fetchRooms();

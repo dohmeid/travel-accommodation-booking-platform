@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { UseDialog } from '../../../../../hooks/useDialog';
 import { GridType } from '../../../../../types/adminTypes';
 import { CITY_HEADER } from '../../../../../constants/gridConstants';
-import useCities from '../../../../../hooks/useCitiesManagement';
+import useCitiesManagement from '../../../../../hooks/useCitiesManagement';
 import Spinner from '../../../../shared/Spinner/Spinner';
 import Row from '../Row/Row';
 import classes from './Table.module.css';
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const CityTable: FC<Props> = ({ openDialog }) => {
-  const { fetchCities, getFilteredCities, isLoading } = useCities();
+  const { fetchCities, getFilteredCities, isLoading } = useCitiesManagement();
 
   useEffect(() => {
     fetchCities();

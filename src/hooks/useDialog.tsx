@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { City, GridType, Hotel } from '../types/adminTypes';
+import { City, GridType, Hotel, Room } from '../types/adminTypes';
 
 export interface DialogState<T = unknown> {
   type: GridType;
@@ -9,11 +9,11 @@ export interface DialogState<T = unknown> {
 }
 
 export interface UseDialog {
-  dialogState: DialogState<City | Hotel>;
+  dialogState: DialogState<City | Hotel | Room>;
   openDialog: (
     type: GridType,
     mode: DialogState['mode'],
-    data?: City | Hotel,
+    data?: City | Hotel | Room,
   ) => void;
   closeDialog: () => void;
 }
@@ -28,7 +28,7 @@ const useDialog = () => {
   const [dialogState, setDialogState] = useState<DialogState>(initialState);
 
   const openDialog = useCallback(
-    (type: GridType, mode: DialogState['mode'], data?: City | Hotel) => {
+    (type: GridType, mode: DialogState['mode'], data?: City | Hotel | Room) => {
       setDialogState({
         type,
         mode,

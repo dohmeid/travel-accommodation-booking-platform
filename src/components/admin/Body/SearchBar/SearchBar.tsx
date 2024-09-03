@@ -1,7 +1,7 @@
 import React, { FC, ChangeEvent, useCallback } from 'react';
 import { GridType, SearchOptions } from '../../../../types/adminTypes';
 import { useAdminContext } from '../../../../context/adminProvider';
-import useHotels from '../../../../hooks/useHotelsManagement';
+import useHotelsManagement from '../../../../hooks/useHotelsManagement';
 import classes from './SearchBar.module.css';
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 
 const SearchBar: FC<Props> = ({ gridType }) => {
   const { setSearchOption, setSearchQuery } = useAdminContext();
-  const { fetchHotels } = useHotels();
+  const { fetchHotels } = useHotelsManagement();
 
   const handleSearchOptionChange = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
