@@ -1,0 +1,51 @@
+.row {
+    text-align: center;
+    font-size: 0.7rem;
+    font-family: var(--secondary-font);
+    color: var(--dark-brown1);
+
+    .descriptionRow {
+        text-align: justify;
+    }
+
+    .roomAmenities {
+        ul {
+            width: 100%;
+            list-style-type: none;
+        }
+    }
+
+    .availability i {
+        font-size: 1.2rem;
+    }
+
+    .buttons {
+        display: flex;
+        align-items: center;
+
+        button {
+            background-color: transparent;
+            border: none;
+            outline: none;
+
+            i {
+                font-size: 1.1rem;
+            }
+
+            &:hover {
+                opacity: 0.6;
+                transition: opacity 0.1s ease-in-out;
+                cursor: pointer;
+            }
+        }
+
+        .editBtn {
+            color: var(--dark-brown1);
+            margin-right: 0.2rem;
+        }
+
+        .deleteBtn {
+            color: var(--orange1);
+        }
+    }
+}
