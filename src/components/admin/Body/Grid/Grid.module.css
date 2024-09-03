@@ -43,8 +43,7 @@
 
 @media (max-width: 550px) {
   .gridContainer {
-    padding: 1.5rem 0.5rem;
-
+    padding: 1.5rem 0.2rem;
     .gridHeader {
       height: auto;
       padding: 0 1rem;

@@ -6,7 +6,7 @@ import { render } from './render';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import { authenticateUser } from '../../api/authService';
 
-jest.mock('../../../api/authService');
+jest.mock('../../api/authService');
 
 const getters = {
   getUserNameInput: () => screen.getByPlaceholderText(/username/i),

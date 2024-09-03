@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from '../../context/authProvider';
-import { NotificationProvider } from '../../context/NotificationProvider';
+import { NotificationProvider } from '../../context/notificationProvider';
 
 interface WrapperProps {
   children: ReactNode;

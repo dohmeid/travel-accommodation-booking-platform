@@ -1,25 +1,34 @@
 .row {
-    border-bottom: 1px solid var(--medium-grey);
     text-align: center;
     font-size: 0.7rem;
     font-family: var(--secondary-font);
     color: var(--dark-brown1);
-    padding: 1rem 0;
 
     .descriptionRow {
         text-align: justify;
     }
 
+    .roomAmenities {
+        ul {
+            width: 100%;
+            list-style-type: none;
+        }
+    }
+
+    .availability i {
+        font-size: 1.2rem;
+    }
+
     .buttons {
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
 
         button {
             background-color: transparent;
             border: none;
             outline: none;
-            font-size: 1.2rem;
+
+            i {
+                font-size: 1.1rem;
+            }
 
             &:hover {
                 opacity: 0.6;
@@ -30,6 +39,7 @@
 
         .editBtn {
             color: var(--dark-brown1);
+            margin-right: 0.2rem;
         }
 
         .deleteBtn {

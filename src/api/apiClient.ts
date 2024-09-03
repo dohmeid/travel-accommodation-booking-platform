@@ -9,7 +9,7 @@ export enum HttpMethod {
 }
 
 //create an Axios instance with default configuration
-const apiClient = axios.create({
+export const apiClient = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
   headers: {
     accept: 'application/json, text/plain',
@@ -45,7 +45,6 @@ apiClient.interceptors.response.use(
         errorMessage = 'Bad Request';
         break;
       case 401:
-        //logout the user
         errorMessage = 'Unauthorized User. Redirecting to login...';
         break;
       case 403:

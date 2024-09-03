@@ -29,16 +29,36 @@
     color: var(--dark-brown1);
   }
 
+
+  .searchButton,
   .optionsDropdown {
     font-family: var(--secondary-font);
     font-weight: 500;
-    padding: 0 1rem;
-    margin-left: 1rem;
-    color: #fff;
-    background-color: var(--medium-grey);
+    font-size: 0.9rem;
     border-radius: 0.6rem;
-    border: none;
+    margin-left: 0.5rem;
+    padding: 0 1rem;
+    color: #fff;
     cursor: pointer;
+
+    &:focus {
+      outline-color: var(--orange1);
+    }
+  }
+
+  .searchButton {
+    background-color: var(--orange1);
+    border: 2px solid transparent;
+
+    &:hover {
+      border: 2px solid white;
+    }
+  }
+
+  .optionsDropdown {
+    background-color: var(--medium-grey);
+    border: none;
+    text-transform: capitalize;
 
     &:focus {
       outline-color: var(--orange1);
@@ -46,8 +66,6 @@
   }
 }
 
-/*************************** media queries styles ********************************/
-/*for small devices - mobile phones and some tablets*/
 @media (max-width: 550px) {
   .searchContainer {
     height: 3rem;
@@ -64,11 +82,8 @@
     }
 
     .optionsDropdown {
-      font-size: 0.7rem;
-      height: 100%;
       width: 6rem;
       padding: 0;
-      margin-left: 0.3rem;
     }
   }
 }

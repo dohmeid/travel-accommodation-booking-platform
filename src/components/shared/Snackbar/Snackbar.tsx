@@ -1,5 +1,5 @@
 import React, { useState, FC, useEffect } from 'react';
-import { NotificationType } from '../../../context/NotificationProvider';
+import { NotificationType } from '../../../context/notificationProvider';
 import classes from './Snackbar.module.css';
 
 interface SnackbarProps {

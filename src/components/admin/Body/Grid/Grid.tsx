@@ -1,10 +1,14 @@
 import React, { FC } from 'react';
-import { City, GridType, Hotel } from '../../../types/adminTypes';
-import useDialog, { DialogState } from '../../../hooks/useDialog';
-import CityDialog from '../Dialogs/CityDialog/CityDialog';
-import HotelDialog from '../Dialogs/HotelDialog/HotelDialog';
-import DeleteDialog from '../Dialogs/DeleteDialog/DeleteDialog';
-import Table from './Table/Table';
+import { City, GridType, Hotel, Room } from '../../../../types/adminTypes';
+import useDialog, { DialogState } from '../../../../hooks/useDialog';
+import { GRID_TITLES } from '../../../../constants/gridConstants';
+import CityDialog from '../../Dialogs/CityDialog/CityDialog';
+import HotelDialog from '../../Dialogs/HotelDialog/HotelDialog';
+import RoomDialog from '../../Dialogs/RoomDialog/RoomDialog';
+import DeleteDialog from '../../Dialogs/DeleteDialog/DeleteDialog';
+import CityTable from './Tables/CityTable';
+import HotelTable from './Tables/HotelTable';
+import RoomTable from './Tables/RoomTable';
 import classes from './Grid.module.css';
 
 interface GridProps {
@@ -13,12 +17,6 @@ interface GridProps {
 
 const Grid: FC<GridProps> = ({ gridType }) => {
   const { dialogState, openDialog, closeDialog } = useDialog();
-
-  const titles: Record<string, string> = {
-    [GridType.CITY]: 'Cities List',
-    [GridType.HOTEL]: 'Hotels List',
-    [GridType.ROOM]: 'Rooms List',
-  };
 
   const handleCreateButtonClick = () => {
     openDialog(gridType, 'Add');
@@ -39,8 +37,8 @@ const Grid: FC<GridProps> = ({ gridType }) => {
         />
       ),
       [GridType.ROOM]: (
-        <CityDialog
-          dialogState={dialogState as DialogState<City>}
+        <RoomDialog
+          dialogState={dialogState as DialogState<Room>}
           closeDialog={closeDialog}
         />
       ),
@@ -48,10 +46,23 @@ const Grid: FC<GridProps> = ({ gridType }) => {
     return dialogMap[gridType] || null;
   };
 
+  const renderTable = () => {
+    switch (gridType) {
+      case GridType.CITY:
+        return <CityTable openDialog={openDialog} />;
+      case GridType.HOTEL:
+        return <HotelTable openDialog={openDialog} />;
+      case GridType.ROOM:
+        return <RoomTable openDialog={openDialog} />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className={classes.gridContainer}>
       <div className={classes.gridHeader}>
-        <h2>{titles[gridType]}</h2>
+        <h2>{GRID_TITLES[gridType]}</h2>
         <button
           type="button"
           className={classes.createBtn}
@@ -63,7 +74,7 @@ const Grid: FC<GridProps> = ({ gridType }) => {
         </button>
       </div>
 
-      <Table type={gridType} openDialog={openDialog} />
+      {renderTable()}
       {renderDialog()}
       <DeleteDialog dialogState={dialogState} closeDialog={closeDialog} />
     </div>

@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
 import { Outlet } from 'react-router-dom';
-import { AdminProvider } from '../../context/AdminProvider';
+import { AdminProvider } from '../../context/adminProvider';
 import LeftNavigator from '../../components/admin/LeftNavigator/LeftNavigator';
 import Header from '../../components/admin/Header/Header';
-import SearchBar from '../../components/admin/SearchBar/SearchBar';
 import classes from './AdminPage.module.css';
 
 const AdminPage: FC = () => {
@@ -13,11 +12,8 @@ const AdminPage: FC = () => {
         <LeftNavigator />
         <div className={classes.main}>
           <Header />
-          <section className={classes.body}>
-            <SearchBar />
-            {/*Outlet renders the Grid element based on type = (gridType = city or hotel or room) */}
-            <Outlet />
-          </section>
+          {/*Outlet renders the Body element based on type = (gridType = city or hotel or room) */}
+          <Outlet />
         </div>
       </div>
     </AdminProvider>

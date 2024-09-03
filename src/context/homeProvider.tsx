@@ -18,7 +18,7 @@ import {
   HomeContextType,
 } from '../types/homeTypes';
 import { useAuthContext } from './authProvider';
-import { NotificationType, useNotification } from './NotificationProvider';
+import { NotificationType, useNotification } from './notificationProvider';
 
 export const HomeContext = createContext<HomeContextType | undefined>(
   undefined,

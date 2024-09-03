@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import HomePage from '../../pages/HomePage/HomePage';
 import { HomeContext } from '../../context/homeProvider';
 import { SearchProvider } from '../../context/searchProvider';
-import { NotificationProvider } from '../../context/NotificationProvider';
+import { NotificationProvider } from '../../context/notificationProvider';
 import { AuthProvider } from '../../context/authProvider';
 import { BrowserRouter } from 'react-router-dom';
 

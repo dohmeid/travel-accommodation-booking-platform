@@ -6,7 +6,7 @@ import React, {
   ReactNode,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useNotification, NotificationType } from './NotificationProvider';
+import { useNotification, NotificationType } from './notificationProvider';
 import { useCartContext } from './cartProvider';
 import { addBooking } from '../api/bookingService';
 import { Booking, BookingConfirmation } from '../types/bookingTypes';

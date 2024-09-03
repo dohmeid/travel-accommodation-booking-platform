@@ -1,31 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
-import * as Yup from 'yup';
-import { useAdminContext } from '../../../../context/AdminProvider';
+import { hotelDialogSchema } from '../../../../schemas/validationSchemas';
 import { UseDialog, DialogState } from '../../../../hooks/useDialog';
 import { Hotel } from '../../../../types/adminTypes';
+import useHotelsManagement from '../../../../hooks/useHotelsManagement';
+import useCitiesManagement from '../../../../hooks/useCitiesManagement';
 import classes from './HotelDialog.module.css';
-
-const hotelSchema = Yup.object().shape({
-  name: Yup.string().required('Hotel name is a required field!'),
-  description: Yup.string().required('Hotel description is a required field!'),
-  cityId: Yup.number().required('Hotel city is a required field!'),
-  hotelType: Yup.number()
-    .required('Hotel type is a required field!')
-    .min(0, 'Hotel type must be at least 0'),
-  starRating: Yup.number()
-    .required('Hotel star rating is a required field!')
-    .min(0, 'Star rating must be at least 0')
-    .max(5, 'Star rating must be 5 or less'),
-  latitude: Yup.number()
-    .required('Hotel latitude is a required field!')
-    .min(-90, 'Latitude must be at least -90')
-    .max(90, 'Latitude must be 90 or less'),
-  longitude: Yup.number()
-    .required('Hotel longitude is a required field!')
-    .min(-180, 'Longitude must be at least -180')
-    .max(180, 'Longitude must be 180 or less'),
-});
 
 interface DialogFormValues {
   name: string;
@@ -43,8 +23,14 @@ interface Props {
 }
 
 const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
-  const { cities, createHotel, updateHotel } = useAdminContext();
+  const { cities, fetchCities } = useCitiesManagement();
+  const { createHotel, updateHotel } = useHotelsManagement();
   const { mode, isOpen, data: hotelData } = dialogState;
+
+  //initially fetch the cities to display then in the dialog options
+  useEffect(() => {
+    fetchCities();
+  }, []);
 
   const initialHotelValues = {
     name: hotelData?.name || '',
@@ -84,7 +70,7 @@ const HotelDialog: FC<Props> = ({ dialogState, closeDialog }) => {
     <div className={classes.dialogContainer}>
       <Formik
         initialValues={initialHotelValues}
-        validationSchema={hotelSchema}
+        validationSchema={hotelDialogSchema}
         onSubmit={handleSubmitForm}
       >
         {(formik) => (

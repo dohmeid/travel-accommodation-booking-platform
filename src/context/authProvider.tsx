@@ -13,7 +13,7 @@ import { isTokenValid, getUserIdFromToken } from '../utils/authUtils';
 import {
   useNotification,
   NotificationType,
-} from '../context/NotificationProvider';
+} from './notificationProvider';
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 

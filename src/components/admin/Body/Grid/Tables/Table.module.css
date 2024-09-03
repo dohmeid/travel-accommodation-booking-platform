@@ -1,0 +1,216 @@
+.spinnerContainer {
+    width: 100%;
+    height: 45rem;
+}
+
+.grid {
+    width: 100%;
+    height: fit-content;
+    display: grid;
+    border-collapse: collapse;
+    table-layout: fixed;
+
+    thead,
+    tbody,
+    tr {
+        display: contents;
+        font-family: var(--secondary-font);
+    }
+
+    thead th {
+        color: var(--medium-grey);
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    thead th,
+    tbody td {
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 0.85rem;
+        text-align: center;
+        overflow-wrap: break-word;
+        border-bottom: 1px solid var(--medium-grey);
+    }
+
+    .noDataRow td {
+        text-align: center;
+        font-weight: 500;
+        color: var(--dark-brown2);
+    }
+}
+
+.paginationContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 2rem 0;
+
+    .currPagesNumber {
+        font-size: 0.85rem;
+    }
+
+    .pageNavButtons {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-family: var(--secondary-font);
+
+        .selectPage {
+            border: none;
+            padding: 0.2rem;
+            font-size: 1rem;
+        }
+
+        button {
+            border-radius: 0.5rem;
+            border: none;
+            background-color: var(--orange1);
+            color: var(--white);
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            margin: 0 0.7rem;
+            font-size: 1rem;
+
+            &:not(:disabled):hover {
+                background-color: var(--orange1);
+                color: var(--white);
+                transition: 0.2s all ease-in-out;
+            }
+
+            &:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+        }
+    }
+}
+
+.cityGrid {
+    grid-template-columns: 1fr 1fr 4fr 1fr;
+
+    .noDataRow td {
+        grid-column: span 4;
+    }
+}
+
+.hotelGrid {
+    grid-template-columns: 1fr 1fr 4fr 1fr 1fr 1fr 1fr 1fr;
+
+    .noDataRow td {
+        grid-column: span 8;
+    }
+}
+
+.roomGrid {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 2fr 1fr 1fr 1fr;
+
+    .noDataRow td {
+        grid-column: span 9;
+    }
+}
+
+
+@media (max-width: 410px) {
+    .grid {
+
+        thead th {
+            font-size: 0.66rem;
+            overflow-wrap: word-break;
+        }
+
+        tbody td {
+            overflow-wrap: anywhere;
+        }
+
+        thead,
+        tbody {
+
+            th,
+            td {
+                padding: 0.55rem 0.25rem;
+            }
+        }
+    }
+
+    .paginationContainer {
+        padding: 1.3rem 0.5rem;
+
+        .currPagesNumber {
+            font-size: 0.85rem;
+        }
+
+        .pageNavButtons {
+            width: 100%;
+            margin-left: 1rem;
+
+            .selectPage {
+                padding: 0;
+            }
+
+            button {
+                padding: 0.35rem 0.5rem;
+
+                span {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 410px) and (max-width: 810px) {
+    .grid {
+        height: fit-content;
+
+        thead th {
+            font-size: 0.7rem;
+        }
+
+        tbody td {
+            overflow-wrap: anywhere;
+        }
+
+        thead,
+        tbody {
+
+            th,
+            td {
+                padding: 0.55rem 0.25rem;
+            }
+        }
+    }
+
+    .paginationContainer {
+        padding: 1.3rem 0.5rem;
+
+        .currPagesNumber {
+            font-size: 0.85rem;
+            margin: 0 0.7rem;
+        }
+
+        .pageNavButtons {
+            .selectPage {
+                padding: 0;
+            }
+
+            button {
+                padding: 0.35rem 0.5rem;
+
+                span {
+                    display: none;
+                }
+            }
+        }
+    }
+}
