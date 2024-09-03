@@ -242,6 +242,7 @@ Running tests - if you want to run the tests for TravelHub, follow these steps:
 2. Run the test suite
 **`npm test`**
 
+Note: the used Node version in this app is -> Node.js v20.12.2.
 Now, you are ready to explore and contribute to the TravelHub project!
 
 
