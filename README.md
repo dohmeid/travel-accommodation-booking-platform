@@ -201,6 +201,9 @@ Booking Confirmation Pdf
 9. Admin Page - manage hotels
 ![image](https://github.com/user-attachments/assets/62c403b7-a9ac-4c29-b58e-d5679b2a09f7)
 
+10. Admin Page - manage rooms
+![image](https://github.com/user-attachments/assets/dc8f243e-00bd-4979-af78-648fa26f1195)
+
 	Delete item 
 	![image](https://github.com/user-attachments/assets/60f3b07d-09ad-441c-830d-70f5d65114e7)
 
@@ -226,6 +229,7 @@ Booking Confirmation Pdf
 
 
 ## :hammer_and_wrench: Installation
+The used Node version in this app is -> Node.js v20.12.2.
 To run TravelHub locally, follow these steps:
 1. Clone the repository:
   **`git clone https://github.com/dohmeid/travel-accommodation-booking-platform.git`**
@@ -242,7 +246,9 @@ Running tests - if you want to run the tests for TravelHub, follow these steps:
 2. Run the test suite
 **`npm test`**
 
-Note: the used Node version in this app is -> Node.js v20.12.2.
+Test Results
+![image](https://github.com/user-attachments/assets/761cf69f-bf6f-478b-8440-2afda82b01ef)
+
 Now, you are ready to explore and contribute to the TravelHub project!
 
 
